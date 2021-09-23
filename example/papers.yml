@@ -1,0 +1,15 @@
+- id: 1
+  title: Detecting Attackable Sentences in Arguments
+  authors:
+  - name: Yohan Jo
+  - name: Seojin Bang
+  - name: Emaad Manzoor
+  - name: Eduard Hovy
+  - name: Chris Reed
+- id: 2
+  title: Extracting Implicitly Asserted Propositions in Argumentation
+  authors:
+  - name: Yohan Jo
+  - name: Jacky Visser
+  - name: Chris Reed
+  - name: Eduard Hovy
