@@ -1,0 +1,20 @@
+- role: General Chairs
+  members:
+  - name: Bonnie Webber
+    institution: University of Edinburgh, UK
+- role: Program Chairs
+  members:
+  - name: Trevor Cohn
+    institution: University of Melbourne, Australia
+- role: Senior Area Chairs
+  area: Computational Social Science and Social Media
+  members:
+  - name: Jacob Eisenstein
+    institution: Google, USA
+- role: Area Chairs
+  area: Computational Social Science and Social Media
+  - name: David Bamman
+- role: Reviewers
+  members:
+  - name: Mourad Abbas
+
