@@ -1,0 +1,37 @@
+\documentclass[10pt]{article}
+\usepackage[a4paper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+\usepackage{pdfpages}
+
+\begin{document}
+
+
+\newcommand{\citeinfo}[2]{
+  \AddToShipoutPicture*{%
+    \setlength{\unitlength}{1mm}
+    \put(105,17){\makebox(0,0){\footnotesize {\em Proceedings of the 2018 Conference on Empirical Methods in Natural Language Processing}, pages #1--#2}}
+   % \put(105,11){\makebox(0,0){\footnotesize 
+%	\ifthenelse{\equal{#1}{#2}}{page #1}{pages #1--#2}}}
+     \put(105,13){\makebox(0,0){\footnotesize Brussels, Belgium, October 31 - November 4, 2018. \textcopyright 2018 Association for Computational Linguistics}}
+  }
+}
+
+\newcommand{\FirstPage}{458}
+\newcommand{\LastPage}{468}
+
+
+\setcounter{page}{\FirstPage}
+\thispagestyle{plain}
+\pagestyle{plain}
+\setlength\footskip{0.8cm}
+
+
+\includepdf[pages=-]{tmp.pdf}
+
+% MODIFY THE VARIABLES FOR FIRST AND LAST PAGE
+
+
+
+\citeinfo{\FirstPage}{\LastPage}
+
+\end{document}
