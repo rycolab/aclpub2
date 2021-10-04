@@ -1,0 +1,23 @@
+\documentclass[10pt]{article}
+\usepackage[a4paper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+\usepackage{pdfpages}
+
+
+\pagenumbering{roman}
+
+\font\titlefont=cmr12 at 12pt
+\date{}
+\title{TEMPLATE_TITLE}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\pagenumbering{arabic}
+
+TEMPLATE_PDFS_TO_INCLUDE
+
+\end{document}
