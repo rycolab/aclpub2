@@ -1,15 +1,41 @@
 - id: 1
-  title: Detecting Attackable Sentences in Arguments
+  title: "Investigating label suggestions for opinion mining in German Covid-19 social media"
   authors:
-  - name: Yohan Jo
-  - name: Seojin Bang
-  - name: Emaad Manzoor
-  - name: Eduard Hovy
-  - name: Chris Reed
+  - name: "Tilman Beck"
+  - name: "Ji-Ung Lee"
+  - name: "Christina Viehmann"
+  - name: "Marcus Maurer"
+  - name: "Oliver Quiring"
+  - name: "Iryna Gurevych"
 - id: 2
-  title: Extracting Implicitly Asserted Propositions in Argumentation
+  title: "How Did This Get Funded?! Automatically Identifying Quirky Scientific Achievements"
   authors:
-  - name: Yohan Jo
-  - name: Jacky Visser
-  - name: Chris Reed
-  - name: Eduard Hovy
+  - name: "Chen Shani"
+  - name: "Nadav Borenstein"
+  - name: "Dafna Shahaf"
+- id: 3
+  title: "Engage the Public: Poll Question Generation for Social Media Posts"
+  authors:
+  - name: "Zexin Lu"
+  - name: "Keyang Ding"
+  - name: "Yuji Zhang"
+  - name: "Jing Li"
+  - name: "Baolin Peng"
+  - name: "Lemao Liu"
+- id: 4
+  title: "HATE CHECK : Functional Tests for Hate Speech Detection Models"
+  authors:
+  - name: "Paul Röttger"
+  - name: "Bertram Vidgen"
+  - name: "Dong Nguyen"
+  - name: "Zeerak Waseem"
+  - name: "Helen Margetts"
+  - name: "Janet B. Pierrehumbert"
+- id: 5
+  title: "Uniﬁed Dual-view Cognitive Model for Interpretable Claim Veriﬁcation"
+  authors:
+  - name: "Lianwei Wu"
+  - name: "Yuan Rao"
+  - name: "Yuqian Lan"
+  - name: "Ling Sun"
+  - name: "Zhaoyin Qin"
