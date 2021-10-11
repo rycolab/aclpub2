@@ -1,11 +1,19 @@
-\documentclass[10pt]{article}
-\usepackage[a4paper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+\documentclass[10pt,a4paper]{article}
 
 \usepackage{pdfpages}
+\usepackage{times}
 
-\begin{document}
 
+% MODIFY THE VARIABLES FOR FIRST AND LAST PAGE
+\newcommand{\FirstPage}{0}
+\newcommand{\LastPage}{0}
 
+\setcounter{page}{\FirstPage}
+\thispagestyle{plain}
+\pagestyle{plain}
+\setlength\footskip{0.8cm}
+
+% MODIFY THE NAME, LOCATION, AND YEAR OF THE CONFERENCE
 \newcommand{\citeinfo}[2]{
   \AddToShipoutPicture*{%
     \setlength{\unitlength}{1mm}
@@ -16,22 +24,21 @@
   }
 }
 
-\newcommand{\FirstPage}{458}
-\newcommand{\LastPage}{468}
 
 
-\setcounter{page}{\FirstPage}
-\thispagestyle{plain}
-\pagestyle{plain}
-\setlength\footskip{0.8cm}
 
+\begin{document}
 
+\renewcommand{\FirstPage}{458}
+\renewcommand{\LastPage}{468}
+\citeinfo{\FirstPage}{\LastPage}
 \includepdf[pages=-]{tmp.pdf}
 
-% MODIFY THE VARIABLES FOR FIRST AND LAST PAGE
-
-
-
+\renewcommand{\FirstPage}{458}
+\renewcommand{\LastPage}{468}
 \citeinfo{\FirstPage}{\LastPage}
+\includepdf[pages=-]{tmp.pdf}
+
+
 
 \end{document}
