@@ -1,18 +1,48 @@
 \documentclass[10pt]{article}
 \usepackage[a4paper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
-
 \usepackage{pdfpages}
+\usepackage{fancyhdr}
 
+\pagestyle{fancy}
+\cfoot{{\thepage\\ TEMPLATE_WATERMARK\\ \copyright TEMPLATE_YEAR Association for Computational Linguistics}}
 
+\pagestyle{plain}
 \pagenumbering{roman}
 
 \font\titlefont=cmr12 at 12pt
 \date{}
 \title{TEMPLATE_TITLE}
 
+\newcounter{ptmp}
+
 \begin{document}
 
-\maketitle
+\begin{titlepage}
+   \begin{center}
+       \vspace*{1cm}
+
+       \textbf{TEMPLATE_ABBREV TEMPLATE_YEAR}
+
+       \vspace{0.5cm}
+        Thesis Subtitle
+            
+       \vspace{1.5cm}
+
+       \textbf{TEMPLATE_CONFERENCE_NAME}
+
+       \vfill
+            
+       \vspace{0.8cm}
+     
+            
+       Department Name\\
+       University Name\\
+       Country\\
+       Date
+            
+   \end{center}
+\end{titlepage}
+
 
 \tableofcontents
 
