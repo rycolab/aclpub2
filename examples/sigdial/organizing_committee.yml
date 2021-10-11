@@ -1,0 +1,44 @@
+- role: General Chair
+  members:
+    - name: Olivier Pietquin
+      institution: Google Research, France
+- role: Program Chairs
+  members:
+    - name: Smaranda Muresan
+      institution: Columbia University, USA
+    - name: Vivian Chen
+      institution: National Taiwan University, Taiwan
+- role: Local / Virtual Chair
+  members:
+    - name: Casey Kennington
+      institution: Boise State University, USA
+- role: Sponsorship Chair
+  members:
+    - name: David Vandyke
+      institution: Apple Inc., United Kingdom
+- role: Mentoring Chair
+  members:
+    - name: Nina Dethlefs
+      institution: University of Hull, United Kingdom
+- role: Publication Chair
+  members:
+    - name: Stefan Ultes
+      institution: Mercedes-Benz AG, Germany
+- role: Video Presentation Chair
+  members:
+    - name: Koji Inoue
+      institution: Kyoto University, Japan
+    - name: Erik Ekstedt
+      institution: KTH Royal Institute of Technology, Sweden
+- role: SIGdial Officers
+  members:
+    - name: "President: Gabriel Skantze"
+      institution: KTH Royal Institute of Technology, Sweden
+    - name: "Vice President: Mikio Nakano"
+      institution: Honda Research Institute, Japan
+    - name: "Secretary: Vikram Ramanarayanan"
+      institution: Educational Testing Service (ETS) Research, USA
+    - name: "Treasurer: Ethan Selfridge"
+      institution: Interactions, USA
+    - name: "President Emeritus: Jason Williams"
+      institution: Apple, USA
