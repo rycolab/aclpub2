@@ -13,6 +13,15 @@
   - name: "Chen Shani"
   - name: "Nadav Borenstein"
   - name: "Dafna Shahaf"
+- id: 3
+  title: "Engage the Public: Poll Question Generation for Social Media Posts"
+  authors:
+  - name: "Zexin Lu"
+  - name: "Keyang Ding"
+  - name: "Yuji Zhang"
+  - name: "Jing Li"
+  - name: "Baolin Peng"
+  - name: "Lemao Liu"
 - id: 4
   title: "HATE CHECK : Functional Tests for Hate Speech Detection Models"
   authors:
