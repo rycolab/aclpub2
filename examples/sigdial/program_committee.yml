@@ -1,163 +1,248 @@
-\vspace{3mm}
-- role: Senior Program Committee
-Dilek Hakkani-Tur, Amazon\\
-Annie Louis, Google\\
-Mikio Nakano, Honda Research Institute\\
-Rebecca J. Passonneau, Penn State University\\
-Gabriel Skantze, KTH\\
-Manfred Stede, Universität Potsdam\\
-David Traum, University of Southern California\\
-Koichiro Yoshino, Nara Institute of Science and Technology\\
-
-\newpage
-
-\vspace{3mm}
-- role: Program Committee
-Sean Andrist, Microsoft Research, United States\\
-Masahiro Araki, Kyoto Institute of Technology, Japan\\
-Ron Artstein, USC Institute for Creative Technologies, United States\\
-Yoav Artzi, Cornell University, United States\\
-Timo Baumann, Universität Hamburg, Germany\\
-Frederic Bechet, Aix Marseille Universite - LIS/CNRS, France\\
-Steve Beet, Aculab plc, United Kingdom\\
-Jose Miguel Benedi, Universitàt Politècnica de València, Spain\\
-Luciana Benotti, Universidad Nacional de Cordoba, Argentina\\
-Yonatan Bisk, Carnegie Mellon University, United States\\
-Nate Blaylock, Cerence, United States\\
-Dan Bohus, Microsoft Research, United States\\
-Johan Boye, KTH, Sweden\\
-Chloé Braud, IRIT - CNRS, France\\
-Hendrik Buschmeier, Bielefeld University, Germany\\
-Andrew Caines, University of Cambridge, United Kingdom\\
-Christophe Cerisara, Université de Lorraine, CNRS, LORIA, France\\
-Senthil Chandramohan, Microsoft, United States\\
-Lin Chen, Head of AI, Cambia Health Solutions, United States\\
-Paul Crook, Facebook, United States\\
-Heriberto Cuayahuitl, University of Lincoln, United Kingdom\\
-Nina Dethlefs, University of Hull, United Kingdom\\
-David DeVault, University of Southern California, United States\\
-Barbara Di Eugenio, University of Illinois at Chicago, United States\\
-Jens Edlund, KTH Speech, Music and Hearing, Sweden\\
-Maxine Eskenazi, Carnegie Mellon University, United States\\
-Keelan Evanini, Educational Testing Service, United States\\
-Mauro Falcone, Fondazione Ugo Bordoni, Italy\\
-Michel Galley, Microsoft Research, United States\\
-Milica Gasic, Heinrich Heine University Duesseldorf, Germany\\
-Kallirroi Georgila, University of Southern California, ICT, United States\\
-Alborz Geramifard, Facebook AI, United States\\
-Debanjan Ghosh, Educational Testing Service, United States\\
-Jonathan Ginzburg, Université Paris-Diderot (Paris 7), France\\
-Joakim Gustafson, KTH, Sweden\\
-Ivan Habernal, Technische Universität Darmstadt, Germany\\
-Helen Hastie, Heriot-Watt University, United Kingdom\\
-Michael Heck, Heinrich Heine University, Germany\\
-Behnam Hedayatnia, Amazon, United States\\
-Ryuichiro Higashinaka, NTT Media Intelligence Labs., Japan\\
-Takuya Hiraoka, NEC Central Research Laboratories, Japan\\
-Thomas Howard, University of Rochester, United States\\
-David M. Howcroft, Heriot-Watt University, United Kingdom\\
-Ruihong Huang, Texas A\&M University, United States\\
-Michimasa Inaba, The University of Electro-Communications, Japan\\
-Koji Inoue, Kyoto University, Japan\\
-Filip Jurcicek, Apple Inc., United Kingdom\\
-Tatsuya Kawahara, Kyoto University, Japan\\
-\newpage
-Chris Kedzie, Columbia University, United States\\
-Simon Keizer, Toshiba Research Europe Ltd, United Kingdom\\
-Chandra Khatri, Senior AI Research Scientist, Uber AI, United States\\
-Alexander Koller, Saarland University, Germany\\
-Kazunori Komatani, Osaka University, Japan\\
-Ivana Kruijff-Korbayova, DFKI, Germany\\
-Kornel Laskowski, Carnegie Mellon University, United States\\
-Fabrice Lefevre, Avignon Univ., France\\
-Oliver Lemon, Heriot-Watt University, United Kingdom\\
-Junyi Jessy Li, University of Texas at Austin, United States\\
-Pierre Lison, Norwegian Computing Centre, Norway\\
-Bing Liu, Facebook, United States\\
-Eduardo Lleida Solano, University of Zaragoza, Spain\\
-Ramon Lopez-Cozar, University of Granada, Spain\\
-Nurul Lubis, Heinrich Heine University, Germany\\
-Ross Mead, Semio, United States\\
-Teruhisa Misu, Honda Research Institute USA, United States\\
-Seungwhan Moon, Facebook Conversational AI, United States\\
-Raymond Mooney, University of Texas at Austin, United States\\
-Elena Musi, University of Liverpool, United Kingdom\\
-Satoshi Nakamura, Nara Institute of Science and Technology and RIKEN AIP Center, Japan\\
-Vincent Ng, University of Texas at Dallas, United States\\
-Douglas O'Shaughnessy, INRS-EMT (Univ. of Quebec), Canada\\
-Alexandros Papangelis, Uber AI, United States\\
-Cecile Paris, CSIRO, Australia\\
-Nanyun Peng, University of Southern California, United States\\
-Laura Perez-Beltrachini, School of Informatics, University of Edinburgh, United Kingdom\\
-Paul Piwek, The Open University, United Kingdom\\
-Heather Pon-Barry, Mount Holyoke College, United States\\
-Andrei Popescu-Belis, HEIG-VD / HES-SO, Switzerland\\
-Abhinav Rastogi, Google Research, United States\\
-Ehud Reiter, University of Aberdeen, United Kingdom\\
-Norbert Reithinger, DFKI GmbH, Germany\\
-Antonio Roque, Tufts University, United States\\
-Carolyn Rose, Carnegie Mellon University, United States\\
-Clayton Rothwell, Infoscitex Corp., United States\\
-Sakriani Sakti, Nara Institute of Science and Technology (NAIST) / RIKEN AIP, Japan\\
-Ruhi Sarikaya, Amazon, United States\\
-David Schlangen, University of Potsdam, Germany\\
-Ethan Selfridge, Interactions LLC, United States\\
-Georg Stemmer, Intel Corp., Germany\\
-Matthew Stone, Rutgers University, United States\\
-Svetlana Stoyanchev, Toshiba Europe, United Kingdom\\
-Kristina Striegnitz, Union College, United States\\
-Pei-Hao Su, PolyAI, United Kingdom\\
-Hiroaki Sugiyama, NTT Communication Science Labs., Japan\\
-António Teixeira, DETI/IEETA, University of Aveiro, Portugal\\
-Takenobu Tokunaga, Tokyo Institute of Technology, Japan\\
-Bo-Hsiang Tseng, University of Cambridge, United Kingdom\\
-Gokhan Tur, Amazon Alexa AI, United States\\
-\newpage
-Stefan Ultes, Mercedes-Benz AG, Germany\\
-David Vandyke, Apple, United Kingdom\\
-Hsin-Min Wang, Academia Sinica, Taiwan\\
-Yi-Chia Wang, Uber AI, United States\\
-Nigel Ward, University of Texas at El Paso, United States\\
-Jason D Williams, Apple, United States\\
-Tom Williams, Colorado School of Mines, United States\\
-Yen-chen Wu, University of Cambridge, United Kingdom\\
-Steve Young, Cambridge University, United Kingdom\\
-Zhou Yu, University of California, Davis, United States\\
-Kai Yu, Shanghai Jiao Tong University, China\\
-Jian ZHANG, Dongguan University of Technology and Hong Kong University of Science and Technology, China\\
-\\
-Secondary Reviewers: Zeyu Dai, Shrey Desai, Sanuj Sharma, Wenlin Yao
-
-% \vspace{3mm}
-% - role: Secondary Reviewers:} \vspace{2mm} \\
-% Alexandre Denis \\
-% Sahar Ghannay \\
-% Churn-Jung Liau \\
-% Yi Ma \\
-% Sonja Stange \\
-% Hiroki Tanaka \\
-% Martin Villalba
-
-%\vspace{3mm}
-%- role: Mentors
-%Timo Baumann, University of Hamburg, Germany \\
-%Dimitrios Alikaniotis, Grammarly, USA \\
-%Hendrik Buschmeier, Bielefeld University, Germany \\
-%Ivan Habernal, Technische Universität Darmstadt, Germany \\
-%Kornel Laskowski, Carnegie Mellon University, USA \\
-%Stefan Ultes, Daimler AG, Germany \\
-%David Vandyke, Apple, UK
-
-\vspace{3mm}
+senior_program_committee:
+  - name: Dilek Hakkani-Tur
+    institution: Amazon
+  - name: Annie Louis
+    institution: Google
+  - name: Mikio Nakano
+    institution: Honda Research Institute
+  - name: Rebecca J. Passonneau
+    institution: Penn State University
+  - name: Gabriel Skantze
+    institution: KTH
+  - name: Manfred Stede
+    institution: Universität Potsdam
+  - name: David Traum
+    institution: University of Southern California
+  - name: Koichiro Yoshino
+    institution: Nara Institute of Science and Technology
+program_committee:
+  - name: Sean Andrist
+    institution: Microsoft Research, United States
+  - name: Masahiro Araki
+    institution: Kyoto Institute of Technology, Japan
+  - name: Ron Artstein
+    institution: USC Institute for Creative Technologies, United States
+  - name: Yoav Artzi
+    institution: Cornell University, United States
+  - name: Timo Baumann
+    institution: Universität Hamburg, Germany
+  - name: Frederic Bechet
+    institution: Aix Marseille Universite - LIS/CNRS, France
+  - name: Steve Beet
+    institution: Aculab plc, United Kingdom
+  - name: Jose Miguel Benedi
+    institution: Universitàt Politècnica de València, Spain
+  - name: Luciana Benotti
+    institution: Universidad Nacional de Cordoba, Argentina
+  - name: Yonatan Bisk
+    institution: Carnegie Mellon University, United States
+  - name: Nate Blaylock
+    institution: Cerence, United States
+  - name: Dan Bohus
+    institution: Microsoft Research, United States
+  - name: Johan Boye
+    institution: KTH, Sweden
+  - name: Chloé Braud
+    institution: IRIT - CNRS, France
+  - name: Hendrik Buschmeier
+    institution: Bielefeld University, Germany
+  - name: Andrew Caines
+    institution: University of Cambridge, United Kingdom
+  - name: Christophe Cerisara
+    institution: Université de Lorraine, CNRS, LORIA, France
+  - name: Senthil Chandramohan
+    institution: Microsoft, United States
+  - name: Lin Chen
+    institution: Head of AI, Cambia Health Solutions, United States
+  - name: Paul Crook
+    institution: Facebook, United States
+  - name: Heriberto Cuayahuitl
+    institution: University of Lincoln, United Kingdom
+  - name: Nina Dethlefs
+    institution: University of Hull, United Kingdom
+  - name: David DeVault
+    institution: University of Southern California, United States
+  - name: Barbara Di Eugenio
+    institution: University of Illinois at Chicago, United States
+  - name: Jens Edlund
+    institution: KTH Speech, Music and Hearing, Sweden
+  - name: Maxine Eskenazi
+    institution: Carnegie Mellon University, United States
+  - name: Keelan Evanini
+    institution: Educational Testing Service, United States
+  - name: Mauro Falcone
+    institution: Fondazione Ugo Bordoni, Italy
+  - name: Michel Galley
+    institution: Microsoft Research, United States
+  - name: Milica Gasic
+    institution: Heinrich Heine University Duesseldorf, Germany
+  - name: Kallirroi Georgila
+    institution: University of Southern California, ICT, United States
+  - name: Alborz Geramifard
+    institution: Facebook AI, United States
+  - name: Debanjan Ghosh
+    institution: Educational Testing Service, United States
+  - name: Jonathan Ginzburg
+    institution: Université Paris-Diderot (Paris 7), France
+  - name: Joakim Gustafson
+    institution: KTH, Sweden
+  - name: Ivan Habernal
+    institution: Technische Universität Darmstadt, Germany
+  - name: Helen Hastie
+    institution: Heriot-Watt University, United Kingdom
+  - name: Michael Heck
+    institution: Heinrich Heine University, Germany
+  - name: Behnam Hedayatnia
+    institution: Amazon, United States
+  - name: Ryuichiro Higashinaka
+    institution: NTT Media Intelligence Labs., Japan
+  - name: Takuya Hiraoka
+    institution: NEC Central Research Laboratories, Japan
+  - name: Thomas Howard
+    institution: University of Rochester, United States
+  - name: David M. Howcroft
+    institution: Heriot-Watt University, United Kingdom
+  - name: Ruihong Huang
+    institution: Texas A\&M University, United States
+  - name: Michimasa Inaba
+    institution: The University of Electro-Communications, Japan
+  - name: Koji Inoue
+    institution: Kyoto University, Japan
+  - name: Filip Jurcicek
+    institution: Apple Inc., United Kingdom
+  - name: Tatsuya Kawahara
+    institution: Kyoto University, Japan
+  - name: Chris Kedzie
+    institution: Columbia University, United States
+  - name: Simon Keizer
+    institution: Toshiba Research Europe Ltd, United Kingdom
+  - name: Chandra Khatri
+    institution: Senior AI Research Scientist, Uber AI, United States
+  - name: Alexander Koller
+    institution: Saarland University, Germany
+  - name: Kazunori Komatani
+    institution: Osaka University, Japan
+  - name: Ivana Kruijff-Korbayova
+    institution: DFKI, Germany
+  - name: Kornel Laskowski
+    institution: Carnegie Mellon University, United States
+  - name: Fabrice Lefevre
+    institution: Avignon Univ., France
+  - name: Oliver Lemon
+    institution: Heriot-Watt University, United Kingdom
+  - name: Junyi Jessy Li
+    institution: University of Texas at Austin, United States
+  - name: Pierre Lison
+    institution: Norwegian Computing Centre, Norway
+  - name: Bing Liu
+    institution: Facebook, United States
+  - name: Eduardo Lleida Solano
+    institution: University of Zaragoza, Spain
+  - name: Ramon Lopez-Cozar
+    institution: University of Granada, Spain
+  - name: Nurul Lubis
+    institution: Heinrich Heine University, Germany
+  - name: Ross Mead
+    institution: Semio, United States
+  - name: Teruhisa Misu
+    institution: Honda Research Institute USA, United States
+  - name: Seungwhan Moon
+    institution: Facebook Conversational AI, United States
+  - name: Raymond Mooney
+    institution: University of Texas at Austin, United States
+  - name: Elena Musi
+    institution: University of Liverpool, United Kingdom
+  - name: Satoshi Nakamura
+    institution: Nara Institute of Science and Technology and RIKEN AIP Center, Japan
+  - name: Vincent Ng
+    institution: University of Texas at Dallas, United States
+  - name: Douglas O'Shaughnessy
+    institution: INRS-EMT (Univ. of Quebec), Canada
+  - name: Alexandros Papangelis
+    institution: Uber AI, United States
+  - name: Cecile Paris
+    institution: CSIRO, Australia
+  - name: Nanyun Peng
+    institution: University of Southern California, United States
+  - name: Laura Perez-Beltrachini
+    institution: School of Informatics, University of Edinburgh, United Kingdom
+  - name: Paul Piwek
+    institution: The Open University, United Kingdom
+  - name: Heather Pon-Barry
+    institution: Mount Holyoke College, United States
+  - name: Andrei Popescu-Belis
+    institution: HEIG-VD / HES-SO, Switzerland
+  - name: Abhinav Rastogi
+    institution: Google Research, United States
+  - name: Ehud Reiter
+    institution: University of Aberdeen, United Kingdom
+  - name: Norbert Reithinger
+    institution: DFKI GmbH, Germany
+  - name: Antonio Roque
+    institution: Tufts University, United States
+  - name: Carolyn Rose
+    institution: Carnegie Mellon University, United States
+  - name: Clayton Rothwell
+    institution: Infoscitex Corp., United States
+  - name: Sakriani Sakti
+    institution: Nara Institute of Science and Technology (NAIST) / RIKEN AIP, Japan
+  - name: Ruhi Sarikaya
+    institution: Amazon, United States
+  - name: David Schlangen
+    institution: University of Potsdam, Germany
+  - name: Ethan Selfridge
+    institution: Interactions LLC, United States
+  - name: Georg Stemmer
+    institution: Intel Corp., Germany
+  - name: Matthew Stone
+    institution: Rutgers University, United States
+  - name: Svetlana Stoyanchev
+    institution: Toshiba Europe, United Kingdom
+  - name: Kristina Striegnitz
+    institution: Union College, United States
+  - name: Pei-Hao Su
+    institution: PolyAI, United Kingdom
+  - name: Hiroaki Sugiyama
+    institution: NTT Communication Science Labs., Japan
+  - name: António Teixeira
+    institution: DETI/IEETA, University of Aveiro, Portugal
+  - name: Takenobu Tokunaga
+    institution: Tokyo Institute of Technology, Japan
+  - name: Bo-Hsiang Tseng
+    institution: University of Cambridge, United Kingdom
+  - name: Gokhan Tur
+    institution: Amazon Alexa AI, United States
+  - name: Stefan Ultes
+    institution: Mercedes-Benz AG, Germany
+  - name: David Vandyke
+    institution: Apple, United Kingdom
+  - name: Hsin-Min Wang
+    institution: Academia Sinica, Taiwan
+  - name: Yi-Chia Wang
+    institution: Uber AI, United States
+  - name: Nigel Ward
+    institution: University of Texas at El Paso, United States
+  - name: Jason D Williams
+    institution: Apple, United States
+  - name: Tom Williams
+    institution: Colorado School of Mines, United States
+  - name: Yen-chen Wu
+    institution: University of Cambridge, United Kingdom
+  - name: Steve Young
+    institution: Cambridge University, United Kingdom
+  - name: Zhou Yu
+    institution: University of California, Davis, United States
+  - name: Kai Yu
+    institution: Shanghai Jiao Tong University, China
+  - name: Jian ZHANG
+    institution: Dongguan University of Technology and Hong Kong University of Science and Technology, China
+secondary_reviewers:
+  - Zeyu Dai
+  - Shrey Desai
+  - Sanuj Sharma
+  - Wenlin Yao
 - role: Invited Speakers
-Asli Celikyilmaz, Microsoft Research, USA\\
-Diane Litman, University of Pittsburgh, USA \\
-Gabriel Skantze, KTH Royal Institute of Technology, Sweden \\
+Asli Celikyilmaz, Microsoft Research, USA
+Diane Litman, University of Pittsburgh, USA
+Gabriel Skantze, KTH Royal Institute of Technology, Sweden
 
-
-% Panelists
-
-% Invited Paper
-
-\end{description}
-\end{document}

@@ -1,24 +1,29 @@
-program_committee:
+- role: Program Committee Co-chairs
+  entries:
   - name: Trevor Cohn
     institution: University of Melbourne, Australia
   - name: Yulan He
     institution: University of Warwick, UK
-senior_area_chairs:
+- role: Senior Area Chairs
+  entries:
   - area: Computational Social Science and Social Media
     members:
       - name: Jacob Eisenstein
         institution: Google, USA
-area_chairs:
+- role: Area Chairs
+  entries:
   - area: Computational Social Science and Social Media
     members:
       - David Bamman
       - Cristian Danescu-Niculescu-Mizil
-reviewers:
+- role: Reviewers
+  entries:
   - Mourad Abbas
   - Ehsan Abbasnejad
   - Nguyen Bach
   - Geoff Bacon
-secondary_reviewers:
+- role: Secondary Reviewers
+  entries:
   - Ahmed Abura'ed
   - Ameeta Agrawal
   - Nastaran Babanejad
