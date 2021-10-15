@@ -1,8 +1,8 @@
 - id: 1
-  speaker-name: Claire Cardie
+  speaker_name: Claire Cardie
   institution: Cornell University
-  title: Information Extraction Through the Years: How Did We Get Here?
+  title: "Information Extraction Through the Years: How Did We Get Here?"
 - id: 2
-  speaker-name: Rich Caruana
+  speaker_name: Rich Caruana
   institution: Microsoft
-  title: Friends Don’t Let Friends Deploy Black-Box Models: The Importance of Intelligibility in Machine Learning
+  title: "Friends Don’t Let Friends Deploy Black-Box Models: The Importance of Intelligibility in Machine Learning"

@@ -1,63 +1,39 @@
+from collections import defaultdict
 from pathlib import Path
 from PyPDF2 import PdfFileReader
 
 import subprocess
 import yaml
 
-PAPERS_CFG_FILE = "papers.yml"
-SPONSORS_CFG_FILE = "sponsors.yml"
-PREFACES_CFG_FILE = "prefaces.yml"
-
-
-PAPER_CMD = """
-\\addcontentsline{toc}{section}{TEMPLATE_TITLE}
-\pagestyle{fancy}
-\cfoot{{\\thepage\\\\
-    \\footnotesize\\emph{Prooceedings of the TEMPLATE_CONFERENCE_NAME},
-    pages \\thepage -\\theptmp\\\\
-    TEMPLATE_CONFERENCE_DATES, TEMPLATE_YEAR
-    \\textcopyright TEMPLATE_YEAR Association for Computational Linguistics}}
-\setcounter{ptmp}{\\value{page} + TEMPLATE_NUM_PAGES - 1}
-\includepdf[pagecommand={\\thispagestyle{fancy}},pages=1]{TEMPLATE_PDF_PATH}
-\includepdf[pagecommand={\\thispagestyle{plain}},pages=2-TEMPLATE_NUM_PAGES]{TEMPLATE_PDF_PATH}
-"""
-
 
 def generate(root: str):
     build_dir = Path("build")
     build_dir.mkdir(exist_ok=True)
 
-    conference, papers, sponsors, prefaces, organizing_committee = load_configs(root)
+    (
+        conference,
+        papers,
+        sponsors,
+        prefaces,
+        organizing_committee,
+        program_committee,
+        invited_talks,
+        program,
+    ) = load_configs(root)
 
     # Load the proceedings template.
-    with open(
-        Path(Path(__file__).parent, "proceedings_template.tex"),
-        "r",
-        encoding="utf-8",
-    ) as f:
-        template = f.read()
+    template = load_template("proceedings")
 
-    # Generate the templated proceedings.tex file.
-    def paper_cmd(paper):
-        pdf_path = str(Path(root, "papers", f"{paper['id']}.pdf"))
-        pdf = PdfFileReader(pdf_path)
-        title = paper["title"].replace("’", "'").replace("&", "\\&")
-        return (
-            PAPER_CMD.replace("TEMPLATE_TITLE", title)
-            .replace("TEMPLATE_PDF_PATH", pdf_path)
-            .replace("TEMPLATE_NUM_PAGES", str(pdf.getNumPages()))
-        )
+    # Fill templates.
+    templated_papers, templated_toc, paper_id_to_page = process_papers(papers, root)
 
-    map(paper_cmd, papers)
-
-    # Replace the templated PDFs first, to allow othering templating to take effect.
-    pdfs_str = list(map(paper_cmd, papers))
-    template = template.replace("TEMPLATE_PDFS_TO_INCLUDE", "\n".join(pdfs_str))
+    template = template.replace("TEMPLATE_PDFS_TO_INCLUDE", templated_papers)
+    template = template.replace("TEMPLATE_TOC", templated_toc)
 
     template = template.replace("TEMPLATE_ABBREV", conference["abbreviation"])
     template = template.replace("TEMPLATE_CONFERENCE_NAME", conference["name"])
     template = template.replace("TEMPLATE_ISBN", conference["isbn"])
-    template = template.replace("TEMPLATE_YEAR", str(conference["start-date"].year))
+    template = template.replace("TEMPLATE_YEAR", str(conference["start_date"].year))
     template = template.replace("TEMPLATE_TITLE", "ACL Anthology")
     template = template.replace(
         "TEMPLATE_CONFERENCE_DATES", get_conference_dates(conference)
@@ -66,21 +42,42 @@ def generate(root: str):
     template = template.replace("TEMPLATE_PREFACES", generate_prefaces(prefaces, root))
     template = template.replace(
         "TEMPLATE_ORGANIZING_COMMITTEE",
-        generate_organizing_committee(organizing_committee, root),
+        generate_organizing_committee(organizing_committee),
+    )
+    template = template.replace(
+        "TEMPLATE_PROGRAM_COMMITTEE",
+        generate_program_committee(program_committee),
+    )
+    template = template.replace(
+        "TEMPLATE_INVITED_TALKS",
+        generate_invited_talks(invited_talks, root),
+    )
+    template = template.replace(
+        "TEMPLATE_PROGRAM",
+        generate_program(program),
     )
 
+    # Write the resulting tex file.
     tex_file = Path(build_dir, "proceedings.tex")
     with open(tex_file, "w+") as f:
         f.write(template)
 
     # Build with latex.
-    print(f"-output-directory={build_dir}")
     subprocess.run(["pdflatex", f"-output-directory={build_dir}", str(tex_file)])
 
 
+def load_template(template: str) -> str:
+    with open(
+        Path(Path(__file__).parent, "templates", f"{template}.tex"),
+        "r",
+        encoding="utf-8",
+    ) as f:
+        return f.read()
+
+
 def get_conference_dates(conference) -> str:
-    start_date = conference["start-date"]
-    end_date = conference["end-date"]
+    start_date = conference["start_date"]
+    end_date = conference["end_date"]
     start_month = start_date.strftime("%B")
     end_month = end_date.strftime("%B")
     if start_month == end_month:
@@ -88,58 +85,157 @@ def get_conference_dates(conference) -> str:
     return f"{start_month} {start_date.day} - {end_month} {end_date.day}"
 
 
+def process_papers(papers, root: str):
+    paper_template = load_template("paper_entry")
+    toc_template = load_template("toc_entry")
+    templated_papers = ""
+    templated_toc = ""
+    paper_id_to_page = {}
+    page = 1
+    for paper in papers:
+        paper_id_to_page[paper["id"]] = page
+        pdf_path = str(Path(root, "papers", f"{paper['id']}.pdf"))
+        pdf = PdfFileReader(pdf_path)
+        title = paper["title"].replace("’", "'").replace("&", "\\&")
+        templated_papers += (
+            paper_template.replace("TEMPLATE_TITLE", title)
+            .replace("TEMPLATE_PDF_PATH", pdf_path)
+            .replace("TEMPLATE_NUM_PAGES", str(pdf.getNumPages()))
+        )
+        author_string = ""
+        for i, author in enumerate(paper["authors"]):
+            if i == len(paper["authors"]) - 1:  # Last author
+                author_string += " and "
+            author_string += author
+            if i < len(paper["authors"]) - 1:
+                author_string += ", "
+        templated_toc += (
+            toc_template.replace("TEMPLATE_TITLE", title)
+            .replace("TEMPLATE_AUTHORS", author_string)
+            .replace("TEMPLATE_PAGE", str(page))
+        )
+        page += pdf.getNumPages()
+    return templated_papers, templated_toc, paper_id_to_page
+
+
 def generate_sponsors(sponsors, root: str) -> str:
     output = ""
+    tier_template = load_template("sponsors_tier")
+    logo_template = load_template("sponsors_logo")
     for level in sponsors:
-        output += "\\textbf{" + level["tier"] + "}\n\n\\bigskip"
+        logos = ""
         for logo in level["logos"]:
-            output += (
-                "\includegraphics[width=2cm]{"
-                + str(Path(root, "sponsor-logos", logo))
-                + "}"
+            logos += logo_template.replace(
+                "TEMPLATE_LOGO_FILE", str(Path(root, "sponsor_logos", logo))
             )
-        output += "\n\n\\bigskip "
+        output += tier_template.replace("TEMPLATE_TIER", level["tier"]).replace(
+            "TEMPLATE_LOGOS", logos
+        )
     return output
 
 
 def generate_prefaces(prefaces, root: str) -> str:
     output = ""
+    template = load_template("preface")
     for preface in prefaces:
-        output += "\\textbf{Preface by the " + preface["role"] + "}\\\\"
         with open(Path(root, "prefaces", preface["file"])) as f:
             body = f.read()
-            output += body
-        output += "\\newpage"
+            output += template.replace("TEMPLATE_ROLE", preface["role"]).replace(
+                "TEMPLATE_BODY", body
+            )
     return output
 
 
-def generate_organizing_committee(organizing_committee, root: str) -> str:
+def generate_organizing_committee(organizing_committee) -> str:
     output = ""
+    role_template = load_template("committee_role")
     for entry in organizing_committee:
-        output += "\\textbf{" + entry["role"] + "}\\\\ "
+        entries = ""
         for member in entry["members"]:
-            output += f"{member['name']}, {member['institution']}\\\\ "
+            entries += generate_committee_entry(member)
+        output += role_template.replace("TEMPLATE_ROLE", entry["role"]).replace(
+            "TEMPLATE_ENTRIES", entries
+        )
     return output
+
+
+def generate_committee_entry(member) -> str:
+    entry_template = load_template("committee_entry")
+    return entry_template.replace("TEMPLATE_NAME", member["name"]).replace(
+        "TEMPLATE_INSTITUTION", member["institution"]
+    )
+
+
+def generate_program_committee(program_committee) -> str:
+    program_committee_template = load_template("program_committee")
+    output = program_committee_template.replace(
+        "TEMPLATE_PROGRAM_COMMITTEE_ENTRIES", "PLACEHOLDER"
+    )
+    return output
+
+
+def generate_invited_talks(invited_talks, root: str) -> str:
+    output = ""
+    invited_talk_template = load_template("invited_talk")
+    for talk in invited_talks:
+        id = talk["id"]
+        with open(Path(root, "invited_talks", f"{id}_abstract.tex")) as f:
+            abstract = f.read()
+        with open(Path(root, "invited_talks", f"{id}_bio.tex")) as f:
+            bio = f.read()
+        output += (
+            invited_talk_template.replace("TEMPLATE_NAME", talk["speaker_name"])
+            .replace("TEMPLATE_INSTITUTION", talk["institution"])
+            .replace("TEMPLATE_TITLE", talk["title"])
+            .replace("TEMPLATE_ABSTRACT", abstract)
+            .replace("TEMPLATE_BIO", bio)
+        )
+    return output
+
+
+def generate_program(program) -> str:
+    program = get_program_sessions_by_date(program)
+    return "PLACEHOLDER"
+
+
+def get_program_sessions_by_date(program):
+    dates = set()
+    for session in program:
+        dates.add(session["start_time"].date())
+    sessions_by_date = defaultdict(list)
+    for session in program:
+        sessions_by_date[session["start_time"].date()].append(session)
+    return sessions_by_date
 
 
 def load_configs(root: str):
     """
     Loads all conference configuration files defined in the root directory.
     """
-    # Conference Details
-    with open(Path(root, "conference-details.yml"), "r", encoding="utf-8") as f:
+    with open(Path(root, "conference_details.yml"), "r", encoding="utf-8") as f:
         conference = yaml.safe_load(f)
-    # List of papers.
     with open(Path(root, "papers.yml"), "r", encoding="utf-8") as f:
         papers = yaml.safe_load(f)
-    # Sponsors.
     with open(Path(root, "sponsors.yml"), "r", encoding="utf-8") as f:
         sponsors = yaml.safe_load(f)
-    # Prefaces.
     with open(Path(root, "prefaces.yml"), "r", encoding="utf-8") as f:
         prefaces = yaml.safe_load(f)
-    # Organizing Committee
-    with open(Path(root, "organizing-committee.yml"), "r", encoding="utf-8") as f:
+    with open(Path(root, "organizing_committee.yml"), "r", encoding="utf-8") as f:
         organizing_committee = yaml.safe_load(f)
+    with open(Path(root, "program_committee.yml"), "r", encoding="utf-8") as f:
+        program_committee = yaml.safe_load(f)
+    with open(Path(root, "invited_talks.yml"), "r", encoding="utf-8") as f:
+        invited_talks = yaml.safe_load(f)
+    with open(Path(root, "program.yml"), "r", encoding="utf-8") as f:
+        program = yaml.safe_load(f)
 
-    return conference, papers, sponsors, prefaces, organizing_committee
+    return (
+        conference,
+        papers,
+        sponsors,
+        prefaces,
+        organizing_committee,
+        program_committee,
+        invited_talks,
+        program,
+    )
