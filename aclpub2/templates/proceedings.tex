@@ -2,6 +2,13 @@
 \usepackage[a4paper,top=2cm,bottom=3cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
 \usepackage{pdfpages}
 \usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage[pageanchor]{hyperref}
+\hypersetup{
+    colorlinks,
+    linktoc=all,
+    linkcolor=red,
+}
 
 \pagestyle{plain}
 \pagenumbering{roman}
@@ -77,8 +84,6 @@ ISBN TEMPLATE_ISBN
 % Prefaces %
 %%%%%%%%%%%%
 TEMPLATE_PREFACES
-\newpage
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%
 % Organizing Committee %
@@ -90,11 +95,32 @@ TEMPLATE_ORGANIZING_COMMITTEE
 \newpage
 
 %%%%%%%%%%%%%%%%%%%%%
+% Program Committee %
+%%%%%%%%%%%%%%%%%%%%%
+\begin{center}
+\textbf{Program Committee}
+\end{center}
+TEMPLATE_PROGRAM_COMMITTEE
+\newpage
+
+%%%%%%%%%%%%%%%%%
+% Invited Talks %
+%%%%%%%%%%%%%%%%%
+TEMPLATE_INVITED_TALKS
+
+%%%%%%%%%%%%%%%%%%%%%
 % Table of Contents %
 %%%%%%%%%%%%%%%%%%%%%
 \pagestyle{plain}
-\tableofcontents
+\begin{center}
+Table of Contents
+\end{center}
+\newcommand\page[1]{\rightskip=25pt \dotfill\rlap{\hbox to 25pt{\hfill#1}}\par}
+\begin{itemize}[leftmargin=*,label={}]
+TEMPLATE_TOC
+\end{itemize}
 \newpage
+
 
 %%%%%%%%%%
 % Papers %
