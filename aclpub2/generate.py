@@ -1,3 +1,4 @@
+from collections import defaultdict
 from pathlib import Path
 from PyPDF2 import PdfFileReader
 
@@ -17,13 +18,14 @@ def generate(root: str):
         organizing_committee,
         program_committee,
         invited_talks,
+        program,
     ) = load_configs(root)
 
     # Load the proceedings template.
     template = load_template("proceedings")
 
     # Fill templates.
-    templated_papers, templated_toc = generate_papers_and_toc(papers, root)
+    templated_papers, templated_toc, paper_id_to_page = process_papers(papers, root)
 
     template = template.replace("TEMPLATE_PDFS_TO_INCLUDE", templated_papers)
     template = template.replace("TEMPLATE_TOC", templated_toc)
@@ -50,6 +52,10 @@ def generate(root: str):
         "TEMPLATE_INVITED_TALKS",
         generate_invited_talks(invited_talks, root),
     )
+    template = template.replace(
+        "TEMPLATE_PROGRAM",
+        generate_program(program),
+    )
 
     # Write the resulting tex file.
     tex_file = Path(build_dir, "proceedings.tex")
@@ -57,7 +63,6 @@ def generate(root: str):
         f.write(template)
 
     # Build with latex.
-    print(f"-output-directory={build_dir}")
     subprocess.run(["pdflatex", f"-output-directory={build_dir}", str(tex_file)])
 
 
@@ -80,14 +85,15 @@ def get_conference_dates(conference) -> str:
     return f"{start_month} {start_date.day} - {end_month} {end_date.day}"
 
 
-def generate_papers_and_toc(papers, root: str):
+def process_papers(papers, root: str):
     paper_template = load_template("paper_entry")
     toc_template = load_template("toc_entry")
     templated_papers = ""
     templated_toc = ""
+    paper_id_to_page = {}
     page = 1
     for paper in papers:
-        print(paper)
+        paper_id_to_page[paper["id"]] = page
         pdf_path = str(Path(root, "papers", f"{paper['id']}.pdf"))
         pdf = PdfFileReader(pdf_path)
         title = paper["title"].replace("’", "'").replace("&", "\\&")
@@ -109,7 +115,7 @@ def generate_papers_and_toc(papers, root: str):
             .replace("TEMPLATE_PAGE", str(page))
         )
         page += pdf.getNumPages()
-    return templated_papers, templated_toc
+    return templated_papers, templated_toc, paper_id_to_page
 
 
 def generate_sponsors(sponsors, root: str) -> str:
@@ -163,7 +169,7 @@ def generate_committee_entry(member) -> str:
 def generate_program_committee(program_committee) -> str:
     program_committee_template = load_template("program_committee")
     output = program_committee_template.replace(
-        "TEMPLATE_PROGRAM_COMMITTEE_ENTRIES", "test"
+        "TEMPLATE_PROGRAM_COMMITTEE_ENTRIES", "PLACEHOLDER"
     )
     return output
 
@@ -187,6 +193,21 @@ def generate_invited_talks(invited_talks, root: str) -> str:
     return output
 
 
+def generate_program(program) -> str:
+    program = get_program_sessions_by_date(program)
+    return "PLACEHOLDER"
+
+
+def get_program_sessions_by_date(program):
+    dates = set()
+    for session in program:
+        dates.add(session["start_time"].date())
+    sessions_by_date = defaultdict(list)
+    for session in program:
+        sessions_by_date[session["start_time"].date()].append(session)
+    return sessions_by_date
+
+
 def load_configs(root: str):
     """
     Loads all conference configuration files defined in the root directory.
@@ -205,6 +226,8 @@ def load_configs(root: str):
         program_committee = yaml.safe_load(f)
     with open(Path(root, "invited_talks.yml"), "r", encoding="utf-8") as f:
         invited_talks = yaml.safe_load(f)
+    with open(Path(root, "program.yml"), "r", encoding="utf-8") as f:
+        program = yaml.safe_load(f)
 
     return (
         conference,
@@ -214,4 +237,5 @@ def load_configs(root: str):
         organizing_committee,
         program_committee,
         invited_talks,
+        program,
     )
