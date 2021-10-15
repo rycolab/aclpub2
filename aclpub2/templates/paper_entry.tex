@@ -1,0 +1,12 @@
+\addcontentsline{toc}{section}{TEMPLATE_TITLE}
+\pagestyle{fancy}
+\cfoot{
+  \thepage\\
+  \footnotesize
+  \emph{Proceedings of the TEMPLATE_CONFERENCE_NAME}, pages \thepage -\theptmp\\
+  TEMPLATE_CONFERENCE_DATES, TEMPLATE_YEAR
+  \textcopyright TEMPLATE_YEAR Association for Computational Linguistics
+}
+\setcounter{ptmp}{\value{page} + TEMPLATE_NUM_PAGES - 1}
+\includepdf[pagecommand={\thispagestyle{fancy}},pages=1]{TEMPLATE_PDF_PATH}
+\includepdf[pagecommand={\thispagestyle{plain}},pages=2-TEMPLATE_NUM_PAGES]{TEMPLATE_PDF_PATH}
