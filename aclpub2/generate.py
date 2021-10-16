@@ -5,8 +5,11 @@ from PyPDF2 import PdfFileReader
 import subprocess
 import yaml
 
+PARENT_DIR = Path(__file__).parent
+
 
 def generate(root: str):
+    root = Path(root)
     build_dir = Path("build")
     build_dir.mkdir(exist_ok=True)
 
@@ -25,7 +28,9 @@ def generate(root: str):
     template = load_template("proceedings")
 
     # Fill templates.
-    templated_papers, templated_toc, paper_id_to_page = process_papers(papers, root)
+    templated_papers, templated_toc, paper_id_to_page = process_papers(
+        papers, root, build_dir
+    )
 
     template = template.replace("TEMPLATE_PDFS_TO_INCLUDE", templated_papers)
     template = template.replace("TEMPLATE_TOC", templated_toc)
@@ -68,7 +73,7 @@ def generate(root: str):
 
 def load_template(template: str) -> str:
     with open(
-        Path(Path(__file__).parent, "templates", f"{template}.tex"),
+        Path(PARENT_DIR, "templates", f"{template}.tex"),
         "r",
         encoding="utf-8",
     ) as f:
@@ -85,7 +90,9 @@ def get_conference_dates(conference) -> str:
     return f"{start_month} {start_date.day} - {end_month} {end_date.day}"
 
 
-def process_papers(papers, root: str):
+def process_papers(papers, root: Path, build_dir: Path):
+    build_papers_dir = Path(build_dir, "papers")
+    build_papers_dir.mkdir(exist_ok=True)
     paper_template = load_template("paper_entry")
     toc_template = load_template("toc_entry")
     templated_papers = ""
@@ -94,12 +101,24 @@ def process_papers(papers, root: str):
     page = 1
     for paper in papers:
         paper_id_to_page[paper["id"]] = page
-        pdf_path = str(Path(root, "papers", f"{paper['id']}.pdf"))
-        pdf = PdfFileReader(pdf_path)
+        pdf_path = Path(root, "papers", f"{paper['id']}.pdf")
+        build_pdf_path = Path(build_papers_dir, f"{paper['id']}.pdf")
+        build_pdf_path.unlink(missing_ok=True)
+        pdf_path.link_to(build_pdf_path)
+        subprocess.run(
+            [
+                "java",
+                "-cp",
+                f"{PARENT_DIR}/pax.jar:{PARENT_DIR}/pdfbox.jar",
+                "pax.PDFAnnotExtractor",
+                build_pdf_path,
+            ]
+        )
+        pdf = PdfFileReader(str(build_pdf_path))
         title = paper["title"].replace("’", "'").replace("&", "\\&")
         templated_papers += (
             paper_template.replace("TEMPLATE_TITLE", title)
-            .replace("TEMPLATE_PDF_PATH", pdf_path)
+            .replace("TEMPLATE_PDF_PATH", str(build_pdf_path))
             .replace("TEMPLATE_NUM_PAGES", str(pdf.getNumPages()))
         )
         author_string = ""
@@ -118,7 +137,7 @@ def process_papers(papers, root: str):
     return templated_papers, templated_toc, paper_id_to_page
 
 
-def generate_sponsors(sponsors, root: str) -> str:
+def generate_sponsors(sponsors, root: Path) -> str:
     output = ""
     tier_template = load_template("sponsors_tier")
     logo_template = load_template("sponsors_logo")
@@ -134,7 +153,7 @@ def generate_sponsors(sponsors, root: str) -> str:
     return output
 
 
-def generate_prefaces(prefaces, root: str) -> str:
+def generate_prefaces(prefaces, root: Path) -> str:
     output = ""
     template = load_template("preface")
     for preface in prefaces:
@@ -174,7 +193,7 @@ def generate_program_committee(program_committee) -> str:
     return output
 
 
-def generate_invited_talks(invited_talks, root: str) -> str:
+def generate_invited_talks(invited_talks, root: Path) -> str:
     output = ""
     invited_talk_template = load_template("invited_talk")
     for talk in invited_talks:
@@ -208,7 +227,7 @@ def get_program_sessions_by_date(program):
     return sessions_by_date
 
 
-def load_configs(root: str):
+def load_configs(root: Path):
     """
     Loads all conference configuration files defined in the root directory.
     """
