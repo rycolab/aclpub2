@@ -19,8 +19,6 @@
 \date{}
 \title{ACL Anthology}
 
-\newcounter{ptmp}
-
 % General use macros
 \BLOCK{macro conference_year()}\VAR{conference.start_date.year}\BLOCK{endmacro}
 \BLOCK{macro committee_member(member)}\VAR{member.name}, \VAR{member.institution}\BLOCK{endmacro}
@@ -67,9 +65,8 @@ The \VAR{conference.abbreviation} organizers gratefully acknowlege the support f
 \BLOCK{endmacro}
 
 \BLOCK{for tier in sponsors}
-\VAR{generate_sponsor_tier(tier)}
+  \VAR{generate_sponsor_tier(tier)}
 \BLOCK{endfor}
-
 \newpage
 
 
@@ -98,9 +95,9 @@ ISBN \VAR{conference.isbn}
 % Prefaces %
 %%%%%%%%%%%%
 \BLOCK{for preface in prefaces}
-\textbf{Preface by the \VAR{preface.role}}\\
-\VAR{load_file(root, "prefaces", preface.file)}
-\newpage
+  \textbf{Preface by the \VAR{preface.role}}\\
+  \VAR{load_file(root, "prefaces", preface.file)}
+  \newpage
 \BLOCK{endfor}
 
 %%%%%%%%%%%%%%%%%%%%%%%%
@@ -139,40 +136,73 @@ ISBN \VAR{conference.isbn}
   \emph{\VAR{chairs.area}}\\
   \indent \VAR{join(", ", chairs.members)}\\
 \BLOCK{endfor}
+\textbf{Reviewers}\\
+\BLOCK{for name_block in group_by_last_name(program_committee.reviewers)}
+  \VAR{join(", ", name_block)}\\
+\BLOCK{endfor}
+\textbf{Secondary Reviewers}\\
+\BLOCK{for name_block in group_by_last_name(program_committee.secondary_reviewers)}
+  \VAR{join(", ", name_block)}\\
+\BLOCK{endfor}
 \newpage
 
-% %%%%%%%%%%%%%%%%%
-% % Invited Talks %
-% %%%%%%%%%%%%%%%%%
-% TEMPLATE_INVITED_TALKS
+%%%%%%%%%%%%%%%%%
+% Invited Talks %
+%%%%%%%%%%%%%%%%%
+\BLOCK{for talk in invited_talks}
+  \begin{center}
+    \textbf{Invited Speaker: \VAR{talk.speaker_name}, \VAR{talk.institution}}\\
+    \textbf{\VAR{talk.title}}
+  \end{center}
+  \textbf{Abstract:} \VAR{load_file(root, "invited_talks", talk.abstract_file)}\\
+  \newline
+  \textbf{Bio:} \VAR{load_file(root, "invited_talks", talk.bio_file)}\\
+  \newpage
+\BLOCK{endfor}
 
-% %%%%%%%%%%%%%%%%%%%%%
-% % Table of Contents %
-% %%%%%%%%%%%%%%%%%%%%%
-% \pagestyle{plain}
-% \begin{center}
-% Table of Contents
-% \end{center}
-% \newcommand\page[1]{\rightskip=25pt \dotfill\rlap{\hbox to 25pt{\hfill#1}}\par}
-% \begin{itemize}[leftmargin=*,label={}]
-% TEMPLATE_TOC
-% \end{itemize}
-% \newpage
+%%%%%%%%%%%%%%%%%%%%%
+% Table of Contents %
+%%%%%%%%%%%%%%%%%%%%%
+\pagestyle{plain}
+\begin{center}
+Table of Contents
+\end{center}
+\newcommand\page[1]{\rightskip=25pt \dotfill\rlap{\hbox to 25pt{\hfill#1}}\par}
+\begin{itemize}[leftmargin=*,label={}]
+  \BLOCK{for paper in papers}
+    \item \hyperlink{page.\VAR{paper.page_range[0]}}{\emph{\VAR{paper.title}}}\\ \VAR{join(", ", paper.authors, " and ")}\dotfill \VAR{paper.page_range[0]}
+  \BLOCK{endfor}
+\end{itemize}
+\newpage
 
-% %%%%%%%%%%%%%%%%%%%%%
-% % Table of Contents %
-% %%%%%%%%%%%%%%%%%%%%%
-% \begin{center}
-%   Conference Program
-% \end{center}
-% TEMPLATE_PROGRAM
-% \newpage
-% %%%%%%%%%%
-% % Papers %
-% %%%%%%%%%%
-% \pagenumbering{arabic}
-% \setcounter{page}{1}
+%%%%%%%%%%%
+% Program %
+%%%%%%%%%%%
+\begin{center}
+  Conference Program
+\end{center}
+placeholder
+\newpage
 
-% TEMPLATE_PDFS_TO_INCLUDE
+%%%%%%%%%%
+% Papers %
+%%%%%%%%%%
+\pagenumbering{arabic}
+\setcounter{page}{1}
+\BLOCK{for paper in papers}
+  \addcontentsline{toc}{section}{TEMPLATE_TITLE}
+  \pagestyle{fancy}
+  \fancyhf{}
+  \renewcommand{\headrulewidth}{0pt}
+  \cfoot{
+    \thepage\\
+    \footnotesize
+    \emph{Proceedings of the \VAR{conference.name}}, pages \VAR{paper.page_range[0]} - \VAR{paper.page_range[1]}\\
+    \VAR{conference_dates}, \VAR{conference_year()} 
+    \textcopyright \VAR{conference_year()} Association for Computational Linguistics
+  }
+  \includepdf[pagecommand={\thispagestyle{fancy}},pages=1]{\VAR{root}/papers/\VAR{paper.file}}
+  \includepdf[pagecommand={\thispagestyle{plain}},pages=2-\VAR{paper.num_pages}]{\VAR{root}/papers/\VAR{paper.file}}
+\BLOCK{endfor}
 
 \end{document}
