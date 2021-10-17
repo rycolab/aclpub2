@@ -1,6 +1,7 @@
 from collections import defaultdict
 from pathlib import Path
 from PyPDF2 import PdfFileReader
+from aclpub2.templates import load_template
 
 import subprocess
 import yaml
@@ -28,56 +29,29 @@ def generate(root: str):
     template = load_template("proceedings")
 
     # Fill templates.
-    templated_papers, templated_toc, paper_id_to_page = process_papers(
-        papers, root, build_dir
-    )
+    # paper_id_to_page = process_papers(
+    #     papers, Path(build_dir, "papers")
+    # )
 
-    template = template.replace("TEMPLATE_PDFS_TO_INCLUDE", templated_papers)
-    template = template.replace("TEMPLATE_TOC", templated_toc)
-
-    template = template.replace("TEMPLATE_ABBREV", conference["abbreviation"])
-    template = template.replace("TEMPLATE_CONFERENCE_NAME", conference["name"])
-    template = template.replace("TEMPLATE_ISBN", conference["isbn"])
-    template = template.replace("TEMPLATE_YEAR", str(conference["start_date"].year))
-    template = template.replace("TEMPLATE_TITLE", "ACL Anthology")
-    template = template.replace(
-        "TEMPLATE_CONFERENCE_DATES", get_conference_dates(conference)
-    )
-    template = template.replace("TEMPLATE_SPONSORS", generate_sponsors(sponsors, root))
-    template = template.replace("TEMPLATE_PREFACES", generate_prefaces(prefaces, root))
-    template = template.replace(
-        "TEMPLATE_ORGANIZING_COMMITTEE",
-        generate_organizing_committee(organizing_committee),
-    )
-    template = template.replace(
-        "TEMPLATE_PROGRAM_COMMITTEE",
-        generate_program_committee(program_committee),
-    )
-    template = template.replace(
-        "TEMPLATE_INVITED_TALKS",
-        generate_invited_talks(invited_talks, root),
-    )
-    template = template.replace(
-        "TEMPLATE_PROGRAM",
-        generate_program(program),
+    rendered_template = template.render(
+        root=str(root),
+        conference=conference,
+        conference_dates=get_conference_dates(conference), sponsors=sponsors, prefaces=prefaces,
+        organizing_committee=organizing_committee,
+        program_committee=program_committee,
     )
 
     # Write the resulting tex file.
     tex_file = Path(build_dir, "proceedings.tex")
     with open(tex_file, "w+") as f:
-        f.write(template)
+        f.write(rendered_template)
 
     # Build with latex.
     subprocess.run(["pdflatex", f"-output-directory={build_dir}", str(tex_file)])
 
 
-def load_template(template: str) -> str:
-    with open(
-        Path(PARENT_DIR, "templates", f"{template}.tex"),
-        "r",
-        encoding="utf-8",
-    ) as f:
-        return f.read()
+def load_preface_text(root: Path):
+    pass
 
 
 def get_conference_dates(conference) -> str:
@@ -90,35 +64,29 @@ def get_conference_dates(conference) -> str:
     return f"{start_month} {start_date.day} - {end_month} {end_date.day}"
 
 
-def process_papers(papers, root: Path, build_dir: Path):
-    build_papers_dir = Path(build_dir, "papers")
-    build_papers_dir.mkdir(exist_ok=True)
+def process_papers(papers, root: Path):
     paper_template = load_template("paper_entry")
     toc_template = load_template("toc_entry")
     templated_papers = ""
     templated_toc = ""
-    paper_id_to_page = {}
+    page_ranges = {}
     page = 1
     for paper in papers:
-        paper_id_to_page[paper["id"]] = page
         pdf_path = Path(root, "papers", f"{paper['id']}.pdf")
-        build_pdf_path = Path(build_papers_dir, f"{paper['id']}.pdf")
-        build_pdf_path.unlink(missing_ok=True)
-        pdf_path.link_to(build_pdf_path)
         subprocess.run(
             [
                 "java",
                 "-cp",
                 f"{PARENT_DIR}/pax.jar:{PARENT_DIR}/pdfbox.jar",
                 "pax.PDFAnnotExtractor",
-                build_pdf_path,
+                pdf_path,
             ]
         )
-        pdf = PdfFileReader(str(build_pdf_path))
+        pdf = PdfFileReader(str(pdf_path))
         title = paper["title"].replace("’", "'").replace("&", "\\&")
         templated_papers += (
             paper_template.replace("TEMPLATE_TITLE", title)
-            .replace("TEMPLATE_PDF_PATH", str(build_pdf_path))
+            .replace("TEMPLATE_PDF_PATH", str(pdf_path))
             .replace("TEMPLATE_NUM_PAGES", str(pdf.getNumPages()))
         )
         author_string = ""
@@ -133,36 +101,9 @@ def process_papers(papers, root: Path, build_dir: Path):
             .replace("TEMPLATE_AUTHORS", author_string)
             .replace("TEMPLATE_PAGE", str(page))
         )
+        page_ranges[paper["id"]] = (page, page + pdf.getNumPages() - 1)
         page += pdf.getNumPages()
-    return templated_papers, templated_toc, paper_id_to_page
-
-
-def generate_sponsors(sponsors, root: Path) -> str:
-    output = ""
-    tier_template = load_template("sponsors_tier")
-    logo_template = load_template("sponsors_logo")
-    for level in sponsors:
-        logos = ""
-        for logo in level["logos"]:
-            logos += logo_template.replace(
-                "TEMPLATE_LOGO_FILE", str(Path(root, "sponsor_logos", logo))
-            )
-        output += tier_template.replace("TEMPLATE_TIER", level["tier"]).replace(
-            "TEMPLATE_LOGOS", logos
-        )
-    return output
-
-
-def generate_prefaces(prefaces, root: Path) -> str:
-    output = ""
-    template = load_template("preface")
-    for preface in prefaces:
-        with open(Path(root, "prefaces", preface["file"])) as f:
-            body = f.read()
-            output += template.replace("TEMPLATE_ROLE", preface["role"]).replace(
-                "TEMPLATE_BODY", body
-            )
-    return output
+    return page_ranges
 
 
 def generate_organizing_committee(organizing_committee) -> str:
@@ -186,10 +127,31 @@ def generate_committee_entry(member) -> str:
 
 
 def generate_program_committee(program_committee) -> str:
+    output = ""
     program_committee_template = load_template("program_committee")
+
+    # First add program commitee members
+    program_committee_entries = ""
+    for member in program_committee["program_committee"]:
+        program_committee_entries += generate_committee_entry(member)
+
+    area_chair_role_template = load_template("area_chair_role")
+    senior_area_chairs = ""
+    for area in program_committee["senior_area_chairs"]:
+        entries = ""
+        for member in area["members"]:
+            entries += generate_committee_entry(member)
+        senior_area_chairs += area_chair_role_template.replace("TEMPLATE_AREA",
+                                                               area["area"]).replace("TEMPLATE_ENTRIES", entries)
+    area_chairs = ""
+    for area in program_committee["area_chairs"]:
+        entries = ", ".join(area["members"])
+        area_chairs += area_chair_role_template.replace("TEMPLATE_AREA",
+                                                        area["area"]).replace("TEMPLATE_ENTRIES", entries)
+
     output = program_committee_template.replace(
-        "TEMPLATE_PROGRAM_COMMITTEE_ENTRIES", "PLACEHOLDER"
-    )
+        "TEMPLATE_PROGRAM_COMMITTEE_ENTRIES", program_committee_entries
+    ).replace("TEMPLATE_SENIOR_AREA_CHAIRS", senior_area_chairs).replace("TEMPLATE_AREA_CHAIRS", area_chairs).replace("TEMPLATE_REVIEWERS", ", ".join(program_committee["reviewers"]))
     return output
 
 

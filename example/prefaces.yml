@@ -1,4 +1,4 @@
 - role: General Chair
-  file: general-chair.tex
+  file: general_chair.tex
 - role: Program Committee Co-Chairs
-  file: program-committee.tex
+  file: program_committee.tex
