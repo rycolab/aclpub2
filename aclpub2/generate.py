@@ -28,7 +28,8 @@ def generate(root: str):
     # Load the proceedings template.
     template = load_template("proceedings")
 
-    process_papers(papers, root)
+    id_to_paper = process_papers(papers, root)
+    sessions_by_date = get_program_sessions_by_date(program)
 
     rendered_template = template.render(
         root=str(root),
@@ -40,6 +41,8 @@ def generate(root: str):
         program_committee=program_committee,
         invited_talks=invited_talks,
         papers=papers,
+        id_to_paper=id_to_paper,
+        program=sessions_by_date,
     )
 
     # Write the resulting tex file.
@@ -49,10 +52,6 @@ def generate(root: str):
 
     # Build with latex.
     subprocess.run(["pdflatex", f"-output-directory={build_dir}", str(tex_file)])
-
-
-def load_preface_text(root: Path):
-    pass
 
 
 def get_conference_dates(conference) -> str:
@@ -67,6 +66,7 @@ def get_conference_dates(conference) -> str:
 
 def process_papers(papers, root: Path):
     page = 1
+    id_to_paper = {}
     for paper in papers:
         pdf_path = Path(root, "papers", f"{paper['id']}.pdf")
         subprocess.run(
@@ -79,10 +79,11 @@ def process_papers(papers, root: Path):
             ]
         )
         pdf = PdfFileReader(str(pdf_path))
-        paper["title"] = paper["title"].replace("’", "'").replace("&", "\\&")
         paper["num_pages"] = pdf.getNumPages()
         paper["page_range"] = (page, page + pdf.getNumPages() - 1)
+        id_to_paper[paper["id"]] = paper
         page += pdf.getNumPages()
+    return id_to_paper
 
 
 def get_program_sessions_by_date(program):
@@ -95,6 +96,10 @@ def get_program_sessions_by_date(program):
     return sessions_by_date
 
 
+def normalize_latex_string(text: str) -> str:
+    return text.replace("’", "'").replace("&", "\\&")
+
+
 def load_configs(root: Path):
     """
     Loads all conference configuration files defined in the root directory.
@@ -103,6 +108,8 @@ def load_configs(root: Path):
         conference = yaml.safe_load(f)
     with open(Path(root, "papers.yml"), "r", encoding="utf-8") as f:
         papers = yaml.safe_load(f)
+        for paper in papers:
+            paper["title"] = normalize_latex_string(paper["title"])
     with open(Path(root, "sponsors.yml"), "r", encoding="utf-8") as f:
         sponsors = yaml.safe_load(f)
     with open(Path(root, "prefaces.yml"), "r", encoding="utf-8") as f:
@@ -115,6 +122,8 @@ def load_configs(root: Path):
         invited_talks = yaml.safe_load(f)
     with open(Path(root, "program.yml"), "r", encoding="utf-8") as f:
         program = yaml.safe_load(f)
+        for entry in program:
+            entry["title"] = normalize_latex_string(entry["title"])
 
     return (
         conference,

@@ -33,6 +33,16 @@ def group_by_last_name(names: List[str]) -> List[List[str]]:
     return output
 
 
+def program_date(date) -> str:
+    return date.strftime("%A, %B %-d, %Y")
+
+
+def session_times(session) -> str:
+    start = session["start_time"].strftime("%H:%M")
+    end = session["end_time"].strftime("%H:%M")
+    return f"{start} - {end}"
+
+
 LATEX_JINJA_ENV = jinja2.Environment(
     block_start_string='\BLOCK{',
     block_end_string='}',
@@ -44,7 +54,8 @@ LATEX_JINJA_ENV = jinja2.Environment(
     autoescape=False,
     loader=jinja2.FileSystemLoader(str(TEMPLATE_DIR))
 )
-LATEX_JINJA_ENV.globals.update(load_file=load_file, join=join, group_by_last_name=group_by_last_name)
+LATEX_JINJA_ENV.globals.update(load_file=load_file, join=join,
+                               group_by_last_name=group_by_last_name, program_date=program_date, session_times=session_times)
 
 
 def load_template(template: str) -> jinja2.Template:
