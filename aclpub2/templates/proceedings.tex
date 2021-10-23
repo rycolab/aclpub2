@@ -1,23 +1,34 @@
-\documentclass[10pt]{article}
-\usepackage[a4paper,top=2cm,bottom=3cm,left=2cm,right=2cm,marginparwidth=1.75cm]{geometry}
-\usepackage{pdfpages}
-\usepackage{times}
-\usepackage{fancyhdr}
+\documentclass[11pt,oneside]{article}
 \usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage[a4paper,top=2cm,bottom=3cm,left=2cm,right=2cm,marginparwidth=1.75cm]{geometry}
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
 \usepackage{multicol}
 \usepackage{pax}
-\usepackage[hidelinks]{hyperref}
+\usepackage{pdfpages}
+\usepackage{times}
 
 \hypersetup{
     colorlinks,
     linktoc=all,
     linkcolor=red,
 }
+\setlength{\paperwidth}{21cm}   % A4
+\setlength{\paperheight}{29.7cm}% A4
+\special{papersize=21cm, 29.7cm}
+\pdfpageheight\paperheight
+\pdfpagewidth\paperwidth
+\setlength\topmargin{-5mm} \setlength\oddsidemargin{-0cm}
+\setlength\textheight{24.7cm} \setlength\textwidth{16cm}
+\setlength\columnsep{0.6cm}  \newlength\titlebox \setlength\titlebox{2.00in}
+\setlength\headheight{5pt}   \setlength\headsep{0pt}
+\setlength\footskip{0.8cm}
 \setlength\parindent{0pt}
+
 \pagestyle{plain}
 \pagenumbering{roman}
 
-\font\titlefont=cmr12 at 12pt
 \date{}
 \title{ACL Anthology}
 
@@ -30,24 +41,22 @@
 % Cover %
 %%%%%%%%%
 \begin{titlepage}
-   \begin{center}
-    \begin{huge}
-       \vspace{1cm}
+  \begin{center}
+    \vspace{1cm}
 
-       \VAR{conference.abbreviation} \VAR{conference.start_date.year}
+    {\LARGE \VAR{conference.abbreviation} \VAR{conference.start_date.year}}
 
-       \vspace{5cm}
+    \vspace*{55mm}
 
-       \textbf{\VAR{conference.start_date.year} \VAR{conference.name}}
+    {\bf\LARGE \VAR{conference.start_date.year} \VAR{conference.name}}
 
-       \vfill
+    \vfill
 
-       \textbf{Proceedings of the Conference}
+    {\bf\LARGE Proceedings of the Conference}
 
-       \vspace{8cm}
+    \vspace{5cm}
 
-       \VAR{conference_dates}, \VAR{conference.start_date.year}
-    \end{huge}
+    {\LARGE \VAR{conference_dates}, \VAR{conference.start_date.year}}
   \end{center}
 \end{titlepage}
 \newpage
@@ -55,18 +64,20 @@
 %%%%%%%%%%%%
 % Sponsors %
 %%%%%%%%%%%%
-\begin{large}
-The \VAR{conference.abbreviation} organizers gratefully acknowlege the support from the following sponsors.\\
-\end{large}
 \setcounter{page}{2}
+\vspace*{2cm}
+\noindent
+
+{\Large The \VAR{conference.abbreviation} organizers gratefully acknowlege the support from the following sponsors.}
 \bigskip
 
 \BLOCK{macro generate_sponsor_tier(tier)}
-  \textbf{\VAR{tier.tier}}\\\\
-  \bigskip
+  \noindent
+  {\Large \textbf{\VAR{tier.tier}}}\\\\
   \BLOCK{for logo in tier.logos}
-    \includegraphics[width=2cm]{\VAR{root}/sponsor_logos/\VAR{logo}}
+    \includegraphics[width=2cm]{\VAR{root}/sponsor_logos/\VAR{logo}}\hfill
   \BLOCK{endfor}
+  \vspace*{1cm}
 \BLOCK{endmacro}
 
 \BLOCK{for tier in sponsors}
@@ -79,20 +90,26 @@ The \VAR{conference.abbreviation} organizers gratefully acknowlege the support f
 %%%%%%%%%%%%%
 % Copyright %
 %%%%%%%%%%%%%
-\vspace{10cm}
-\textcopyright The Association for Computationl Linguistics\\
-\vspace{5cm}
-Order copies of this and other ACL proceedings from:\\
+\vspace*{11cm}
+{\large
 
-Association for Computational Linguistics (ACL)\\
-209 N. Eighth Street\\
-Stroudsburg, PA 18360\\
-USA\\
-Tel: +1-570-476-8006\\
-Fax: +1-570-476-0860\\
-acl@aclweb.org\\
+\noindent
+\textcopyright \VAR{conference.start_date.year} The Association for Computational Linguistics\\
 
-\bigskip
+\vspace*{2cm}
+\noindent
+Order copies of this and other ACL proceedings from:
+
+\vspace*{1cm}
+\begin{tabular}{p{1.5cm}l}
+& Association for Computational Linguistics (ACL)\\
+& 209 N. Eighth Street\\
+& Stroudsburg, PA 18360\\
+& USA\\
+& Tel: +1-570-476-8006\\
+& Fax: +1-570-476-0860\\
+&{\tt acl@aclweb.org}\\
+\end{tabular}
 
 ISBN \VAR{conference.isbn}
 \newpage
@@ -105,6 +122,7 @@ ISBN \VAR{conference.isbn}
   \begin{center}
     \Large \textbf{Preface by the \VAR{preface.role}}
   \end{center}
+  \vspace*{0.5cm}
   \VAR{load_file(root, "prefaces", preface.file)}
   \newpage
 \BLOCK{endfor}
@@ -115,6 +133,7 @@ ISBN \VAR{conference.isbn}
 \begin{center}
 \Large \textbf{Organizing Committee}
 \end{center}
+\vspace*{1cm}
 \BLOCK{for role in organizing_committee}
   \textbf{\VAR{role.role}}\\
   \BLOCK{for member in role.members}
@@ -130,6 +149,7 @@ ISBN \VAR{conference.isbn}
 \begin{center}
 \Large \textbf{Program Committee}
 \end{center}
+\vspace*{1cm}
 \textbf{Program Committee Co-chairs}\\
 \BLOCK{for member in program_committee.program_committee}
   \VAR{committee_member(member)}\\
@@ -169,9 +189,11 @@ ISBN \VAR{conference.isbn}
 %%%%%%%%%%%%%%%%%
 \BLOCK{for talk in invited_talks}
   \begin{center}
-    \Large \textbf{Invited Speaker: \VAR{talk.speaker_name}, \VAR{talk.institution}}\\
-    \large \textbf{\VAR{talk.title}}
+    \LARGE \textbf{Invited Speaker: \VAR{talk.speaker_name}, \VAR{talk.institution}}\\
+    \vspace*{0.1cm}
+    \Large \textbf{\VAR{talk.title}}
   \end{center}
+  \vspace*{0.2cm}
   \textbf{Abstract:} \VAR{load_file(root, "invited_talks", talk.abstract_file)}\\
   \newline
   \textbf{Bio:} \VAR{load_file(root, "invited_talks", talk.bio_file)}\\
@@ -181,6 +203,7 @@ ISBN \VAR{conference.isbn}
 %%%%%%%%%%%%%%%%%%%%%
 % Table of Contents %
 %%%%%%%%%%%%%%%%%%%%%
+\newpage  % Empty page before TOC
 \pagestyle{plain}
 \begin{center}
 \Large \textbf{Table of Contents}
@@ -188,7 +211,7 @@ ISBN \VAR{conference.isbn}
 \newcommand\page[1]{\rightskip=25pt \dotfill\rlap{\hbox to 25pt{\hfill#1}}\par}
 \begin{itemize}[leftmargin=*,label={}]
   \BLOCK{for paper in papers}
-    \item \hyperlink{page.\VAR{paper.page_range[0]}}{\emph{\VAR{paper.title}}}\\ \VAR{join(", ", paper.authors, " and ")}\dotfill \VAR{paper.page_range[0]}
+    \item \hyperlink{page.\VAR{paper.page_range[0]}}{\emph{\VAR{paper.title}}}\\ \hspace*{2em} \VAR{join(", ", paper.authors, " and ")}\dotfill \VAR{paper.page_range[0]}
   \BLOCK{endfor}
 \end{itemize}
 \newpage
@@ -207,7 +230,7 @@ ISBN \VAR{conference.isbn}
 \BLOCK{for date, pages in program}
   \BLOCK{set ns = namespace(first=true)}
   \BLOCK{for page in pages}
-    \begin{tabular}{p{20mm}p{128mm}}
+    \begin{tabular}{p{24mm}p{124mm}}
     \multicolumn{2}{l}{\bf \VAR{program_date(date)} \BLOCK{if ns.first is not true}(continued)\BLOCK{endif}} \\\\
     \BLOCK{for entry in page}
       \BLOCK{if entry.type is equalto("header")}
