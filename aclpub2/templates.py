@@ -20,6 +20,11 @@ def join(delimiter: str, items: List[Any], delimiter_last=None):
     return delimiter.join(items)
 
 
+def join_page_numbers(page_numbers):
+    linked = map(lambda x: "\hyperlink{page." + str(x) + "}{" + str(x) + "}", page_numbers)
+    return ", ".join(linked)
+
+
 def group_by_last_name(names: List[str]) -> List[List[str]]:
     alphabetized_names = defaultdict(list)
     for name in names:
@@ -55,7 +60,9 @@ LATEX_JINJA_ENV = jinja2.Environment(
     loader=jinja2.FileSystemLoader(str(TEMPLATE_DIR))
 )
 LATEX_JINJA_ENV.globals.update(load_file=load_file, join=join,
-                               group_by_last_name=group_by_last_name, program_date=program_date, session_times=session_times)
+                               group_by_last_name=group_by_last_name,
+                               program_date=program_date, session_times=session_times,
+                               join_page_numbers=join_page_numbers)
 
 
 def load_template(template: str) -> jinja2.Template:

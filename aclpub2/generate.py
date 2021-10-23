@@ -28,8 +28,9 @@ def generate(root: str):
     # Load the proceedings template.
     template = load_template("proceedings")
 
-    id_to_paper = process_papers(papers, root)
-    sessions_by_date = get_program_sessions_by_date(program)
+    id_to_paper, alphabetized_author_index = process_papers(papers, root)
+    sessions_by_date = process_program(program)
+    print(sessions_by_date)
 
     rendered_template = template.render(
         root=str(root),
@@ -43,6 +44,7 @@ def generate(root: str):
         papers=papers,
         id_to_paper=id_to_paper,
         program=sessions_by_date,
+        alphabetized_author_index=alphabetized_author_index,
     )
 
     # Write the resulting tex file.
@@ -65,8 +67,18 @@ def get_conference_dates(conference) -> str:
 
 
 def process_papers(papers, root: Path):
+    """
+    process_papers
+    - uses PAX to extract PDF annotations from the paper files in preparation for
+        re-insertion
+    - maps paper ID to the contents of the paper in order to assist with program
+        generation
+    - alphabetizes and splits author names, and associates them with the start pages
+        of papers they authored, in preparation for index generation
+    """
     page = 1
     id_to_paper = {}
+    author_to_pages = defaultdict(list)
     for paper in papers:
         pdf_path = Path(root, "papers", f"{paper['id']}.pdf")
         subprocess.run(
@@ -82,18 +94,68 @@ def process_papers(papers, root: Path):
         paper["num_pages"] = pdf.getNumPages()
         paper["page_range"] = (page, page + pdf.getNumPages() - 1)
         id_to_paper[paper["id"]] = paper
+        for author in paper["authors"]:
+            name_parts = author.split(" ")
+            index_name = f"{name_parts[-1]}, {' '.join(name_parts[:-1])}"
+            author_to_pages[index_name].append(page)
         page += pdf.getNumPages()
-    return id_to_paper
+    alphabetized_author_index = defaultdict(list)
+    for author, pages in sorted(author_to_pages.items()):
+        alphabetized_author_index[author[0].lower()].append((author, pages))
+    return id_to_paper, sorted(alphabetized_author_index.items())
 
 
-def get_program_sessions_by_date(program):
+def process_program(program):
+    """
+    process_program organizes program sessions by date, and manually cuts
+    program entries in order to avoid page overflow. This is done by assuming
+    a median paper entry line length of 3 lines (including title and authors),
+    and that a maximum of 35 schedule lines will fit on one page.
+    """
+    max_lines = 35
+    paper_median_lines = 3
+    header_lines = 2
     dates = set()
     for session in program:
         dates.add(session["start_time"].date())
     sessions_by_date = defaultdict(list)
     for session in program:
         sessions_by_date[session["start_time"].date()].append(session)
-    return sessions_by_date
+    entries_by_date = {}
+    for date, sessions in sessions_by_date.items():
+        total_lines = 0
+        pages = []
+        current_page = []
+        for session in sessions:
+            table_entries = []
+            table_entries.append({
+                "type": "header",
+                "title": session["title"],
+                "start_time": session["start_time"],
+                "end_time": session["end_time"],
+            })
+            if "papers" in session:
+                for paper_id in session["papers"]:
+                    table_entries.append({
+                        "type": "paper",
+                        "paper": paper_id,
+                    })
+            # Split the table lines so that no page overflows.
+            for entry in table_entries:
+                if entry["type"] == "header":
+                    total_lines += header_lines
+                elif entry["type"] == "paper":
+                    total_lines += paper_median_lines
+                current_page.append(entry)
+                if total_lines >= max_lines:
+                    pages.append(current_page)
+                    current_page = []
+                    total_lines = 0
+        pages.append(current_page)
+        entries_by_date[date] = pages
+        current_page = []
+        total_lines = 0
+    return sorted(entries_by_date.items())
 
 
 def normalize_latex_string(text: str) -> str:

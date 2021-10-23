@@ -1,22 +1,34 @@
-\documentclass[10pt]{article}
+\documentclass[11pt,oneside]{book}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
 \usepackage[a4paper,top=2cm,bottom=3cm,left=2cm,right=2cm,marginparwidth=1.75cm]{geometry}
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage{multicol}
+\usepackage{pax}
 \usepackage{pdfpages}
 \usepackage{times}
-\usepackage{fancyhdr}
-\usepackage{enumitem}
-\usepackage{pax}
-\usepackage[hidelinks]{hyperref}
 
 \hypersetup{
     colorlinks,
     linktoc=all,
     linkcolor=red,
 }
+\setlength{\paperwidth}{21cm}   % A4
+\setlength{\paperheight}{29.7cm}% A4
+\special{papersize=21cm, 29.7cm}
+\pdfpageheight\paperheight
+\pdfpagewidth\paperwidth
+\setlength\topmargin{-5mm} \setlength\oddsidemargin{-0cm}
+\setlength\textheight{24.7cm} \setlength\textwidth{16cm}
+\setlength\columnsep{0.6cm}  \newlength\titlebox \setlength\titlebox{2.00in}
+\setlength\headheight{5pt}   \setlength\headsep{0pt}
+\setlength\footskip{0.8cm}
 \setlength\parindent{0pt}
+
 \pagestyle{plain}
 \pagenumbering{roman}
 
-\font\titlefont=cmr12 at 12pt
 \date{}
 \title{ACL Anthology}
 
@@ -29,24 +41,22 @@
 % Cover %
 %%%%%%%%%
 \begin{titlepage}
-   \begin{center}
-    \begin{huge}
-       \vspace{1cm}
+  \begin{center}
+    \vspace{1.5cm}
 
-       \VAR{conference.abbreviation} \VAR{conference.start_date.year}
+    {\LARGE \VAR{conference.abbreviation} \VAR{conference.start_date.year}}
 
-       \vspace{5cm}
+    \vspace*{65mm}
 
-       \textbf{\VAR{conference.start_date.year} \VAR{conference.name}}
+    {\bf\LARGE \VAR{conference.start_date.year} \VAR{conference.name}}
 
-       \vfill
+    \vspace*{5cm}
 
-       \textbf{Proceedings of the Conference}
+    {\bf\LARGE Proceedings of the Conference}
 
-       \vspace{8cm}
+    \vfill
 
-       \VAR{conference_dates}, \VAR{conference.start_date.year}
-    \end{huge}
+    {\LARGE \VAR{conference_dates}, \VAR{conference.start_date.year}}
   \end{center}
 \end{titlepage}
 \newpage
@@ -54,18 +64,23 @@
 %%%%%%%%%%%%
 % Sponsors %
 %%%%%%%%%%%%
-\begin{large}
-The \VAR{conference.abbreviation} organizers gratefully acknowlege the support from the following sponsors.\\
-\end{large}
 \setcounter{page}{2}
+\vspace*{2cm}
+\noindent
+
+{\Large The \VAR{conference.abbreviation} organizers gratefully acknowledge the support from the following sponsors.}
 \bigskip
 
+\vspace*{1cm}
+
 \BLOCK{macro generate_sponsor_tier(tier)}
-  \textbf{\VAR{tier.tier}}\\\\
-  \bigskip
+\vspace*{1cm}
+  \noindent
+  {\Large \textbf{\VAR{tier.tier}}}\\\\
   \BLOCK{for logo in tier.logos}
-    \includegraphics[width=2cm]{\VAR{root}/sponsor_logos/\VAR{logo}}
+    \includegraphics[width=2cm]{\VAR{root}/sponsor_logos/\VAR{logo}}\hfill
   \BLOCK{endfor}
+  \vspace*{1cm}
 \BLOCK{endmacro}
 
 \BLOCK{for tier in sponsors}
@@ -78,22 +93,30 @@ The \VAR{conference.abbreviation} organizers gratefully acknowlege the support f
 %%%%%%%%%%%%%
 % Copyright %
 %%%%%%%%%%%%%
-\vspace{10cm}
-\textcopyright The Association for Computationl Linguistics\\
-\vspace{5cm}
-Order copies of this and other ACL proceedings from:\\
+\vspace*{11cm}
+{\large
 
-Association for Computational Linguistics (ACL)\\
-209 N. Eighth Street\\
-Stroudsburg, PA 18360\\
-USA\\
-Tel: +1-570-476-8006\\
-Fax: +1-570-476-0860\\
-acl@aclweb.org\\
+\noindent
+\textcopyright \VAR{conference.start_date.year} The Association for Computational Linguistics\\
 
-\bigskip
+\vspace*{2cm}
+\noindent
+Order copies of this and other ACL proceedings from:
 
+\vspace*{1cm}
+\begin{tabular}{p{1.5cm}l}
+& Association for Computational Linguistics (ACL)\\
+& 209 N. Eighth Street\\
+& Stroudsburg, PA 18360\\
+& USA\\
+& Tel: +1-570-476-8006\\
+& Fax: +1-570-476-0860\\
+&{\tt acl@aclweb.org}\\
+\end{tabular}
+
+\vspace*{1cm}
 ISBN \VAR{conference.isbn}
+}
 \newpage
 
 
@@ -102,8 +125,9 @@ ISBN \VAR{conference.isbn}
 %%%%%%%%%%%%
 \BLOCK{for preface in prefaces}
   \begin{center}
-    \LARGE \textbf{Preface by the \VAR{preface.role}}
+   { \Large \textbf{Preface by the \VAR{preface.role}}}
   \end{center}
+  \vspace*{0.5cm}
   \VAR{load_file(root, "prefaces", preface.file)}
   \newpage
 \BLOCK{endfor}
@@ -112,8 +136,9 @@ ISBN \VAR{conference.isbn}
 % Organizing Committee %
 %%%%%%%%%%%%%%%%%%%%%%%%
 \begin{center}
-\LARGE \textbf{Organizing Committee}
+{\Large \textbf{Organizing Committee}}
 \end{center}
+\vspace*{1cm}
 \BLOCK{for role in organizing_committee}
   \textbf{\VAR{role.role}}\\
   \BLOCK{for member in role.members}
@@ -127,8 +152,9 @@ ISBN \VAR{conference.isbn}
 % Program Committee %
 %%%%%%%%%%%%%%%%%%%%%
 \begin{center}
-\LARGE \textbf{Program Committee}
+\Large \textbf{Program Committee}
 \end{center}
+\vspace*{1cm}
 \textbf{Program Committee Co-chairs}\\
 \BLOCK{for member in program_committee.program_committee}
   \VAR{committee_member(member)}\\
@@ -138,7 +164,7 @@ ISBN \VAR{conference.isbn}
 \BLOCK{for chairs in program_committee.senior_area_chairs}
   \emph{\VAR{chairs.area}}\\
   \BLOCK{for member in chairs.members}
-    \indent \VAR{committee_member(member)}\\
+    \hspace*{1em} \VAR{committee_member(member)}\\
   \BLOCK{endfor}
   \newline
 \BLOCK{endfor}
@@ -146,17 +172,17 @@ ISBN \VAR{conference.isbn}
 \textbf{Area Chairs}\\
 \BLOCK{for chairs in program_committee.area_chairs}
   \emph{\VAR{chairs.area}}\\
-  \indent \VAR{join(", ", chairs.members)}\\
+  \hspace*{1em} \VAR{join(", ", chairs.members)}\\
   \newline
 \BLOCK{endfor}
 
-\textbf{Reviewers}\\
+\textbf{Reviewers\vspace*{1em}}\\
 \BLOCK{for name_block in group_by_last_name(program_committee.reviewers)}
   \VAR{join(", ", name_block)}\\
   \newline
 \BLOCK{endfor}
 
-\textbf{Secondary Reviewers}\\
+\textbf{Secondary Reviewers\vspace*{1em}}\\
 \BLOCK{for name_block in group_by_last_name(program_committee.secondary_reviewers)}
   \VAR{join(", ", name_block)}\\
   \newline
@@ -168,9 +194,11 @@ ISBN \VAR{conference.isbn}
 %%%%%%%%%%%%%%%%%
 \BLOCK{for talk in invited_talks}
   \begin{center}
-    \LARGE \textbf{Invited Speaker: \VAR{talk.speaker_name}, \VAR{talk.institution}}\\
-    \large \textbf{\VAR{talk.title}}
+    {\LARGE \textbf{Invited Speaker: \VAR{talk.speaker_name}, \VAR{talk.institution}}}\\
+    \vspace*{0.1cm}
+    {\Large \textbf{\VAR{talk.title}}}
   \end{center}
+  \vspace*{0.2cm}
   \textbf{Abstract:} \VAR{load_file(root, "invited_talks", talk.abstract_file)}\\
   \newline
   \textbf{Bio:} \VAR{load_file(root, "invited_talks", talk.bio_file)}\\
@@ -180,14 +208,16 @@ ISBN \VAR{conference.isbn}
 %%%%%%%%%%%%%%%%%%%%%
 % Table of Contents %
 %%%%%%%%%%%%%%%%%%%%%
+\newpage  % Empty page before TOC
 \pagestyle{plain}
 \begin{center}
-\LARGE \textbf{Table of Contents}
+{\Large \textbf{Table of Contents}}
 \end{center}
+\vspace*{1em}
 \newcommand\page[1]{\rightskip=25pt \dotfill\rlap{\hbox to 25pt{\hfill#1}}\par}
 \begin{itemize}[leftmargin=*,label={}]
   \BLOCK{for paper in papers}
-    \item \hyperlink{page.\VAR{paper.page_range[0]}}{\emph{\VAR{paper.title}}}\\ \VAR{join(", ", paper.authors, " and ")}\dotfill \VAR{paper.page_range[0]}
+    \item \hyperlink{page.\VAR{paper.page_range[0]}}{\emph{\VAR{paper.title}}}\\ \hspace*{2em} \VAR{join(", ", paper.authors, " and ")}\dotfill \hyperlink{page.\VAR{paper.page_range[0]}}{\VAR{paper.page_range[0]}}
   \BLOCK{endfor}
 \end{itemize}
 \newpage
@@ -195,41 +225,70 @@ ISBN \VAR{conference.isbn}
 %%%%%%%%%%%
 % Program %
 %%%%%%%%%%%
+\renewcommand{\baselinestretch}{0.87}
+\setlength{\parindent}{0in}
+\setlength{\parskip}{2ex}
+
 \begin{center}
-  \textbf{Conference Program}
+{\Large \textbf{Conference Program}}
 \end{center}
-% \pagestyle{fancy}
-% \fancyhf{}
-% \renewcommand{\headrulewidth}{0pt}
-\BLOCK{for date, sessions in program.items()}
-\textbf{\VAR{program_date(date)}}\\
-\begin{tabular}{ll}
-  \BLOCK{for session in sessions}
-  \VAR{session_times(session)} & \emph{\VAR{session.title}}\\
-  \BLOCK{for paper_id in session.papers}
-    \BLOCK{set paper = id_to_paper[paper_id]}
-    & \shortstack{\hyperlink{page.\VAR{paper.page_range[0]}}{\emph{\VAR{paper.title}}}\\ \VAR{join(", ", paper.authors, " and ")}}\\
+\vspace*{0.5em}
+
+\BLOCK{for date, pages in program}
+  \BLOCK{set ns = namespace(first=true)}
+  \BLOCK{for page in pages}
+    \begin{tabular}{p{24mm}p{124mm}}
+    \multicolumn{2}{l}{\bf \VAR{program_date(date)} \BLOCK{if ns.first is not true}(continued)\BLOCK{endif}} \\\\
+    \BLOCK{for entry in page}
+      \BLOCK{if entry.type is equalto("header")}
+      \VAR{session_times(entry)} & \emph{\VAR{entry.title}}\\\\
+      \BLOCK{endif}
+
+      \BLOCK{if entry.type is equalto("paper")}
+        \BLOCK{set paper = id_to_paper[entry.paper]}
+        & \hyperlink{page.\VAR{paper.page_range[0]}}{\emph{\VAR{paper.title}}}\\
+        & \VAR{join(", ", paper.authors, " and ")}\\\\
+      \BLOCK{endif}
+    \BLOCK{endfor}
+    \end{tabular}
+    \newpage
+    \BLOCK{set ns.first = false}
   \BLOCK{endfor}
-  \BLOCK{endfor}
-\end{tabular}
 \BLOCK{endfor}
-\newpage
 
 %%%%%%%%%%
 % Papers %
 %%%%%%%%%%
 \pagenumbering{arabic}
 \setcounter{page}{1}
+ \renewcommand{\headrulewidth}{0pt}
 \BLOCK{for paper in papers}
   \addcontentsline{toc}{section}{TEMPLATE_TITLE}
-  \AddToShipoutPicture*{%
+  \AddToShipoutPicture*{
     \setlength{\unitlength}{1mm}
     \footnotesize
-    \put(105,17){\makebox(0,0){\emph{Proceedings of the \VAR{conference.name}}, pages \VAR{paper.page_range[0]} - \VAR{paper.page_range[1]}}}
-    \put(105,13){\makebox(0,0){\VAR{conference_dates}, \VAR{conference.start_date.year} 
+    \put(105,16){\makebox(0,0){\emph{Proceedings of the \VAR{conference.name}}, pages \VAR{paper.page_range[0]} - \VAR{paper.page_range[1]}}}
+    \put(105,12){\makebox(0,0){\VAR{conference_dates}, \VAR{conference.start_date.year} 
     \textcopyright \VAR{conference.start_date.year} Association for Computational Linguistics}}
   }
   \includepdf[pagecommand={\thispagestyle{plain}},pages=-]{\VAR{root}/papers/\VAR{paper.file}}
 \BLOCK{endfor}
+
+%%%%%%%%%%%%%%%%
+% Author Index %
+%%%%%%%%%%%%%%%%
+\begin{huge}
+Author Index
+\end{huge}
+\vspace*{1em}
+\begin{multicols}{2}
+\BLOCK{for _, author_to_pages in alphabetized_author_index}
+\BLOCK{for author, pages in author_to_pages}
+\VAR{author}, \VAR{join_page_numbers(pages)}\\
+\BLOCK{endfor}
+\\ % Extra space between new letters.
+\BLOCK{endfor}
+\end{multicols}
+
 
 \end{document}
