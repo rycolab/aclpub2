@@ -1,4 +1,4 @@
-\documentclass[11pt,oneside]{article}
+\documentclass[11pt,oneside]{book}
 \usepackage{enumitem}
 \usepackage{fancyhdr}
 \usepackage[a4paper,top=2cm,bottom=3cm,left=2cm,right=2cm,marginparwidth=1.75cm]{geometry}
@@ -42,19 +42,19 @@
 %%%%%%%%%
 \begin{titlepage}
   \begin{center}
-    \vspace{1cm}
+    \vspace{1.5cm}
 
     {\LARGE \VAR{conference.abbreviation} \VAR{conference.start_date.year}}
 
-    \vspace*{55mm}
+    \vspace*{65mm}
 
     {\bf\LARGE \VAR{conference.start_date.year} \VAR{conference.name}}
 
-    \vfill
+    \vspace*{5cm}
 
     {\bf\LARGE Proceedings of the Conference}
 
-    \vspace{5cm}
+    \vfill
 
     {\LARGE \VAR{conference_dates}, \VAR{conference.start_date.year}}
   \end{center}
@@ -68,10 +68,13 @@
 \vspace*{2cm}
 \noindent
 
-{\Large The \VAR{conference.abbreviation} organizers gratefully acknowlege the support from the following sponsors.}
+{\Large The \VAR{conference.abbreviation} organizers gratefully acknowledge the support from the following sponsors.}
 \bigskip
 
+\vspace*{1cm}
+
 \BLOCK{macro generate_sponsor_tier(tier)}
+\vspace*{1cm}
   \noindent
   {\Large \textbf{\VAR{tier.tier}}}\\\\
   \BLOCK{for logo in tier.logos}
@@ -111,7 +114,9 @@ Order copies of this and other ACL proceedings from:
 &{\tt acl@aclweb.org}\\
 \end{tabular}
 
+\vspace*{1cm}
 ISBN \VAR{conference.isbn}
+}
 \newpage
 
 
@@ -120,7 +125,7 @@ ISBN \VAR{conference.isbn}
 %%%%%%%%%%%%
 \BLOCK{for preface in prefaces}
   \begin{center}
-    \Large \textbf{Preface by the \VAR{preface.role}}
+   { \Large \textbf{Preface by the \VAR{preface.role}}}
   \end{center}
   \vspace*{0.5cm}
   \VAR{load_file(root, "prefaces", preface.file)}
@@ -131,7 +136,7 @@ ISBN \VAR{conference.isbn}
 % Organizing Committee %
 %%%%%%%%%%%%%%%%%%%%%%%%
 \begin{center}
-\Large \textbf{Organizing Committee}
+{\Large \textbf{Organizing Committee}}
 \end{center}
 \vspace*{1cm}
 \BLOCK{for role in organizing_committee}
@@ -159,7 +164,7 @@ ISBN \VAR{conference.isbn}
 \BLOCK{for chairs in program_committee.senior_area_chairs}
   \emph{\VAR{chairs.area}}\\
   \BLOCK{for member in chairs.members}
-    \indent \VAR{committee_member(member)}\\
+    \hspace*{1em} \VAR{committee_member(member)}\\
   \BLOCK{endfor}
   \newline
 \BLOCK{endfor}
@@ -167,17 +172,17 @@ ISBN \VAR{conference.isbn}
 \textbf{Area Chairs}\\
 \BLOCK{for chairs in program_committee.area_chairs}
   \emph{\VAR{chairs.area}}\\
-  \indent \VAR{join(", ", chairs.members)}\\
+  \hspace*{1em} \VAR{join(", ", chairs.members)}\\
   \newline
 \BLOCK{endfor}
 
-\textbf{Reviewers}\\
+\textbf{Reviewers\vspace*{1em}}\\
 \BLOCK{for name_block in group_by_last_name(program_committee.reviewers)}
   \VAR{join(", ", name_block)}\\
   \newline
 \BLOCK{endfor}
 
-\textbf{Secondary Reviewers}\\
+\textbf{Secondary Reviewers\vspace*{1em}}\\
 \BLOCK{for name_block in group_by_last_name(program_committee.secondary_reviewers)}
   \VAR{join(", ", name_block)}\\
   \newline
@@ -189,9 +194,9 @@ ISBN \VAR{conference.isbn}
 %%%%%%%%%%%%%%%%%
 \BLOCK{for talk in invited_talks}
   \begin{center}
-    \LARGE \textbf{Invited Speaker: \VAR{talk.speaker_name}, \VAR{talk.institution}}\\
+    {\LARGE \textbf{Invited Speaker: \VAR{talk.speaker_name}, \VAR{talk.institution}}}\\
     \vspace*{0.1cm}
-    \Large \textbf{\VAR{talk.title}}
+    {\Large \textbf{\VAR{talk.title}}}
   \end{center}
   \vspace*{0.2cm}
   \textbf{Abstract:} \VAR{load_file(root, "invited_talks", talk.abstract_file)}\\
@@ -206,12 +211,13 @@ ISBN \VAR{conference.isbn}
 \newpage  % Empty page before TOC
 \pagestyle{plain}
 \begin{center}
-\Large \textbf{Table of Contents}
+{\Large \textbf{Table of Contents}}
 \end{center}
+\vspace*{1em}
 \newcommand\page[1]{\rightskip=25pt \dotfill\rlap{\hbox to 25pt{\hfill#1}}\par}
 \begin{itemize}[leftmargin=*,label={}]
   \BLOCK{for paper in papers}
-    \item \hyperlink{page.\VAR{paper.page_range[0]}}{\emph{\VAR{paper.title}}}\\ \hspace*{2em} \VAR{join(", ", paper.authors, " and ")}\dotfill \VAR{paper.page_range[0]}
+    \item \hyperlink{page.\VAR{paper.page_range[0]}}{\emph{\VAR{paper.title}}}\\ \hspace*{2em} \VAR{join(", ", paper.authors, " and ")}\dotfill \hyperlink{page.\VAR{paper.page_range[0]}}{\VAR{paper.page_range[0]}}
   \BLOCK{endfor}
 \end{itemize}
 \newpage
@@ -224,8 +230,9 @@ ISBN \VAR{conference.isbn}
 \setlength{\parskip}{2ex}
 
 \begin{center}
-\large \textbf{Conference Program}
+{\Large \textbf{Conference Program}}
 \end{center}
+\vspace*{0.5em}
 
 \BLOCK{for date, pages in program}
   \BLOCK{set ns = namespace(first=true)}
@@ -260,8 +267,8 @@ ISBN \VAR{conference.isbn}
   \AddToShipoutPicture*{
     \setlength{\unitlength}{1mm}
     \footnotesize
-    \put(105,17){\makebox(0,0){\emph{Proceedings of the \VAR{conference.name}}, pages \VAR{paper.page_range[0]} - \VAR{paper.page_range[1]}}}
-    \put(105,13){\makebox(0,0){\VAR{conference_dates}, \VAR{conference.start_date.year} 
+    \put(105,16){\makebox(0,0){\emph{Proceedings of the \VAR{conference.name}}, pages \VAR{paper.page_range[0]} - \VAR{paper.page_range[1]}}}
+    \put(105,12){\makebox(0,0){\VAR{conference_dates}, \VAR{conference.start_date.year} 
     \textcopyright \VAR{conference.start_date.year} Association for Computational Linguistics}}
   }
   \includepdf[pagecommand={\thispagestyle{plain}},pages=-]{\VAR{root}/papers/\VAR{paper.file}}
@@ -273,7 +280,7 @@ ISBN \VAR{conference.isbn}
 \begin{huge}
 Author Index
 \end{huge}
-
+\vspace*{1em}
 \begin{multicols}{2}
 \BLOCK{for _, author_to_pages in alphabetized_author_index}
 \BLOCK{for author, pages in author_to_pages}
