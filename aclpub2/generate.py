@@ -28,7 +28,7 @@ def generate(root: str):
     # Load the proceedings template.
     template = load_template("proceedings")
 
-    id_to_paper = process_papers(papers, root)
+    id_to_paper, alphabetized_author_index = process_papers(papers, root)
     sessions_by_date = get_program_sessions_by_date(program)
 
     rendered_template = template.render(
@@ -43,6 +43,7 @@ def generate(root: str):
         papers=papers,
         id_to_paper=id_to_paper,
         program=sessions_by_date,
+        alphabetized_author_index=alphabetized_author_index,
     )
 
     # Write the resulting tex file.
@@ -67,6 +68,7 @@ def get_conference_dates(conference) -> str:
 def process_papers(papers, root: Path):
     page = 1
     id_to_paper = {}
+    author_to_pages = defaultdict(list)
     for paper in papers:
         pdf_path = Path(root, "papers", f"{paper['id']}.pdf")
         subprocess.run(
@@ -82,8 +84,15 @@ def process_papers(papers, root: Path):
         paper["num_pages"] = pdf.getNumPages()
         paper["page_range"] = (page, page + pdf.getNumPages() - 1)
         id_to_paper[paper["id"]] = paper
+        for author in paper["authors"]:
+            name_parts = author.split(" ")
+            index_name = f"{name_parts[-1]}, {' '.join(name_parts[:-1])}"
+            author_to_pages[index_name].append(page)
         page += pdf.getNumPages()
-    return id_to_paper
+    alphabetized_author_index = defaultdict(list)
+    for author, pages in sorted(author_to_pages.items()):
+        alphabetized_author_index[author[0].lower()].append((author, pages))
+    return id_to_paper, sorted(alphabetized_author_index.items())
 
 
 def get_program_sessions_by_date(program):

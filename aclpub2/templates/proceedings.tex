@@ -4,6 +4,7 @@
 \usepackage{times}
 \usepackage{fancyhdr}
 \usepackage{enumitem}
+\usepackage{multicol}
 \usepackage{pax}
 \usepackage[hidelinks]{hyperref}
 
@@ -195,6 +196,10 @@ ISBN \VAR{conference.isbn}
 %%%%%%%%%%%
 % Program %
 %%%%%%%%%%%
+\renewcommand{\baselinestretch}{0.87}
+\setlength{\parindent}{0in}
+\setlength{\parskip}{2ex}
+
 \begin{center}
   \textbf{Conference Program}
 \end{center}
@@ -203,12 +208,15 @@ ISBN \VAR{conference.isbn}
 % \renewcommand{\headrulewidth}{0pt}
 \BLOCK{for date, sessions in program.items()}
 \textbf{\VAR{program_date(date)}}\\
-\begin{tabular}{ll}
+\begin{tabular}{p{20mm}p{128mm}}
   \BLOCK{for session in sessions}
   \VAR{session_times(session)} & \emph{\VAR{session.title}}\\
+  \\
   \BLOCK{for paper_id in session.papers}
     \BLOCK{set paper = id_to_paper[paper_id]}
-    & \shortstack{\hyperlink{page.\VAR{paper.page_range[0]}}{\emph{\VAR{paper.title}}}\\ \VAR{join(", ", paper.authors, " and ")}}\\
+    & \hyperlink{page.\VAR{paper.page_range[0]}}{\emph{\VAR{paper.title}}}\\
+    & \VAR{join(", ", paper.authors, " and ")}\\
+    \\
   \BLOCK{endfor}
   \BLOCK{endfor}
 \end{tabular}
@@ -231,5 +239,22 @@ ISBN \VAR{conference.isbn}
   }
   \includepdf[pagecommand={\thispagestyle{plain}},pages=-]{\VAR{root}/papers/\VAR{paper.file}}
 \BLOCK{endfor}
+
+%%%%%%%%%%%%%%%%
+% Author Index %
+%%%%%%%%%%%%%%%%
+\begin{huge}
+Author Index
+\end{huge}
+
+\begin{multicols}{2}
+\BLOCK{for _, author_to_pages in alphabetized_author_index}
+\BLOCK{for author, pages in author_to_pages}
+\VAR{author}, \VAR{join_page_numbers(pages)}\\
+\BLOCK{endfor}
+\\ % Extra space between new letters.
+\BLOCK{endfor}
+\end{multicols}
+
 
 \end{document}
