@@ -125,7 +125,7 @@ ISBN \VAR{conference.isbn}
 %%%%%%%%%%%%
 \BLOCK{for preface in prefaces}
   \begin{center}
-   { \Large \textbf{Preface by the \VAR{preface.role}}}
+   { \Large \textbf{\VAR{preface.title}}}
   \end{center}
   \vspace*{0.5cm}
   \VAR{load_file(root, "prefaces", preface.file)}
@@ -155,43 +155,40 @@ ISBN \VAR{conference.isbn}
 \Large \textbf{Program Committee}
 \end{center}
 \vspace*{1cm}
-\textbf{Program Committee Co-chairs}\\
-\BLOCK{for member in program_committee.program_committee}
-  \VAR{committee_member(member)}\\
-\BLOCK{endfor}
+\BLOCK{for block in program_committee}
+  \textbf{\VAR{block.role}}\\
+  \BLOCK{if block.entries[0].institution}
+    \BLOCK{for member in block.entries}
+      \hspace*{1em} \VAR{committee_member(member)}\\
+    \BLOCK{endfor}
+  \BLOCK{endif}
+  \BLOCK{if block.entries[0].area}
+    \BLOCK{for area in block.entries}
+      \emph{\VAR{area.area}}\\
+      \BLOCK{if area.members[0].institution}
+        \BLOCK{for member in area.members}
+          \hspace*{1em} \VAR{committee_member(member)}\\
+        \BLOCK{endfor}
+      \BLOCK{endif}
+      \BLOCK{if not area.members[0].institution}
+        \hspace*{1em} \VAR{join(", ", area.members)}\\
+      \BLOCK{endif}
+    \BLOCK{endfor}
+  \BLOCK{endif}
+  \BLOCK{if block.type is equalto("name_block")}
+    \BLOCK{for name_block in group_by_last_name(block.entries)}
+      \VAR{join(", ", name_block)}\\
+      \newline
+    \BLOCK{endfor}
+  \BLOCK{endif}
 
-\textbf{Senior Area Chairs}\\
-\BLOCK{for chairs in program_committee.senior_area_chairs}
-  \emph{\VAR{chairs.area}}\\
-  \BLOCK{for member in chairs.members}
-    \hspace*{1em} \VAR{committee_member(member)}\\
-  \BLOCK{endfor}
-  \newline
-\BLOCK{endfor}
-
-\textbf{Area Chairs}\\
-\BLOCK{for chairs in program_committee.area_chairs}
-  \emph{\VAR{chairs.area}}\\
-  \hspace*{1em} \VAR{join(", ", chairs.members)}\\
-  \newline
-\BLOCK{endfor}
-
-\textbf{Reviewers\vspace*{1em}}\\
-\BLOCK{for name_block in group_by_last_name(program_committee.reviewers)}
-  \VAR{join(", ", name_block)}\\
-  \newline
-\BLOCK{endfor}
-
-\textbf{Secondary Reviewers\vspace*{1em}}\\
-\BLOCK{for name_block in group_by_last_name(program_committee.secondary_reviewers)}
-  \VAR{join(", ", name_block)}\\
-  \newline
 \BLOCK{endfor}
 \newpage
 
 %%%%%%%%%%%%%%%%%
 % Invited Talks %
 %%%%%%%%%%%%%%%%%
+\BLOCK{if invited_talks}
 \BLOCK{for talk in invited_talks}
   \begin{center}
     {\LARGE \textbf{Invited Speaker: \VAR{talk.speaker_name}, \VAR{talk.institution}}}\\
@@ -204,6 +201,7 @@ ISBN \VAR{conference.isbn}
   \textbf{Bio:} \VAR{load_file(root, "invited_talks", talk.bio_file)}\\
   \newpage
 \BLOCK{endfor}
+\BLOCK{endif}
 
 %%%%%%%%%%%%%%%%%%%%%
 % Table of Contents %

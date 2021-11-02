@@ -30,7 +30,6 @@ def generate(root: str):
 
     id_to_paper, alphabetized_author_index = process_papers(papers, root)
     sessions_by_date = process_program(program)
-    print(sessions_by_date)
 
     rendered_template = template.render(
         root=str(root),
@@ -166,26 +165,18 @@ def load_configs(root: Path):
     """
     Loads all conference configuration files defined in the root directory.
     """
-    with open(Path(root, "conference_details.yml"), "r", encoding="utf-8") as f:
-        conference = yaml.safe_load(f)
-    with open(Path(root, "papers.yml"), "r", encoding="utf-8") as f:
-        papers = yaml.safe_load(f)
-        for paper in papers:
-            paper["title"] = normalize_latex_string(paper["title"])
-    with open(Path(root, "sponsors.yml"), "r", encoding="utf-8") as f:
-        sponsors = yaml.safe_load(f)
-    with open(Path(root, "prefaces.yml"), "r", encoding="utf-8") as f:
-        prefaces = yaml.safe_load(f)
-    with open(Path(root, "organizing_committee.yml"), "r", encoding="utf-8") as f:
-        organizing_committee = yaml.safe_load(f)
-    with open(Path(root, "program_committee.yml"), "r", encoding="utf-8") as f:
-        program_committee = yaml.safe_load(f)
-    with open(Path(root, "invited_talks.yml"), "r", encoding="utf-8") as f:
-        invited_talks = yaml.safe_load(f)
-    with open(Path(root, "program.yml"), "r", encoding="utf-8") as f:
-        program = yaml.safe_load(f)
-        for entry in program:
-            entry["title"] = normalize_latex_string(entry["title"])
+    conference = load_config("conference_details", root)
+    papers = load_config("papers", root)
+    for paper in papers:
+        paper["title"] = normalize_latex_string(paper["title"])
+    sponsors = load_config("sponsors", root)
+    prefaces = load_config("prefaces", root)
+    organizing_committee = load_config("organizing_committee", root)
+    program_committee = load_config("program_committee", root)
+    invited_talks = load_config("invited_talks", root, required=False)
+    program = load_config("program", root)
+    for entry in program:
+        entry["title"] = normalize_latex_string(entry["title"])
 
     return (
         conference,
@@ -197,3 +188,13 @@ def load_configs(root: Path):
         invited_talks,
         program,
     )
+
+
+def load_config(config: str, root: Path, required=True):
+    path = Path(root, f"{config}.yml")
+    if not path.exists():
+        if required:
+            raise ValueError(f"{config} is a required configuration but {config}.yml was not found")
+        return None
+    with open(path, "r", encoding="utf-8") as f:
+        return yaml.safe_load(f)

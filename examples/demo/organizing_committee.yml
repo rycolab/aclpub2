@@ -1,0 +1,16 @@
+- role: General Chair
+  members:
+    - name: Bonnie Webber
+      institution: University of Edinburgh, UK
+- role: Program Committee Co-chairs
+  members:
+    - name: Trevor Cohn
+      institution: University of Melbourne, Australia
+    - name: Yulan He
+      institution: University of Warwick, UK
+- role: Workshop Co-chairs
+  members:
+    - name: Jackie Chi Kit Cheung
+      institution: McGill University, Canada
+    - name: Lonneke van der Plas
+      institution: University of Malta, Malta

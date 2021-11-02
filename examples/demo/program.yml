@@ -1,0 +1,72 @@
+- title: Opening Remarks
+  start_time: 2020-11-16T10:45:00
+  end_time: 2020-11-16T11:00:00
+- title: Test Filler 1
+  start_time: 2020-11-16T10:45:00
+  end_time: 2020-11-16T11:00:00
+  papers:
+    - 4
+    - 5
+- title: Test Filler 2
+  start_time: 2020-11-16T10:45:00
+  end_time: 2020-11-16T11:00:00
+  papers:
+    - 4
+    - 5
+- title: Test Filler 3
+  start_time: 2020-11-16T10:45:00
+  end_time: 2020-11-16T11:00:00
+  papers:
+    - 4
+    - 5
+- title: Test Filler 4
+  start_time: 2020-11-16T10:45:00
+  end_time: 2020-11-16T11:00:00
+  papers:
+    - 4
+    - 5
+- title: Test Filler 5
+  start_time: 2020-11-16T10:45:00
+  end_time: 2020-11-16T11:00:00
+  papers:
+    - 4
+    - 5
+- title: Test Filler 6
+  start_time: 2020-11-16T10:45:00
+  end_time: 2020-11-16T11:00:00
+  papers:
+    - 4
+    - 5
+- title: Test Filler 7
+  start_time: 2020-11-16T10:45:00
+  end_time: 2020-11-16T11:00:00
+  papers:
+    - 4
+    - 5
+- title: Test Filler 8
+  start_time: 2020-11-16T10:45:00
+  end_time: 2020-11-16T11:00:00
+  papers:
+    - 4
+    - 5
+- title: Test Filler 9
+  start_time: 2020-11-16T10:45:00
+  end_time: 2020-11-16T11:00:00
+  papers:
+    - 4
+    - 5
+- title: "Zoom Q&A Session 1i: Sentiment Analysis, Stylistic Analysis, and Argument Mining"
+  start_time: 2020-11-16T12:00:00
+  end_time: 2020-11-16T13:00:00
+  papers:
+    - 1
+    - 2
+- title: Day Two Opening
+  start_time: 2020-11-17T10:45:00
+  end_time: 2020-11-17T11:00:00
+- title: Text Filler 10
+  start_time: 2020-11-17T12:00:00
+  end_time: 2020-11-17T13:00:00
+  papers:
+    - 1
+    - 2

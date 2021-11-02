@@ -1,0 +1,10 @@
+- speaker_name: Claire Cardie
+  institution: Cornell University
+  title: "Information Extraction Through the Years: How Did We Get Here?"
+  abstract_file: "1_abstract.tex"
+  bio_file: "1_bio.tex"
+- speaker_name: Rich Caruana
+  institution: Microsoft
+  title: "Friends Don’t Let Friends Deploy Black-Box Models: The Importance of Intelligibility in Machine Learning"
+  abstract_file: "2_abstract.tex"
+  bio_file: "2_bio.tex"

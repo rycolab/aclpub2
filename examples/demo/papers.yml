@@ -1,0 +1,36 @@
+- id: 1
+  title: "Investigating label suggestions for opinion mining in German Covid-19 social media"
+  authors:
+    - "Tilman Beck"
+    - "Ji-Ung Lee"
+    - "Christina Viehmann"
+    - "Marcus Maurer"
+    - "Oliver Quiring"
+    - "Iryna Gurevych"
+  file: "1.pdf"
+- id: 2
+  title: "How Did This Get Funded?! Automatically Identifying Quirky Scientific Achievements"
+  authors:
+    - "Chen Shani"
+    - "Nadav Borenstein"
+    - "Dafna Shahaf"
+  file: "2.pdf"
+- id: 4
+  title: "HATE CHECK : Functional Tests for Hate Speech Detection Models"
+  authors:
+    - "Paul Röttger"
+    - "Bertram Vidgen"
+    - "Dong Nguyen"
+    - "Zeerak Waseem"
+    - "Helen Margetts"
+    - "Janet B. Pierrehumbert"
+  file: "4.pdf"
+- id: 5
+  title: "Unified Dual-view Cognitive Model for Interpretable Claim Verification"
+  authors:
+    - "Lianwei Wu"
+    - "Yuan Rao"
+    - "Yuqian Lan"
+    - "Ling Sun"
+    - "Zhaoyin Qin"
+  file: "5.pdf"

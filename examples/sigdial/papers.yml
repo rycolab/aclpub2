@@ -1,0 +1,348 @@
+- authors:
+    - Chenguang Zhu
+  file: 2.pdf
+  id: 2
+  title:
+    Boosting Naturalness of Language in Task-oriented Dialogues via Adversarial
+    Training
+- authors:
+    - Shikib Mehri
+    - Maxine Eskenazi
+  file: 4.pdf
+  id: 4
+  title: Unsupervised Evaluation of Interactive Dialog with DialoGPT
+- authors:
+    - Yansen Wang
+    - R. Charles Murray
+    - Haogang Bao
+    - Carolyn Rose
+  file: 7.pdf
+  id: 7
+  title: Agent-Based Dynamic Collaboration Support in a Smart Office Space
+- authors:
+    - Ryuichi Takanobu
+    - Qi Zhu
+    - Jinchao Li
+    - Baolin Peng
+    - Jianfeng Gao
+    - Minlie Huang
+  file: 8.pdf
+  id: 8
+  title:
+    Is Your Goal-Oriented Dialog Model Performing Really Well? Empirical Analysis
+    of System-wise Evaluation
+- authors:
+    - Stefan Ultes
+    - Wolfgang Maier
+  file: 9.pdf
+  id: 9
+  title: Similarity Scoring for Dialogue Behaviour Comparison
+- authors:
+    - Ramiro H. Gálvez
+    - Lara Gauder
+    - Jordi Luque
+    - Agustín Gravano
+  file: 11.pdf
+  id: 11
+  title:
+    "A unifying framework for modeling acoustic/prosodic entrainment: definition
+    and evaluation on two large corpora"
+- authors:
+    - Ayush Jain
+    - Maria Pacheco
+    - Steven Lancette
+    - Mahak Goindani
+    - Dan Goldwasser
+  file: 12.pdf
+  id: 12
+  title: Identifying Collaborative Conversations using Latent Discourse Behaviors
+- authors:
+    - Yan Cao
+    - Keting Lu
+    - Xiaoping Chen
+    - Shiqi Zhang
+  file: 16.pdf
+  id: 16
+  title: Adaptive Dialog Policy Learning with Hindsight and User Modeling
+- authors:
+    - Subhasis Ghosh
+    - Arpita Kundu
+    - Aniket Pramanick
+    - Indrajit Bhattacharya
+  file: 17.pdf
+  id: 17
+  title: Discovering Knowledge Graph Schema from Short Natural Language Text via Dialog
+- authors:
+    - Koji Inoue
+    - Divesh Lala
+    - Kenta Yamamoto
+    - Shizuka Nakamura
+    - Katsuya Takanashi
+    - Tatsuya Kawahara
+  file: 18.pdf
+  id: 18
+  title:
+    "An Attentive Listening System with Android ERICA: Comparison of Autonomous
+    and WOZ Interactions"
+- authors:
+    - Cheng-Hsun Hsueh
+    - Wei-Yun Ma
+  file: 22.pdf
+  id: 22
+  title: Semantic Guidance of Dialogue Generation with Reinforcement Learning
+- authors:
+    - Amanda Bergqvist
+    - Ramesh Manuvinakurike
+    - Deepthi Karkada
+    - Maike Paetzel
+  file: 24.pdf
+  id: 24
+  title: Nontrivial Lexical Convergence in a Geography-Themed Game
+- authors:
+    - Maryam Zare
+    - Ali Ayub
+    - Aishan Liu
+    - Sweekar Sudhakara
+    - Alan Wagner
+    - Rebecca Passonneau
+  file: 25.pdf
+  id: 25
+  title: Dialogue Policies for Learning Board Games through Multimodal Communication
+- authors:
+    - Weronika Sieińska
+    - Christian Dondrup
+    - Nancie Gunson
+    - Oliver Lemon
+  file: 28.pdf
+  id: 28
+  title: Conversational Agents for Intelligent Buildings
+- authors:
+    - Hongjie Shi
+  file: 38.pdf
+  id: 38
+  title: A Sequence-to-sequence Approach for Numerical Slot-filling Dialog Systems
+- authors:
+    - Thilo Michael
+    - Sebastian Möller
+  file: 41.pdf
+  id: 41
+  title: Simulating Turn-Taking in Conversations with Delayed Transmission
+- authors:
+    - Kazunori Komatani
+    - Mikio Nakano
+  file: 42.pdf
+  id: 42
+  title: User Impressions of Questions to Acquire Lexical Knowledge
+- authors:
+    - Simone Fuscone
+    - Benoit Favre
+    - Laurent Prévot
+  file: 43.pdf
+  id: 43
+  title:
+    Filtering conversations through dialogue acts labels for improving corpus-based
+    convergence studies
+- authors:
+    - Thilo Michael
+  file: 44.pdf
+  id: 44
+  title: "Retico: An incremental framework for spoken dialogue systems"
+- authors:
+    - Felix Gervits
+    - Ravenna Thielstrom
+    - Antonio Roque
+    - Matthias Scheutz
+  file: 49.pdf
+  id: 49
+  title: "It's About Time: Turn-Entry Timing For Situated Human-Robot Dialogue"
+- authors:
+    - Alessandra Cervone
+    - Giuseppe Riccardi
+  file: 58.pdf
+  id: 58
+  title: Is this Dialogue Coherent? Learning from Dialogue Acts and Entities
+- authors:
+    - Itika Gupta
+    - Barbara Di Eugenio
+    - Brian Ziebart
+    - Aiswarya Baiju
+    - Bing Liu
+    - Ben Gerber
+    - Lisa Sharp
+    - Nadia Nabulsi
+    - Mary Smart
+  file: 60.pdf
+  id: 60
+  title: "Human-Human Health Coaching via Text Messages: Corpus, Annotation, and Analysis"
+- authors:
+    - Casey Kennington
+    - Daniele Moro
+    - Lucas Marchand
+    - Jake Carns
+    - David McNeill
+  file: 61.pdf
+  id: 61
+  title: "rrSDS: Towards a Robot-ready Spoken Dialogue System"
+- authors:
+    - Georgiy Platonov
+    - Lenhart Schubert
+    - Benjamin Kane
+    - Aaron Gindi
+  file: 62.pdf
+  id: 62
+  title:
+    A Spoken Dialogue System for Spatial Question Answering in a Physical Blocks
+    World
+- authors:
+    - David McNeill
+    - Casey Kennington
+  file: 63.pdf
+  id: 63
+  title: Learning Word Groundings from Humans Facilitated by Robot Emotional Displays
+- authors:
+    - Jonathan P. Chang
+    - Caleb Chiam
+    - Liye Fu
+    - Andrew Wang
+    - Justine Zhang
+    - Cristian Danescu-Niculescu-Mizil
+  file: 71.pdf
+  id: 71
+  title: "ConvoKit: A Toolkit for the Analysis of Conversations"
+- authors:
+    - Arne Köhn
+    - Julia Wichlacz
+    - Christine Schäfer
+    - Álvaro Torralba
+    - Joerg Hoffmann
+    - Alexander Koller
+  file: 72.pdf
+  id: 72
+  title: "MC-Saar-Instruct: a Platform for Minecraft Instruction Giving Agents"
+- authors:
+    - Siqi Shen
+    - Charles Welch
+    - Rada Mihalcea
+    - Verónica Pérez-Rosas
+  file: 76.pdf
+  id: 76
+  title:
+    Counseling-Style Reflection Generation Using Generative Pretrained Transformers
+    with Augmented Context
+- authors:
+    - Ye Liu
+    - Tao Yang
+    - Zeyu You
+    - Wei Fan
+    - Philip S. Yu
+  file: 78.pdf
+  id: 78
+  title: Commonsense Evidence Generation and Injection in Reading Comprehension
+- authors:
+    - Sarah E. Finch
+    - Jinho D. Choi
+  file: 79.pdf
+  id: 79
+  title:
+    "Towards Unified Dialogue System Evaluation: A Comprehensive Analysis of
+    Current Evaluation Protocols"
+- authors:
+    - Keting Lu
+    - Shiqi Zhang
+    - Peter Stone
+    - Xiaoping Chen
+  file: 81.pdf
+  id: 81
+  title: Learning and Reasoning for Robot Dialog and Navigation Tasks
+- authors:
+    - Seokhwan Kim
+    - Mihail Eric
+    - Karthik Gopalakrishnan
+    - Behnam Hedayatnia
+    - Yang Liu
+    - Dilek Hakkani-Tur
+  file: 83.pdf
+  id: 83
+  title:
+    "Beyond Domain APIs: Task-oriented Conversational Modeling with Unstructured
+    Knowledge Access"
+- authors:
+    - Megha Jhunjhunwala
+    - Caleb Bryant
+    - Pararth Shah
+  file: 87.pdf
+  id: 87
+  title: Multi-Action Dialog Policy Learning with Interactive Human Teaching
+- authors:
+    - Timothy Hewitt
+    - Ian Beaver
+  file: 89.pdf
+  id: 89
+  title:
+    A Case Study of User Communication Styles with Customer Service Agents versus
+    Intelligent Virtual Agents
+- authors:
+    - Tsunehiro Arimoto
+    - Ryuichiro Higashinaka
+    - Kou Tanaka
+    - Takahito Kawanishi
+    - Hiroaki Sugiyama
+    - Hiroshi Sawada
+    - Hiroshi Ishiguro
+  file: 92.pdf
+  id: 92
+  title: Collection and Analysis of Dialogues Provided by Two Speakers Acting as One
+- authors:
+    - Brian McMahan
+    - Matthew Stone
+  file: 94.pdf
+  id: 94
+  title: Analyzing Speaker Strategy in Referential Communication
+- authors:
+    - Adam Stiff
+    - Qi Song
+    - Eric Fosler-Lussier
+  file: 97.pdf
+  id: 97
+  title:
+    How Self-Attention Improves Rare Class Performance in a Question-Answering
+    Dialogue Agent
+- authors:
+    - Lena Reed
+    - Vrindavan Harrison
+    - Shereen Oraby
+    - Dilek Hakkani-Tur
+    - Marilyn Walker
+  file: 98.pdf
+  id: 98
+  title:
+    "Learning from Mistakes: Combining Ontologies via Self-Training for Dialogue
+    Generation"
+- authors:
+    - James D. Finch
+    - Jinho D. Choi
+  file: 100.pdf
+  id: 100
+  title: "Emora STDM: A Versatile Framework for Innovative Dialogue System Development"
+- authors:
+    - Yan Wang
+    - Jiayu Zhang
+    - Jun Ma
+    - Shaojun Wang
+    - Jing Xiao
+  file: 102.pdf
+  id: 102
+  title: Contextualized Emotion Recognition in Conversation as Sequence Tagging
+- authors:
+    - Michael Heck
+    - Carel van Niekerk
+    - Nurul Lubis
+    - Christian Geishauser
+    - Hsien-Chin Lin
+    - Marco Moresi
+    - Milica Gasic
+  file: 103.pdf
+  id: 103
+  title:
+    "TripPy: A Triple Copy Strategy for Value Independent Neural Dialog State
+    Tracking"
