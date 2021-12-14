@@ -134,8 +134,15 @@ This file is organized in blocks, each with a title, start, and end time, follow
 ```
 
 ## Development
+The above describe a reasonable default usage of this package, but the behavior can easily be extended or modified by adjusting the contents of the `aclpub2/` directory.
+The main files to keep in mind are `aclpub2/templates/proceedings.tex` which contains the core Jinja template file, and `aclpub2/generate.py` which is responsible for rendering the template.
+
 #### Jinja
 This project makes extensive use of Jinja to produce readable Latex templates.
 Before contributing or forking, it is generally helpful to familiarize yourself with
 the Jinja library. Documentation can be found [here](https://jinja.palletsprojects.com/en/2.11.x/templates/https://jinja.palletsprojects.com/en/2.11.x/templates/).
+
+Additional configuration for Jinja can be found in the `aclpub2/templates.py` file.
+The purpose of this file are to set up the Jinja environment with LaTeX-like block delimiters so that the `proceedings.tex` file can be syntax highlighted and otherwise interacted with in a fashion that is more natural for LaTeX users.
+In addition, it is also responsible for configuring some convenience functions that allow us to create some LaTeX structures in the final output `.tex` file that are easier to write in native Python than either the Jinja base syntax, or LaTeX alone.
 
