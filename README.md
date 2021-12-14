@@ -97,9 +97,21 @@ Lists the members of program committee.
     - [str] Committee Member Name
 ```
 
+#### invited_talks.yml + invited_talks/
+List of invited talks and associated abstracts and bios.
+As with the prefaces, the contents of the `.tex` files should not include usual headers and footers found within LaTeX files,
+and only what is usually found between the `\begin{document}` and `\end{document}` directives.
+```
+- speaker_name: [str] Speaker name as it should appear, i.e. Jane Doe
+  institution: [str] Speaker's institution name as it should appear, i.e. University of California Berkeley, USA
+  title: [str] The title of the talk.
+  abstract_file: [str] Path to abstract LaTeX file relative to the invited_talks/ directory.
+  bio_file: [str] Path to bio LaTeX file relative to the invited_talks/ directory.
+```
+
 #### papers.yml + papers/
 Lists the accepted papers, along with a directory containing the associated PDFs.
-The listed papers much each have a unique ID so that they may be referred to by ID within the `schedule.yml` file later on.
+The listed papers much each have a unique ID so that they may be referred to by ID within the `program.yml` file later on.
 ```
 - id: [str] Unique ID for the paper.
   authors:
@@ -109,6 +121,17 @@ The listed papers much each have a unique ID so that they may be referred to by 
   title: [str] Title of the paper.
 ```
 
+#### program.yml
+Describes the conference program.
+This file is organized in blocks, each with a title, start, and end time, followed by a list of papers IDs.
+```
+- title: [str] Title of the conference session, i.e. Opening Remarks
+  start_time: [str] Start time of the session as an ISO datestring.
+  end_time: [str] End time of the session as an ISO datestring.
+  papers:  # Optional, may be empty
+  - [str] Session Paper1 ID
+  - [str] Session Paper2 ID
+```
 
 ## Development
 #### Jinja
