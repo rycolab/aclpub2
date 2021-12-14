@@ -137,5 +137,5 @@ This file is organized in blocks, each with a title, start, and end time, follow
 #### Jinja
 This project makes extensive use of Jinja to produce readable Latex templates.
 Before contributing or forking, it is generally helpful to familiarize yourself with
-the Jinja library. Documentation can be found [here](ttps://jinja.palletsprojects.com/en/2.11.x/templates/https://jinja.palletsprojects.com/en/2.11.x/templates/)
+the Jinja library. Documentation can be found [here](https://jinja.palletsprojects.com/en/2.11.x/templates/https://jinja.palletsprojects.com/en/2.11.x/templates/).
 
