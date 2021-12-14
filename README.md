@@ -40,19 +40,40 @@ the `build` directory in the directory in which you ran the command.
 
 
 ## Usage
-The generation scripts accepts as input the path to a directory, containing a set of `.yml` files 
+The generation scripts accepts as input the path to a directory, containing a set of `.yml` files and directories.
+This expected input directory structure is detailed below:
 
 #### conference_details.yml
-Controls 
+List key information about the conference that builds the cover, watermarks, and other items.
 ```
-name: Name of the Conference
-abbreviation: Conference abbreviation or acronym, i.e. EMNLP
-start_date: YYYY-MM-dd
-end_date: YYYY-MM-dd
-isbn: ISBN number of the proceeding.
+name: [str] Name of the Conference
+abbreviation: [str] Conference abbreviation or acronym, i.e. EMNLP
+start_date: [str] Conference start date YYYY-MM-dd
+end_date: [str] Conference end date YYYY-MM-dd
+isbn: [str] ISBN number of the proceeding.
 ```
 
+#### organizing_committee.yml
+Lists the members of organizaing committee.
+```
+# List
+- role: Name of role, i.e. General Chair
+  members:
+    - name: Committe member name as it should appear, i.e. John Doe
+      institution: Committee member's institution name as it should appear, i.e. University of California Berkeley, USA
+```
 
+#### program_committee.yml
+Lists the members of program committee.
+```
+# List
+- role: Name of role, i.e. General Chair
+  members:
+    - name: Committe member name as it should appear, i.e. John Doe
+      institution: Committee member's institution name as it should appear, i.e. University of California Berkeley, USA
+    # OR
+    - Committee member name as it should appear, if institution should not be included.
+```
 
 ## Development
 #### Jinja
