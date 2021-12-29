@@ -9,11 +9,16 @@ import yaml
 PARENT_DIR = Path(__file__).parent
 
 
-def generate(root: str):
-    root = Path(root)
+def generate(*, path: str, proceedings: bool, handbook: bool, overwrite: bool):
+    root = Path(path)
     build_dir = Path("build")
     build_dir.mkdir(exist_ok=True)
 
+    # Throw if the build directory isn't empty, and the user did not specify an overwrite.
+    if len([build_dir.iterdir()]) > 0 and not overwrite:
+        raise Exception(f"Build directory {build_dir} is not empty, and the overwrite flag is false.")
+
+    # Load and preprocess the .yml configuration.
     (
         conference,
         papers,
@@ -24,35 +29,48 @@ def generate(root: str):
         invited_talks,
         program,
     ) = load_configs(root)
-
-    # Load the proceedings template.
-    template = load_template("proceedings")
-
-    id_to_paper, alphabetized_author_index = process_papers(papers, root)
     sessions_by_date = process_program(program)
 
-    rendered_template = template.render(
-        root=str(root),
-        conference=conference,
-        conference_dates=get_conference_dates(conference),
-        sponsors=sponsors,
-        prefaces=prefaces,
-        organizing_committee=organizing_committee,
-        program_committee=program_committee,
-        invited_talks=invited_talks,
-        papers=papers,
-        id_to_paper=id_to_paper,
-        program=sessions_by_date,
-        alphabetized_author_index=alphabetized_author_index,
-    )
+    if proceedings:
+        id_to_paper, alphabetized_author_index = process_papers(papers, root)
+        template = load_template("proceedings")
+        rendered_template = template.render(
+            root=str(root),
+            conference=conference,
+            conference_dates=get_conference_dates(conference),
+            sponsors=sponsors,
+            prefaces=prefaces,
+            organizing_committee=organizing_committee,
+            program_committee=program_committee,
+            invited_talks=invited_talks,
+            papers=papers,
+            id_to_paper=id_to_paper,
+            program=sessions_by_date,
+            alphabetized_author_index=alphabetized_author_index,
+        )
+        tex_file = Path(build_dir, "proceedings.tex")
+        with open(tex_file, "w+") as f:
+            f.write(rendered_template)
+        subprocess.run(["pdflatex", f"-output-directory={build_dir}", str(tex_file)])
 
-    # Write the resulting tex file.
-    tex_file = Path(build_dir, "proceedings.tex")
-    with open(tex_file, "w+") as f:
-        f.write(rendered_template)
-
-    # Build with latex.
-    subprocess.run(["pdflatex", f"-output-directory={build_dir}", str(tex_file)])
+    if handbook:
+        template = load_template("handbook")
+        rendered_template = template.render(
+            root=str(root),
+            conference=conference,
+            conference_dates=get_conference_dates(conference),
+            sponsors=sponsors,
+            prefaces=prefaces,
+            organizing_committee=organizing_committee,
+            program_committee=program_committee,
+            invited_talks=invited_talks,
+            papers=papers,
+            program=sessions_by_date,
+        )
+        tex_file = Path(build_dir, "handbook.tex")
+        with open(tex_file, "w+") as f:
+            f.write(rendered_template)
+        subprocess.run(["pdflatex", f"-output-directory={build_dir}", str(tex_file)])
 
 
 def get_conference_dates(conference) -> str:
