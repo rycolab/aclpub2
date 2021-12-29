@@ -119,6 +119,7 @@ The listed papers much each have a unique ID so that they may be referred to by 
     - [str] Author2 Name
   file: [str] File name relative to the papers/ directory, i.e. 1.pdf
   title: [str] Title of the paper.
+  abstract: [str] Abstract of the paper, usually a LaTeX fragment.
 ```
 
 #### program.yml
