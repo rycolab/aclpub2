@@ -8,6 +8,7 @@
     - "Oliver Quiring"
     - "Iryna Gurevych"
   file: "1.pdf"
+  abstract: "This work investigates the use of interactively updated label suggestions to improve upon the efficiency of gathering annotations on the task of opinion mining in German Covid-19 social media data. We develop guidelines to conduct a controlled annotation study with social sci- ence students and find that suggestions from a model trained on a small, expert-annotated dataset already lead to a substantial improve- ment – in terms of inter-annotator agreement (+.14 Fleiss’ κ) and annotation quality – com- pared to students that do not receive any label suggestions. We further find that label sug- gestions from interactively trained models do not lead to an improvement over suggestions from a static model. Nonetheless, our analy- sis of suggestion bias shows that annotators re- main capable of reflecting upon the suggested label in general. Finally, we confirm the qual- ity of the annotated data in transfer learning ex- periments between different annotator groups. To facilitate further research in opinion mining on social media data, we release our collected data consisting of 200 expert and 2,785 student annotations."
 - id: 2
   title: "How Did This Get Funded?! Automatically Identifying Quirky Scientific Achievements"
   authors:
@@ -15,6 +16,9 @@
     - "Nadav Borenstein"
     - "Dafna Shahaf"
   file: "2.pdf"
+  abstract: "Humor is an important social phenomenon, serving complex social and psychological functions. However, despite being studied for millennia humor is computationally not well understood, often considered an AI-complete problem.
+In this work, we introduce a novel setting in humor mining: automatically detecting funny and unusual scientific papers. We are inspired by the Ig Nobel prize, a satirical prize awarded annually to celebrate funny scientific achieve- ments (example past winner: “Are cows more likely to lie down the longer they stand?”). This challenging task has unique characteris- tics that make it particularly suitable for auto- matic learning.
+We construct a dataset containing thousands of funny papers and use it to learn classifiers, combining findings from psychology and lin- guistics with recent advances in NLP. We use our models to identify potentially funny papers in a large dataset of over 630,000 articles. The results demonstrate the potential of our meth- ods, and more broadly the utility of integrat- ing state-of-the-art NLP methods with insights from more traditional disciplines."
 - id: 4
   title: "HATE CHECK : Functional Tests for Hate Speech Detection Models"
   authors:
@@ -25,8 +29,10 @@
     - "Helen Margetts"
     - "Janet B. Pierrehumbert"
   file: "4.pdf"
+  abstract: "Detecting online hate is a difficult task that even state-of-the-art models struggle with. Typically, hate speech detection models are evaluated by measuring their performance on held-out test data using metrics such as accu- racy and F1 score. However, this approach makes it difficult to identify specific model weak points. It also risks overestimating generalisable model performance due to in- creasingly well-evidenced systematic gaps and biases in hate speech datasets. To enable more targeted diagnostic insights, we intro- duce HATECHECK, a suite of functional tests for hate speech detection models. We spec- ify 29 model functionalities motivated by a re- view of previous research and a series of inter- views with civil society stakeholders. We craft test cases for each functionality and validate their quality through a structured annotation process. To illustrate HATECHECK’s utility, we test near-state-of-the-art transformer mod- els as well as two popular commercial models, revealing critical model weaknesses."
 - id: 5
   title: "Unified Dual-view Cognitive Model for Interpretable Claim Verification"
+  abstract: "Recent studies constructing direct interactions be- tween the claim and each single user response to capture evidence have shown remarkable suc- cess in interpretable claim verification. Owing to different single responses convey different cog- nition of individual users, the captured evidence belongs to the perspective of individual cognition. However, individuals’ cognition of social things is not always able to truly reflect the objective. There may be one-sided or biased semantics in their opinions on a claim. The captured evidence correspondingly contains some unobjective and biased information. In this paper, we propose a Dual-view model based on the views of Collective and Individual Cognition (CICD) for interpretable claim verification. For collective cognition, we not only capture the word-level semantics based on individual users, but also focus on sentence- level semantics (i.e., the overall responses) among all users to generate global evidence. For indi- vidual cognition, we select the top-k articles with high degree of difference and interact with the claim to explore the local key evidence fragments. To weaken the bias of individual cognition-view evidence, we devise an inconsistent loss to sup- press the divergence between global and local ev- idence for strengthening the consistent shared ev- idence between the both. Experiments on three benchmark datasets confirm the effectiveness of CICD."
   authors:
     - "Lianwei Wu"
     - "Yuan Rao"
