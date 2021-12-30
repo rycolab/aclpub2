@@ -33,7 +33,7 @@ Ensure that `PYTHONPATH` includes `.`, for example `export PYTHONPATH=.:$PYTHONP
 
 Run the CLI on the example directory:
 ```
-./bin/generate example/
+./bin/generate example/ --proceedings --handbook
 ```
 The generated results, along with intermediate files and links, can then be found in
 the `build` directory in the directory in which you ran the command.
@@ -42,9 +42,27 @@ the `build` directory in the directory in which you ran the command.
 ## Usage
 The generation scripts accepts as input the path to a directory, containing a set of `.yml` files and directories.
 Examples and usage of YAML syntax can be found [here](https://www.w3schools.io/file/yaml-arrays/)
-This expected input directory structure is detailed below.
+This expected input directory structure and the CLI are detailed below.
 
+### CLI
+```bash
+# Generates the proceedings.
+./bin/generate example/ --proceedings
 
+# Generates the handbook.
+./bin/generate example/ --handbook
+
+# Generates both.
+./bin/generate example/ --proceedings --handbook
+
+# Generates both and overwrites the existing contents of the build directory.
+./bin/generate example/ --proceedings --handbook --overwrite
+```
+Users may wish to make modifications to the output `.tex` files.
+Though we recommend first copying the `.tex` files to a new working directory,
+the `--overwrite` flag helps ensure that local modifications are not accidentally erased.
+
+### Input Format
 #### conference_details.yml
 List key information about the conference that builds the cover, watermarks, and other items.
 ```

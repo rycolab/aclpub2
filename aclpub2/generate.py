@@ -29,10 +29,9 @@ def generate(*, path: str, proceedings: bool, handbook: bool, overwrite: bool):
         invited_talks,
         program,
     ) = load_configs(root)
-    sessions_by_date = process_program(program)
-
+    id_to_paper, alphabetized_author_index = process_papers(papers, root, proceedings)
     if proceedings:
-        id_to_paper, alphabetized_author_index = process_papers(papers, root)
+        sessions_by_date = process_program_by_page(program)
         template = load_template("proceedings")
         rendered_template = template.render(
             root=str(root),
@@ -55,6 +54,7 @@ def generate(*, path: str, proceedings: bool, handbook: bool, overwrite: bool):
 
     if handbook:
         template = load_template("handbook")
+        program = process_program(program)
         rendered_template = template.render(
             root=str(root),
             conference=conference,
@@ -65,7 +65,8 @@ def generate(*, path: str, proceedings: bool, handbook: bool, overwrite: bool):
             program_committee=program_committee,
             invited_talks=invited_talks,
             papers=papers,
-            program=sessions_by_date,
+            id_to_paper=id_to_paper,
+            program=program,
         )
         tex_file = Path(build_dir, "handbook.tex")
         with open(tex_file, "w+") as f:
@@ -83,7 +84,7 @@ def get_conference_dates(conference) -> str:
     return f"{start_month} {start_date.day} - {end_month} {end_date.day}"
 
 
-def process_papers(papers, root: Path):
+def process_papers(papers, root: Path, pax: bool):
     """
     process_papers
     - uses PAX to extract PDF annotations from the paper files in preparation for
@@ -98,15 +99,16 @@ def process_papers(papers, root: Path):
     author_to_pages = defaultdict(list)
     for paper in papers:
         pdf_path = Path(root, "papers", f"{paper['id']}.pdf")
-        subprocess.run(
-            [
-                "java",
-                "-cp",
-                f"{PARENT_DIR}/pax.jar:{PARENT_DIR}/pdfbox.jar",
-                "pax.PDFAnnotExtractor",
-                pdf_path,
-            ]
-        )
+        if pax:
+            subprocess.run(
+                [
+                    "java",
+                    "-cp",
+                    f"{PARENT_DIR}/pax.jar:{PARENT_DIR}/pdfbox.jar",
+                    "pax.PDFAnnotExtractor",
+                    pdf_path,
+                ]
+            )
         pdf = PdfFileReader(str(pdf_path))
         paper["num_pages"] = pdf.getNumPages()
         paper["page_range"] = (page, page + pdf.getNumPages() - 1)
@@ -121,8 +123,11 @@ def process_papers(papers, root: Path):
         alphabetized_author_index[author[0].lower()].append((author, pages))
     return id_to_paper, sorted(alphabetized_author_index.items())
 
-
 def process_program(program):
+    return sorted(program, key=lambda x: x["start_time"])
+
+
+def process_program_by_page(program):
     """
     process_program organizes program sessions by date, and manually cuts
     program entries in order to avoid page overflow. This is done by assuming

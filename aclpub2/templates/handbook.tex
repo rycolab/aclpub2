@@ -135,36 +135,51 @@ PLACHOLDER FOR OTHER CONFERENCE INFORMATION
 %%%%%%%%%%%%%%%%%%%%%
 \begin{center}
   \Large \textbf{Program Committee}
-  \end{center}
-  \vspace*{1cm}
-  \BLOCK{for block in program_committee}
-    \textbf{\VAR{block.role}}\\
-    \BLOCK{if block.entries[0].institution}
-      \BLOCK{for member in block.entries}
-        \hspace*{1em} \VAR{committee_member(member)}\\
-      \BLOCK{endfor}
-    \BLOCK{endif}
-    \BLOCK{if block.entries[0].area}
-      \BLOCK{for area in block.entries}
-        \emph{\VAR{area.area}}\\
-        \BLOCK{if area.members[0].institution}
-          \BLOCK{for member in area.members}
-            \hspace*{1em} \VAR{committee_member(member)}\\
-          \BLOCK{endfor}
-        \BLOCK{endif}
-        \BLOCK{if not area.members[0].institution}
-          \hspace*{1em} \VAR{join(", ", area.members)}\\
-        \BLOCK{endif}
-      \BLOCK{endfor}
-    \BLOCK{endif}
-    \BLOCK{if block.type is equalto("name_block")}
-      \BLOCK{for name_block in group_by_last_name(block.entries)}
-        \VAR{join(", ", name_block)}\\
-        \newline
-      \BLOCK{endfor}
-    \BLOCK{endif}
-  
+\end{center}
+\vspace*{1cm}
+\BLOCK{for block in program_committee}
+  \textbf{\VAR{block.role}}\\
+  \BLOCK{if block.entries[0].institution}
+    \BLOCK{for member in block.entries}
+      \hspace*{1em} \VAR{committee_member(member)}\\
+    \BLOCK{endfor}
+  \BLOCK{endif}
+  \BLOCK{if block.entries[0].area}
+    \BLOCK{for area in block.entries}
+      \emph{\VAR{area.area}}\\
+      \BLOCK{if area.members[0].institution}
+        \BLOCK{for member in area.members}
+          \hspace*{1em} \VAR{committee_member(member)}\\
+        \BLOCK{endfor}
+      \BLOCK{endif}
+      \BLOCK{if not area.members[0].institution}
+        \hspace*{1em} \VAR{join(", ", area.members)}\\
+      \BLOCK{endif}
+    \BLOCK{endfor}
+  \BLOCK{endif}
+  \BLOCK{if block.type is equalto("name_block")}
+    \BLOCK{for name_block in group_by_last_name(block.entries)}
+      \VAR{join(", ", name_block)}\\
+      \newline
+    \BLOCK{endfor}
+  \BLOCK{endif}
+
+\BLOCK{endfor}
+\newpage
+
+
+%%%%%%%%%%%
+% Program %
+%%%%%%%%%%%
+\chapter{Main Conference}
+\BLOCK{for session in program}
+  \section{\VAR{session.title}}
+  \BLOCK{for id in session.papers}
+  \BLOCK{set paper = id_to_paper[id]}
+    \subsection{\VAR{paper.title}}
+    \VAR{join(", ", paper.authors, " and ")}\\
+    \VAR{paper.abstract}
   \BLOCK{endfor}
-  \newpage
+\BLOCK{endfor}
 
 \end{document}
