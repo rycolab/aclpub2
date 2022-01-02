@@ -173,13 +173,15 @@ PLACHOLDER FOR OTHER CONFERENCE INFORMATION
 %%%%%%%%%%%
 \chapter{Main Conference}
 \BLOCK{for session in program}
-  \section{\VAR{session.title}}
-  \BLOCK{for id in session.papers}
-  \BLOCK{set paper = id_to_paper[id]}
-    \subsection{\VAR{paper.title}}
-    \VAR{join(", ", paper.authors, " and ")}\\
-    \VAR{paper.abstract}
-  \BLOCK{endfor}
+  \BLOCK{if session.papers|length > 1}
+    \section{\VAR{session.title}}
+    \BLOCK{for id in session.papers}
+    \BLOCK{set paper = id_to_paper[id]}
+      \subsection{\VAR{paper.title}}
+      \VAR{join(", ", paper.authors, " and ")}\\
+      \VAR{paper.abstract}
+    \BLOCK{endfor}
+  \BLOCK{endif}
 \BLOCK{endfor}
 
 \end{document}
