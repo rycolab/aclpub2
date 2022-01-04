@@ -6,7 +6,15 @@ parser = argparse.ArgumentParser(description="Generate proceedings from an input
 parser.add_argument(
     "path", type=str, help="Path to directory containing inputs."
 )
+parser.add_argument(
+    "--proceedings", action="store_true", help="If set, generates the proceedings."
+)
+parser.add_argument(
+    "--handbook", action="store_true", help="If set, generates the handbook."
+)
+parser.add_argument(
+    "--overwrite", action="store_true", help="If set, overwrites the generated files in the output."
+)
 
-args = parser.parse_args()
-generate(args.path)
+generate(**vars(parser.parse_args()))
 

@@ -243,7 +243,7 @@ ISBN \VAR{conference.isbn}
       \BLOCK{endif}
 
       \BLOCK{if entry.type is equalto("paper")}
-        \BLOCK{set paper = id_to_paper[entry.paper]}
+        \BLOCK{set paper = id_to_paper[entry.paper.id]}
         & \hyperlink{page.\VAR{paper.page_range[0]}}{\emph{\VAR{paper.title}}}\\
         & \VAR{join(", ", paper.authors, " and ")}\\\\
       \BLOCK{endif}

@@ -12,12 +12,18 @@ def load_file(*args: str):
         return f.read()
 
 
-def join(delimiter: str, items: List[Any], delimiter_last=None):
+def join(delimiter: str, items: List[Any], delimiter_last: str = None):
+    if len(items) == 1:
+        return items[0]
     if delimiter_last:
-        output = delimiter.join(items[:-1])
-        output = output + delimiter_last + items[-1]
-        return output
+        front = delimiter.join(items[:-1])
+        return delimiter_last.join((front, items[-1]))
     return delimiter.join(items)
+
+
+def index_author(author: str):
+    n = author.split(" ")
+    return "\index{" + n[-1] + ", " + " ".join(n[:-1]) + "}"
 
 
 def join_page_numbers(page_numbers):
@@ -62,7 +68,8 @@ LATEX_JINJA_ENV = jinja2.Environment(
 LATEX_JINJA_ENV.globals.update(load_file=load_file, join=join,
                                group_by_last_name=group_by_last_name,
                                program_date=program_date, session_times=session_times,
-                               join_page_numbers=join_page_numbers)
+                               join_page_numbers=join_page_numbers,
+                               index_author=index_author)
 
 
 def load_template(template: str) -> jinja2.Template:
