@@ -29,7 +29,7 @@ def generate(*, path: str, proceedings: bool, handbook: bool, overwrite: bool):
         invited_talks,
         program,
     ) = load_configs(root)
-    id_to_paper = process_papers(papers, root, False)
+    id_to_paper, alphabetized_author_index = process_papers(papers, root, proceedings)
     if proceedings:
         sessions_by_date = process_program_by_page(program)
         template = load_template("proceedings")
@@ -45,12 +45,11 @@ def generate(*, path: str, proceedings: bool, handbook: bool, overwrite: bool):
             papers=papers,
             id_to_paper=id_to_paper,
             program=sessions_by_date,
+            alphabetized_author_index=alphabetized_author_index,
         )
         tex_file = Path(build_dir, "proceedings.tex")
         with open(tex_file, "w+") as f:
             f.write(rendered_template)
-        subprocess.run(["pdflatex", f"-output-directory={build_dir}", str(tex_file)])
-        subprocess.run(["makeindex", str(tex_file.with_suffix(".idx"))])
         subprocess.run(["pdflatex", f"-output-directory={build_dir}", str(tex_file)])
 
     if handbook:
@@ -99,6 +98,7 @@ def process_papers(papers, root: Path, pax: bool):
     """
     page = 1
     id_to_paper = {}
+    author_to_pages = defaultdict(list)
     for paper in papers:
         pdf_path = Path(root, "papers", f"{paper['id']}.pdf")
         if pax:
@@ -115,8 +115,16 @@ def process_papers(papers, root: Path, pax: bool):
         paper["num_pages"] = pdf.getNumPages()
         paper["page_range"] = (page, page + pdf.getNumPages() - 1)
         id_to_paper[paper["id"]] = paper
+        for author in paper["authors"]:
+            name_parts = author.split(" ")
+            index_name = f"{name_parts[-1]}, {' '.join(name_parts[:-1])}"
+            author_to_pages[index_name].append(page)
         page += pdf.getNumPages()
-    return id_to_paper
+    alphabetized_author_index = defaultdict(list)
+    for author, pages in sorted(author_to_pages.items()):
+        alphabetized_author_index[author[0].lower()].append((author, pages))
+    return id_to_paper, sorted(alphabetized_author_index.items())
+
 
 def process_program(program):
     return sorted(program, key=lambda x: x["start_time"])

@@ -14,10 +14,7 @@ Visit the [Java website](https://www.java.com/) for instructions on how to insta
 ### Install `pdflatex` and associated dependencies.
 #### Ubuntu/Debian
 ```
-sudo apt-get install texlive-latex-base
-sudo apt-get install texlive-latex-recommended
-sudo apt-get install texlive-latex-extra
-sudo apt-get install texlive-fonts-recommended
+sudo apt-get install texlive-latex-base texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended texlive-fonts-extra texlive-bibtex-extra
 ```
 
 #### OSX
