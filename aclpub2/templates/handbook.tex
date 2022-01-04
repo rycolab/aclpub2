@@ -1,11 +1,6 @@
 \documentclass[twoside,makeidx]{book}
 
-
 % TRY PASTING PREAMBLE
-
-
-
-
 \usepackage[T1]{fontenc}
 \usepackage{hyperref}
 \usepackage[utf8]{inputenc}
@@ -175,10 +170,7 @@
 % Min: index
 \makeindex
 
-%\raggedbottom
-%\setlength{\parindent}{0pt}
-% Unicode issues
-% \DeclareUnicodeCharacter{ﬁ}{fi}
+\raggedbottom
 
 % Min: correct column widths
 \newlength{\mycolumnwidth}
@@ -194,7 +186,7 @@
                    \setlength{\parskip}{1ex}\setlength{\parindent}{0ex}}
                {\end{figure}}
 
-\setlength{\parindent}{1em}
+\setlength{\parindent}{0pt}
 
 \fancypagestyle{emptyheader}
 {
@@ -206,10 +198,6 @@
   \renewcommand{\leftheader}{#1}%
   \renewcommand{\rightheader}{#2}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
-
 
 
 % END PREAMBLE
@@ -363,14 +351,19 @@ PLACHOLDER FOR OTHER CONFERENCE INFORMATION
 \BLOCK{for session in program}
   \BLOCK{if session.papers|length > 1}
     \section{\VAR{session.title}}
-    \BLOCK{for id in session.papers}
-    \BLOCK{set paper = id_to_paper[id]}
-      \subsection{\VAR{paper.title}}
-      \VAR{join(", ", paper.authors, " and ")}\\
+    \BLOCK{for paper_slot in session.papers}
+    \BLOCK{set paper = id_to_paper[paper_slot.id]}
+      \textbf{\VAR{paper.title}}\\
+      \textit{\VAR{join(", ", paper.authors, " and ")}}
+      \BLOCK{if paper_slot.start_time}
+        \hfill
+        \VAR{paper_slot.start_time.strftime('%H:%M')}-\VAR{paper_slot.end_time.strftime('%H:%M')}
+      \BLOCK{endif}
+      \\
       \BLOCK{for author in paper.authors}
         \VAR{index_author(author)}
       \BLOCK{endfor}
-      \VAR{paper.abstract}
+      \VAR{paper.abstract}\\\\
     \BLOCK{endfor}
   \BLOCK{endif}
 \BLOCK{endfor}

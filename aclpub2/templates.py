@@ -12,12 +12,14 @@ def load_file(*args: str):
         return f.read()
 
 
-def join(delimiter: str, items: List[Any], delimiter_last=None):
+def join(delimiter: str, items: List[Any], delimiter_last: str = None):
+    if len(items) == 1:
+        return items[0]
     if delimiter_last:
-        output = delimiter.join(items[:-1])
-        output = output + delimiter_last + items[-1]
-        return output
+        front = delimiter.join(items[:-1])
+        return delimiter_last.join((front, items[-1]))
     return delimiter.join(items)
+
 
 def index_author(author: str):
     n = author.split(" ")
