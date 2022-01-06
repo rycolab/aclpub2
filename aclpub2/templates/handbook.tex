@@ -121,13 +121,16 @@
 % DOCUMENT %
 %%%%%%%%%%%%
 \begin{document}
-\pagenumbering{roman}
+\thispagestyle{empty}
+\fancyfoot[C]{}
 PLACHOLDER FOR COVER
 \newpage
 
 %%%%%%%
 % TOC %
 %%%%%%%
+\fancyfoot[C]{\thepage}
+\pagenumbering{roman}
 \addcontentsline{toc}{chapter}{Table of Contents}
 \setcounter{tocdepth}{2}
 \tableofcontents
@@ -234,11 +237,27 @@ PLACHOLDER FOR OTHER CONFERENCE INFORMATION
 \BLOCK{endfor}
 \newpage
 
+%%%%%%%%%%%%%%%%
+% Author Index %
+%%%%%%%%%%%%%%%%
+\cleardoublepage
+\addcontentsline{toc}{chapter}{Author Index}
+\setheaders{Author Index}{Author Index}
 \printindex
 
 \newpage
-\chapter{Appendix}
 
-PLACHOLDER FOR APPENDIX PAGES
+%%%%%%%%%%%%%%
+% Appendices %
+%%%%%%%%%%%%%%
+PLACHOLDER FOR APPENDIX PAGES\\
+Misc. items like local guides, maps, and advertisements can be inserted here.
+\newpage
+
+%%%%%%%%%%%%%%
+% Back Cover %
+%%%%%%%%%%%%%%
+\thispagestyle{empty}
+PLACEHOLDER FOR BACK COVER
 
 \end{document}
