@@ -1,10 +1,11 @@
 from collections import defaultdict
 from pathlib import Path
 from PyPDF2 import PdfFileReader
-from aclpub2.templates import load_template
+from aclpub2.templates import load_template, TEMPLATE_DIR
 
 import subprocess
 import yaml
+import shutil
 
 PARENT_DIR = Path(__file__).parent
 
@@ -12,6 +13,7 @@ PARENT_DIR = Path(__file__).parent
 def generate(*, path: str, proceedings: bool, handbook: bool, overwrite: bool):
     root = Path(path)
     build_dir = Path("build")
+    shutil.rmtree(build_dir, ignore_errors=True)
     build_dir.mkdir(exist_ok=True)
 
     # Throw if the build directory isn't empty, and the user did not specify an overwrite.
@@ -67,10 +69,12 @@ def generate(*, path: str, proceedings: bool, handbook: bool, overwrite: bool):
             papers=papers,
             id_to_paper=id_to_paper,
             program=program,
+            build_dir=str(build_dir)
         )
         tex_file = Path(build_dir, "handbook.tex")
         with open(tex_file, "w+") as f:
             f.write(rendered_template)
+        shutil.copytree(f"{TEMPLATE_DIR}/content", f"{build_dir}/content")
         subprocess.run(["pdflatex", f"-output-directory={build_dir}", str(tex_file)])
         subprocess.run(["makeindex", str(tex_file.with_suffix(".idx"))])
         subprocess.run(["pdflatex", f"-output-directory={build_dir}", str(tex_file)])
