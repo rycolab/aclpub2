@@ -97,23 +97,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 % General use jinja macros.
 \BLOCK{macro committee_member(member)}\VAR{member.name}, \VAR{member.institution}\BLOCK{endmacro}
 
@@ -214,28 +197,56 @@ PLACHOLDER FOR OTHER CONFERENCE INFORMATION
 %%%%%%%%%%%
 % Program %
 %%%%%%%%%%%
-\chapter{Main Conference}
 \setheaders{}{}
-\BLOCK{for session in program}
-  \BLOCK{if session.papers|length > 1}
-    \section{\VAR{session.title}}
-    \BLOCK{for paper_slot in session.papers}
-    \BLOCK{set paper = id_to_paper[paper_slot.id]}
-      \textbf{\VAR{paper.title}}\\
-      \textit{\VAR{join(", ", paper.authors, " and ")}}
-      \BLOCK{if paper_slot.start_time}
-        \hfill
-        \VAR{paper_slot.start_time.strftime('%H:%M')}-\VAR{paper_slot.end_time.strftime('%H:%M')}
-      \BLOCK{endif}
-      \\
-      \BLOCK{for author in paper.authors}
-        \VAR{index_author(author)}
+\setlength{\parindent}{0pt}
+\BLOCK{for date, sessions in program}
+  \chapter{Main Conference: \VAR{program_date(date)}}
+  \BLOCK{for session in sessions}
+    \BLOCK{if session.subsessions}
+      \section{\VAR{session.title}}
+      \setheaders{\VAR{session.title}}{\VAR{program_date(date)}}
+      \BLOCK{for subsession in session.subsessions}
+        \BLOCK{if subsession.papers|length > 1}
+          {\large \VAR{subsession.title}}\\
+          \VAR{subsession.location} \hfill \BLOCK{if subsession.chair}\textit{Chair: \VAR{subsession.chair}}\BLOCK{endif}\\
+          \BLOCK{for paper_slot in subsession.papers}
+          \BLOCK{set paper = id_to_paper[paper_slot.id]}
+            \textbf{\VAR{paper.title}}\\
+            \textit{\VAR{join(", ", paper.authors, " and ")}}
+            \BLOCK{if paper_slot.start_time}
+              \hfill
+              \VAR{paper_slot.start_time.strftime('%H:%M')}-\VAR{paper_slot.end_time.strftime('%H:%M')}
+            \BLOCK{endif}
+            \\
+            \BLOCK{for author in paper.authors}
+              \VAR{index_author(author)}
+            \BLOCK{endfor}
+            \VAR{paper.abstract}\\
+          \BLOCK{endfor}
+        \BLOCK{endif}
       \BLOCK{endfor}
-      \VAR{paper.abstract}\\\\
-    \BLOCK{endfor}
-  \BLOCK{endif}
+    \BLOCK{endif}
+
+    \BLOCK{if session.papers|length > 1}
+      \section{\VAR{session.title}}
+      \BLOCK{for paper_slot in session.papers}
+      \BLOCK{set paper = id_to_paper[paper_slot.id]}
+        \textbf{\VAR{paper.title}}\\
+        \textit{\VAR{join(", ", paper.authors, " and ")}}
+        \BLOCK{if paper_slot.start_time}
+          \hfill
+          \VAR{paper_slot.start_time.strftime('%H:%M')}-\VAR{paper_slot.end_time.strftime('%H:%M')}
+        \BLOCK{endif}
+        \\
+        \BLOCK{for author in paper.authors}
+          \VAR{index_author(author)}
+        \BLOCK{endfor}
+        \VAR{paper.abstract}\\
+      \BLOCK{endfor}
+    \BLOCK{endif}
+
+  \BLOCK{endfor}
 \BLOCK{endfor}
-\newpage
 
 %%%%%%%%%%%%%%%%
 % Author Index %
