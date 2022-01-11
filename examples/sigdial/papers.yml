@@ -722,7 +722,7 @@
     outputs, automatically constructs a corrected MR input to form a new (MR, utterance)
     training pair, and then repeatedly adds these new instances back into the training
     data. We then test the resulting model on a new test set. The result is a self-trained
-    model whose performance is an absolute 75.4% improvement over the baseline model.
+    model whose performance is an absolute 75.4\% improvement over the baseline model.
     We also report a human qualitative evaluation of the final model showing that
     it achieves high naturalness, semantic coherence and grammaticality.
   authors:
