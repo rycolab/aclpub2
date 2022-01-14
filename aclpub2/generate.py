@@ -10,7 +10,7 @@ import shutil
 PARENT_DIR = Path(__file__).parent
 
 
-def generate(*, path: str, proceedings: bool, handbook: bool, overwrite: bool):
+def generate(path: str, proceedings: bool, handbook: bool, overwrite: bool):
     root = Path(path)
     build_dir = Path("build")
     build_dir.mkdir(exist_ok=True)
@@ -56,8 +56,25 @@ def generate(*, path: str, proceedings: bool, handbook: bool, overwrite: bool):
         subprocess.run(["pdflatex", f"-output-directory={build_dir}", str(tex_file)])
 
     if handbook:
+        # Load and preprocess the .yml configuration.
+        (
+            conference,
+            papers,
+            sponsors,
+            prefaces,
+            organizing_committee,
+            program_committee,
+            harassment,
+            meal,
+            program_tutorial,
+            tutorial_message,
+            invited_talks,
+            program,
+        ) = load_configs_handbook(root)
+
         template = load_template("handbook")
         program = process_program_handbook(program)
+        program_tutorial = process_program_handbook_by_page(program_tutorial, 350,3)
         rendered_template = template.render(
             root=str(root),
             conference=conference,
@@ -66,11 +83,15 @@ def generate(*, path: str, proceedings: bool, handbook: bool, overwrite: bool):
             prefaces=prefaces,
             organizing_committee=organizing_committee,
             program_committee=program_committee,
+            harassment=harassment,
+            meal=meal,
+            program_tutorial=program_tutorial,
+            tutorial_message=tutorial_message,
             invited_talks=invited_talks,
             papers=papers,
             id_to_paper=id_to_paper,
             program=program,
-            build_dir=str(build_dir),
+            build_dir=str(build_dir)
         )
         tex_file = Path(build_dir, "handbook.tex")
         with open(tex_file, "w+") as f:
@@ -130,7 +151,6 @@ def process_papers(papers, root: Path, pax: bool):
     for author, pages in sorted(author_to_pages.items()):
         alphabetized_author_index[author[0].lower()].append((author, pages))
     return id_to_paper, sorted(alphabetized_author_index.items())
-
 
 def process_program_handbook(program):
     sessions_by_date = defaultdict(list)
@@ -197,6 +217,61 @@ def process_program_proceedings(program):
     return sorted(entries_by_date.items())
 
 
+def process_program_handbook_by_page(program, max_lines = 35, paper_median_lines = 3, header_lines = 2):
+    """
+    process_program organizes program sessions by date, and manually cuts
+    program entries in order to avoid page overflow. This is done by assuming
+    a median paper entry line length of 3 lines (including title and authors),
+    and that a maximum of 35 schedule lines will fit on one page.
+    """
+    sessions_by_date = defaultdict(list)
+    for session in program:
+        if "subsessions" in session:
+            for session in session["subsessions"]:
+                sessions_by_date[session["start_time"].date()].append(session)
+        else:
+            sessions_by_date[session["start_time"].date()].append(session)
+    entries_by_date = {}
+    for date, sessions in sessions_by_date.items():
+        total_lines = 0
+        pages = []
+        current_page = []
+        for session in sessions:
+            table_entries = []
+            table_entries.append(
+                {
+                    "type": "header",
+                    "title": session["title"],
+                    "start_time": session["start_time"],
+                    "end_time": session["end_time"]
+                }
+            )
+            if "papers" in session:
+                for paper_id in session["papers"]:
+                    table_entries.append(
+                        {
+                            "type": "paper",
+                            "paper": paper_id
+                        }
+                    )
+            # Split the table lines so that no page overflows.
+            for entry in table_entries:
+                if entry["type"] == "header":
+                    total_lines += header_lines
+                elif entry["type"] == "paper":
+                    total_lines += paper_median_lines
+                current_page.append(entry)
+                if total_lines >= max_lines:
+                    pages.append(current_page)
+                    current_page = []
+                    total_lines = 0
+        pages.append(current_page)
+        entries_by_date[date] = pages
+        current_page = []
+        total_lines = 0
+    return sorted(entries_by_date.items())
+
+
 def normalize_latex_string(text: str) -> str:
     return text.replace("’", "'").replace("&", "\\&")
 
@@ -229,6 +304,42 @@ def load_configs(root: Path):
         program,
     )
 
+
+def load_configs_handbook(root: Path):
+    """
+    Loads all conference configuration files defined in the root directory.
+    """
+    conference = load_config("conference_details", root)
+    papers = load_config("papers", root)
+    for paper in papers:
+        paper["title"] = normalize_latex_string(paper["title"])
+    sponsors = load_config("sponsors", root)
+    prefaces = load_config("prefaces_handbook", root)
+    organizing_committee = load_config("organizing_committee", root)
+    program_committee = load_config("program_committee", root)
+    harassment = load_config("harassment", root)
+    meal = load_config("meal", root)
+    program_tutorial =load_config("program_tutorial", root)
+    tutorial_message = load_config("tutorial_message", root)
+    invited_talks = load_config("invited_talks", root, required=False)
+    program = load_config("program", root)
+    for entry in program:
+        entry["title"] = normalize_latex_string(entry["title"])
+
+    return (
+        conference,
+        papers,
+        sponsors,
+        prefaces,
+        organizing_committee,
+        program_committee,
+        harassment,
+        meal,
+        program_tutorial,
+        tutorial_message,
+        invited_talks,
+        program,
+    )
 
 def load_config(config: str, root: Path, required=True):
     path = Path(root, f"{config}.yml")

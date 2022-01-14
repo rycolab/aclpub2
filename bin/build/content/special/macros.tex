@@ -1,0 +1,504 @@
+% Macros for the production of Conference Handbooks / Program Brochures from
+% ACLPUB bundles from the START conference manager.
+
+\newlength{\w}      % width of the space available for paper entries in a
+                    % multi-track schedule
+\newlength{\tsl}    % with of a time specification in a schedule
+\newlength{\en}     % \en-space
+%\newlength{\tmplen}
+
+\setlength{\tabcolsep}{.5ex} 
+
+\newenvironment{SingleTrackSchedule}%
+{%
+  \settowidth{\en}{--}
+  \setlength{\w}{\linewidth}%
+  \settowidth{\tsl}{$\,$} % temporary abuse of this length measure
+  \addtolength{\w}{-2\tsl}%
+  \settowidth{\tsl}{00:00}
+  \addtolength{\w}{-2\tsl}%
+  \addtolength{\w}{-2\tabcolsep}%
+  \addtolength{\w}{-1\en}%
+  \begin{longtable}{@{}%
+      >{\raggedleft}p{\tsl}%
+      @{$\,$}%
+      p{1\en}%
+      @{$\,$}%
+      >{\raggedright}p{\tsl}%
+      >{\RaggedRight}p{\w}@{}}%
+}{%
+  \end{longtable}%
+}
+
+\newenvironment{TwoTrackSchedule}{
+\settowidth{\en}{--}
+\setlength{\w}{\linewidth}%
+\settowidth{\tsl}{$\,$}
+\addtolength{\w}{-2\tsl}%
+\settowidth{\tsl}{\footnotesize 00:00am}
+\addtolength{\tsl}{2ex}
+\addtolength{\w}{-2\tsl}%
+\addtolength{\w}{-2\tabcolsep}%
+\addtolength{\w}{-1\en}%
+\addtolength{\w}{-1cm}%
+\renewcommand{\arraystretch}{1.1}
+%\setlength{\tmplen}{\tabcolsep}
+%\addtolength{\tmplen}{-.5\arrayrulewidth}
+\begin{longtable}{@{}|%
+    >{\raggedleft}p{\tsl}%
+    @{$\,$}%
+    p{1\en}%
+    @{$\,$}%
+    >{\raggedright}%
+    p{\tsl}|%
+    >{\centering\arraybackslash}p{.5\w}|%
+    >{\centering\arraybackslash}p{.5\w}|@{}}%
+}{\end{longtable}}
+
+\newenvironment{ThreeTrackSchedule}{
+\settowidth{\en}{--}
+\setlength{\w}{\linewidth}%
+\settowidth{\tsl}{$\,$}
+\addtolength{\w}{-2\tsl}%
+\settowidth{\tsl}{00:00am}
+\addtolength{\tsl}{2ex}
+\addtolength{\w}{-2\tsl}%
+\addtolength{\w}{-2\tabcolsep}%
+\addtolength{\w}{-1\en}%
+\addtolength{\w}{-1cm}%
+\renewcommand{\arraystretch}{1.1}
+%\setlength{\tmplen}{\tabcolsep}
+%\addtolength{\tmplen}{-.5\arrayrulewidth}
+\begin{longtable}{@{}%
+    >{\raggedleft}p{\tsl}%
+    @{$\,$}%
+    p{1\en}%
+    @{$\,$}%
+    >{\raggedright}%
+    p{\tsl}|%
+    >{\centering\arraybackslash}p{.333\w}|%
+    >{\centering\arraybackslash}p{.333\w}|%
+    >{\centering\arraybackslash}p{.333\w}@{}}%
+}{\end{longtable}}
+
+\newenvironment{FourTrackSchedule}{
+\settowidth{\en}{--}
+\setlength{\w}{\linewidth}%
+\settowidth{\tsl}{$\,$}
+\addtolength{\w}{-2\tsl}%
+\settowidth{\tsl}{00:00am}
+\addtolength{\tsl}{2ex}
+\addtolength{\w}{-2\tsl}%
+\addtolength{\w}{-2\tabcolsep}%
+\addtolength{\w}{-1\en}%
+\addtolength{\w}{-1cm}%
+\renewcommand{\arraystretch}{1.1}
+%\setlength{\tmplen}{\tabcolsep}
+%\addtolength{\tmplen}{-.5\arrayrulewidth}
+\begin{longtable}{@{}|%
+    >{\raggedleft}p{\tsl}%
+    @{$\,$}%
+    p{1\en}%
+    @{$\,$}%
+    >{\raggedright}%
+    p{\tsl}|%
+    >{\centering\arraybackslash}p{.25\w}|%
+    >{\centering\arraybackslash}p{.25\w}|%
+    >{\centering\arraybackslash}p{.25\w}|%
+    >{\centering\arraybackslash}p{.25\w}|@{}}%
+}{\end{longtable}}
+
+%%%%%%%%%%% BreakTime Macro %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\BreakTime}[4]{%
+% adds a gray background to a break or a break-style event
+% #1 start time
+% #2 end   time
+% #3 number of parallel tracks
+% #4 label of the break or break-style event
+\multicolumn{3}{c}{\cellcolor[gray]{.8}} & 
+\multicolumn{#3}{c}{\cellcolor[gray]{.8}} \\[-3ex]\hline 
+\bfseries #1 & -- & \bfseries #2 &
+\multicolumn{#3}{c|}{\bfseries #4}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%% PlenaryEvent Macro %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\PlenaryEvent}[4]{%
+% event with nothing else going on in parallel
+\bfseries #1 & -- & \bfseries #2 &
+\multicolumn{#3}{>{\centering\arraybackslash}p{\w}|@{}}{\bfseries #4}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%% SessionHeader Macro %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\SingleTrackSessionHeader}[3]{%
+% event with nothing else going on in parallel
+\ifthenelse{\equal{{#1}}{{}}}{&}{#1 & -- } & #2 
+\ifthenelse{\equal{#1}{{}}}{}{\hfill}
+&\multicolumn{1}{>{\raggedright\arraybackslash}m{\w}}{\bfseries #3}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% insert references to the page ranges 
+\newcommand{\ppp}[1]{pp. \pageref{#1start}--\pageref{#1end}}
+
+% the following code requires the biblatex package
+\DeclareNameFormat{authorswithinitials}{%
+  % name format that prints the list of authors with initals
+  \ifcase\value{uniquename}%
+    \usebibmacro{name:first-last}{\namepartfamily}{\namepartgiveni}{\namepartprefix}{\namepartsuffix}%
+    \usebibmacro{name:first-last}{\namepartfamily}{\namepartgiveni}{\namepartprefix}{\namepartsuffix}%
+  \or
+    \ifuseprefix
+      {\usebibmacro{name:first-last}{\namepartfamily}{\namepartgiveni}{\namepartprefix}{\namepartsuffixi}}
+      {\usebibmacro{name:first-last}{\namepartfamily}{\namepartgiveni}{\namepartprefixi}{\namepartsuffixi}}%
+  \or
+    \usebibmacro{name:first-last}{\namepartfamily}{\namepartgiveni}{\namepartprefix}{\namepartsuffix}%
+  \fi
+  \usebibmacro{name:andothers}}
+
+\DeclareNameFormat{authorlastnames}{%
+  % name format that prints the list of author last names
+  \ifcase\value{uniquename}%
+    \usebibmacro{name:last}{\namepartfamily}{\namepartgiveni}{\namepartprefix}{\namepartsuffix}%
+  \or
+    \ifuseprefix
+      {\usebibmacro{name:last}{\namepartfamily}{\namepartgiveni}{\namepartprefix}{\namepartsuffixi}}
+      {\usebibmacro{name:last}{\namepartfamily}{\namepartgiveni}{\namepartprefixi}{\namepartsuffixi}}%
+  \or
+    \usebibmacro{name:last}{\namepartfamily}{\namepartgiveni}{\namepartprefix}{\namepartsuffix}%
+  \fi
+  \usebibmacro{name:andothers}}
+
+\DeclareNameFormat{fullauthornames}{%
+  % name format that prints the list of authors with full author names
+  \ifcase\value{uniquename}%
+    \usebibmacro{name:first-last}{\namepartfamily}{\namepartgiven}{\namepartprefix}{\namepartsuffix}%
+    \or
+    \ifuseprefix
+        {\usebibmacro{name:first-last}{\namepartfamily}{\namepartgiven}{\namepartprefix}{\namepartsuffixi}}
+        {\usebibmacro{name:first-last}{\namepartfamily}{\namepartgiven}{\namepartprefixi}{\namepartsuffixi}}%
+  \or
+  \usebibmacro{name:first-last}{\namepartfamily}{\namepartgiven}{\namepartprefix}{\namepartsuffix}%
+  \fi
+  \usebibmacro{name:andothers}}
+
+% insert the list of authors with first name initials
+\DeclareCiteCommand{\citeauthorslastnamesonly}{%
+  \boolfalse{citetracker}%
+  \boolfalse{pagetracker}%
+  \usebibmacro{prenote}%
+}{\ifciteindex{\indexnames{labelname}}{}%
+  \printnames[authorlastnames]{labelname}%
+}{\multicitedelim}{\usebibmacro{postnote}}
+
+% insert the list of authors with first name initials
+\DeclareCiteCommand{\citeauthorswithinitials}{%
+  \boolfalse{citetracker}%
+  \boolfalse{pagetracker}%
+  \usebibmacro{prenote}%
+}{\ifciteindex{\indexnames{labelname}}{}%
+  \printnames[authorswithinitials]{labelname}%
+}{\multicitedelim}{\usebibmacro{postnote}}
+  
+% insert the list of authors with full names
+\DeclareCiteCommand{\citefullauthornames}{%
+  \boolfalse{citetracker}%
+  \boolfalse{pagetracker}%
+  \usebibmacro{prenote}%
+}{%\ifciteindex{\indexnames{labelname}}{}%
+  \indexnames{labelname}%
+  \printnames[fullauthornames]{labelname}%
+}{\multicitedelim}{\usebibmacro{postnote}}
+                     
+\DeclareFieldFormat[inproceedings]{citetitle}{#1}
+
+\newcommand{\paperauthor}[1]{{\em #1}}
+\newcommand{\papertitle}[1]{\citetitle{#1}}
+
+% insert an entry into a multi-track schedule cell
+\newcommand{\paperentry}[1]{%
+  \renewcommand{\baselinestretch}{.8}%
+  \setlength{\parindent}{0pt}%
+    \begin{small}%
+      \parbox[t]{\linewidth}{%
+        {\em \papertitle{#1}}
+        \vspace{.5ex}}\par%
+      \vfill
+      \parbox[b]{\linewidth}{\raggedright%
+        \paperauthor{\citeauthorslastnamesonly{#1}}%
+        %% \mbox{}~\dotfill~ {\bfseries p.~\pageref{#1}}
+        }%
+    \end{small}%
+}
+
+\newcommand{\sempaperentry}[1]{%
+  &&$\bullet$&
+  \parbox[t]{\linewidth}{\raggedright\papertitle{#1}\newline
+  {\itshape\paperauthor{\citefullauthornames{#1}}}
+\mbox{}~\dotfill~\pageref{#1}}}
+
+\newcommand{\atpaperentry}[2]{%
+  \footnotesize\parbox[t]{\linewidth}{\noindent%
+    \makebox[0pt][r]{#1\hspace*{\tabcolsep}}{%
+      \paperauthor{\citeauthorswithinitials{#2}}}:
+    \papertitle{#2}\mbox{}~\dotfill{p.~\pageref{#2}\par}}}
+
+% insert an entry into a poster session index
+\newcommand{\posterentry}[1]{%
+  \renewcommand{\baselinestretch}{1.2}%
+  \settowidth{\w}{\bfseries p.~\pageref{#1}}%
+  \addtolength{\w}{1em}%
+  \parbox[t]{\linewidth-\w}{\noindent\raggedright{\bfseries\papertitle{#1}}%
+    \linebreak[0]\ {---~{\paperauthor{\citeauthorswithinitials{#1}}}}\mbox{}~\dotfill\makebox[0pt][l]%
+    {\makebox[\w][r]{\bfseries p.~\pageref{#1}}}\vspace{1em}\par}}
+
+% insert an abstract into a list of abstracts (for posters, no time needed)
+\newcommand{\posterabstract}[1]{%
+  \noindent%
+  \begin{minipage}{\linewidth}%
+    \label{#1}%
+          {\bfseries\normalsize\papertitle{#1}}\\
+          \normalsize\paperauthor{\citefullauthornames{#1}}
+  \end{minipage}\vspace{1mm}\\\nopagebreak%
+  \noindent{\small\input{auto/abstracts/#1}}\par}
+
+% insert an abstract into a list of abstracts
+\newcommand{\paperabstract}[5]{%
+  % #1 day
+  % #2 time
+  % #3 session title
+  % #4 location
+  % #5 paper id
+  \noindent%
+  \begin{minipage}{\linewidth}%
+    \label{#5}%
+      %\rule{\linewidth}{1pt}\linebreak
+          {\bfseries\normalsize\papertitle{#5}} \\
+          \hfill\normalsize\paperauthor{\citefullauthornames{#5}}
+%      {\small #1 #2 --- #4}\vspace{.5ex}\\
+          \hfill {\small #2}
+%    \parbox[t]{.8\linewidth}{\centering
+%      {\bfseries\papertitle{\citetitle{#5}}}\linebreak
+%      \paperauthor{\citefullauthornames{#5}}}%
+%    \parbox[t]{.2\linewidth}{\raggedleft\small%
+%      #1\linebreak #2\linebreak #4}\par\nopagebreak
+  %% \begin{center}\label{#5}%
+  %%   \sloppy\hyphenpenalty=0%
+  %%   %{\small --- Session: #3 --- \vspace{.5em}}\linebreak		% Redundant info? - B
+  %%   {\bfseries \citetitle{#5}} \vspace{.5em}\linebreak
+  %%   {\itshape    \citefullauthornames{#5}}%\vspace{.5em}\linebreak	% Reduce space between header and abstract - B
+  %%   %#1 #2 --- #4\linebreak 						% Redundant info? - B
+  \end{minipage}\vspace{1mm}\\\nopagebreak%
+  \noindent{\small\input{auto/abstracts/#5}}\par}
+
+\newcommand{\TutorialCoverPage}[4]{%
+\vspace*{.25in}
+% #1 Tutorial Number
+% #2 Tutorial Title
+% #3 Tutorial Presenter
+% #4 Tutorial Presenter Information
+%\begin{minipage}{\linewidth}
+\begin{centering}
+\includegraphics[height=7.5cm,clip=true]{content/fmatter/conference-logo.eps}\\
+
+\vspace{.5cm}
+
+{\Large
+The 2012 Conference of the \linebreak
+North American Chapter of the \linebreak
+Association for Computational Linguistics: \linebreak
+Human Language Technologies}\par
+
+\vspace{3cm}
+
+%\begin{tabular}{@{}>{\centering\arraybackslash}p{.7\linewidth}@{}}
+\centerline{\huge\bfseries Tutorial~#1\vspace{.25em}}
+{\Large Tutorial Notes}\\
+
+\vspace{1cm}
+
+\begin{minipage}{.7\linewidth}
+\centering\Large%\setstretch{1.1}
+{\bfseries#2}
+\end{minipage}
+
+\vfill
+
+{\itshape\Large #3}\\[.5em]
+{#4}\\
+\vspace{1cm}
+
+{June 3, 2012}\\
+{Montr\'{e}al, Queb\'{e}c, Canada}\\\end{centering}
+%\end{minipage}
+\clearpage}
+
+\newcommand{\STARSEM}{$^\ast$SEM}
+
+\newcommand{\nix}{\cellcolor{mygray}}
+% used for the room occupation tables in the local information section
+
+\newcommand{\mrup}[2]{\multirow{#1}{*}{%
+%\rotatebox[origin=c]{90}{#2}}%
+\begin{sideways}#2\end{sideways}%
+}}
+
+\newcommand{\PaperInSchedule}[4][false]{%
+  % #1 (optional) with or without a \pageref to the abstract
+  % #2 start time (can be empty)
+  % #3 end time (can be empty)
+  % #4 paper id
+  \ifthenelse{\equal{{#2}}{{}}}{&&\hfill}{#2&--&} % ... start time
+  \ifthenelse{\equal{{#3}}{{}}}{$\bullet$}{#3}    %   ... end time
+    & \parbox[t]{\linewidth}{\raggedright\papertitle{#4}\newline
+      {\paperauthor{\citefullauthornames{#4}}}%
+      \ifthenelse{\equal{#1}{true}}{\mbox()~\dotfill~\pageref{#4}}}}
+
+\newcommand{\ScheduleItem}[4][false]{%
+  % #1 (optional) with or without a \pageref to the abstract
+  % #2 start time (can be empty)
+  % #3 end time (can be empty)
+  % #4 paper id
+  \ifthenelse{\equal{{#2}}{{}}}{&&\hfill}{#2&--&} % ... start time
+  \ifthenelse{\equal{{#3}}{{}}}{$\bullet$}{#3}    %   ... end time
+    & \parbox[t]{\linewidth}{\raggedright\papertitle{#4}\newline
+      {\paperauthor{\citefullauthornames{#4}}}%
+      \ifthenelse{\equal{#1}{true}}{\mbox()~\dotfill~\pageref{#4}}}}
+
+\newenvironment{singledaywsprogram}[5]{%
+% #1 worshop id
+% #2 workshop number
+% #3 workshop title
+% #4 workshop day
+% #5 workshop venue
+\section{\textbf{W~#2:} #3}\label{#1}
+
+\begin{center}
+{\bfseries\Large #4}\vspace{1em}\par
+{\itshape Venue:} #5\vspace{0.75em}\par
+{\large\bfseries Program\vspace{0.75em}}\par
+\setlength{\w}{\linewidth}
+\begin{SingleTrackSchedule}}%
+{\end{SingleTrackSchedule}\end{center}}
+
+%% WORKSHOP SCHEDULE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\newlength{\wsscheduleindentation}
+%\newlength{\wsschedulelabelwidth}
+\newenvironment{wsschedule}[5]{%
+  % #1 workshop title
+  % #2 workshop number
+  % #3 workshop label
+  % #4 workshop paper ID
+  % #5 workshop location
+  %\addcontentsline{toc}{section}{{{\bfseries W~#2:} #4}}
+
+  %\addcontentsline{toc}{section}{{{\bfseries W~#2:} 
+  %    \ifthenelse{\equal{#1}{none}}{#4}{#1}}}
+
+  % For workshops numbered 0, don't prepend W0 on the contents page
+  \clearpage
+  \ifthenelse{\equal{#2}{0}}
+%%             {\section{\textbf{#1}}}
+             {\section{#1}}
+%%
+%% For ACL 2017, we do not show the Wx prefix and instead only show the title
+%%             {\section[{\bfseries W#2:} #1]{{\bfseries Workshop #2:} #1}}
+             {\section{#1}}
+             %% {{\addcontentsline{toc}{section}{{#1}}}}
+             %% {{\addcontentsline{toc}{section}{{{\bfseries W#2:} #1}}}}
+
+  \markboth{}{}
+  \label{#3}
+  \begin{center}
+%    {\huge{\Large Workshop #2:}\vspace{.5ex}\\
+    %% {\Large
+    %%   \ifthenelse{\equal{#2}{0}}{{}}{{\huge{Workshop #2:\\\vspace{.5ex}}}}
+    %%   #1\par}
+    {\ifthenelse{\equal{#4}{0}}{{}}{{Organizers: \paperauthor{\citefullauthornames{#4}}}\par}}
+    {\large Venue: #5 \vspace{1em}}\\
+    %% {\huge Workshop Program\vspace{1ex}}
+  \end{center}
+  \markright{{\bfseries W~#2:} #1}{}%
+  \begin{list}{{}}{%
+      \settowidth{\labelwidth}{\bfseries 12:00pm--12:00pm}
+      \setlength{\labelsep}{1ex}
+      \setlength{\topsep}{0pt}
+      \setlength{\parsep}{0pt}
+      \setlength{\listparindent}{0pt}
+      \setlength{\itemsep}{.5ex}
+      \setlength{\rightmargin}{0pt}
+      \setlength{\leftmargin}{\labelwidth}
+      \addtolength{\leftmargin}{\labelsep}}
+}{\end{list}}
+
+\newcounter{WorkshopCounter}
+
+\newenvironment{tutorial}[4]{%
+  \stepcounter{TutorialCounter}
+  % #1 short title
+  % #2 tutorial bibtex ID
+  % #3 date and time
+  % #4 location
+
+  % Cannot get \papertitle to expand
+  \section[\textbf{T\theTutorialCounter:} {#1}]{Tutorial \theTutorialCounter}
+  \begin{center}
+    \begin{Large}
+      \bfseries \papertitle{#2}\\ \vspace{2em}\par
+    \end{Large}
+    {\itshape \tutorialauthors{#2}}\vspace{1em}\par
+    #3 \vspace{1em}\\
+    #4
+  \end{center}}
+
+\newcounter{TutorialCounter}
+
+\newcommand{\tutorialauthors}[1]{
+    \paperauthor{\citefullauthornames{#1}}}
+
+\newcommand{\wspaperentry}[1]{
+  \parbox[t]{\linewidth}{\raggedright\papertitle{#1}\newline
+    \paperauthor{\citefullauthornames{#1}}}}
+
+\newcommand{\sessionchair}[2]{
+  \emph{Chair: #1 #2}\par\index{#2, #1}}
+
+\newcommand{\papertitleandauthor}[1]{
+  {\bfseries \papertitle{#1}}\\
+  \paperauthor{\citefullauthornames{#1}}}
+
+\newcommand{\papertableentry}[1]{
+  {\scriptsize\papertitle{#1}}\newline
+  {\tiny\paperauthor{\citeauthorslastnamesonly{#1}}}}
+
+\newenvironment{SessionOverview}[8]{
+  \section[#1]{#1 Overview -- #2}
+  \setheaders{#1}{#2}
+  \begin{center}
+    \righthyphenmin2
+    \sloppy
+    \begin{tabular}{>{\RaggedRight}p{0.69in}|>{\RaggedRight}p{0.69in}|>{\RaggedRight}p{0.69in}|>{\RaggedRight}p{0.69in}|>{\RaggedRight}p{0.69in}|>{\RaggedRight}p{0.69in}}
+      \bf Track A & \bf Track B & \bf Track C & \bf Track D & \bf Track E & \bf Track F \\
+      \it #3 & \it #4 & \it #5 & \it #6 & \it #7 & \it #8 \\
+      \TrackALoc & \TrackBLoc & \TrackCLoc & \TrackDLoc & \TrackELoc & \TrackFLoc \\
+      \hline\hline}
+{\end{tabular}\end{center}}
+
+\newenvironment{ThreeSessionOverview}[5]{
+  \section[#1]{#1 Overview -- #2}
+  \setheaders{#1}{#2}
+  \begin{center}
+    \righthyphenmin2
+    \sloppy
+    \begin{tabular}{|>{\RaggedRight}p{1.3in}|>{\RaggedRight}p{1.3in}|>{\RaggedRight}p{1.3in}|}
+      \hline
+      \bf Track A & \bf Track B & \bf Track C \\\hline
+      \it #3 & \it #4 & \it #5 \\
+      \TrackALoc & \TrackBLoc & \TrackCLoc \\
+      \hline\hline}
+{\hline\end{tabular}\end{center}}
+
+\newcommand{\daydate}{DAY, DATE}
+\newcommand{\daydateyear}{DAY, DATE, YEAR}
+\newcommand{\setdaydateyear}[3]{
+  \renewcommand{\daydateyear}{#1, #2, #3\xspace}
+  \renewcommand{\daydate}{#1, #2\xspace}}

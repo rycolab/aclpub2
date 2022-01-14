@@ -94,9 +94,6 @@
 %\bibliography{content/workshops/papers.bib}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
 % General use jinja macros.
 \BLOCK{macro committee_member(member)}\VAR{member.name}, \VAR{member.institution}\BLOCK{endmacro}
 
@@ -107,6 +104,8 @@
 \thispagestyle{empty}
 \fancyfoot[C]{}
 PLACHOLDER FOR COVER
+\newpage
+PLACHOLDER FOR MAP
 \newpage
 
 %%%%%%%
@@ -123,18 +122,15 @@ PLACHOLDER FOR COVER
 \pagenumbering{arabic}
 \setheaders{}{}
 
-PLACHOLDER FOR OTHER CONFERENCE INFORMATION
-
-\newpage
-
 %%%%%%%%%%%%
 % Prefaces %
 %%%%%%%%%%%%
 \BLOCK{for preface in prefaces}
-  \begin{center}
+  \begin{flushleft}
    {\Large \textbf{\VAR{preface.title}}}
-  \end{center}
-  \vspace*{0.5cm}
+    \par\noindent\rule{\textwidth}{0.4pt}
+  \end{flushleft}
+  \vspace*{0.2cm}
   \VAR{load_file(root, "prefaces", preface.file)}
   \newpage
 \BLOCK{endfor}
@@ -143,10 +139,10 @@ PLACHOLDER FOR OTHER CONFERENCE INFORMATION
 % Organizing Committee %
 %%%%%%%%%%%%%%%%%%%%%%%%
 \setlength{\parindent}{0pt}
-\begin{center}
+\begin{flushleft}
   {\Large \textbf{Organizing Committee}}
-  \end{center}
-  \vspace*{1cm}
+  \par\noindent\rule{\textwidth}{0.4pt}
+  \end{flushleft}
   \BLOCK{for role in organizing_committee}
     \textbf{\VAR{role.role}}\\
     \BLOCK{for member in role.members}
@@ -159,10 +155,10 @@ PLACHOLDER FOR OTHER CONFERENCE INFORMATION
 %%%%%%%%%%%%%%%%%%%%%
 % Program Committee %
 %%%%%%%%%%%%%%%%%%%%%
-\begin{center}
+\begin{flushleft}
   \Large \textbf{Program Committee}
-\end{center}
-\vspace*{1cm}
+  \par\noindent\rule{\textwidth}{0.4pt}
+\end{flushleft}
 \BLOCK{for block in program_committee}
   \textbf{\VAR{block.role}}\\
   \BLOCK{if block.entries[0].institution}
@@ -190,6 +186,72 @@ PLACHOLDER FOR OTHER CONFERENCE INFORMATION
     \BLOCK{endfor}
   \BLOCK{endif}
 
+\BLOCK{endfor}
+\newpage
+
+%%%%%%%%%%%
+% Policy %
+%%%%%%%%%%%
+\BLOCK{for har in harassment}
+    \chapter{\VAR{har.title}}
+    \vspace*{0.2cm}
+      \VAR{load_file(root, "harassment", har.file)}
+\BLOCK{endfor}
+\newpage
+
+%%%%%%%%%%%
+% Meal_Info %
+%%%%%%%%%%%
+\BLOCK{for m in meal}
+    \chapter{\VAR{m.title}}
+    \vspace*{0.2cm}
+      \VAR{load_file(root, "meal", m.file)}
+\BLOCK{endfor}
+\newpage
+
+%%%%%%%%%%%
+% Tutorial %
+%%%%%%%%%%%
+
+\BLOCK{for date, pages in program_tutorial}
+\chapter{Tutorials: \VAR{program_date(date)}}
+\begin{flushleft}
+   {\Large \textbf{Overview}}
+    \par\noindent\rule{\textwidth}{0.4pt}
+\end{flushleft}
+\vspace*{-0.6cm}
+  \BLOCK{set ns = namespace(first=true)}
+  \BLOCK{for page in pages}
+  \setlength\extrarowheight{-8pt}
+    \begin{longtable}{p{24mm}p{74mm}p{15mm}}
+    \BLOCK{for entry in page}
+      \BLOCK{if entry.type is equalto("header")}
+      \VAR{session_times(entry)} & \textbf{\emph{\VAR{entry.title}}} & \\\\
+      \BLOCK{endif}
+
+      \BLOCK{if entry.type is equalto("paper")}
+        \BLOCK{set paper = id_to_paper[entry.paper.id]}
+        & \hyperlink{page.\VAR{paper.page_range[0]}}{\emph{\VAR{paper.title}}} & \textit{$\quad$\VAR{entry.paper.room}}\\
+        & \VAR{join(", ", paper.authors, " and ")} & \\\\\\
+      \BLOCK{endif}
+    \BLOCK{endfor}
+    \end{longtable}
+    \BLOCK{set ns.first = false}
+  \BLOCK{endfor}
+\BLOCK{endfor}
+\newpage
+
+%%%%%%%%%%%
+% Message from Tutoral CO-Chair
+%%%%%%%%%%%
+\BLOCK{for tut_mes in tutorial_message}
+    \begin{flushleft}
+       {\Large\textbf{\VAR{tut_mes.title}}}
+       \par\noindent\rule{\textwidth}{0.4pt}
+    \end{flushleft}
+
+    \vspace*{0.2cm}
+      \VAR{load_file(root, "tutorial_message", tut_mes.file)}
 \BLOCK{endfor}
 \newpage
 

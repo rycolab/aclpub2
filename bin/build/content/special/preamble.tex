@@ -1,0 +1,201 @@
+\usepackage[T1]{fontenc}
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage{textcomp}
+\usepackage{graphicx}
+\usepackage{color}
+\definecolor{mygray}{gray}{0.75}
+\usepackage{colortbl}
+\usepackage{fancyhdr}
+\usepackage[Bjornstrup]{fncychap}
+\usepackage{longtable}
+\usepackage{tabularx}
+\usepackage{lscape}
+\usepackage{array}
+\usepackage{calc}
+\usepackage{csquotes}
+\usepackage[american]{babel}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{times}
+\usepackage{helvet}
+\usepackage[maxnames=25,minnames=3,babel=hyphen]{biblatex}
+\usepackage{bibentry}
+\usepackage{setspace}
+\usepackage{ifthen}
+\usepackage{pstricks}
+\usepackage{rotating}
+\usepackage{makeidx}
+\usepackage{marginnote}
+\usepackage{ragged2e}
+
+%\providecommand{\BIBand}{and}
+
+\newcommand{\leftheader}{}  
+\newcommand{\rightheader}{} 
+\pagestyle{fancy}
+  % header spec
+  %\renewcommand{\headrule}{{\color[rgb]{0.696,0,0}% 
+  \renewcommand{\headrule}{{\color[rgb]{0.132,0.125,.46}% 
+    \hrule height 2pt width \headwidth}
+    \vspace{1pt}%
+    {\color{mygray}%
+    \hrule height 1pt width \headwidth
+  \vspace{-4pt}}}
+
+  \fancyhf{}				       % clear header contents
+  %\fancyhead[LE]{\textit{\nouppercase{\leftmark}}}
+  %\fancyhead[RO]{\textit{\nouppercase{\rightmark}}} % define header contents
+  \fancyhead[LE]{\textit{\nouppercase{\leftheader}}}
+  \fancyhead[RO]{\textit{\nouppercase{\rightheader}}} % define header contents
+
+  % footer spec
+  \renewcommand{\footrule}{\hrule width \headwidth height 1mm\vskip\footruleskip}
+  \renewcommand{\footruleskip}{0.5\normalbaselineskip}
+  \fancyfoot[C]{\thepage}			 %define footer conten
+
+%  \rfoot{\setlength{\unitlength}{1mm} % logo in right part of footer
+%  \begin{picture}(0,0)
+    %\put(-13,-10){\includegraphics[scale=0.3]{images/conf.jpg}}%
+%    \put(-10,-5){\includegraphics[scale=0.2]{images/conf.jpg}}%
+%  \end{picture}}
+
+\makeatletter
+\renewcommand\chapter{\if@openright\cleardoublepage\else\clearpage\fi %let headers/footers show on pages that start a chapter
+                    \global\@topnum\z@
+                    \@afterindentfalse
+                    \secdef\@chapter\@schapter}
+
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}} % show chapter in header w/o numbering
+\renewcommand{\sectionmark}[1]{\markright{#1}{}} % show section in headers w/o numbering
+
+% redefine sections to have a horizontal rule and no numbering
+\def\section{\@ifstar\unnumberedsection\numberedsection}
+\def\numberedsection{\@ifnextchar[%]
+  \numberedsectionwithtwoarguments\numberedsectionwithoneargument}
+\def\unnumberedsection{\@ifnextchar[%]
+  \unnumberedsectionwithtwoarguments\unnumberedsectionwithoneargument}
+\def\numberedsectionwithoneargument#1{\numberedsectionwithtwoarguments[#1]{#1}}
+\def\unnumberedsectionwithoneargument#1{\unnumberedsectionwithtwoarguments[#1]{#1}}
+\def\numberedsectionwithtwoarguments[#1]#2{
+  \ifhmode\par\fi
+  \removelastskip
+  \vskip 3ex\goodbreak
+  \refstepcounter{section}%			   % increment counter
+  \begingroup
+  \noindent\begin{minipage}{\columnwidth}
+  \leavevmode\Large\bfseries\raggedright
+%  \thesection\  % leave out numbering
+  #2 \par\nobreak
+  \vskip -.5em
+  \noindent\hrulefill\nobreak
+  \end{minipage}
+  \endgroup
+  \vskip 1ex\nobreak
+  \markright{#1}{} % add mark to right (secondary) header
+  \addcontentsline{toc}{section}{%
+%    \protect\numberline{\thesection}% % leave out number
+    #1}%
+  }
+\def\unnumberedsectionwithtwoarguments[#1]#2{
+  \ifhmode\par\fi
+  \removelastskip
+  \vskip 3ex\goodbreak
+  \begingroup
+  \noindent\begin{minipage}{\columnwidth}
+  \leavevmode\Large\bfseries\raggedright
+  #2\par\nobreak
+  \vskip -.5em
+  \noindent\hrulefill\nobreak
+  \end{minipage}
+  \endgroup
+  \vskip 1ex\nobreak
+  \markright{#1}{} % add mark to right (secondary) header
+  }
+
+% redefine subsections to have a horizontal rule and no numbering
+\def\subsection{\@ifstar\unnumberedsubsection\numberedsubsection}
+\def\numberedsubsection{\@ifnextchar[%]
+  \numberedsubsectionwithtwoarguments\numberedsubsectionwithoneargument}
+\def\unnumberedsubsection{\@ifnextchar[%]
+  \unnumberedsubsectionwithtwoarguments\unnumberedsubsectionwithoneargument}
+\def\numberedsubsectionwithoneargument#1{\numberedsubsectionwithtwoarguments[#1]{#1}}
+\def\unnumberedsubsectionwithoneargument#1{\unnumberedsubsectionwithtwoarguments[#1]{#1}}
+\def\numberedsubsectionwithtwoarguments[#1]#2{
+  \ifhmode\par\fi
+  \removelastskip
+  \vskip 3ex\goodbreak
+  \refstepcounter{subsection}%			   % increment counter
+  \begingroup
+  \noindent
+  \leavevmode\normalsize\bfseries\raggedright
+%  \thesubsection\  % leave out numbering
+  #2 \par\nobreak
+  \endgroup
+  \vskip 1ex\nobreak
+  \addcontentsline{toc}{subsection}{%
+%    \protect\numberline{\thesubsection}% % leave out number
+    #1}%
+  }
+\def\unnumberedsubsectionwithtwoarguments[#1]#2{
+  \ifhmode\par\fi
+  \removelastskip
+  \vskip 3ex\goodbreak
+  \begingroup
+  \noindent
+  \leavevmode\normalsize\bfseries\raggedright
+  #2\par\nobreak
+  \endgroup
+  \vskip 1ex\nobreak
+  }
+
+\makeatother
+
+% Clears to an even-numbered page
+\def\clearevenpage{
+     \clearpage 
+     \ifodd\value{page} \hbox{}\newpage\fi
+}
+
+% Clears to the back-cover (for logos)
+\def\cleartobackcover{
+     \clearpage 
+     \ifodd\value{page}\pagestyle{empty}\clearevenpage \else\hbox{}\cleardoublepage\pagestyle{empty}\clearevenpage\fi
+}
+
+%\renewcommand{\cleardoublepage}{\clearpage}
+
+% Min: index
+\makeindex
+
+%\raggedbottom
+%\setlength{\parindent}{0pt}
+% Unicode issues
+% \DeclareUnicodeCharacter{ﬁ}{fi}
+
+% Min: correct column widths
+\newlength{\mycolumnwidth}
+\setlength{\mycolumnwidth}{\columnwidth}
+\addtolength{\mycolumnwidth}{-2ex}
+
+\renewcommand{\textfraction}{.2}
+\renewcommand{\bottomfraction}{.8}
+
+\newenvironment{bio}
+               {\begin{figure}[b]
+                   \centerline{\rule{.5\linewidth}{.5pt}}\vspace{2ex}
+                   \setlength{\parskip}{1ex}\setlength{\parindent}{0ex}}
+               {\end{figure}}
+
+\setlength{\parindent}{1em}
+
+\fancypagestyle{emptyheader}
+{
+  \fancyhf{}
+  \fancyfoot[C]{\thepage}
+}
+
+\newcommand{\setheaders}[2]{%
+  \renewcommand{\leftheader}{#1}%
+  \renewcommand{\rightheader}{#2}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
