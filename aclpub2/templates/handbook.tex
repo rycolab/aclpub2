@@ -226,10 +226,9 @@ PLACHOLDER FOR MAP
       \VAR{session_times(entry)} & \textbf{\emph{\VAR{entry.title}}} & \\\\
       \BLOCK{endif}
 
-      \BLOCK{if entry.type is equalto("paper")}
-        \BLOCK{set paper = id_to_paper[entry.paper.id]}
-        & \hyperlink{page.\VAR{paper.page_range[0]}}{\emph{\VAR{paper.title}}} & \textit{$\quad$\VAR{entry.paper.room}}\\
-        & \VAR{join(", ", paper.authors, " and ")} & \\\\\\
+      \BLOCK{if entry.type is equalto("tutorial")}
+        & \emph{\VAR{entry.paper.title}} & \textit{$\quad$\VAR{entry.paper.room}}\\
+        & \VAR{entry.paper.authors} & \\\\\\
       \BLOCK{endif}
     \BLOCK{endfor}
     \end{longtable}
@@ -272,7 +271,6 @@ PLACHOLDER FOR MAP
     \chapter{\VAR{welc.title}: \VAR{program_date(welc.date)}}
     \begin{flushleft}
    \section{ \VAR{welc.title}}
-    %\par\noindent\rule{\textwidth}{0.4pt}
   \end{flushleft}
     \vspace*{0.2cm}
       \VAR{load_file(root, "welcome_receiption", welc.file)}
@@ -333,6 +331,40 @@ PLACHOLDER FOR MAP
   \BLOCK{endfor}
 \BLOCK{endfor}
 
+%%%%%%%%%%%
+% Social Event
+%%%%%%%%%%%
+\setheaders{}{}
+\BLOCK{for event in social_event}
+    \chapter{\VAR{event.title}: \VAR{program_date(event.date)}}
+    \begin{flushleft}
+   \section{ \VAR{event.title}}
+  \end{flushleft}
+    \vspace*{0.2cm}
+      \VAR{load_file(root, "social_event", event.file)}
+\BLOCK{endfor}
+\newpage
+
+%%%%%%%%%%%
+% Local Guide %
+%%%%%%%%%%%
+\BLOCK{for local in local_guide}
+    \chapter{\VAR{local.title}}
+    \vspace*{0.2cm}
+      \VAR{load_file(root, "local_guide", local.file)}
+\BLOCK{endfor}
+\newpage
+
+%%%%%%%%%%%
+% Venue Map %
+%%%%%%%%%%%
+\BLOCK{for venue in venue_map}
+    \chapter{\VAR{venue.title}}
+    \vspace*{0.2cm}
+      \VAR{load_file(root, "venue_map", venue.file)}
+\BLOCK{endfor}
+\newpage
+
 %%%%%%%%%%%%%%%%
 % Author Index %
 %%%%%%%%%%%%%%%%
@@ -346,8 +378,11 @@ PLACHOLDER FOR MAP
 %%%%%%%%%%%%%%
 % Appendices %
 %%%%%%%%%%%%%%
-PLACHOLDER FOR APPENDIX PAGES\\
-Misc. items like local guides, maps, and advertisements can be inserted here.
+\cleardoublepage
+\addcontentsline{toc}{chapter}{Sponsorship}
+\setheaders{Sponsorship}{Sponsorship}
+\VAR{load_file(root, "sponsorship", "sponsorship.tex")}
+
 \newpage
 
 %%%%%%%%%%%%%%

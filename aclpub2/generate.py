@@ -72,11 +72,14 @@ def generate(path: str, proceedings: bool, handbook: bool, overwrite: bool):
             welcome,
             invited_talks,
             program,
+            social_event,
+            local_guide,
+            venue_map
         ) = load_configs_handbook(root)
 
         template = load_template("handbook")
         program = process_program_handbook(program)
-        program_tutorial = process_program_handbook_by_page(program_tutorial, 350,3)
+        program_tutorial = process_program_tutorial_handbook(program_tutorial, 350,3)
         rendered_template = template.render(
             root=str(root),
             conference=conference,
@@ -95,7 +98,10 @@ def generate(path: str, proceedings: bool, handbook: bool, overwrite: bool):
             papers=papers,
             id_to_paper=id_to_paper,
             program=program,
-            build_dir=str(build_dir)
+            social_event=social_event,
+            build_dir=str(build_dir),
+            local_guide=local_guide,
+            venue_map=venue_map
         )
         tex_file = Path(build_dir, "handbook.tex")
         with open(tex_file, "w+") as f:
@@ -221,7 +227,7 @@ def process_program_proceedings(program):
     return sorted(entries_by_date.items())
 
 
-def process_program_handbook_by_page(program, max_lines = 35, paper_median_lines = 3, header_lines = 2):
+def process_program_tutorial_handbook(program, max_lines = 35, paper_median_lines = 3, header_lines = 2):
     """
     process_program organizes program sessions by date, and manually cuts
     program entries in order to avoid page overflow. This is done by assuming
@@ -250,19 +256,19 @@ def process_program_handbook_by_page(program, max_lines = 35, paper_median_lines
                     "end_time": session["end_time"]
                 }
             )
-            if "papers" in session:
-                for paper_id in session["papers"]:
+            if "tutorials" in session:
+                for tutorial in session["tutorials"]:
                     table_entries.append(
                         {
-                            "type": "paper",
-                            "paper": paper_id
+                            "type": "tutorial",
+                            "paper": tutorial,
                         }
                     )
             # Split the table lines so that no page overflows.
             for entry in table_entries:
                 if entry["type"] == "header":
                     total_lines += header_lines
-                elif entry["type"] == "paper":
+                elif entry["type"] == "tutorial":
                     total_lines += paper_median_lines
                 current_page.append(entry)
                 if total_lines >= max_lines:
@@ -331,6 +337,9 @@ def load_configs_handbook(root: Path):
     program = load_config("program", root)
     for entry in program:
         entry["title"] = normalize_latex_string(entry["title"])
+    social_event = load_config("social_event", root)
+    local_guide = load_config("local_guide", root)
+    venue_map = load_config("venue_map", root)
 
     return (
         conference,
@@ -347,6 +356,9 @@ def load_configs_handbook(root: Path):
         welcome_receiption,
         invited_talks,
         program,
+        social_event,
+        local_guide,
+        venue_map
     )
 
 def load_config(config: str, root: Path, required=True):
