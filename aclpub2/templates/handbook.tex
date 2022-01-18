@@ -127,8 +127,7 @@ PLACHOLDER FOR MAP
 %%%%%%%%%%%%
 \BLOCK{for preface in prefaces}
   \begin{flushleft}
-   {\Large \textbf{\VAR{preface.title}}}
-    \par\noindent\rule{\textwidth}{0.4pt}
+  \section{\VAR{preface.title}}
   \end{flushleft}
   \vspace*{0.2cm}
   \VAR{load_file(root, "prefaces", preface.file)}
@@ -140,8 +139,7 @@ PLACHOLDER FOR MAP
 %%%%%%%%%%%%%%%%%%%%%%%%
 \setlength{\parindent}{0pt}
 \begin{flushleft}
-  {\Large \textbf{Organizing Committee}}
-  \par\noindent\rule{\textwidth}{0.4pt}
+  \section{Organizing Committee}
   \end{flushleft}
   \BLOCK{for role in organizing_committee}
     \textbf{\VAR{role.role}}\\
@@ -156,8 +154,7 @@ PLACHOLDER FOR MAP
 % Program Committee %
 %%%%%%%%%%%%%%%%%%%%%
 \begin{flushleft}
-  \Large \textbf{Program Committee}
-  \par\noindent\rule{\textwidth}{0.4pt}
+  \section{Program Committee}
 \end{flushleft}
 \BLOCK{for block in program_committee}
   \textbf{\VAR{block.role}}\\
@@ -215,9 +212,9 @@ PLACHOLDER FOR MAP
 
 \BLOCK{for date, pages in program_tutorial}
 \chapter{Tutorials: \VAR{program_date(date)}}
+\setheaders{Tutorials}{\VAR{program_date(date)}}
 \begin{flushleft}
-   {\Large \textbf{Overview}}
-    \par\noindent\rule{\textwidth}{0.4pt}
+   \section{Overview}
 \end{flushleft}
 \vspace*{-0.6cm}
   \BLOCK{set ns = namespace(first=true)}
@@ -246,8 +243,7 @@ PLACHOLDER FOR MAP
 %%%%%%%%%%%
 \BLOCK{for tut_mes in tutorial_message}
     \begin{flushleft}
-       {\Large\textbf{\VAR{tut_mes.title}}}
-       \par\noindent\rule{\textwidth}{0.4pt}
+       \section{\VAR{tut_mes.title}}
     \end{flushleft}
 
     \vspace*{0.2cm}
@@ -255,6 +251,33 @@ PLACHOLDER FOR MAP
 \BLOCK{endfor}
 \newpage
 
+%%%%%%%%%%%%
+% Tutorial Details %
+%%%%%%%%%%%%
+\BLOCK{for tutorial in tutorials}
+  \begin{flushleft}
+   \section{\VAR{tutorial.title}}
+    \setheaders{Tutorials}{\VAR{program_date(tutorial.date)}}
+  \end{flushleft}
+  \vspace*{0.2cm}
+  \VAR{load_file(root, "tutorials", tutorial.file)}
+  \newpage
+\BLOCK{endfor}
+
+%%%%%%%%%%%
+% Welcome Reception
+%%%%%%%%%%%
+\setheaders{}{}
+\BLOCK{for welc in welcome}
+    \chapter{\VAR{welc.title}: \VAR{program_date(welc.date)}}
+    \begin{flushleft}
+   \section{ \VAR{welc.title}}
+    %\par\noindent\rule{\textwidth}{0.4pt}
+  \end{flushleft}
+    \vspace*{0.2cm}
+      \VAR{load_file(root, "welcome_receiption", welc.file)}
+\BLOCK{endfor}
+\newpage
 
 %%%%%%%%%%%
 % Program %

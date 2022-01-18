@@ -68,6 +68,8 @@ def generate(path: str, proceedings: bool, handbook: bool, overwrite: bool):
             meal,
             program_tutorial,
             tutorial_message,
+            tutorials,
+            welcome,
             invited_talks,
             program,
         ) = load_configs_handbook(root)
@@ -87,6 +89,8 @@ def generate(path: str, proceedings: bool, handbook: bool, overwrite: bool):
             meal=meal,
             program_tutorial=program_tutorial,
             tutorial_message=tutorial_message,
+            tutorials=tutorials,
+            welcome=welcome,
             invited_talks=invited_talks,
             papers=papers,
             id_to_paper=id_to_paper,
@@ -321,6 +325,8 @@ def load_configs_handbook(root: Path):
     meal = load_config("meal", root)
     program_tutorial =load_config("program_tutorial", root)
     tutorial_message = load_config("tutorial_message", root)
+    tutorials = load_config("tutorials", root)
+    welcome_receiption= load_config("welcome_receiption", root)
     invited_talks = load_config("invited_talks", root, required=False)
     program = load_config("program", root)
     for entry in program:
@@ -337,6 +343,8 @@ def load_configs_handbook(root: Path):
         meal,
         program_tutorial,
         tutorial_message,
+        tutorials,
+        welcome_receiption,
         invited_talks,
         program,
     )
