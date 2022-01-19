@@ -345,9 +345,73 @@ PLACHOLDER FOR MAP
 \BLOCK{endfor}
 \newpage
 
+
+%%%%%%%%%%%
+% Workshops %
+%%%%%%%%%%%
+\setheaders{}{}
+\chapter{Workshops}
+
+\BLOCK{for date in workshop_days}
+    \large{\textbf{\VAR{program_date(date)}}}\\
+    \noindent\rule{\textwidth}{0.4pt}
+    \begin{longtable}{p{34mm}p{64mm}p{15mm}}
+    \BLOCK{for workshop in workshops}
+        \BLOCK{if workshop.date is equalto(date)}
+          \VAR{workshop.location} & \VAR{workshop.title} & p.\pageref{w\VAR{workshop.id}} \\\\
+        \BLOCK{endif}
+    \BLOCK{endfor}
+    \end{longtable}
+    \vspace{1cm}
+\BLOCK{endfor}
+\newpage
+
+
+\BLOCK{for workshop in workshops}
+    \section{\VAR{workshop.title}}
+    \label{w\VAR{workshop.id}}
+    \begin{center}
+        Organizers: \VAR{workshop.chair}\\
+        \large{Venue: \VAR{workshop.location}}\\
+        \large{\textbf{\VAR{program_date(workshop.date)}}}
+    \end{center}
+    \vspace*{0.2cm}
+    \setheaders{\VAR{workshop.title}}{\VAR{program_date(workshop.date)}}
+
+
+    \BLOCK{for date, pages in program_workshops[workshop.id]}
+    \vspace*{-0.6cm}
+      \BLOCK{set ns = namespace(first=true)}
+      \BLOCK{for page in pages}
+      \setlength\extrarowheight{-8pt}
+        \begin{longtable}{p{24mm}p{94mm}}
+        \BLOCK{for entry in page}
+          \BLOCK{if entry.type is equalto("header")}
+          \VAR{session_times(entry)} & \textbf{\emph{\VAR{entry.title}}} \\\\
+          \BLOCK{endif}
+
+          \BLOCK{if entry.type is equalto("paper")}
+            & \emph{\VAR{entry.paper.title}}  \\
+            & \VAR{entry.paper.authors}  \\\\\\
+          \BLOCK{endif}
+        \BLOCK{endfor}
+        \end{longtable}
+        \BLOCK{set ns.first = false}
+      \BLOCK{endfor}
+    \BLOCK{endfor}
+    \newpage
+
+
+
+
+
+\BLOCK{endfor}
+\newpage
+
 %%%%%%%%%%%
 % Local Guide %
 %%%%%%%%%%%
+\setheaders{}{}
 \BLOCK{for local in local_guide}
     \chapter{\VAR{local.title}}
     \vspace*{0.2cm}
@@ -358,6 +422,7 @@ PLACHOLDER FOR MAP
 %%%%%%%%%%%
 % Venue Map %
 %%%%%%%%%%%
+\setheaders{}{}
 \BLOCK{for venue in venue_map}
     \chapter{\VAR{venue.title}}
     \vspace*{0.2cm}

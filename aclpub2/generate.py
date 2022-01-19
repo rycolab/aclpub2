@@ -73,6 +73,9 @@ def generate(path: str, proceedings: bool, handbook: bool, overwrite: bool):
             invited_talks,
             program,
             social_event,
+            workshops,
+            program_workshops,
+            workshop_days,
             local_guide,
             venue_map
         ) = load_configs_handbook(root)
@@ -99,6 +102,9 @@ def generate(path: str, proceedings: bool, handbook: bool, overwrite: bool):
             id_to_paper=id_to_paper,
             program=program,
             social_event=social_event,
+            workshops=workshops,
+            program_workshops=program_workshops,
+            workshop_days=workshop_days,
             build_dir=str(build_dir),
             local_guide=local_guide,
             venue_map=venue_map
@@ -111,8 +117,6 @@ def generate(path: str, proceedings: bool, handbook: bool, overwrite: bool):
         subprocess.run(["pdflatex", f"-output-directory={build_dir}", str(tex_file)])
         subprocess.run(["makeindex", str(tex_file.with_suffix(".idx"))])
         subprocess.run(["pdflatex", f"-output-directory={build_dir}", str(tex_file)])
-
-
 def get_conference_dates(conference) -> str:
     start_date = conference["start_date"]
     end_date = conference["end_date"]
@@ -281,6 +285,62 @@ def process_program_tutorial_handbook(program, max_lines = 35, paper_median_line
         total_lines = 0
     return sorted(entries_by_date.items())
 
+def process_program_workshop_handbook(program, max_lines = 35, paper_median_lines = 3, header_lines = 2):
+    """
+    process_program organizes program sessions by date, and manually cuts
+    program entries in order to avoid page overflow. This is done by assuming
+    a median paper entry line length of 3 lines (including title and authors),
+    and that a maximum of 35 schedule lines will fit on one page.
+    """
+    sessions_by_date = defaultdict(list)
+    for session in program:
+        if "subsessions" in session:
+            for session in session["subsessions"]:
+                sessions_by_date[session["start_time"].date()].append(session)
+        else:
+            sessions_by_date[session["start_time"].date()].append(session)
+    entries_by_date = {}
+    for date, sessions in sessions_by_date.items():
+        total_lines = 0
+        pages = []
+        current_page = []
+        for session in sessions:
+            table_entries = []
+            table_entries.append(
+                {
+                    "type": "header",
+                    "title": session["title"],
+                    "start_time": session["start_time"],
+                    "end_time": session["end_time"]
+                }
+            )
+            if "papers" in session:
+                for paper in session["papers"]:
+                    table_entries.append(
+                        {
+                            "type": "paper",
+                            "paper": paper,
+                        }
+                    )
+            # Split the table lines so that no page overflows.
+            for entry in table_entries:
+                if entry["type"] == "header":
+                    total_lines += header_lines
+                elif entry["type"] == "tutorial":
+                    total_lines += paper_median_lines
+                current_page.append(entry)
+                if total_lines >= max_lines:
+                    pages.append(current_page)
+                    current_page = []
+                    total_lines = 0
+        pages.append(current_page)
+        entries_by_date[date] = pages
+        current_page = []
+        total_lines = 0
+    return sorted(entries_by_date.items())
+
+
+
 
 def normalize_latex_string(text: str) -> str:
     return text.replace("’", "'").replace("&", "\\&")
@@ -338,6 +398,15 @@ def load_configs_handbook(root: Path):
     for entry in program:
         entry["title"] = normalize_latex_string(entry["title"])
     social_event = load_config("social_event", root)
+    workshops = load_config("workshops", root)
+    program_workshops = {}
+    for workshop in workshops:
+        program_workshops[workshop["id"]] = process_program_workshop_handbook(load_config("workshops/"+str(workshop["id"]), root),350)
+    workshop_days=[]
+    for workshop in workshops:
+        wdate = workshop["date"]
+        if wdate not in workshop_days:
+            workshop_days.append(wdate)
     local_guide = load_config("local_guide", root)
     venue_map = load_config("venue_map", root)
 
@@ -357,6 +426,9 @@ def load_configs_handbook(root: Path):
         invited_talks,
         program,
         social_event,
+        workshops,
+        program_workshops,
+        workshop_days,
         local_guide,
         venue_map
     )

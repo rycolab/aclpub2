@@ -1,0 +1,151 @@
+- end_time: 2020-07-02 07:45:00
+  start_time: 2020-07-02 07:30:00
+  title: Opening Remarks
+- end_time: 2020-07-02 09:30:00
+  start_time: 2020-07-02 09:00:00
+  title: Break
+- title: Session 1
+  start_time: 2020-07-02 09:30:00
+  end_time: 2020-07-02 11:30:00
+  subsessions:
+    - end_time: 2020-07-02 10:20:00
+      papers:
+        - end_time: 2020-07-02 09:40:00
+          title: Paper 1
+          start_time: 2020-07-02 09:30:00
+          authors: André F. T. Martins, Tsvetomila Mihaylova, Nikita Nangia, and Vlad Niculae
+        - end_time: 2020-07-02 09:50:00
+          title: Paper 2
+          start_time: 2020-07-02 09:40:00
+          authors: André F. T. Martins, Tsvetomila Mihaylova, Nikita Nangia, and Vlad Niculae
+        - end_time: 2020-07-02 10:10:00
+          title: Paper 3
+          start_time: 2020-07-02 10:00:00
+          authors: André F. T. Martins, Tsvetomila Mihaylova, Nikita Nangia, and Vlad Niculae
+        - end_time: 2020-07-02 10:20:00
+          title: Paper 4
+          start_time: 2020-07-02 10:10:00
+          authors: André F. T. Martins, Tsvetomila Mihaylova, Nikita Nangia, and Vlad Niculae
+      start_time: 2020-07-02 09:30:00
+      title: Generation + Task-Oriented Dialogues (1)
+      chair: John Doe
+    - end_time: 2020-07-02 10:45:00
+      start_time: 2020-07-02 10:20:00
+      title: Generation + Task-Oriented Dialogues (1) live QA
+      chair: John Doe
+    - end_time: 2020-07-02 11:30:00
+      papers:
+        - end_time: 2020-07-02 10:55:00
+          title: Paper 5
+          start_time: 2020-07-02 10:45:00
+          authors: André F. T. Martins, Tsvetomila Mihaylova, Nikita Nangia, and Vlad Niculae
+        - end_time: 2020-07-02 11:05:00
+          title: Paper 6
+          start_time: 2020-07-02 10:55:00
+          authors: André F. T. Martins, Tsvetomila Mihaylova, Nikita Nangia, and Vlad Niculae
+        - end_time: 2020-07-02 11:20:00
+          title: Paper 7
+          start_time: 2020-07-02 11:10:00
+          authors: André F. T. Martins, Tsvetomila Mihaylova, Nikita Nangia, and Vlad Niculae
+        - end_time: 2020-07-02 11:30:00
+          title: Paper 8
+          start_time: 2020-07-02 11:20:00
+          authors: André F. T. Martins, Tsvetomila Mihaylova, Nikita Nangia, and Vlad Niculae
+      start_time: 2020-07-02 10:45:00
+      title: Demo (1) pre-recorded presentations + live QA
+      chair: John Doe
+      location: Main Room
+- end_time: 2020-07-02 11:50:00
+  start_time: 2020-07-02 11:30:00
+  title: Break
+- title: Session 2
+  start_time: 2020-07-02 11:50:00
+  end_time: 2020-07-02 15:30:00
+  subsessions:
+    - end_time: 2020-07-02 12:20:00
+      papers:
+        - end_time: 2020-07-02 12:00:00
+          title: Paper 9
+          start_time: 2020-07-02 11:50:00
+          authors: André F. T. Martins, Tsvetomila Mihaylova, Nikita Nangia, and Vlad Niculae
+        - end_time: 2020-07-02 12:10:00
+          title: Paper 10
+          start_time: 2020-07-02 12:00:00
+          authors: André F. T. Martins, Tsvetomila Mihaylova, Nikita Nangia, and Vlad Niculae
+        - end_time: 2020-07-02 12:20:00
+          title: Paper 11
+          start_time: 2020-07-02 12:10:00
+          authors: André F. T. Martins, Tsvetomila Mihaylova, Nikita Nangia, and Vlad Niculae
+      start_time: 2020-07-02 11:50:00
+      title: Knowledge Acquisition/Use and Behaviour Modeling (1)
+      chair: John Doe
+      location: Main Room
+    - end_time: 2020-07-02 12:40:00
+      start_time: 2020-07-02 12:20:00
+      title: Knowledge Acquisition/Use and Behaviour Modeling (1) live QA
+      chair: John Doe
+      location: Main Room
+    - end_time: 2020-07-02 15:30:00
+      start_time: 2020-07-02 12:40:00
+      title: Breakout Discussion Sessions
+      chair: John Doe
+      location: Main Room
+- end_time: 2020-07-02 16:00:00
+  start_time: 2020-07-02 15:30:00
+  title: Break
+- title: Session 3
+  start_time: 2020-07-02 16:00:00
+  end_time: 2020-07-02 19:15:00
+  subsessions:
+    - end_time: 2020-07-02 17:00:00
+      papers:
+        - end_time: 2020-07-02 16:15:00
+          title: Paper 12
+          start_time: 2020-07-02 16:00:00
+          authors: André F. T. Martins, Tsvetomila Mihaylova, Nikita Nangia, and Vlad Niculae
+        - end_time: 2020-07-02 16:30:00
+          title: Paper 13
+          start_time: 2020-07-02 16:15:00
+          authors: André F. T. Martins, Tsvetomila Mihaylova, Nikita Nangia, and Vlad Niculae
+        - end_time: 2020-07-02 16:45:00
+          title: Paper 14
+          start_time: 2020-07-02 16:30:00
+          authors: André F. T. Martins, Tsvetomila Mihaylova, Nikita Nangia, and Vlad Niculae
+        - end_time: 2020-07-02 17:00:00
+          title: Paper 15
+          start_time: 2020-07-02 16:45:00
+          authors: André F. T. Martins, Tsvetomila Mihaylova, Nikita Nangia, and Vlad Niculae
+      start_time: 2020-07-02 16:00:00
+      title: "Special Session: Greetings and Talks"
+      chair: John Doe
+      location: Main Room
+    - end_time: 2020-07-02 17:30:00
+      papers:
+        - end_time: 2020-07-02 17:15:00
+          title: Paper 16
+          start_time: 2020-07-02 17:00:00
+          authors: André F. T. Martins, Tsvetomila Mihaylova, Nikita Nangia, and Vlad Niculae
+        - end_time: 2020-07-02 17:30:00
+          title: Paper 17
+          start_time: 2020-07-02 17:15:00
+          authors: André F. T. Martins, Tsvetomila Mihaylova, Nikita Nangia, and Vlad Niculae
+      start_time: 2020-07-02 17:00:00
+      title: Demo (2) pre-recorded presentations + live QA
+      chair: John Doe
+      location: Main Room
+    - end_time: 2020-07-02 18:15:00
+      start_time: 2020-07-02 17:30:00
+      title: "Special Session: live QA"
+      chair: John Doe
+      location: Main Room
+    - end_time: 2020-07-02 19:15:00
+      start_time: 2020-07-02 18:15:00
+      title: "Special Session: Late-breaking"
+      chair: John Doe
+      location: Main Room
+- end_time: 2020-07-02 19:30:00
+  start_time: 2020-07-02 19:15:00
+  title: Break
+- end_time: 2020-07-02 20:15:00
+  start_time: 2020-07-02 19:30:00
+  title: Breakouts Discussion Sessions
