@@ -72,6 +72,7 @@ def generate(path: str, proceedings: bool, handbook: bool, overwrite: bool):
             welcome,
             invited_talks,
             program,
+            awards,
             social_event,
             workshops,
             program_workshops,
@@ -101,6 +102,7 @@ def generate(path: str, proceedings: bool, handbook: bool, overwrite: bool):
             papers=papers,
             id_to_paper=id_to_paper,
             program=program,
+            awards=awards,
             social_event=social_event,
             workshops=workshops,
             program_workshops=program_workshops,
@@ -397,6 +399,7 @@ def load_configs_handbook(root: Path):
     program = load_config("program", root)
     for entry in program:
         entry["title"] = normalize_latex_string(entry["title"])
+    awards = load_config("awards", root)
     social_event = load_config("social_event", root)
     workshops = load_config("workshops", root)
     program_workshops = {}
@@ -425,6 +428,7 @@ def load_configs_handbook(root: Path):
         welcome_receiption,
         invited_talks,
         program,
+        awards,
         social_event,
         workshops,
         program_workshops,

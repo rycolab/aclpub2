@@ -1,0 +1,10 @@
+- title: Invited 1
+  file: invited1.tex
+  date: 2020-07-01 18:30:00
+  location: Room 1
+  chair: Chair 1
+- title: Invited 2
+  file: invited2.tex
+  date: 2020-07-02 18:30:00
+  location: Room 2
+  chair: Chair 2

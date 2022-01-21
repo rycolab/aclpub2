@@ -277,6 +277,23 @@ PLACHOLDER FOR MAP
 \BLOCK{endfor}
 \newpage
 
+%%%%%%%%%%%%
+% Invited Talks %
+%%%%%%%%%%%%
+\setheaders{}{}
+\chapter{Invited Talks}
+\BLOCK{for talk in invited_talks}
+  \begin{flushleft}
+  \section{\VAR{talk.title}}
+  \end{flushleft}
+  \textbf{\Large{\VAR{program_date(talk.date)}}}\\
+  \textit{\Large{\VAR{talk.location}}}\\
+  \Large{Session chair: \VAR{talk.chair}}\\\\
+  \vspace*{0.2cm}
+  \VAR{load_file(root, "invited_talks", talk.file)}
+  \newpage
+\BLOCK{endfor}
+
 %%%%%%%%%%%
 % Program %
 %%%%%%%%%%%
@@ -329,6 +346,23 @@ PLACHOLDER FOR MAP
     \BLOCK{endif}
 
   \BLOCK{endfor}
+\BLOCK{endfor}
+
+%%%%%%%%%%%%
+% Awards %
+%%%%%%%%%%%%
+\setheaders{}{}
+\chapter{Awards}
+\BLOCK{for award in awards}
+  \begin{flushleft}
+  \section{\VAR{award.title}}
+  \end{flushleft}
+  \textbf{\Large{\VAR{program_date(award.date)}}}\\
+  \textit{\Large{\VAR{award.location}}}\\
+  \Large{Session chair: \VAR{award.chair}}\\\\
+  \vspace*{0.2cm}
+  \VAR{load_file(root, "awards", award.file)}
+  \newpage
 \BLOCK{endfor}
 
 %%%%%%%%%%%
