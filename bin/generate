@@ -16,4 +16,4 @@ parser.add_argument(
     "--overwrite", action="store_true", help="If set, overwrites the generated files in the output."
 )
 
-generate("../examples/booklet",False, True, True)
+generate(**vars(parser.parse_args()))

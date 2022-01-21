@@ -10,7 +10,7 @@ import shutil
 PARENT_DIR = Path(__file__).parent
 
 
-def generate(path: str, proceedings: bool, handbook: bool, overwrite: bool):
+def generate(*, path: str, proceedings: bool, handbook: bool, overwrite: bool):
     root = Path(path)
     build_dir = Path("build")
     build_dir.mkdir(exist_ok=True)
