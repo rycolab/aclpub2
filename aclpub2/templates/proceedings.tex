@@ -61,35 +61,6 @@
 \end{titlepage}
 \newpage
 
-%%%%%%%%%%%%
-% Sponsors %
-%%%%%%%%%%%%
-\setcounter{page}{2}
-\vspace*{2cm}
-\noindent
-
-{\Large The \VAR{conference.abbreviation} organizers gratefully acknowledge the support from the following sponsors.}
-\bigskip
-
-\vspace*{1cm}
-
-\BLOCK{macro generate_sponsor_tier(tier)}
-\vspace*{1cm}
-  \noindent
-  {\Large \textbf{\VAR{tier.tier}}}\\\\
-  \BLOCK{for logo in tier.logos}
-    \includegraphics[width=2cm]{\VAR{root}/sponsor_logos/\VAR{logo}}\hfill
-  \BLOCK{endfor}
-  \vspace*{1cm}
-\BLOCK{endmacro}
-
-\BLOCK{for tier in sponsors}
-  \VAR{generate_sponsor_tier(tier)}
-  \bigskip
-\BLOCK{endfor}
-\newpage
-
-
 %%%%%%%%%%%%%
 % Copyright %
 %%%%%%%%%%%%%
@@ -119,18 +90,11 @@ ISBN \VAR{conference.isbn}
 }
 \newpage
 
-
-%%%%%%%%%%%%
-% Prefaces %
-%%%%%%%%%%%%
-\BLOCK{for preface in prefaces}
-  \begin{center}
-   { \Large \textbf{\VAR{preface.title}}}
-  \end{center}
-  \vspace*{0.5cm}
-  \VAR{load_file(root, "prefaces", preface.file)}
-  \newpage
-\BLOCK{endfor}
+%%%%%%%%%%%%%%%%
+% Front Matter %
+%%%%%%%%%%%%%%%%
+\input{front_matter}
+\newpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%
 % Organizing Committee %
@@ -184,24 +148,6 @@ ISBN \VAR{conference.isbn}
 
 \BLOCK{endfor}
 \newpage
-
-%%%%%%%%%%%%%%%%%
-% Invited Talks %
-%%%%%%%%%%%%%%%%%
-\BLOCK{if invited_talks}
-\BLOCK{for talk in invited_talks}
-  \begin{center}
-    {\LARGE \textbf{Invited Speaker: \VAR{talk.speaker_name}, \VAR{talk.institution}}}\\
-    \vspace*{0.1cm}
-    {\Large \textbf{\VAR{talk.title}}}
-  \end{center}
-  \vspace*{0.2cm}
-  \textbf{Abstract:} \VAR{load_file(root, "invited_talks", talk.abstract_file)}\\
-  \newline
-  \textbf{Bio:} \VAR{load_file(root, "invited_talks", talk.bio_file)}\\
-  \newpage
-\BLOCK{endfor}
-\BLOCK{endif}
 
 %%%%%%%%%%%%%%%%%%%%%
 % Table of Contents %
@@ -269,7 +215,7 @@ ISBN \VAR{conference.isbn}
     \put(105,12){\makebox(0,0){\VAR{conference_dates}, \VAR{conference.start_date.year} 
     \textcopyright \VAR{conference.start_date.year} Association for Computational Linguistics}}
   }
-  \includepdf[pagecommand={\thispagestyle{plain}},pages=-]{\VAR{root}/papers/\VAR{paper.file}}
+  \includepdf[pagecommand={\thispagestyle{plain}},pages=-]{papers/\VAR{paper.file}}
 \BLOCK{endfor}
 
 %%%%%%%%%%%%%%%%

@@ -85,29 +85,6 @@ end_date: [str] Conference end date YYYY-MM-dd
 isbn: [str] ISBN number of the proceeding.
 ```
 
-#### sponsors.yml + sponsor_logos/
-
-List of sponsor tiers along with a directory containing the related logos.
-
-```
-- tier: [str] Name of the tier, i.e. Diamond Level or In Collaboration With
-  logos:
-    - [str] Path to a logo file relative to the sponsor_logos/ directory, i.e. facebook.png
-```
-
-#### prefaces.yml + prefaces/
-
-List of prefaces along with a directory containing `.tex` files that provide the text of the prefaces.
-
-```
-- title: [str] Title of the preface, i.e. "Preface by the General Chair"
-  file: [str] Name of the file relative to the prefaces/ directory containing the preface text, i.e. general_chair.tex
-```
-
-The contents of the `.tex` files should not include usual headers and footers found within LaTeX files.
-Instead, they should only contain the contents between the `\begin{document}` and `\end{document}` directives.
-Frequently, this will simply be plaintext, with a few formulas, figures, or tables.
-
 #### organizing_committee.yml
 
 Lists the members of organizaing committee.
@@ -134,20 +111,6 @@ Lists the members of program committee.
   type: name_block  # By adding the name_block type in the role, names will be output in alphabetized blocks.
   entries:
     - [str] Committee Member Name
-```
-
-#### invited_talks.yml + invited_talks/
-
-List of invited talks and associated abstracts and bios.
-As with the prefaces, the contents of the `.tex` files should not include usual headers and footers found within LaTeX files,
-and only what is usually found between the `\begin{document}` and `\end{document}` directives.
-
-```
-- speaker_name: [str] Speaker name as it should appear, i.e. Jane Doe
-  institution: [str] Speaker's institution name as it should appear, i.e. University of California Berkeley, USA
-  title: [str] The title of the talk.
-  abstract_file: [str] Path to abstract LaTeX file relative to the invited_talks/ directory.
-  bio_file: [str] Path to bio LaTeX file relative to the invited_talks/ directory.
 ```
 
 #### papers.yml + papers/

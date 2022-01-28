@@ -5,6 +5,7 @@ from aclpub2.templates import load_template, TEMPLATE_DIR
 
 import subprocess
 import yaml
+import os
 import shutil
 
 PARENT_DIR = Path(__file__).parent
@@ -25,35 +26,35 @@ def generate(*, path: str, proceedings: bool, handbook: bool, overwrite: bool):
     (
         conference,
         papers,
-        sponsors,
-        prefaces,
         organizing_committee,
         program_committee,
-        invited_talks,
         program,
     ) = load_configs(root)
+
+    # Copy the front matter to the build dir.
+    subprocess.run(["cp", "-rf", f"{Path(root, 'front_matter')}/", str(Path(build_dir))], check=True)
+
+    # Copy papers directory
+    subprocess.run(["cp", "-rf", f"{Path(root, 'papers')}/", str(Path(build_dir, "papers"))], check=True)
+
     id_to_paper, alphabetized_author_index = process_papers(papers, root, proceedings)
     if proceedings:
         sessions_by_date = process_program_proceedings(program)
         template = load_template("proceedings")
         rendered_template = template.render(
-            root=str(root),
             conference=conference,
             conference_dates=get_conference_dates(conference),
-            sponsors=sponsors,
-            prefaces=prefaces,
             organizing_committee=organizing_committee,
             program_committee=program_committee,
-            invited_talks=invited_talks,
             papers=papers,
             id_to_paper=id_to_paper,
             program=sessions_by_date,
             alphabetized_author_index=alphabetized_author_index,
         )
-        tex_file = Path(build_dir, "proceedings.tex")
-        with open(tex_file, "w+") as f:
+        tex_file = Path("proceedings.tex")
+        with open(Path(build_dir, tex_file), "w+") as f:
             f.write(rendered_template)
-        subprocess.run(["pdflatex", f"-output-directory={build_dir}", str(tex_file)])
+        subprocess.run(["pdflatex", str(tex_file)], cwd=build_dir)
 
     if handbook:
         template = load_template("handbook")
@@ -62,24 +63,21 @@ def generate(*, path: str, proceedings: bool, handbook: bool, overwrite: bool):
             root=str(root),
             conference=conference,
             conference_dates=get_conference_dates(conference),
-            sponsors=sponsors,
-            prefaces=prefaces,
             organizing_committee=organizing_committee,
             program_committee=program_committee,
-            invited_talks=invited_talks,
             papers=papers,
             id_to_paper=id_to_paper,
             program=program,
             build_dir=str(build_dir),
         )
-        tex_file = Path(build_dir, "handbook.tex")
+        tex_file = Path("handbook.tex")
         with open(tex_file, "w+") as f:
             f.write(rendered_template)
         if not Path(build_dir, "content").exists():
             shutil.copytree(f"{TEMPLATE_DIR}/content", f"{build_dir}/content")
-        subprocess.run(["pdflatex", f"-output-directory={build_dir}", str(tex_file)])
+        subprocess.run(["pdflatex", str(tex_file)], cwd=build_dir)
         subprocess.run(["makeindex", str(tex_file.with_suffix(".idx"))])
-        subprocess.run(["pdflatex", f"-output-directory={build_dir}", str(tex_file)])
+        subprocess.run(["pdflatex", str(tex_file)], cwd=build_dir)
 
 
 def get_conference_dates(conference) -> str:
@@ -107,16 +105,16 @@ def process_papers(papers, root: Path, pax: bool):
     author_to_pages = defaultdict(list)
     for paper in papers:
         pdf_path = Path(root, "papers", f"{paper['id']}.pdf")
-        if pax:
-            subprocess.run(
-                [
-                    "java",
-                    "-cp",
-                    f"{PARENT_DIR}/pax.jar:{PARENT_DIR}/pdfbox.jar",
-                    "pax.PDFAnnotExtractor",
-                    pdf_path,
-                ]
-            )
+        # if pax:
+        #     subprocess.run(
+        #         [
+        #             "java",
+        #             "-cp",
+        #             f"{PARENT_DIR}/pax.jar:{PARENT_DIR}/pdfbox.jar",
+        #             "pax.PDFAnnotExtractor",
+        #             pdf_path,
+        #         ]
+        #     )
         pdf = PdfFileReader(str(pdf_path))
         paper["num_pages"] = pdf.getNumPages()
         paper["page_range"] = (page, page + pdf.getNumPages() - 1)
@@ -209,11 +207,8 @@ def load_configs(root: Path):
     papers = load_config("papers", root)
     for paper in papers:
         paper["title"] = normalize_latex_string(paper["title"])
-    sponsors = load_config("sponsors", root)
-    prefaces = load_config("prefaces", root)
     organizing_committee = load_config("organizing_committee", root)
     program_committee = load_config("program_committee", root)
-    invited_talks = load_config("invited_talks", root, required=False)
     program = load_config("program", root)
     for entry in program:
         entry["title"] = normalize_latex_string(entry["title"])
@@ -221,11 +216,8 @@ def load_configs(root: Path):
     return (
         conference,
         papers,
-        sponsors,
-        prefaces,
         organizing_committee,
         program_committee,
-        invited_talks,
         program,
     )
 
