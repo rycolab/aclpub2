@@ -84,6 +84,11 @@ start_date: [str] Conference start date YYYY-MM-dd
 end_date: [str] Conference end date YYYY-MM-dd
 isbn: [str] ISBN number of the proceeding.
 ```
+#### front_matter
+Include in your input folder a subfolder called `front_matter` in which exists a
+file called `front_matter.tex`.
+This file defines general conference information like sponsors, prefaces, etc.
+and will be included between the cover and the organizing committee list.
 
 #### organizing_committee.yml
 
