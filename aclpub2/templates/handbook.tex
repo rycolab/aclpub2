@@ -189,28 +189,20 @@ PLACHOLDER FOR MAP
 %%%%%%%%%%%
 % Policy %
 %%%%%%%%%%%
-\BLOCK{for har in harassment}
-    \chapter{\VAR{har.title}}
-    \vspace*{0.2cm}
-      \VAR{load_file(root, "harassment", har.file)}
-\BLOCK{endfor}
+\VAR{load_file(root, "harassment", "harassment.tex")}
 \newpage
 
 %%%%%%%%%%%
 % Meal_Info %
 %%%%%%%%%%%
-\BLOCK{for m in meal}
-    \chapter{\VAR{m.title}}
-    \vspace*{0.2cm}
-      \VAR{load_file(root, "meal", m.file)}
-\BLOCK{endfor}
+\VAR{load_file(root, "meal", "meal.tex")}
 \newpage
 
 %%%%%%%%%%%
 % Tutorial %
 %%%%%%%%%%%
 
-\BLOCK{for date, pages in program_tutorial}
+\BLOCK{for date, pages in tutorial_program}
 \chapter{Tutorials: \VAR{program_date(date)}}
 \setheaders{Tutorials}{\VAR{program_date(date)}}
 \begin{flushleft}
@@ -240,14 +232,8 @@ PLACHOLDER FOR MAP
 %%%%%%%%%%%
 % Message from Tutoral CO-Chair
 %%%%%%%%%%%
-\BLOCK{for tut_mes in tutorial_message}
-    \begin{flushleft}
-       \section{\VAR{tut_mes.title}}
-    \end{flushleft}
+\VAR{load_file(root, "tutorial_message", "tutorial_message.tex")}
 
-    \vspace*{0.2cm}
-      \VAR{load_file(root, "tutorial_message", tut_mes.file)}
-\BLOCK{endfor}
 \newpage
 
 %%%%%%%%%%%%
@@ -267,14 +253,8 @@ PLACHOLDER FOR MAP
 % Welcome Reception
 %%%%%%%%%%%
 \setheaders{}{}
-\BLOCK{for welc in welcome}
-    \chapter{\VAR{welc.title}: \VAR{program_date(welc.date)}}
-    \begin{flushleft}
-   \section{ \VAR{welc.title}}
-  \end{flushleft}
-    \vspace*{0.2cm}
-      \VAR{load_file(root, "welcome_receiption", welc.file)}
-\BLOCK{endfor}
+\VAR{load_file(root, "welcome_receiption", "welcome_receiption.tex")}
+
 \newpage
 
 %%%%%%%%%%%%
@@ -290,7 +270,7 @@ PLACHOLDER FOR MAP
   \textit{\Large{\VAR{talk.location}}}\\
   \Large{Session chair: \VAR{talk.chair}}\\\\
   \vspace*{0.2cm}
-  \VAR{load_file(root, "invited_talks", talk.file)}
+  \VAR{load_file(root, "invited_talks", talk.abstract_file)}
   \newpage
 \BLOCK{endfor}
 
@@ -352,31 +332,15 @@ PLACHOLDER FOR MAP
 % Awards %
 %%%%%%%%%%%%
 \setheaders{}{}
-\chapter{Awards}
-\BLOCK{for award in awards}
-  \begin{flushleft}
-  \section{\VAR{award.title}}
-  \end{flushleft}
-  \textbf{\Large{\VAR{program_date(award.date)}}}\\
-  \textit{\Large{\VAR{award.location}}}\\
-  \Large{Session chair: \VAR{award.chair}}\\\\
-  \vspace*{0.2cm}
-  \VAR{load_file(root, "awards", award.file)}
-  \newpage
-\BLOCK{endfor}
+\VAR{load_file(root, "awards", "awards.tex")}
+\newpage
+
 
 %%%%%%%%%%%
 % Social Event
 %%%%%%%%%%%
 \setheaders{}{}
-\BLOCK{for event in social_event}
-    \chapter{\VAR{event.title}: \VAR{program_date(event.date)}}
-    \begin{flushleft}
-   \section{ \VAR{event.title}}
-  \end{flushleft}
-    \vspace*{0.2cm}
-      \VAR{load_file(root, "social_event", event.file)}
-\BLOCK{endfor}
+\VAR{load_file(root, "social_event", "social_event.tex")}
 \newpage
 
 
@@ -434,11 +398,6 @@ PLACHOLDER FOR MAP
       \BLOCK{endfor}
     \BLOCK{endfor}
     \newpage
-
-
-
-
-
 \BLOCK{endfor}
 \newpage
 
@@ -446,22 +405,16 @@ PLACHOLDER FOR MAP
 % Local Guide %
 %%%%%%%%%%%
 \setheaders{}{}
-\BLOCK{for local in local_guide}
-    \chapter{\VAR{local.title}}
-    \vspace*{0.2cm}
-      \VAR{load_file(root, "local_guide", local.file)}
-\BLOCK{endfor}
+\VAR{load_file(root, "local_guide", "local_guide.tex")}
+
 \newpage
 
 %%%%%%%%%%%
 % Venue Map %
 %%%%%%%%%%%
 \setheaders{}{}
-\BLOCK{for venue in venue_map}
-    \chapter{\VAR{venue.title}}
-    \vspace*{0.2cm}
-      \VAR{load_file(root, "venue_map", venue.file)}
-\BLOCK{endfor}
+\VAR{load_file(root, "venue_map", "venue_map.tex")}
+
 \newpage
 
 %%%%%%%%%%%%%%%%

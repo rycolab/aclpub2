@@ -64,26 +64,18 @@ def generate(*, path: str, proceedings: bool, handbook: bool, overwrite: bool):
             prefaces,
             organizing_committee,
             program_committee,
-            harassment,
-            meal,
-            program_tutorial,
-            tutorial_message,
+            tutorial_program,
             tutorials,
-            welcome,
             invited_talks,
             program,
-            awards,
-            social_event,
             workshops,
             program_workshops,
             workshop_days,
-            local_guide,
-            venue_map
         ) = load_configs_handbook(root)
 
         template = load_template("handbook")
         program = process_program_handbook(program)
-        program_tutorial = process_program_tutorial_handbook(program_tutorial, 350,3)
+        tutorial_program = process_program_tutorial_handbook(tutorial_program, 350,3)
         rendered_template = template.render(
             root=str(root),
             conference=conference,
@@ -92,24 +84,16 @@ def generate(*, path: str, proceedings: bool, handbook: bool, overwrite: bool):
             prefaces=prefaces,
             organizing_committee=organizing_committee,
             program_committee=program_committee,
-            harassment=harassment,
-            meal=meal,
-            program_tutorial=program_tutorial,
-            tutorial_message=tutorial_message,
+            tutorial_program=tutorial_program,
             tutorials=tutorials,
-            welcome=welcome,
             invited_talks=invited_talks,
             papers=papers,
             id_to_paper=id_to_paper,
             program=program,
-            awards=awards,
-            social_event=social_event,
             workshops=workshops,
             program_workshops=program_workshops,
             workshop_days=workshop_days,
-            build_dir=str(build_dir),
-            local_guide=local_guide,
-            venue_map=venue_map
+            build_dir=str(build_dir)
         )
         tex_file = Path(build_dir, "handbook.tex")
         with open(tex_file, "w+") as f:
@@ -389,18 +373,12 @@ def load_configs_handbook(root: Path):
     prefaces = load_config("prefaces_handbook", root)
     organizing_committee = load_config("organizing_committee", root)
     program_committee = load_config("program_committee", root)
-    harassment = load_config("harassment", root)
-    meal = load_config("meal", root)
-    program_tutorial =load_config("program_tutorial", root)
-    tutorial_message = load_config("tutorial_message", root)
+    tutorial_program =load_config("tutorial_program", root)
     tutorials = load_config("tutorials", root)
-    welcome_receiption= load_config("welcome_receiption", root)
     invited_talks = load_config("invited_talks", root, required=False)
     program = load_config("program", root)
     for entry in program:
         entry["title"] = normalize_latex_string(entry["title"])
-    awards = load_config("awards", root)
-    social_event = load_config("social_event", root)
     workshops = load_config("workshops", root)
     program_workshops = {}
     for workshop in workshops:
@@ -410,8 +388,6 @@ def load_configs_handbook(root: Path):
         wdate = workshop["date"]
         if wdate not in workshop_days:
             workshop_days.append(wdate)
-    local_guide = load_config("local_guide", root)
-    venue_map = load_config("venue_map", root)
 
     return (
         conference,
@@ -420,21 +396,13 @@ def load_configs_handbook(root: Path):
         prefaces,
         organizing_committee,
         program_committee,
-        harassment,
-        meal,
-        program_tutorial,
-        tutorial_message,
+        tutorial_program,
         tutorials,
-        welcome_receiption,
         invited_talks,
         program,
-        awards,
-        social_event,
         workshops,
         program_workshops,
         workshop_days,
-        local_guide,
-        venue_map
     )
 
 def load_config(config: str, root: Path, required=True):

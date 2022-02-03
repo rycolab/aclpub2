@@ -2,14 +2,14 @@
   title: Workshop 1
   chair: John Doe
   location: Main Room
-  id: 1
+  id: program_workshop_1
 - date: 2020-07-02 00:00:00
   title: Workshop 2
   chair: John Doe
   location: Main Room
-  id: 2
+  id: program_workshop_2
 - date: 2020-07-03 00:00:00
   title: Workshop 3
   chair: John Doe
   location: Main Room
-  id: 3
+  id: program_workshop_3
