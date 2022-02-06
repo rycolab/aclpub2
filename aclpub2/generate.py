@@ -122,8 +122,10 @@ def process_papers(papers, root: Path, pax: bool):
         paper["page_range"] = (page, page + pdf.getNumPages() - 1)
         id_to_paper[paper["id"]] = paper
         for author in paper["authors"]:
-            name_parts = author.split(" ")
-            index_name = f"{name_parts[-1]}, {' '.join(name_parts[:-1])}"
+            given_names = author['first_name']
+            if 'middle_name' in author:
+                given_names += f" {author['middle_name']}"
+            index_name = f"{author['last_name']}, {given_names}"
             author_to_pages[index_name].append(page)
         page += pdf.getNumPages()
     alphabetized_author_index = defaultdict(list)

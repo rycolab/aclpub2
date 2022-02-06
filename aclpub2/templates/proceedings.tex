@@ -33,7 +33,7 @@
 \title{ACL Anthology}
 
 % General use macros
-\BLOCK{macro committee_member(member)}\VAR{member.name}, \VAR{member.institution}\BLOCK{endmacro}
+\BLOCK{macro committee_member(member)}\VAR{member.first_name} \BLOCK{if member.middle_name is defined}\VAR{member.middle_name} \BLOCK{endif}\VAR{member.last_name}, \VAR{member.institution}\BLOCK{endmacro}
 
 \begin{document}
 
@@ -171,13 +171,13 @@ ISBN \VAR{conference.isbn}
         \BLOCK{endfor}
       \BLOCK{endif}
       \BLOCK{if not area.members[0].institution}
-        \hspace*{1em} \VAR{join(", ", area.members)}\\
+        \hspace*{1em} \VAR{join_name(", ", area.members)}\\
       \BLOCK{endif}
     \BLOCK{endfor}
   \BLOCK{endif}
   \BLOCK{if block.type is equalto("name_block")}
     \BLOCK{for name_block in group_by_last_name(block.entries)}
-      \VAR{join(", ", name_block)}\\
+      \VAR{join_names(", ", name_block)}\\
       \newline
     \BLOCK{endfor}
   \BLOCK{endif}
@@ -215,7 +215,7 @@ ISBN \VAR{conference.isbn}
 \newcommand\page[1]{\rightskip=25pt \dotfill\rlap{\hbox to 25pt{\hfill#1}}\par}
 \begin{itemize}[leftmargin=*,label={}]
   \BLOCK{for paper in papers}
-    \item \hyperlink{page.\VAR{paper.page_range[0]}}{\emph{\VAR{paper.title}}}\\ \hspace*{2em} \VAR{join(", ", paper.authors, " and ")}\dotfill \hyperlink{page.\VAR{paper.page_range[0]}}{\VAR{paper.page_range[0]}}
+    \item \hyperlink{page.\VAR{paper.page_range[0]}}{\emph{\VAR{paper.title}}}\\ \hspace*{2em} \VAR{join_names(", ", paper.authors, " and ")}\dotfill \hyperlink{page.\VAR{paper.page_range[0]}}{\VAR{paper.page_range[0]}}
   \BLOCK{endfor}
 \end{itemize}
 \newpage
@@ -245,7 +245,7 @@ ISBN \VAR{conference.isbn}
       \BLOCK{if entry.type is equalto("paper")}
         \BLOCK{set paper = id_to_paper[entry.paper.id]}
         & \hyperlink{page.\VAR{paper.page_range[0]}}{\emph{\VAR{paper.title}}}\\
-        & \VAR{join(", ", paper.authors, " and ")}\\\\
+        & \VAR{join_names(", ", paper.authors, " and ")}\\\\
       \BLOCK{endif}
     \BLOCK{endfor}
     \end{tabular}
