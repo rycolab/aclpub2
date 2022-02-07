@@ -382,7 +382,7 @@ def load_configs_handbook(root: Path):
     workshops = load_config("workshops", root)
     program_workshops = {}
     for workshop in workshops:
-        program_workshops[workshop["id"]] = process_program_workshop_handbook(load_config("workshops/"+str(workshop["id"]), root),350)
+        program_workshops[workshop["id"]] = process_program_workshop_handbook(load_config("workshops/"+str(workshop["id"]), root), max_lines=350)
     workshop_days=[]
     for workshop in workshops:
         wdate = workshop["date"]
