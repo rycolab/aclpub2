@@ -179,13 +179,13 @@ PLACHOLDER FOR OTHER CONFERENCE INFORMATION
         \BLOCK{endfor}
       \BLOCK{endif}
       \BLOCK{if not area.members[0].institution}
-        \hspace*{1em} \VAR{join(", ", area.members)}\\
+        \hspace*{1em} \VAR{join_names(", ", area.members)}\\
       \BLOCK{endif}
     \BLOCK{endfor}
   \BLOCK{endif}
   \BLOCK{if block.type is equalto("name_block")}
     \BLOCK{for name_block in group_by_last_name(block.entries)}
-      \VAR{join(", ", name_block)}\\
+      \VAR{join_names(", ", name_block)}\\
       \newline
     \BLOCK{endfor}
   \BLOCK{endif}
@@ -212,15 +212,12 @@ PLACHOLDER FOR OTHER CONFERENCE INFORMATION
           \BLOCK{for paper_slot in subsession.papers}
           \BLOCK{set paper = id_to_paper[paper_slot.id]}
             \textbf{\VAR{paper.title}}\\
-            \textit{\VAR{join(", ", paper.authors, " and ")}}
+            \textit{\VAR{join_names(", ", paper.authors, " and ")}}
             \BLOCK{if paper_slot.start_time}
               \hfill
               \VAR{paper_slot.start_time.strftime('%H:%M')}-\VAR{paper_slot.end_time.strftime('%H:%M')}
             \BLOCK{endif}
             \\
-            \BLOCK{for author in paper.authors}
-              \VAR{index_author(author)}
-            \BLOCK{endfor}
             \VAR{paper.abstract}\\
           \BLOCK{endfor}
         \BLOCK{endif}
@@ -232,15 +229,12 @@ PLACHOLDER FOR OTHER CONFERENCE INFORMATION
       \BLOCK{for paper_slot in session.papers}
       \BLOCK{set paper = id_to_paper[paper_slot.id]}
         \textbf{\VAR{paper.title}}\\
-        \textit{\VAR{join(", ", paper.authors, " and ")}}
+        \textit{\VAR{join_names(", ", paper.authors, " and ")}}
         \BLOCK{if paper_slot.start_time}
           \hfill
           \VAR{paper_slot.start_time.strftime('%H:%M')}-\VAR{paper_slot.end_time.strftime('%H:%M')}
         \BLOCK{endif}
         \\
-        \BLOCK{for author in paper.authors}
-          \VAR{index_author(author)}
-        \BLOCK{endfor}
         \VAR{paper.abstract}\\
       \BLOCK{endfor}
     \BLOCK{endif}
