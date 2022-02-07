@@ -12,7 +12,21 @@ def load_file(*args: str):
         return f.read()
 
 
-def join(delimiter: str, items: List[Any], delimiter_last: str = None):
+def render_name(user):
+    name = user["first_name"] + " "
+    if "middle_name" in user:
+        name += user["middle_name"] + " "
+    name += user["last_name"]
+    return name
+
+def join_names(delimiter: str, items: List[Any], delimiter_last: str = None):
+    def render_name(item):
+        name = item["first_name"]
+        if "middle_name" in item:
+            name = f"{name} {item['middle_name']}"
+        name = f"{name} {item['last_name']}"
+        return name
+    items = list(map(render_name, items))
     if len(items) == 1:
         return items[0]
     if delimiter_last:
@@ -65,7 +79,7 @@ LATEX_JINJA_ENV = jinja2.Environment(
     autoescape=False,
     loader=jinja2.FileSystemLoader(str(TEMPLATE_DIR))
 )
-LATEX_JINJA_ENV.globals.update(load_file=load_file, join=join,
+LATEX_JINJA_ENV.globals.update(load_file=load_file, join_names=join_names,
                                group_by_last_name=group_by_last_name,
                                program_date=program_date, session_times=session_times,
                                join_page_numbers=join_page_numbers,

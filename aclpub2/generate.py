@@ -10,7 +10,7 @@ import shutil
 PARENT_DIR = Path(__file__).parent
 
 
-def generate(*, path: str, proceedings: bool, handbook: bool, overwrite: bool):
+def generate_proceedings(path: str, overwrite: bool):
     root = Path(path)
     build_dir = Path("build")
     build_dir.mkdir(exist_ok=True)
@@ -32,77 +32,91 @@ def generate(*, path: str, proceedings: bool, handbook: bool, overwrite: bool):
         invited_talks,
         program,
     ) = load_configs(root)
-    id_to_paper, alphabetized_author_index = process_papers(papers, root, proceedings)
-    if proceedings:
-        sessions_by_date = process_program_proceedings(program)
-        template = load_template("proceedings")
-        rendered_template = template.render(
-            root=str(root),
-            conference=conference,
-            conference_dates=get_conference_dates(conference),
-            sponsors=sponsors,
-            prefaces=prefaces,
-            organizing_committee=organizing_committee,
-            program_committee=program_committee,
-            invited_talks=invited_talks,
-            papers=papers,
-            id_to_paper=id_to_paper,
-            program=sessions_by_date,
-            alphabetized_author_index=alphabetized_author_index,
-        )
-        tex_file = Path(build_dir, "proceedings.tex")
-        with open(tex_file, "w+") as f:
-            f.write(rendered_template)
-        subprocess.run(["pdflatex", f"-output-directory={build_dir}", str(tex_file)])
+    proocedings = True
+    id_to_paper, alphabetized_author_index = process_papers(papers, root, proocedings)
 
-    if handbook:
-        # Load and preprocess the .yml configuration.
-        (
-            conference,
-            papers,
-            sponsors,
-            prefaces,
-            organizing_committee,
-            program_committee,
-            tutorial_program,
-            tutorials,
-            invited_talks,
-            program,
-            workshops,
-            program_workshops,
-            workshop_days,
-        ) = load_configs_handbook(root)
+    sessions_by_date = process_program_proceedings(program)
+    template = load_template("proceedings")
+    rendered_template = template.render(
+        root=str(root),
+        conference=conference,
+        conference_dates=get_conference_dates(conference),
+        sponsors=sponsors,
+        prefaces=prefaces,
+        organizing_committee=organizing_committee,
+        program_committee=program_committee,
+        invited_talks=invited_talks,
+        papers=papers,
+        id_to_paper=id_to_paper,
+        program=sessions_by_date,
+        alphabetized_author_index=alphabetized_author_index,
+    )
+    tex_file = Path(build_dir, "proceedings.tex")
+    with open(tex_file, "w+") as f:
+        f.write(rendered_template)
+    subprocess.run(["pdflatex", f"-output-directory={build_dir}", str(tex_file)])
 
-        template = load_template("handbook")
-        program = process_program_handbook(program)
-        tutorial_program = process_program_tutorial_handbook(tutorial_program, 350,3)
-        rendered_template = template.render(
-            root=str(root),
-            conference=conference,
-            conference_dates=get_conference_dates(conference),
-            sponsors=sponsors,
-            prefaces=prefaces,
-            organizing_committee=organizing_committee,
-            program_committee=program_committee,
-            tutorial_program=tutorial_program,
-            tutorials=tutorials,
-            invited_talks=invited_talks,
-            papers=papers,
-            id_to_paper=id_to_paper,
-            program=program,
-            workshops=workshops,
-            program_workshops=program_workshops,
-            workshop_days=workshop_days,
-            build_dir=str(build_dir)
+def generate_handbook(path: str, overwrite: bool):
+    root = Path(path)
+    build_dir = Path("build")
+    build_dir.mkdir(exist_ok=True)
+
+    # Throw if the build directory isn't empty, and the user did not specify an overwrite.
+    if len([build_dir.iterdir()]) > 0 and not overwrite:
+        raise Exception(
+            f"Build directory {build_dir} is not empty, and the overwrite flag is false."
         )
-        tex_file = Path(build_dir, "handbook.tex")
-        with open(tex_file, "w+") as f:
-            f.write(rendered_template)
-        if not Path(build_dir, "content").exists():
-            shutil.copytree(f"{TEMPLATE_DIR}/content", f"{build_dir}/content")
-        subprocess.run(["pdflatex", f"-output-directory={build_dir}", str(tex_file)])
-        subprocess.run(["makeindex", str(tex_file.with_suffix(".idx"))])
-        subprocess.run(["pdflatex", f"-output-directory={build_dir}", str(tex_file)])
+    # Load and preprocess the .yml configuration.
+    (
+        conference,
+        papers,
+        sponsors,
+        prefaces,
+        organizing_committee,
+        program_committee,
+        tutorial_program,
+        tutorials,
+        invited_talks,
+        program,
+        workshops,
+        program_workshops,
+        workshop_days,
+    ) = load_configs_handbook(root)
+
+    id_to_paper, alphabetized_author_index = process_papers(papers, root, True)
+
+    template = load_template("handbook")
+    program = process_program_handbook(program)
+    tutorial_program = process_program_tutorial_handbook(tutorial_program, max_lines=350)
+    rendered_template = template.render(
+        root=str(root),
+        conference=conference,
+        conference_dates=get_conference_dates(conference),
+        sponsors=sponsors,
+        prefaces=prefaces,
+        organizing_committee=organizing_committee,
+        program_committee=program_committee,
+        tutorial_program=tutorial_program,
+        tutorials=tutorials,
+        invited_talks=invited_talks,
+        papers=papers,
+        id_to_paper=id_to_paper,
+        program=program,
+        workshops=workshops,
+        program_workshops=program_workshops,
+        workshop_days=workshop_days,
+        build_dir=str(build_dir)
+    )
+    tex_file = Path(build_dir, "handbook.tex")
+    with open(tex_file, "w+") as f:
+        f.write(rendered_template)
+    if not Path(build_dir, "content").exists():
+        shutil.copytree(f"{TEMPLATE_DIR}/content", f"{build_dir}/content")
+    subprocess.run(["pdflatex", f"-output-directory={build_dir}", str(tex_file)])
+    subprocess.run(["makeindex", str(tex_file.with_suffix(".idx"))])
+    subprocess.run(["pdflatex", f"-output-directory={build_dir}", str(tex_file)])
+
+
 def get_conference_dates(conference) -> str:
     start_date = conference["start_date"]
     end_date = conference["end_date"]
@@ -143,8 +157,10 @@ def process_papers(papers, root: Path, pax: bool):
         paper["page_range"] = (page, page + pdf.getNumPages() - 1)
         id_to_paper[paper["id"]] = paper
         for author in paper["authors"]:
-            name_parts = author.split(" ")
-            index_name = f"{name_parts[-1]}, {' '.join(name_parts[:-1])}"
+            given_names = author['first_name']
+            if 'middle_name' in author:
+                given_names += f" {author['middle_name']}"
+            index_name = f"{author['last_name']}, {given_names}"
             author_to_pages[index_name].append(page)
         page += pdf.getNumPages()
     alphabetized_author_index = defaultdict(list)
@@ -271,6 +287,7 @@ def process_program_tutorial_handbook(program, max_lines = 35, paper_median_line
         total_lines = 0
     return sorted(entries_by_date.items())
 
+
 def process_program_workshop_handbook(program, max_lines = 35, paper_median_lines = 3, header_lines = 2):
     """
     process_program organizes program sessions by date, and manually cuts
@@ -324,8 +341,6 @@ def process_program_workshop_handbook(program, max_lines = 35, paper_median_line
         current_page = []
         total_lines = 0
     return sorted(entries_by_date.items())
-
-
 
 
 def normalize_latex_string(text: str) -> str:

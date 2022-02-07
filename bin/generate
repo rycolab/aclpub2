@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 import argparse
-from aclpub2.generate import generate
+from aclpub2.generate import generate_proceedings, generate_handbook
 
 parser = argparse.ArgumentParser(description="Generate proceedings from an input direcotry.")
 parser.add_argument(
@@ -16,4 +16,10 @@ parser.add_argument(
     "--overwrite", action="store_true", help="If set, overwrites the generated files in the output."
 )
 
-generate(**vars(parser.parse_args()))
+args =parser.parse_args()
+#generate(**vars(parser.parse_args()))
+if args.proceedings == True:
+    print(args.path)
+    generate_proceedings(args.path, args.overwrite)
+if args.handbook == True:
+    generate_handbook(args.path, args.overwrite)

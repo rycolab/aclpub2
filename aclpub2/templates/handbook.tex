@@ -95,7 +95,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % General use jinja macros.
-\BLOCK{macro committee_member(member)}\VAR{member.name}, \VAR{member.institution}\BLOCK{endmacro}
+\BLOCK{macro committee_member(member)}\VAR{member.first_name} \BLOCK{if member.middle_name is defined}\VAR{member.middle_name} \BLOCK{endif}\VAR{member.last_name}, \VAR{member.institution}\BLOCK{endmacro}
 
 %%%%%%%%%%%%
 % DOCUMENT %
@@ -172,13 +172,13 @@ PLACHOLDER FOR MAP
         \BLOCK{endfor}
       \BLOCK{endif}
       \BLOCK{if not area.members[0].institution}
-        \hspace*{1em} \VAR{join(", ", area.members)}\\
+        \hspace*{1em} \VAR{join_names(", ", area.members)}\\
       \BLOCK{endif}
     \BLOCK{endfor}
   \BLOCK{endif}
   \BLOCK{if block.type is equalto("name_block")}
     \BLOCK{for name_block in group_by_last_name(block.entries)}
-      \VAR{join(", ", name_block)}\\
+      \VAR{join_names(", ", name_block)}\\
       \newline
     \BLOCK{endfor}
   \BLOCK{endif}
@@ -233,7 +233,6 @@ PLACHOLDER FOR MAP
 % Message from Tutoral CO-Chair
 %%%%%%%%%%%
 \VAR{load_file(root, "tutorial_message", "tutorial_message.tex")}
-
 \newpage
 
 %%%%%%%%%%%%
@@ -253,8 +252,7 @@ PLACHOLDER FOR MAP
 % Welcome Reception
 %%%%%%%%%%%
 \setheaders{}{}
-\VAR{load_file(root, "welcome_receiption", "welcome_receiption.tex")}
-
+\VAR{load_file(root, "welcome_reception", "welcome_reception.tex")}
 \newpage
 
 %%%%%%%%%%%%
@@ -264,12 +262,13 @@ PLACHOLDER FOR MAP
 \chapter{Invited Talks}
 \BLOCK{for talk in invited_talks}
   \begin{flushleft}
-  \section{\VAR{talk.title}}
+    \section{\VAR{talk.title}}
   \end{flushleft}
   \textbf{\Large{\VAR{program_date(talk.date)}}}\\
   \textit{\Large{\VAR{talk.location}}}\\
-  \Large{Session chair: \VAR{talk.chair}}\\\\
+  {\Large{Session chair: \VAR{talk.chair}}}\\
   \vspace*{0.2cm}
+
   \VAR{load_file(root, "invited_talks", talk.abstract_file)}
   \newpage
 \BLOCK{endfor}
@@ -292,15 +291,12 @@ PLACHOLDER FOR MAP
           \BLOCK{for paper_slot in subsession.papers}
           \BLOCK{set paper = id_to_paper[paper_slot.id]}
             \textbf{\VAR{paper.title}}\\
-            \textit{\VAR{join(", ", paper.authors, " and ")}}
+            \textit{\VAR{join_names(", ", paper.authors, " and ")}}
             \BLOCK{if paper_slot.start_time}
               \hfill
               \VAR{paper_slot.start_time.strftime('%H:%M')}-\VAR{paper_slot.end_time.strftime('%H:%M')}
             \BLOCK{endif}
             \\
-            \BLOCK{for author in paper.authors}
-              \VAR{index_author(author)}
-            \BLOCK{endfor}
             \VAR{paper.abstract}\\
           \BLOCK{endfor}
         \BLOCK{endif}
@@ -312,15 +308,12 @@ PLACHOLDER FOR MAP
       \BLOCK{for paper_slot in session.papers}
       \BLOCK{set paper = id_to_paper[paper_slot.id]}
         \textbf{\VAR{paper.title}}\\
-        \textit{\VAR{join(", ", paper.authors, " and ")}}
+        \textit{\VAR{join_names(", ", paper.authors, " and ")}}
         \BLOCK{if paper_slot.start_time}
           \hfill
           \VAR{paper_slot.start_time.strftime('%H:%M')}-\VAR{paper_slot.end_time.strftime('%H:%M')}
         \BLOCK{endif}
         \\
-        \BLOCK{for author in paper.authors}
-          \VAR{index_author(author)}
-        \BLOCK{endfor}
         \VAR{paper.abstract}\\
       \BLOCK{endfor}
     \BLOCK{endif}
@@ -406,7 +399,6 @@ PLACHOLDER FOR MAP
 %%%%%%%%%%%
 \setheaders{}{}
 \VAR{load_file(root, "local_guide", "local_guide.tex")}
-
 \newpage
 
 %%%%%%%%%%%
@@ -414,7 +406,6 @@ PLACHOLDER FOR MAP
 %%%%%%%%%%%
 \setheaders{}{}
 \VAR{load_file(root, "venue_map", "venue_map.tex")}
-
 \newpage
 
 %%%%%%%%%%%%%%%%
@@ -424,7 +415,6 @@ PLACHOLDER FOR MAP
 \addcontentsline{toc}{chapter}{Author Index}
 \setheaders{Author Index}{Author Index}
 \printindex
-
 \newpage
 
 %%%%%%%%%%%%%%

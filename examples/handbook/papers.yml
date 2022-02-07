@@ -1,5 +1,4 @@
-- abstract:
-    The natural language generation (NLG) module in a task-oriented dialogue
+- abstract: The natural language generation (NLG) module in a task-oriented dialogue
     system produces user-facing utterances conveying required information. Thus, it
     is critical for the generated response to be natural and fluent. We propose to
     integrate adversarial training to produce more human-like responses. The model
@@ -10,14 +9,13 @@
     Restaurant dataset, our model AdvNLG outperforms the previous state-of-the-art
     result by 3.6\% in BLEU.
   authors:
-    - Chenguang Zhu
+  - first_name: Chenguang
+    last_name: Zhu
   file: 2.pdf
   id: 2
-  title:
-    Boosting Naturalness of Language in Task-oriented Dialogues via Adversarial
+  title: Boosting Naturalness of Language in Task-oriented Dialogues via Adversarial
     Training
-- abstract:
-    It is important to define meaningful and interpretable automatic evaluation
+- abstract: It is important to define meaningful and interpretable automatic evaluation
     metrics for open-domain dialog research. Standard language generation metrics
     have been shown to be ineffective for dialog. This paper introduces the FED metric
     (fine-grained evaluation of dialog), an automatic evaluation metric which uses
@@ -28,13 +26,14 @@
     fine-grained dialog qualities at both the turn and whole dialog levels. FED attains
     moderate to strong correlation with human judgement at both levels.
   authors:
-    - Shikib Mehri
-    - Maxine Eskenazi
+  - first_name: Shikib
+    last_name: Mehri
+  - first_name: Maxine
+    last_name: Eskenazi
   file: 4.pdf
   id: 4
   title: Unsupervised Evaluation of Interactive Dialog with DialoGPT
-- abstract:
-    For the past 15 years, in computer-supported collaborative learning applications,
+- abstract: For the past 15 years, in computer-supported collaborative learning applications,
     conversational agents have been used to structure group interactions in online
     chat-based environments. A series of experimental studies has provided an empirical
     foundation for the design of chat-based conversational agents that significantly
@@ -43,15 +42,19 @@
     agents to structure group interaction into physical spaces, with the specific
     goal of facilitating collaboration and learning in workplace scenarios.
   authors:
-    - Yansen Wang
-    - R. Charles Murray
-    - Haogang Bao
-    - Carolyn Rose
+  - first_name: Yansen
+    last_name: Wang
+  - first_name: R.
+    last_name: Murray
+    middle_name: Charles
+  - first_name: Haogang
+    last_name: Bao
+  - first_name: Carolyn
+    last_name: Rose
   file: 7.pdf
   id: 7
   title: Agent-Based Dynamic Collaboration Support in a Smart Office Space
-- abstract:
-    There is a growing interest in developing goal-oriented dialog systems
+- abstract: There is a growing interest in developing goal-oriented dialog systems
     which serve users in accomplishing complex tasks through multi-turn conversations.
     Although many methods are devised to evaluate and improve the performance of individual
     dialog components, there is a lack of comprehensive empirical study on how different
@@ -66,19 +69,23 @@
     between simulators and human users, simulated evaluation is still a valid alternative
     to the costly human evaluation especially in the early stage of development.
   authors:
-    - Ryuichi Takanobu
-    - Qi Zhu
-    - Jinchao Li
-    - Baolin Peng
-    - Jianfeng Gao
-    - Minlie Huang
+  - first_name: Ryuichi
+    last_name: Takanobu
+  - first_name: Qi
+    last_name: Zhu
+  - first_name: Jinchao
+    last_name: Li
+  - first_name: Baolin
+    last_name: Peng
+  - first_name: Jianfeng
+    last_name: Gao
+  - first_name: Minlie
+    last_name: Huang
   file: 8.pdf
   id: 8
-  title:
-    Is Your Goal-Oriented Dialog Model Performing Really Well? Empirical Analysis
+  title: Is Your Goal-Oriented Dialog Model Performing Really Well? Empirical Analysis
     of System-wise Evaluation
-- abstract:
-    The differences in decision making between behavioural models of voice
+- abstract: The differences in decision making between behavioural models of voice
     interfaces are hard to capture using existing measures for the absolute performance
     of such models. For instance, two models may have a similar task success rate,
     but very different ways of getting there. In this paper, we propose a general
@@ -87,15 +94,16 @@
     Complementing absolute measures of performance, we test our scores on three different
     tasks and show the practical usability of the measures.
   authors:
-    - Stefan Ultes
-    - Wolfgang Maier
+  - first_name: Stefan
+    last_name: Ultes
+  - first_name: Wolfgang
+    last_name: Maier
   file: 9.pdf
   id: 9
   title: Similarity Scoring for Dialogue Behaviour Comparison
-- abstract:
-    "Acoustic/prosodic (a/p) entrainment has been associated with multiple positive
-    social aspects of human-human conversations. However, research on its effects
-    is still preliminary, first because how to model it is far from standardized,
+- abstract: 'Acoustic/prosodic (a/p) entrainment has been associated with multiple
+    positive social aspects of human-human conversations. However, research on its
+    effects is still preliminary, first because how to model it is far from standardized,
     and second because most of the reported findings rely on small corpora or on corpora
     collected in experimental setups. The present article has a twofold purpose:  1)
     it proposes a unifying statistical framework for modeling a/p entrainment, and
@@ -107,19 +115,22 @@
     of spontaneous dialog. Our results suggest that our metrics effectively predict,
     up to some extent, positive social aspects of conversations, which not only validates
     the methodology, but also provides further insights into the elusive topic of
-    entrainment in human-human conversation."
+    entrainment in human-human conversation.'
   authors:
-    - "Ramiro H. G\xE1lvez"
-    - Lara Gauder
-    - Jordi Luque
-    - "Agust\xEDn Gravano"
+  - first_name: Ramiro
+    last_name: "G\xE1lvez"
+    middle_name: H.
+  - first_name: Lara
+    last_name: Gauder
+  - first_name: Jordi
+    last_name: Luque
+  - first_name: "Agust\xEDn"
+    last_name: Gravano
   file: 11.pdf
   id: 11
-  title:
-    "A unifying framework for modeling acoustic/prosodic entrainment: definition
-    and evaluation on two large corpora"
-- abstract:
-    In this work, we study collaborative online conversations. Such conversations
+  title: 'A unifying framework for modeling acoustic/prosodic entrainment: definition
+    and evaluation on two large corpora'
+- abstract: In this work, we study collaborative online conversations. Such conversations
     are rich in content, constructive and motivated by a shared goal. Automatically
     identifying such conversations requires modeling complex discourse behaviors,
     which characterize the flow of information, sentiment and community structure
@@ -131,16 +142,20 @@
     variables results in performance improvement, while providing a natural way to
     explain the decision.
   authors:
-    - Ayush Jain
-    - Maria Pacheco
-    - Steven Lancette
-    - Mahak Goindani
-    - Dan Goldwasser
+  - first_name: Ayush
+    last_name: Jain
+  - first_name: Maria
+    last_name: Pacheco
+  - first_name: Steven
+    last_name: Lancette
+  - first_name: Mahak
+    last_name: Goindani
+  - first_name: Dan
+    last_name: Goldwasser
   file: 12.pdf
   id: 12
   title: Identifying Collaborative Conversations using Latent Discourse Behaviors
-- abstract:
-    Reinforcement learning (RL) methods have been widely used for learning
+- abstract: Reinforcement learning (RL) methods have been widely used for learning
     dialog policies. Sample efficiency, i.e., the efficiency of learning from limited
     dialog experience, is particularly important in RL-based dialog policy learning,
     because interacting with people is costly and low-quality dialog policies produce
@@ -152,15 +167,18 @@
     competitive baselines from the literature, including its no-simulation, no-adaptation,
     and no-hindsight counterparts.
   authors:
-    - Yan Cao
-    - Keting Lu
-    - Xiaoping Chen
-    - Shiqi Zhang
+  - first_name: Yan
+    last_name: Cao
+  - first_name: Keting
+    last_name: Lu
+  - first_name: Xiaoping
+    last_name: Chen
+  - first_name: Shiqi
+    last_name: Zhang
   file: 16.pdf
   id: 16
   title: Adaptive Dialog Policy Learning with Hindsight and User Modeling
-- abstract:
-    We study the problem of schema discovery for knowledge graphs. We propose
+- abstract: We study the problem of schema discovery for knowledge graphs. We propose
     a solution where an agent engages in multi-turn dialog with an expert for this
     purpose. Each mini-dialog focuses on a short natural language statement, and looks
     to elicit the expert's desired schema-based interpretation of that statement,
@@ -174,30 +192,37 @@
     with the highest expected reduction of entropy. We show that this significantly
     reduces dialog complexity while engaging the expert in meaningful dialog.
   authors:
-    - Subhasis Ghosh
-    - Arpita Kundu
-    - Aniket Pramanick
-    - Indrajit Bhattacharya
+  - first_name: Subhasis
+    last_name: Ghosh
+  - first_name: Arpita
+    last_name: Kundu
+  - first_name: Aniket
+    last_name: Pramanick
+  - first_name: Indrajit
+    last_name: Bhattacharya
   file: 17.pdf
   id: 17
   title: Discovering Knowledge Graph Schema from Short Natural Language Text via Dialog
-- abstract:
-    We describe an attentive listening system for the autonomous android robot
+- abstract: We describe an attentive listening system for the autonomous android robot
     ERICA.
   authors:
-    - Koji Inoue
-    - Divesh Lala
-    - Kenta Yamamoto
-    - Shizuka Nakamura
-    - Katsuya Takanashi
-    - Tatsuya Kawahara
+  - first_name: Koji
+    last_name: Inoue
+  - first_name: Divesh
+    last_name: Lala
+  - first_name: Kenta
+    last_name: Yamamoto
+  - first_name: Shizuka
+    last_name: Nakamura
+  - first_name: Katsuya
+    last_name: Takanashi
+  - first_name: Tatsuya
+    last_name: Kawahara
   file: 18.pdf
   id: 18
-  title:
-    "An Attentive Listening System with Android ERICA: Comparison of Autonomous
-    and WOZ Interactions"
-- abstract:
-    Neural encoder-decoder models have shown promising performance for human-computer
+  title: 'An Attentive Listening System with Android ERICA: Comparison of Autonomous
+    and WOZ Interactions'
+- abstract: Neural encoder-decoder models have shown promising performance for human-computer
     dialogue systems over the past few years. However, due to the maximum-likelihood
     objective for the decoder, the generated responses are often universal and safe
     to the point that they lack meaningful information and are no longer relevant
@@ -207,13 +232,14 @@
     in the response. Synsets, which comprise sets of manually defined synonyms, are
     used as the form of assigned semantics. For a
   authors:
-    - Cheng-Hsun Hsueh
-    - Wei-Yun Ma
+  - first_name: Cheng-Hsun
+    last_name: Hsueh
+  - first_name: Wei-Yun
+    last_name: Ma
   file: 22.pdf
   id: 22
   title: Semantic Guidance of Dialogue Generation with Reinforcement Learning
-- abstract:
-    The present study aims to examine the prevalent notion that people entrain
+- abstract: The present study aims to examine the prevalent notion that people entrain
     to the vocabulary of a dialogue system. Although previous research shows that
     people will replace their choice of words with simple substitutes, studies using
     more challenging substitutions are sparse. In this paper, we investigate whether
@@ -226,15 +252,18 @@
     is more consistent with the norms of the domain than the original wording of the
     speaker.
   authors:
-    - Amanda Bergqvist
-    - Ramesh Manuvinakurike
-    - Deepthi Karkada
-    - Maike Paetzel
+  - first_name: Amanda
+    last_name: Bergqvist
+  - first_name: Ramesh
+    last_name: Manuvinakurike
+  - first_name: Deepthi
+    last_name: Karkada
+  - first_name: Maike
+    last_name: Paetzel
   file: 24.pdf
   id: 24
   title: Nontrivial Lexical Convergence in a Geography-Themed Game
-- abstract:
-    This paper presents MDP policy learning for agents to learn strategic
+- abstract: This paper presents MDP policy learning for agents to learn strategic
     behavior--how to play board games--during multimodal dialogues. Policies are trained
     offline in simulation, with dialogues carried out in a formal language. The agent
     has a temporary belief state for the dialogue, and a persistent knowledge store
@@ -248,40 +277,48 @@
     system rated the system's language skills as above average. Further, results confirm
     that human dialogue partners also vary in their informativeness.
   authors:
-    - Maryam Zare
-    - Ali Ayub
-    - Aishan Liu
-    - Sweekar Sudhakara
-    - Alan Wagner
-    - Rebecca Passonneau
+  - first_name: Maryam
+    last_name: Zare
+  - first_name: Ali
+    last_name: Ayub
+  - first_name: Aishan
+    last_name: Liu
+  - first_name: Sweekar
+    last_name: Sudhakara
+  - first_name: Alan
+    last_name: Wagner
+  - first_name: Rebecca
+    last_name: Passonneau
   file: 25.pdf
   id: 25
   title: Dialogue Policies for Learning Board Games through Multimodal Communication
-- abstract:
-    "We will demonstrate a deployed conversational AI system that acts as
+- abstract: 'We will demonstrate a deployed conversational AI system that acts as
     a host of a smart-building on a university campus. The system combines open-domain
     social conversation with task-based conversation regarding navigation in the building,
     live resource updates (e.g. available computers) and events in the building. We
     are able to demonstrate the system on several platforms: Google Home devices,
-    Android phones, and a Furhat robot."
+    Android phones, and a Furhat robot.'
   authors:
-    - "Weronika Siei\u0144ska"
-    - Christian Dondrup
-    - Nancie Gunson
-    - Oliver Lemon
+  - first_name: Weronika
+    last_name: "Siei\u0144ska"
+  - first_name: Christian
+    last_name: Dondrup
+  - first_name: Nancie
+    last_name: Gunson
+  - first_name: Oliver
+    last_name: Lemon
   file: 28.pdf
   id: 28
   title: Conversational Agents for Intelligent Buildings
-- abstract:
-    "Dialog systems capable of filling slots with numerical values have wide
-    applicability to many task-oriented applications. "
+- abstract: 'Dialog systems capable of filling slots with numerical values have wide
+    applicability to many task-oriented applications. '
   authors:
-    - Hongjie Shi
+  - first_name: Hongjie
+    last_name: Shi
   file: 38.pdf
   id: 38
   title: A Sequence-to-sequence Approach for Numerical Slot-filling Dialog Systems
-- abstract:
-    Conversations over the telephone require timely turn-taking cues that
+- abstract: Conversations over the telephone require timely turn-taking cues that
     signal the participants when to speak and when to listen. When a two-way transmission
     delay is introduced into such conversations, the immediate feedback is delayed,
     and the interactivity of the conversation is impaired. With delayed speech on
@@ -290,13 +327,14 @@
     conversations can give insights on turn-taking and spoken interactions between
     humans but can also used for analyzing and even predicting human behavior in conversations.
   authors:
-    - Thilo Michael
-    - "Sebastian M\xF6ller"
+  - first_name: Thilo
+    last_name: Michael
+  - first_name: Sebastian
+    last_name: "M\xF6ller"
   file: 41.pdf
   id: 41
   title: Simulating Turn-Taking in Conversations with Delayed Transmission
-- abstract:
-    "For the acquisition of knowledge through dialogues, it is crucial for\
+- abstract: "For the acquisition of knowledge through dialogues, it is crucial for\
     \ systems to ask questions that do not diminish the user\u2019s willingness to\
     \ talk, i.e., that do not degrade the user\u2019s impression. This paper reports\
     \ the results of our analysis on how user impression changes depending on the\
@@ -311,13 +349,14 @@
     \ reveal helpful insights for creating a strategy to avoid user impression deterioration\
     \ during knowledge acquisition."
   authors:
-    - Kazunori Komatani
-    - Mikio Nakano
+  - first_name: Kazunori
+    last_name: Komatani
+  - first_name: Mikio
+    last_name: Nakano
   file: 42.pdf
   id: 42
   title: User Impressions of Questions to Acquire Lexical Knowledge
-- abstract:
-    Cognitive models of conversation and research on user-adaptation in dialogue
+- abstract: Cognitive models of conversation and research on user-adaptation in dialogue
     systems involves a better understanding of speakers convergence in conversation.
     Convergence effects have been established on controlled data sets, for various
     acoustic and linguistic variables. Tracking interpersonal dynamics on generic
@@ -332,27 +371,28 @@
     dialogue activity types and their related NLP topics as important ingredients
     of their toolboxes.
   authors:
-    - Simone Fuscone
-    - Benoit Favre
-    - "Laurent Pr\xE9vot"
+  - first_name: Simone
+    last_name: Fuscone
+  - first_name: Benoit
+    last_name: Favre
+  - first_name: Laurent
+    last_name: "Pr\xE9vot"
   file: 43.pdf
   id: 43
-  title:
-    Filtering conversations through dialogue acts labels for improving corpus-based
+  title: Filtering conversations through dialogue acts labels for improving corpus-based
     convergence studies
-- abstract:
-    In this paper we present the newest version of retico - a python-based
+- abstract: In this paper we present the newest version of retico - a python-based
     incremental dialogue framework to create state-of-the-art spoken dialogue systems
     and simulations. Retico provides a range of incremental modules that are based
     on services like Google ASR, Google TTS and Rasa NLU. Incremental networks can
     be created either in code or with a graphical user interface.
   authors:
-    - Thilo Michael
+  - first_name: Thilo
+    last_name: Michael
   file: 44.pdf
   id: 44
-  title: "Retico: An incremental framework for spoken dialogue systems"
-- abstract:
-    "Turn-entry timing is an important requirement for conversation, and one
+  title: 'Retico: An incremental framework for spoken dialogue systems'
+- abstract: 'Turn-entry timing is an important requirement for conversation, and one
     that spoken dialogue systems largely fail at. In this paper, we introduce a computational
     framework based on work from Psycholinguistics, which is aimed at achieving proper
     turn-taking timing for situated agents. The approach involves incremental processing
@@ -366,28 +406,32 @@
     at a transition point or earlier to produce several types of overlap, and 3) the
     system is robust to various forms of disfluency in the input. Overall, this domain-independent
     framework can be integrated into various dialogue systems to improve responsiveness,
-    and is a step toward more natural, human-like turn-taking behavior."
+    and is a step toward more natural, human-like turn-taking behavior.'
   authors:
-    - Felix Gervits
-    - Ravenna Thielstrom
-    - Antonio Roque
-    - Matthias Scheutz
+  - first_name: Felix
+    last_name: Gervits
+  - first_name: Ravenna
+    last_name: Thielstrom
+  - first_name: Antonio
+    last_name: Roque
+  - first_name: Matthias
+    last_name: Scheutz
   file: 49.pdf
   id: 49
-  title: "It's About Time: Turn-Entry Timing For Situated Human-Robot Dialogue"
-- abstract:
-    "In this work, we investigate the human perception of coherence in open-domain
+  title: 'It''s About Time: Turn-Entry Timing For Situated Human-Robot Dialogue'
+- abstract: 'In this work, we investigate the human perception of coherence in open-domain
     dialogues. In particular, we address the problem of annotating and modeling the
     coherence of next-turn candidates while considering the entire history of the
-    dialogue.  "
+    dialogue.  '
   authors:
-    - Alessandra Cervone
-    - Giuseppe Riccardi
+  - first_name: Alessandra
+    last_name: Cervone
+  - first_name: Giuseppe
+    last_name: Riccardi
   file: 58.pdf
   id: 58
   title: Is this Dialogue Coherent? Learning from Dialogue Acts and Entities
-- abstract:
-    "Our goal is to develop and deploy a virtual assistant health coach that
+- abstract: 'Our goal is to develop and deploy a virtual assistant health coach that
     can help patients set realistic physical activity goals and live a more active
     lifestyle. Since there is no publicly shared dataset of health coaching dialogues,
     the first phase of our research focused on data collection. We hired a certified
@@ -402,22 +446,31 @@
     the second round of data, collected with different health coaches and patients.
     Given the resource-intensive nature of data annotation, successfully annotating
     a new dataset automatically is key to answer the need for high quality, large
-    datasets."
+    datasets.'
   authors:
-    - Itika Gupta
-    - Barbara Di Eugenio
-    - Brian Ziebart
-    - Aiswarya Baiju
-    - Bing Liu
-    - Ben Gerber
-    - Lisa Sharp
-    - Nadia Nabulsi
-    - Mary Smart
+  - first_name: Itika
+    last_name: Gupta
+  - first_name: Barbara
+    last_name: Eugenio
+    middle_name: Di
+  - first_name: Brian
+    last_name: Ziebart
+  - first_name: Aiswarya
+    last_name: Baiju
+  - first_name: Bing
+    last_name: Liu
+  - first_name: Ben
+    last_name: Gerber
+  - first_name: Lisa
+    last_name: Sharp
+  - first_name: Nadia
+    last_name: Nabulsi
+  - first_name: Mary
+    last_name: Smart
   file: 60.pdf
   id: 60
-  title: "Human-Human Health Coaching via Text Messages: Corpus, Annotation, and Analysis"
-- abstract:
-    Spoken interaction with a physical robot requires a dialogue system that
+  title: 'Human-Human Health Coaching via Text Messages: Corpus, Annotation, and Analysis'
+- abstract: Spoken interaction with a physical robot requires a dialogue system that
     is modular, multimodal, distributive, incremental and temporally aligned. In this
     demo paper, we make significant contributions towards fulfilling these requirements
     by expanding upon the ReTiCo incremental framework. We outline the incremental
@@ -425,16 +478,20 @@
     the power and flexibility of our robot-ready spoken dialogue system to be integrated
     with almost any robot.
   authors:
-    - Casey Kennington
-    - Daniele Moro
-    - Lucas Marchand
-    - Jake Carns
-    - David McNeill
+  - first_name: Casey
+    last_name: Kennington
+  - first_name: Daniele
+    last_name: Moro
+  - first_name: Lucas
+    last_name: Marchand
+  - first_name: Jake
+    last_name: Carns
+  - first_name: David
+    last_name: McNeill
   file: 61.pdf
   id: 61
-  title: "rrSDS: Towards a Robot-ready Spoken Dialogue System"
-- abstract:
-    " physical blocks world, despite its relative simplicity, requires (in
+  title: 'rrSDS: Towards a Robot-ready Spoken Dialogue System'
+- abstract: ' physical blocks world, despite its relative simplicity, requires (in
     fully interactive form) a rich set of functional capabilities, ranging from vision
     to natural language understanding. In this work we tackle spatial question answering
     in a holistic way, using a vision system, speech input and output mediated by
@@ -445,19 +502,21 @@
     a dialogue manager based on a schema representation, and a constraint solver for
     spatial questions that provides answers in agreement with human perception. These
     and other components are integrated into a multi-modal human-computer interaction
-    pipeline."
+    pipeline.'
   authors:
-    - Georgiy Platonov
-    - Lenhart Schubert
-    - Benjamin Kane
-    - Aaron Gindi
+  - first_name: Georgiy
+    last_name: Platonov
+  - first_name: Lenhart
+    last_name: Schubert
+  - first_name: Benjamin
+    last_name: Kane
+  - first_name: Aaron
+    last_name: Gindi
   file: 62.pdf
   id: 62
-  title:
-    A Spoken Dialogue System for Spatial Question Answering in a Physical Blocks
+  title: A Spoken Dialogue System for Spatial Question Answering in a Physical Blocks
     World
-- abstract:
-    "In working towards accomplishing a human-level acquisition and understanding
+- abstract: 'In working towards accomplishing a human-level acquisition and understanding
     of language, a robot must meet two requirements: the ability to learn words from
     interactions with its physical environment, and the ability to learn language
     from people in settings for language use, such as spoken dialogue. In a live interactive
@@ -466,39 +525,52 @@
     does not--indeed, cannot--yet know. We explain our modular system that can autonomously
     learn word groundings through interaction and show through a user study with 21
     participants that emotional displays improve the quantity and quality of the inputs
-    provided to the robot."
+    provided to the robot.'
   authors:
-    - David McNeill
-    - Casey Kennington
+  - first_name: David
+    last_name: McNeill
+  - first_name: Casey
+    last_name: Kennington
   file: 63.pdf
   id: 63
   title: Learning Word Groundings from Humans Facilitated by Robot Emotional Displays
-- abstract:
-    This paper describes the design and functionality of ConvoKit, an open-source
+- abstract: This paper describes the design and functionality of ConvoKit, an open-source
     toolkit for analyzing conversations and the social interactions embedded within.
   authors:
-    - Jonathan P. Chang
-    - Caleb Chiam
-    - Liye Fu
-    - Andrew Wang
-    - Justine Zhang
-    - Cristian Danescu-Niculescu-Mizil
+  - first_name: Jonathan
+    last_name: Chang
+    middle_name: P.
+  - first_name: Caleb
+    last_name: Chiam
+  - first_name: Liye
+    last_name: Fu
+  - first_name: Andrew
+    last_name: Wang
+  - first_name: Justine
+    last_name: Zhang
+  - first_name: Cristian
+    last_name: Danescu-Niculescu-Mizil
   file: 71.pdf
   id: 71
-  title: "ConvoKit: A Toolkit for the Analysis of Conversations"
+  title: 'ConvoKit: A Toolkit for the Analysis of Conversations'
 - abstract: We present a comprehensive platform to run human-computer experiments
   authors:
-    - "Arne K\xF6hn"
-    - Julia Wichlacz
-    - "Christine Sch\xE4fer"
-    - "\xC1lvaro Torralba"
-    - Joerg Hoffmann
-    - Alexander Koller
+  - first_name: Arne
+    last_name: "K\xF6hn"
+  - first_name: Julia
+    last_name: Wichlacz
+  - first_name: Christine
+    last_name: "Sch\xE4fer"
+  - first_name: "\xC1lvaro"
+    last_name: Torralba
+  - first_name: Joerg
+    last_name: Hoffmann
+  - first_name: Alexander
+    last_name: Koller
   file: 72.pdf
   id: 72
-  title: "MC-Saar-Instruct: a Platform for Minecraft Instruction Giving Agents"
-- abstract:
-    "We introduce a counseling dialogue system that seeks to assist counselors\
+  title: 'MC-Saar-Instruct: a Platform for Minecraft Instruction Giving Agents'
+- abstract: "We introduce a counseling dialogue system that seeks to assist counselors\
     \ while they are learning and refining their counseling skills. The system generates\
     \ counselors\u2019reflections  \u2013  i.e.,  responses that reflect back on what\
     \ the client has said given the dialogue history. Our method builds upon the new\
@@ -511,33 +583,40 @@
     \ system generates naturally-looking reflections that are also stylistically and\
     \ grammatically correct."
   authors:
-    - Siqi Shen
-    - Charles Welch
-    - Rada Mihalcea
-    - "Ver\xF3nica P\xE9rez-Rosas"
+  - first_name: Siqi
+    last_name: Shen
+  - first_name: Charles
+    last_name: Welch
+  - first_name: Rada
+    last_name: Mihalcea
+  - first_name: "Ver\xF3nica"
+    last_name: "P\xE9rez-Rosas"
   file: 76.pdf
   id: 76
-  title:
-    Counseling-Style Reflection Generation Using Generative Pretrained Transformers
+  title: Counseling-Style Reflection Generation Using Generative Pretrained Transformers
     with Augmented Context
-- abstract:
-    Human tackle reading comprehension not only based on the given context
+- abstract: Human tackle reading comprehension not only based on the given context
     itself but often rely on the commonsense beyond. To empower the machine with commonsense
     reasoning, in this paper, we propose a Commonsense Evidence Generation and Injection
     framework in reading comprehension, named CEGI. The framework injects two kinds
     of auxiliary commonsense evidence into comprehensive reading to equip the machine
     with the ability of rational thinking. Specifically, we build two evidence
   authors:
-    - Ye Liu
-    - Tao Yang
-    - Zeyu You
-    - Wei Fan
-    - Philip S. Yu
+  - first_name: Ye
+    last_name: Liu
+  - first_name: Tao
+    last_name: Yang
+  - first_name: Zeyu
+    last_name: You
+  - first_name: Wei
+    last_name: Fan
+  - first_name: Philip
+    last_name: Yu
+    middle_name: S.
   file: 78.pdf
   id: 78
   title: Commonsense Evidence Generation and Injection in Reading Comprehension
-- abstract:
-    " conversational AI-based dialogue management has increasingly become
+- abstract: ' conversational AI-based dialogue management has increasingly become
     a trending topic, the need for a standardized and reliable evaluation procedure
     grows even more pressing. The current state of affairs suggests various evaluation
     protocols to assess chat-oriented dialogue management systems, rendering it difficult
@@ -549,17 +628,19 @@
     dimensions. A total of 20 papers from the last two years are surveyed to analyze
     three types of evaluation protocols: automated, static, and interactive. Finally,
     the evaluation dimensions used in these papers are compared against our expert
-    evaluation on the system-user dialogue data collected from the Alexa Prize 2020."
+    evaluation on the system-user dialogue data collected from the Alexa Prize 2020.'
   authors:
-    - Sarah E. Finch
-    - Jinho D. Choi
+  - first_name: Sarah
+    last_name: Finch
+    middle_name: E.
+  - first_name: Jinho
+    last_name: Choi
+    middle_name: D.
   file: 79.pdf
   id: 79
-  title:
-    "Towards Unified Dialogue System Evaluation: A Comprehensive Analysis of
-    Current Evaluation Protocols"
-- abstract:
-    Reinforcement learning and probabilistic reasoning algorithms aim at learning
+  title: 'Towards Unified Dialogue System Evaluation: A Comprehensive Analysis of
+    Current Evaluation Protocols'
+- abstract: Reinforcement learning and probabilistic reasoning algorithms aim at learning
     from interaction experiences and reasoning with probabilistic contextual knowledge
     respectively. In this research, we develop algorithms for robot task completions,
     while looking into the complementary strengths of reinforcement learning and probabilistic
@@ -572,15 +653,18 @@
     experience. More interestingly, the robot was able to learn from navigation tasks
     to improve its dialog strategies.
   authors:
-    - Keting Lu
-    - Shiqi Zhang
-    - Peter Stone
-    - Xiaoping Chen
+  - first_name: Keting
+    last_name: Lu
+  - first_name: Shiqi
+    last_name: Zhang
+  - first_name: Peter
+    last_name: Stone
+  - first_name: Xiaoping
+    last_name: Chen
   file: 81.pdf
   id: 81
   title: Learning and Reasoning for Robot Dialog and Navigation Tasks
-- abstract:
-    "Most prior work on task-oriented dialogue systems are restricted to a
+- abstract: 'Most prior work on task-oriented dialogue systems are restricted to a
     limited coverage of domain APIs, while users oftentimes have domain related requests
     that are not covered by the APIs. In this paper, we propose to expand coverage
     of task-oriented dialogue systems by incorporating external unstructured knowledge
@@ -590,21 +674,25 @@
     new out-of-API-coverage turns and responses grounded on external knowledge sources.
     We present baselines for each sub-task using both conventional and neural approaches.
     Our experimental results demonstrate the need for further research in this direction
-    to enable more informative conversational systems."
+    to enable more informative conversational systems.'
   authors:
-    - Seokhwan Kim
-    - Mihail Eric
-    - Karthik Gopalakrishnan
-    - Behnam Hedayatnia
-    - Yang Liu
-    - Dilek Hakkani-Tur
+  - first_name: Seokhwan
+    last_name: Kim
+  - first_name: Mihail
+    last_name: Eric
+  - first_name: Karthik
+    last_name: Gopalakrishnan
+  - first_name: Behnam
+    last_name: Hedayatnia
+  - first_name: Yang
+    last_name: Liu
+  - first_name: Dilek
+    last_name: Hakkani-Tur
   file: 83.pdf
   id: 83
-  title:
-    "Beyond Domain APIs: Task-oriented Conversational Modeling with Unstructured
-    Knowledge Access"
-- abstract:
-    We present a framework for improving task-oriented dialog systems through
+  title: 'Beyond Domain APIs: Task-oriented Conversational Modeling with Unstructured
+    Knowledge Access'
+- abstract: We present a framework for improving task-oriented dialog systems through
     online interactive teaching with human trainers. A dialog policy trained with
     imitation learning on a limited corpus may not generalize well to novel dialog
     flows often uncovered in live interactions. This issue is magnified in multi-action
@@ -617,14 +705,16 @@
     interactive learning in one domain improves policy model performance in related
     domains.
   authors:
-    - Megha Jhunjhunwala
-    - Caleb Bryant
-    - Pararth Shah
+  - first_name: Megha
+    last_name: Jhunjhunwala
+  - first_name: Caleb
+    last_name: Bryant
+  - first_name: Pararth
+    last_name: Shah
   file: 87.pdf
   id: 87
   title: Multi-Action Dialog Policy Learning with Interactive Human Teaching
-- abstract:
-    We investigate differences in user communication with live chat agents
+- abstract: We investigate differences in user communication with live chat agents
     versus a commercial Intelligent Virtual Agent (IVA). This case study compares
     the two types of interactions in the same domain for the same company filling
     the same purposes. We compared 16,794 human-to-human conversations and 27,674
@@ -634,15 +724,15 @@
     We measured quantity, quality, and diversity of language, and analyzed complexity
     using numerous features.
   authors:
-    - Timothy Hewitt
-    - Ian Beaver
+  - first_name: Timothy
+    last_name: Hewitt
+  - first_name: Ian
+    last_name: Beaver
   file: 89.pdf
   id: 89
-  title:
-    A Case Study of User Communication Styles with Customer Service Agents versus
+  title: A Case Study of User Communication Styles with Customer Service Agents versus
     Intelligent Virtual Agents
-- abstract:
-    We are studying a cooperation style where multiple speakers can provide
+- abstract: We are studying a cooperation style where multiple speakers can provide
     both advanced dialogue services and operator education. We focus on a style in
     which two operators interact with a user by pretending to be a single operator.
     For two operators to effectively act as one, each must adjust his/her conversational
@@ -654,18 +744,24 @@
     to users. In this paper, we report our preliminary results on dialogue content
     and user satisfaction of operators and users.
   authors:
-    - Tsunehiro Arimoto
-    - Ryuichiro Higashinaka
-    - Kou Tanaka
-    - Takahito Kawanishi
-    - Hiroaki Sugiyama
-    - Hiroshi Sawada
-    - Hiroshi Ishiguro
+  - first_name: Tsunehiro
+    last_name: Arimoto
+  - first_name: Ryuichiro
+    last_name: Higashinaka
+  - first_name: Kou
+    last_name: Tanaka
+  - first_name: Takahito
+    last_name: Kawanishi
+  - first_name: Hiroaki
+    last_name: Sugiyama
+  - first_name: Hiroshi
+    last_name: Sawada
+  - first_name: Hiroshi
+    last_name: Ishiguro
   file: 92.pdf
   id: 92
   title: Collection and Analysis of Dialogues Provided by Two Speakers Acting as One
-- abstract:
-    We analyze a corpus of referential communication through the lens of quantitative
+- abstract: We analyze a corpus of referential communication through the lens of quantitative
     models of speaker reasoning.  Different models place different emphases on linguistic
     reasoning and collaborative reasoning.  This leads models to make different assessments
     of the risks and rewards of using specific utterances in specific contexts.  By
@@ -674,13 +770,14 @@
     build integrated models that recognize not only speaker reference but also speaker
     reasoning.
   authors:
-    - Brian McMahan
-    - Matthew Stone
+  - first_name: Brian
+    last_name: McMahan
+  - first_name: Matthew
+    last_name: Stone
   file: 94.pdf
   id: 94
   title: Analyzing Speaker Strategy in Referential Communication
-- abstract:
-    Contextualized language modeling using deep Transformer networks has been
+- abstract: Contextualized language modeling using deep Transformer networks has been
     applied to a variety of natural language processing tasks with remarkable success.
     However, we find that these models are not a panacea for a question-answering
     dialogue agent corpus task, which has hundreds of classes in a long-tailed frequency
@@ -695,16 +792,17 @@
     by splitting different aspects of the semantics of a single word across multiple
     attention heads.
   authors:
-    - Adam Stiff
-    - Qi Song
-    - Eric Fosler-Lussier
+  - first_name: Adam
+    last_name: Stiff
+  - first_name: Qi
+    last_name: Song
+  - first_name: Eric
+    last_name: Fosler-Lussier
   file: 97.pdf
   id: 97
-  title:
-    How Self-Attention Improves Rare Class Performance in a Question-Answering
+  title: How Self-Attention Improves Rare Class Performance in a Question-Answering
     Dialogue Agent
-- abstract:
-    Natural language generators (NLGs) for task-oriented dialogue typically
+- abstract: Natural language generators (NLGs) for task-oriented dialogue typically
     take a meaning representation (MR) as input, and are trained end-to-end with a
     corpus of MR/utterance pairs, where the MRs cover a specific set of dialogue acts
     and domain attributes. Creation of such datasets is labor intensive and time consuming.
@@ -722,22 +820,25 @@
     outputs, automatically constructs a corrected MR input to form a new (MR, utterance)
     training pair, and then repeatedly adds these new instances back into the training
     data. We then test the resulting model on a new test set. The result is a self-trained
-    model whose performance is an absolute 75.4% improvement over the baseline model.
+    model whose performance is an absolute 75.4\% improvement over the baseline model.
     We also report a human qualitative evaluation of the final model showing that
     it achieves high naturalness, semantic coherence and grammaticality.
   authors:
-    - Lena Reed
-    - Vrindavan Harrison
-    - Shereen Oraby
-    - Dilek Hakkani-Tur
-    - Marilyn Walker
+  - first_name: Lena
+    last_name: Reed
+  - first_name: Vrindavan
+    last_name: Harrison
+  - first_name: Shereen
+    last_name: Oraby
+  - first_name: Dilek
+    last_name: Hakkani-Tur
+  - first_name: Marilyn
+    last_name: Walker
   file: 98.pdf
   id: 98
-  title:
-    "Learning from Mistakes: Combining Ontologies via Self-Training for Dialogue
-    Generation"
-- abstract:
-    This demo paper presents Emora STDM (State Transition Dialogue Manager),
+  title: 'Learning from Mistakes: Combining Ontologies via Self-Training for Dialogue
+    Generation'
+- abstract: This demo paper presents Emora STDM (State Transition Dialogue Manager),
     a dialogue system development framework that provides novel workflows for rapid
     prototyping of chat-based dialogue managers as well as collaborative development
     of complex interactions. Our framework caters to a wide range of expertise levels
@@ -749,13 +850,16 @@
     both technical and non-technical backgrounds are able to develop creative dialogue
     managers in a short period of time.
   authors:
-    - James D. Finch
-    - Jinho D. Choi
+  - first_name: James
+    last_name: Finch
+    middle_name: D.
+  - first_name: Jinho
+    last_name: Choi
+    middle_name: D.
   file: 100.pdf
   id: 100
-  title: "Emora STDM: A Versatile Framework for Innovative Dialogue System Development"
-- abstract:
-    Emotion recognition in conversation (ERC) is an important topic for developing
+  title: 'Emora STDM: A Versatile Framework for Innovative Dialogue System Development'
+- abstract: Emotion recognition in conversation (ERC) is an important topic for developing
     empathetic machines in a variety of areas including social opinion mining, health-care
     and so on. In this paper, we propose a method to model ERC task as sequence tagging
     where a Conditional Random Field (CRF) layer is leveraged to learn the emotional
@@ -767,40 +871,51 @@
     and outperforms the current state-of-the-art methods on multiple emotion classification
     datasets.
   authors:
-    - Yan Wang
-    - Jiayu Zhang
-    - Jun Ma
-    - Shaojun Wang
-    - Jing Xiao
+  - first_name: Yan
+    last_name: Wang
+  - first_name: Jiayu
+    last_name: Zhang
+  - first_name: Jun
+    last_name: Ma
+  - first_name: Shaojun
+    last_name: Wang
+  - first_name: Jing
+    last_name: Xiao
   file: 102.pdf
   id: 102
   title: Contextualized Emotion Recognition in Conversation as Sequence Tagging
-- abstract:
-    "Task-oriented dialog systems rely on dialog state tracking (DST) to monitor
-    the user's goal during the course of an interaction. Multi-domain and open-vocabulary
+- abstract: 'Task-oriented dialog systems rely on dialog state tracking (DST) to monitor
+    the user''s goal during the course of an interaction. Multi-domain and open-vocabulary
     settings complicate the task considerably and demand scalable solutions. In this
     paper we present a new approach to DST which makes use of various copy mechanisms
     to fill slots with values. Our model has no need to maintain a list of candidate
     values. Instead, all values are extracted from the dialog context on-the-fly.
     A slot is filled by one of three copy mechanisms: (1) Span prediction may extract
     values directly from the user input; (2) a value may be copied from a system inform
-    memory that keeps track of the system's inform operations (3) a value may be
+    memory that keeps track of the system''s inform operations (3) a value may be
     copied over from a different slot that is already contained in the dialog state
     to resolve coreferences within and across domains. Our approach combines the advantages
     of span-based slot filling methods with memory methods to avoid the use of value
     picklists altogether. We argue that our strategy simplifies the DST task while
     at the same time achieving state of the art performance on various popular evaluation
-    sets including Multiwoz 2.1, where we achieve a joint goal accuracy beyond 55%."
+    sets including Multiwoz 2.1, where we achieve a joint goal accuracy beyond 55%.'
   authors:
-    - Michael Heck
-    - Carel van Niekerk
-    - Nurul Lubis
-    - Christian Geishauser
-    - Hsien-Chin Lin
-    - Marco Moresi
-    - Milica Gasic
+  - first_name: Michael
+    last_name: Heck
+  - first_name: Carel
+    last_name: Niekerk
+    middle_name: van
+  - first_name: Nurul
+    last_name: Lubis
+  - first_name: Christian
+    last_name: Geishauser
+  - first_name: Hsien-Chin
+    last_name: Lin
+  - first_name: Marco
+    last_name: Moresi
+  - first_name: Milica
+    last_name: Gasic
   file: 103.pdf
   id: 103
-  title:
-    "TripPy: A Triple Copy Strategy for Value Independent Neural Dialog State
-    Tracking"
+  title: 'TripPy: A Triple Copy Strategy for Value Independent Neural Dialog State
+    Tracking'
