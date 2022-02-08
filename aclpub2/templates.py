@@ -11,6 +11,7 @@ def load_file(*args: str):
     with open(Path(*args)) as f:
         return f.read()
 
+      
 def render_name(user):
     name = user["first_name"] + " "
     if "middle_name" in user:
@@ -18,6 +19,7 @@ def render_name(user):
     name += user["last_name"]
     return name
 
+  
 def join_names(delimiter: str, items: List[Any], delimiter_last: str = None):
     def render_name(item):
         name = item["first_name"]

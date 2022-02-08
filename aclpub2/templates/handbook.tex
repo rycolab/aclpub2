@@ -94,11 +94,8 @@
 %\bibliography{content/workshops/papers.bib}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
 % General use jinja macros.
-\BLOCK{macro committee_member(member)}\VAR{member.name}, \VAR{member.institution}\BLOCK{endmacro}
+\BLOCK{macro committee_member(member)}\VAR{member.first_name} \BLOCK{if member.middle_name is defined}\VAR{member.middle_name} \BLOCK{endif}\VAR{member.last_name}, \VAR{member.institution}\BLOCK{endmacro}
 
 %%%%%%%%%%%%
 % DOCUMENT %
@@ -107,6 +104,8 @@
 \thispagestyle{empty}
 \fancyfoot[C]{}
 PLACHOLDER FOR COVER
+\newpage
+PLACHOLDER FOR MAP
 \newpage
 
 %%%%%%%
@@ -123,18 +122,14 @@ PLACHOLDER FOR COVER
 \pagenumbering{arabic}
 \setheaders{}{}
 
-PLACHOLDER FOR OTHER CONFERENCE INFORMATION
-
-\newpage
-
 %%%%%%%%%%%%
 % Prefaces %
 %%%%%%%%%%%%
 \BLOCK{for preface in prefaces}
-  \begin{center}
-   {\Large \textbf{\VAR{preface.title}}}
-  \end{center}
-  \vspace*{0.5cm}
+  \begin{flushleft}
+  \section{\VAR{preface.title}}
+  \end{flushleft}
+  \vspace*{0.2cm}
   \VAR{load_file(root, "prefaces", preface.file)}
   \newpage
 \BLOCK{endfor}
@@ -143,10 +138,9 @@ PLACHOLDER FOR OTHER CONFERENCE INFORMATION
 % Organizing Committee %
 %%%%%%%%%%%%%%%%%%%%%%%%
 \setlength{\parindent}{0pt}
-\begin{center}
-  {\Large \textbf{Organizing Committee}}
-  \end{center}
-  \vspace*{1cm}
+\begin{flushleft}
+  \section{Organizing Committee}
+  \end{flushleft}
   \BLOCK{for role in organizing_committee}
     \textbf{\VAR{role.role}}\\
     \BLOCK{for member in role.members}
@@ -159,10 +153,9 @@ PLACHOLDER FOR OTHER CONFERENCE INFORMATION
 %%%%%%%%%%%%%%%%%%%%%
 % Program Committee %
 %%%%%%%%%%%%%%%%%%%%%
-\begin{center}
-  \Large \textbf{Program Committee}
-\end{center}
-\vspace*{1cm}
+\begin{flushleft}
+  \section{Program Committee}
+\end{flushleft}
 \BLOCK{for block in program_committee}
   \textbf{\VAR{block.role}}\\
   \BLOCK{if block.entries[0].institution}
@@ -193,6 +186,92 @@ PLACHOLDER FOR OTHER CONFERENCE INFORMATION
 \BLOCK{endfor}
 \newpage
 
+%%%%%%%%%%%
+% Policy %
+%%%%%%%%%%%
+\VAR{load_file(root, "harassment", "harassment.tex")}
+\newpage
+
+%%%%%%%%%%%
+% Meal_Info %
+%%%%%%%%%%%
+\VAR{load_file(root, "meal", "meal.tex")}
+\newpage
+
+%%%%%%%%%%%
+% Tutorial %
+%%%%%%%%%%%
+
+\BLOCK{for date, pages in tutorial_program}
+\chapter{Tutorials: \VAR{program_date(date)}}
+\setheaders{Tutorials}{\VAR{program_date(date)}}
+\begin{flushleft}
+   \section{Overview}
+\end{flushleft}
+\vspace*{-0.6cm}
+  \BLOCK{set ns = namespace(first=true)}
+  \BLOCK{for page in pages}
+  \setlength\extrarowheight{-8pt}
+    \begin{longtable}{p{24mm}p{74mm}p{15mm}}
+    \BLOCK{for entry in page}
+      \BLOCK{if entry.type is equalto("header")}
+      \VAR{session_times(entry)} & \textbf{\emph{\VAR{entry.title}}} & \\\\
+      \BLOCK{endif}
+
+      \BLOCK{if entry.type is equalto("tutorial")}
+        & \emph{\VAR{entry.paper.title}} & \textit{$\quad$\VAR{entry.paper.room}}\\
+        & \VAR{entry.paper.authors} & \\\\\\
+      \BLOCK{endif}
+    \BLOCK{endfor}
+    \end{longtable}
+    \BLOCK{set ns.first = false}
+  \BLOCK{endfor}
+\BLOCK{endfor}
+\newpage
+
+%%%%%%%%%%%
+% Message from Tutoral CO-Chair
+%%%%%%%%%%%
+\VAR{load_file(root, "tutorial_message", "tutorial_message.tex")}
+\newpage
+
+%%%%%%%%%%%%
+% Tutorial Details %
+%%%%%%%%%%%%
+\BLOCK{for tutorial in tutorials}
+  \begin{flushleft}
+   \section{\VAR{tutorial.title}}
+    \setheaders{Tutorials}{\VAR{program_date(tutorial.date)}}
+  \end{flushleft}
+  \vspace*{0.2cm}
+  \VAR{load_file(root, "tutorials", tutorial.file)}
+  \newpage
+\BLOCK{endfor}
+
+%%%%%%%%%%%
+% Welcome Reception
+%%%%%%%%%%%
+\setheaders{}{}
+\VAR{load_file(root, "welcome_reception", "welcome_reception.tex")}
+\newpage
+
+%%%%%%%%%%%%
+% Invited Talks %
+%%%%%%%%%%%%
+\setheaders{}{}
+\chapter{Invited Talks}
+\BLOCK{for talk in invited_talks}
+  \begin{flushleft}
+    \section{\VAR{talk.title}}
+  \end{flushleft}
+  \textbf{\Large{\VAR{program_date(talk.date)}}}\\
+  \textit{\Large{\VAR{talk.location}}}\\
+  {\Large{Session chair: \VAR{talk.chair}}}\\
+  \vspace*{0.2cm}
+
+  \VAR{load_file(root, "invited_talks", talk.abstract_file)}
+  \newpage
+\BLOCK{endfor}
 
 %%%%%%%%%%%
 % Program %
@@ -242,6 +321,93 @@ PLACHOLDER FOR OTHER CONFERENCE INFORMATION
   \BLOCK{endfor}
 \BLOCK{endfor}
 
+%%%%%%%%%%%%
+% Awards %
+%%%%%%%%%%%%
+\setheaders{}{}
+\VAR{load_file(root, "awards", "awards.tex")}
+\newpage
+
+
+%%%%%%%%%%%
+% Social Event
+%%%%%%%%%%%
+\setheaders{}{}
+\VAR{load_file(root, "social_event", "social_event.tex")}
+\newpage
+
+
+%%%%%%%%%%%
+% Workshops %
+%%%%%%%%%%%
+\setheaders{}{}
+\chapter{Workshops}
+
+\BLOCK{for date in workshop_days}
+    \large{\textbf{\VAR{program_date(date)}}}\\
+    \noindent\rule{\textwidth}{0.4pt}
+    \begin{longtable}{p{34mm}p{64mm}p{15mm}}
+    \BLOCK{for workshop in workshops}
+        \BLOCK{if workshop.date is equalto(date)}
+          \VAR{workshop.location} & \VAR{workshop.title} & p.\pageref{w\VAR{workshop.id}} \\\\
+        \BLOCK{endif}
+    \BLOCK{endfor}
+    \end{longtable}
+    \vspace{1cm}
+\BLOCK{endfor}
+\newpage
+
+
+\BLOCK{for workshop in workshops}
+    \section{\VAR{workshop.title}}
+    \label{w\VAR{workshop.id}}
+    \begin{center}
+        Organizers: \VAR{workshop.chair}\\
+        \large{Venue: \VAR{workshop.location}}\\
+        \large{\textbf{\VAR{program_date(workshop.date)}}}
+    \end{center}
+    \vspace*{0.2cm}
+    \setheaders{\VAR{workshop.title}}{\VAR{program_date(workshop.date)}}
+
+
+    \BLOCK{for date, pages in program_workshops[workshop.id]}
+    \vspace*{-0.6cm}
+      \BLOCK{set ns = namespace(first=true)}
+      \BLOCK{for page in pages}
+      \setlength\extrarowheight{-8pt}
+        \begin{longtable}{p{24mm}p{94mm}}
+        \BLOCK{for entry in page}
+          \BLOCK{if entry.type is equalto("header")}
+          \VAR{session_times(entry)} & \textbf{\emph{\VAR{entry.title}}} \\\\
+          \BLOCK{endif}
+
+          \BLOCK{if entry.type is equalto("paper")}
+            & \emph{\VAR{entry.paper.title}}  \\
+            & \VAR{entry.paper.authors}  \\\\\\
+          \BLOCK{endif}
+        \BLOCK{endfor}
+        \end{longtable}
+        \BLOCK{set ns.first = false}
+      \BLOCK{endfor}
+    \BLOCK{endfor}
+    \newpage
+\BLOCK{endfor}
+\newpage
+
+%%%%%%%%%%%
+% Local Guide %
+%%%%%%%%%%%
+\setheaders{}{}
+\VAR{load_file(root, "local_guide", "local_guide.tex")}
+\newpage
+
+%%%%%%%%%%%
+% Venue Map %
+%%%%%%%%%%%
+\setheaders{}{}
+\VAR{load_file(root, "venue_map", "venue_map.tex")}
+\newpage
+
 %%%%%%%%%%%%%%%%
 % Author Index %
 %%%%%%%%%%%%%%%%
@@ -249,14 +415,16 @@ PLACHOLDER FOR OTHER CONFERENCE INFORMATION
 \addcontentsline{toc}{chapter}{Author Index}
 \setheaders{Author Index}{Author Index}
 \printindex
-
 \newpage
 
 %%%%%%%%%%%%%%
 % Appendices %
 %%%%%%%%%%%%%%
-PLACHOLDER FOR APPENDIX PAGES\\
-Misc. items like local guides, maps, and advertisements can be inserted here.
+\cleardoublepage
+\addcontentsline{toc}{chapter}{Sponsorship}
+\setheaders{Sponsorship}{Sponsorship}
+\VAR{load_file(root, "sponsorship", "sponsorship.tex")}
+
 \newpage
 
 %%%%%%%%%%%%%%
