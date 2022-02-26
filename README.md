@@ -36,10 +36,10 @@ brew install mactex
 
 Ensure that `PYTHONPATH` includes `.`, for example `export PYTHONPATH=.:$PYTHONPATH`.
 
-Run the CLI on the example directory:
+Run the CLI on the SIGDIAL example directory:
 
 ```
-./bin/generate example/ --proceedings --handbook
+./bin/generate examples/sigdial --proceedings --handbook
 ```
 
 The generated results, along with intermediate files and links, can then be found in
@@ -55,16 +55,16 @@ This expected input directory structure and the CLI are detailed below.
 
 ```bash
 # Generates the proceedings.
-./bin/generate example/ --proceedings
+./bin/generate examples/sigdial --proceedings
 
 # Generates the handbook.
-./bin/generate example/ --handbook
+./bin/generate examples/sigdial --handbook
 
 # Generates both.
-./bin/generate example/ --proceedings --handbook
+./bin/generate examples/sigdial --proceedings --handbook
 
 # Generates both and overwrites the existing contents of the build directory.
-./bin/generate example/ --proceedings --handbook --overwrite
+./bin/generate examples/sigdial --proceedings --handbook --overwrite
 ```
 
 Users may wish to make modifications to the output `.tex` files.
@@ -77,31 +77,31 @@ the `--overwrite` flag helps ensure that local modifications are not accidentall
 
 List key information about the conference that builds the cover, watermarks, and other items.
 
-```
-name: [str] Name of the Conference
-abbreviation: [str] Conference abbreviation or acronym, i.e. EMNLP
-start_date: [str] Conference start date YYYY-MM-dd
-end_date: [str] Conference end date YYYY-MM-dd
-isbn: [str] ISBN number of the proceeding.
+```yaml
+name: Name of the Conference
+abbreviation: Conference abbreviation or acronym, i.e. EMNLP
+start_date: Conference start date YYYY-MM-dd
+end_date: Conference end date YYYY-MM-dd
+isbn: ISBN number of the proceeding.
 ```
 
 #### sponsors.yml + sponsor_logos/
 
 List of sponsor tiers along with a directory containing the related logos.
 
-```
-- tier: [str] Name of the tier, i.e. Diamond Level or In Collaboration With
+```yaml
+- tier: Name of the tier, i.e. Diamond Level or In Collaboration With
   logos:
-    - [str] Path to a logo file relative to the sponsor_logos/ directory, i.e. facebook.png
+    - Path to a logo file relative to the sponsor_logos/ directory, i.e. facebook.png
 ```
 
 #### prefaces.yml + prefaces/
 
 List of prefaces along with a directory containing `.tex` files that provide the text of the prefaces.
 
-```
-- title: [str] Title of the preface, i.e. "Preface by the General Chair"
-  file: [str] Name of the file relative to the prefaces/ directory containing the preface text, i.e. general_chair.tex
+```yaml
+- title: Title of the preface, i.e. "Preface by the General Chair"
+  file: Name of the file relative to the prefaces/ directory containing the preface text, i.e. general_chair.tex
 ```
 
 The contents of the `.tex` files should not include usual headers and footers found within LaTeX files.
@@ -112,7 +112,7 @@ Frequently, this will simply be plaintext, with a few formulas, figures, or tabl
 
 Lists the members of organizaing committee.
 
-```
+```yaml
 - role: Name of role, i.e. General Chair
   members:
     - name: Committe member name as it should appear, i.e. John Doe
@@ -123,17 +123,15 @@ Lists the members of organizaing committee.
 
 Lists the members of program committee.
 
-```
+```yaml
 - role: Name of role, i.e. General Chair
   members:
-    - name: [str] Committe member name as it should appear, i.e. John Doe
-      institution: [str] Committee member's institution name as it should appear, i.e. University of California Berkeley, USA
-    # OR
-    - [str] Committee member name as it should appear, if institution should not be included.
+    - name: Committe member name as it should appear, i.e. John Doe
+      institution: Committee member's institution name as it should appear, i.e. University of California Berkeley, USA
 - role: Reviewers
   type: name_block  # By adding the name_block type in the role, names will be output in alphabetized blocks.
   entries:
-    - [str] Committee Member Name
+    - Committee Member Name
 ```
 
 #### invited_talks.yml + invited_talks/
@@ -142,12 +140,12 @@ List of invited talks and associated abstracts and bios.
 As with the prefaces, the contents of the `.tex` files should not include usual headers and footers found within LaTeX files,
 and only what is usually found between the `\begin{document}` and `\end{document}` directives.
 
-```
-- speaker_name: [str] Speaker name as it should appear, i.e. Jane Doe
-  institution: [str] Speaker's institution name as it should appear, i.e. University of California Berkeley, USA
-  title: [str] The title of the talk.
-  abstract_file: [str] Path to abstract LaTeX file relative to the invited_talks/ directory.
-  bio_file: [str] Path to bio LaTeX file relative to the invited_talks/ directory.
+```yaml
+- speaker_name: Speaker name as it should appear, i.e. Jane Doe
+  institution: Speaker's institution name as it should appear, i.e. University of California Berkeley, USA
+  title: The title of the talk.
+  abstract_file: Path to abstract LaTeX file relative to the invited_talks/ directory.
+  bio_file: Path to bio LaTeX file relative to the invited_talks/ directory.
 ```
 
 #### papers.yml + papers/
@@ -155,14 +153,39 @@ and only what is usually found between the `\begin{document}` and `\end{document
 Lists the accepted papers, along with a directory containing the associated PDFs.
 The listed papers much each have a unique ID so that they may be referred to by ID within the `program.yml` file later on.
 
-```
-- id: [str] Unique ID for the paper.
-  authors:
-    - [str] Author1 Name
-    - [str] Author2 Name
-  file: [str] File name relative to the papers/ directory, i.e. 1.pdf
-  title: [str] Title of the paper.
-  abstract: [str] Abstract of the paper, usually a LaTeX fragment.
+```yaml
+- id: Unique ID for the paper.
+  authors:  # List of authors, structure detailed below.
+    - first_name: First name e.g. Jane
+    - middle_name: (opt) Middle name e.g. Emily
+    - last_name: Last name e.g. Doe
+    - prefered_name: (opt) Prefered name, if not the same as first_name.
+    - institution: Name of the author's institution.
+    - email: Author's email.
+    - openreview: (opt) Author's OpenReview username.
+    - google_scholar: (opt) Author's Google Scholar ID.
+    - orcid: (opt) Author's ORCID ID.
+    - dblp: (opt) Author's DBLP ID.
+    - semantic_scholar: (opt) Author's Semantic Scholar ID.
+  attributes: 
+    # A list of key-value pairs used to manage other aspects of
+    # the publication process. Below are examples of possible
+    # attributes.
+    - name: Paper Type
+      value: long | short
+    - name: Presentation Type
+      value: oral | poster
+    - name: Submitted Area
+      value: Semantics | Machine Learning | ...
+  file: File name relative to the papers/ directory, i.e. 1.pdf
+  attachments:
+    # A list of additional files associated with the paper.
+    # The type, along with one of file or url must be specified.
+    - type: Dataset | Note | Poster | Presentation | Software | Attachment
+      file: Local file path, e.g. attachments/5.zip
+      url: URL pointing to the file, e.g. https://openreview.net/attachment?id=abcdefg
+  title: Title of the paper.
+  abstract: Abstract of the paper, usually a LaTeX fragment.
 ```
 
 #### program.yml
@@ -170,14 +193,14 @@ The listed papers much each have a unique ID so that they may be referred to by 
 Describes the conference program.
 This file is organized in blocks, each with a title, start, and end time, followed by a list of papers IDs.
 
-```
-- title: [str] Title of the conference session, i.e. Opening Remarks
-  start_time: [str] Start time of the session as an ISO datestring.
-  end_time: [str] End time of the session as an ISO datestring.
+```yaml
+- title: Title of the conference session, i.e. Opening Remarks
+  start_time: Start time of the session as an ISO datestring.
+  end_time: End time of the session as an ISO datestring.
   papers:
-  - id: [str] Paper ID
-    start_time: [str] Optional start time of the paper slot as an ISO datestring.
-    end_time: [str] Optional start time of the paper slot as an ISO datestring.
+  - id: Paper ID
+    start_time: Optional start time of the paper slot as an ISO datestring.
+    end_time: Optional start time of the paper slot as an ISO datestring.
 ```
 
 ## Development
