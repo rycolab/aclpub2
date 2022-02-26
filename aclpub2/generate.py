@@ -1,10 +1,12 @@
 from collections import defaultdict
 from pathlib import Path
-from PyPDF2 import PdfFileReader
+from PyPDF2 import PdfFileReader, PdfFileWriter
+
 from aclpub2.templates import load_template, TEMPLATE_DIR
 
 import subprocess
 import yaml
+import roman
 import shutil
 
 PARENT_DIR = Path(__file__).parent
@@ -32,8 +34,7 @@ def generate_proceedings(path: str, overwrite: bool):
         invited_talks,
         program,
     ) = load_configs(root)
-    proocedings = True
-    id_to_paper, alphabetized_author_index = process_papers(papers, root, proocedings)
+    id_to_paper, alphabetized_author_index = process_papers(papers, root, pax=True)
 
     sessions_by_date = process_program_proceedings(program)
     template = load_template("proceedings")
@@ -55,6 +56,50 @@ def generate_proceedings(path: str, overwrite: bool):
     with open(tex_file, "w+") as f:
         f.write(rendered_template)
     subprocess.run(["pdflatex", f"-output-directory={build_dir}", str(tex_file)])
+
+    # Split the proceedings into watermarked PDFs.
+    watermarked_pdfs = Path(build_dir, "watermarked_pdfs")
+    watermarked_pdfs.mkdir(exist_ok=True)
+    proceedings_file = Path(build_dir, "proceedings.pdf")
+    proceedings_pdf = PdfFileReader(open(proceedings_file, "rb"))
+    page_offset = find_page_offset(proceedings_pdf)
+    for paper in papers:
+        start, end = paper["page_range"]
+        output = PdfFileWriter()
+        for i in range(start, end + 1):
+            output.addPage(proceedings_pdf.getPage(page_offset + i))
+        with open(
+            Path(watermarked_pdfs, f"{str(paper['id'])}_watermarked.pdf"), "wb"
+        ) as output_file:
+            output.write(output_file)
+
+
+def find_page_offset(proceedings_pdf):
+    offset = None
+    last_roman = None
+    last_page = None
+    for i in range(proceedings_pdf.getNumPages()):
+        page_line = proceedings_pdf.getPage(i).extractText().split("\n")[-2]
+        try:  # Make sure the roman numbered front-matter is correct.
+            rn = roman.fromRoman(page_line)
+            if last_roman is None:
+                last_roman = rn
+            elif rn != last_roman + 1:
+                raise ValueError("Failed to detect consecutive page numbers.")
+            last_roman = rn
+        except roman.InvalidRomanNumeralError as e:
+            try:
+                pn = int(page_line)
+                if pn == 1:
+                    offset = i - 1
+                if last_page is not None and pn != last_page + 1:
+                    raise ValueError("Failed to detect consecutive page numbers.")
+                last_page = pn
+            except ValueError as e:
+                if last_roman is not None:
+                    raise ValueError(f"Failed to parse page numbers: {e}")
+    return offset
+
 
 def generate_handbook(path: str, overwrite: bool):
     root = Path(path)
@@ -87,7 +132,9 @@ def generate_handbook(path: str, overwrite: bool):
 
     template = load_template("handbook")
     program = process_program_handbook(program)
-    tutorial_program = process_program_tutorial_handbook(tutorial_program, max_lines=350)
+    tutorial_program = process_program_tutorial_handbook(
+        tutorial_program, max_lines=350
+    )
     rendered_template = template.render(
         root=str(root),
         conference=conference,
@@ -105,7 +152,7 @@ def generate_handbook(path: str, overwrite: bool):
         workshops=workshops,
         program_workshops=program_workshops,
         workshop_days=workshop_days,
-        build_dir=str(build_dir)
+        build_dir=str(build_dir),
     )
     tex_file = Path(build_dir, "handbook.tex")
     with open(tex_file, "w+") as f:
@@ -157,8 +204,8 @@ def process_papers(papers, root: Path, pax: bool):
         paper["page_range"] = (page, page + pdf.getNumPages() - 1)
         id_to_paper[paper["id"]] = paper
         for author in paper["authors"]:
-            given_names = author['first_name']
-            if 'middle_name' in author:
+            given_names = author["first_name"]
+            if "middle_name" in author:
                 given_names += f" {author['middle_name']}"
             index_name = f"{author['last_name']}, {given_names}"
             author_to_pages[index_name].append(page)
@@ -167,6 +214,7 @@ def process_papers(papers, root: Path, pax: bool):
     for author, pages in sorted(author_to_pages.items()):
         alphabetized_author_index[author[0].lower()].append((author, pages))
     return id_to_paper, sorted(alphabetized_author_index.items())
+
 
 def process_program_handbook(program):
     sessions_by_date = defaultdict(list)
@@ -233,7 +281,9 @@ def process_program_proceedings(program):
     return sorted(entries_by_date.items())
 
 
-def process_program_tutorial_handbook(program, max_lines = 35, paper_median_lines = 3, header_lines = 2):
+def process_program_tutorial_handbook(
+    program, max_lines=35, paper_median_lines=3, header_lines=2
+):
     """
     process_program organizes program sessions by date, and manually cuts
     program entries in order to avoid page overflow. This is done by assuming
@@ -259,7 +309,7 @@ def process_program_tutorial_handbook(program, max_lines = 35, paper_median_line
                     "type": "header",
                     "title": session["title"],
                     "start_time": session["start_time"],
-                    "end_time": session["end_time"]
+                    "end_time": session["end_time"],
                 }
             )
             if "tutorials" in session:
@@ -288,7 +338,9 @@ def process_program_tutorial_handbook(program, max_lines = 35, paper_median_line
     return sorted(entries_by_date.items())
 
 
-def process_program_workshop_handbook(program, max_lines = 35, paper_median_lines = 3, header_lines = 2):
+def process_program_workshop_handbook(
+    program, max_lines=35, paper_median_lines=3, header_lines=2
+):
     """
     process_program organizes program sessions by date, and manually cuts
     program entries in order to avoid page overflow. This is done by assuming
@@ -314,7 +366,7 @@ def process_program_workshop_handbook(program, max_lines = 35, paper_median_line
                     "type": "header",
                     "title": session["title"],
                     "start_time": session["start_time"],
-                    "end_time": session["end_time"]
+                    "end_time": session["end_time"],
                 }
             )
             if "papers" in session:
@@ -388,7 +440,7 @@ def load_configs_handbook(root: Path):
     prefaces = load_config("prefaces_handbook", root)
     organizing_committee = load_config("organizing_committee", root)
     program_committee = load_config("program_committee", root)
-    tutorial_program =load_config("tutorial_program", root)
+    tutorial_program = load_config("tutorial_program", root)
     tutorials = load_config("tutorials", root)
     invited_talks = load_config("invited_talks", root, required=False)
     program = load_config("program", root)
@@ -397,8 +449,10 @@ def load_configs_handbook(root: Path):
     workshops = load_config("workshops", root)
     program_workshops = {}
     for workshop in workshops:
-        program_workshops[workshop["id"]] = process_program_workshop_handbook(load_config("workshops/"+str(workshop["id"]), root), max_lines=350)
-    workshop_days=[]
+        program_workshops[workshop["id"]] = process_program_workshop_handbook(
+            load_config("workshops/" + str(workshop["id"]), root), max_lines=350
+        )
+    workshop_days = []
     for workshop in workshops:
         wdate = workshop["date"]
         if wdate not in workshop_days:
@@ -419,6 +473,7 @@ def load_configs_handbook(root: Path):
         program_workshops,
         workshop_days,
     )
+
 
 def load_config(config: str, root: Path, required=True):
     path = Path(root, f"{config}.yml")
