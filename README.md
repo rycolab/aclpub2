@@ -79,7 +79,8 @@ List key information about the conference that builds the cover, watermarks, and
 
 ```yaml
 name: Name of the Conference
-abbreviation: Conference abbreviation or acronym, i.e. EMNLP
+abbreviation: Conference abbreviation or acronym, e.g. EMNLP
+volume: Volume name, e.g. "Proceedings of the Conference, Vol. 1  (Long Papers)"
 start_date: Conference start date YYYY-MM-dd
 end_date: Conference end date YYYY-MM-dd
 isbn: ISBN number of the proceeding.
@@ -90,9 +91,9 @@ isbn: ISBN number of the proceeding.
 List of sponsor tiers along with a directory containing the related logos.
 
 ```yaml
-- tier: Name of the tier, i.e. Diamond Level or In Collaboration With
+- tier: Name of the tier, e.g. Diamond Level or In Collaboration With
   logos:
-    - Path to a logo file relative to the sponsor_logos/ directory, i.e. facebook.png
+    - Path to a logo file relative to the sponsor_logos/ directory, e.g. facebook.png
 ```
 
 #### prefaces.yml + prefaces/
@@ -100,8 +101,8 @@ List of sponsor tiers along with a directory containing the related logos.
 List of prefaces along with a directory containing `.tex` files that provide the text of the prefaces.
 
 ```yaml
-- title: Title of the preface, i.e. "Preface by the General Chair"
-  file: Name of the file relative to the prefaces/ directory containing the preface text, i.e. general_chair.tex
+- title: Title of the preface, e.g. "Preface by the General Chair"
+  file: Name of the file relative to the prefaces/ directory containing the preface text, e.g. general_chair.tex
 ```
 
 The contents of the `.tex` files should not include usual headers and footers found within LaTeX files.
@@ -113,10 +114,10 @@ Frequently, this will simply be plaintext, with a few formulas, figures, or tabl
 Lists the members of organizaing committee.
 
 ```yaml
-- role: Name of role, i.e. General Chair
+- role: Name of role, e.g. General Chair
   members:
-    - name: Committe member name as it should appear, i.e. John Doe
-      institution: Committee member's institution name as it should appear, i.e. University of California Berkeley, USA
+    - name: Committe member name as it should appear, e.g. John Doe
+      institution: Committee member's institution name as it should appear, e.g. University of California Berkeley, USA
 ```
 
 #### program_committee.yml
@@ -124,10 +125,10 @@ Lists the members of organizaing committee.
 Lists the members of program committee.
 
 ```yaml
-- role: Name of role, i.e. General Chair
+- role: Name of role, e.g. General Chair
   members:
-    - name: Committe member name as it should appear, i.e. John Doe
-      institution: Committee member's institution name as it should appear, i.e. University of California Berkeley, USA
+    - name: Committe member name as it should appear, e.g. John Doe
+      institution: Committee member's institution name as it should appear, e.g. University of California Berkeley, USA
 - role: Reviewers
   type: name_block  # By adding the name_block type in the role, names will be output in alphabetized blocks.
   entries:
@@ -141,8 +142,8 @@ As with the prefaces, the contents of the `.tex` files should not include usual 
 and only what is usually found between the `\begin{document}` and `\end{document}` directives.
 
 ```yaml
-- speaker_name: Speaker name as it should appear, i.e. Jane Doe
-  institution: Speaker's institution name as it should appear, i.e. University of California Berkeley, USA
+- speaker_name: Speaker name as it should appear, e.g. Jane Doe
+  institution: Speaker's institution name as it should appear, e.g. University of California Berkeley, USA
   title: The title of the talk.
   abstract_file: Path to abstract LaTeX file relative to the invited_talks/ directory.
   bio_file: Path to bio LaTeX file relative to the invited_talks/ directory.
@@ -177,7 +178,7 @@ The listed papers much each have a unique ID so that they may be referred to by 
       value: oral | poster
     - name: Submitted Area
       value: Semantics | Machine Learning | ...
-  file: File name relative to the papers/ directory, i.e. 1.pdf
+  file: File name relative to the papers/ directory, e.g. 1.pdf
   attachments:
     # A list of additional files associated with the paper.
     # The type, along with one of file or url must be specified.
@@ -194,7 +195,7 @@ Describes the conference program.
 This file is organized in blocks, each with a title, start, and end time, followed by a list of papers IDs.
 
 ```yaml
-- title: Title of the conference session, i.e. Opening Remarks
+- title: Title of the conference session, e.g. Opening Remarks
   start_time: Start time of the session as an ISO datestring.
   end_time: End time of the session as an ISO datestring.
   papers:
