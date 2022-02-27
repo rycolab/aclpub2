@@ -169,15 +169,12 @@ The listed papers much each have a unique ID so that they may be referred to by 
       dblp: (opt) Author's DBLP ID.
       semantic_scholar: (opt) Author's Semantic Scholar ID.
   attributes: 
-    # A list of key-value pairs used to manage other aspects of
+    # Key-value pairs used to manage other aspects of
     # the publication process. Below are examples of possible
     # attributes.
-    - name: Paper Type
-      value: long | short
-    - name: Presentation Type
-      value: oral | poster
-    - name: Submitted Area
-      value: Semantics | Machine Learning | ...
+    paper_type: long | short
+    presentation_type: oral | poster
+    submitted_area: Semantics | Machine Learning | ...
   file: File name relative to the papers/ directory, e.g. 1.pdf
   attachments:
     # A list of additional files associated with the paper.

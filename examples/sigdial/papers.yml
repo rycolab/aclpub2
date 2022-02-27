@@ -8,12 +8,16 @@
     generation in both automatic and human evaluations. For example, in the RNN-LG
     Restaurant dataset, our model AdvNLG outperforms the previous state-of-the-art
     result by 3.6\% in BLEU.
+  attributes:
+    paper_type: short
+    presentation_type: poster
+    submitted_area: Area 2
   authors:
-  - first_name: Chenguang
-    last_name: Zhu
+  - email: chezhu@microsoft.com
+    first_name: Chenguang
     instituion: Microsoft Speech and Dialogue Research Group
+    last_name: Zhu
     openreview: ~Chenguang_Zhu1
-    email: chezhu@microsoft.com
   file: 2.pdf
   id: 2
   title: Boosting Naturalness of Language in Task-oriented Dialogues via Adversarial
@@ -28,6 +32,10 @@
     on a ground-truth response, (2) does not require training data and (3) measures
     fine-grained dialog qualities at both the turn and whole dialog levels. FED attains
     moderate to strong correlation with human judgement at both levels.
+  attributes:
+    paper_type: long
+    presentation_type: poster
+    submitted_area: Area 1
   authors:
   - first_name: Shikib
     last_name: Mehri
@@ -44,6 +52,10 @@
     conditions.  In this demo, we expand upon this foundation, bringing conversational
     agents to structure group interaction into physical spaces, with the specific
     goal of facilitating collaboration and learning in workplace scenarios.
+  attributes:
+    paper_type: short
+    presentation_type: poster
+    submitted_area: Area 2
   authors:
   - first_name: Yansen
     last_name: Wang
@@ -71,6 +83,10 @@
     with the overall performance of a dialog system, and (3) despite the discrepancy
     between simulators and human users, simulated evaluation is still a valid alternative
     to the costly human evaluation especially in the early stage of development.
+  attributes:
+    paper_type: short
+    presentation_type: oral
+    submitted_area: Area 3
   authors:
   - first_name: Ryuichi
     last_name: Takanobu
@@ -96,6 +112,10 @@
     different ways of computing scores on both the semantic and the textual level.
     Complementing absolute measures of performance, we test our scores on three different
     tasks and show the practical usability of the measures.
+  attributes:
+    paper_type: short
+    presentation_type: oral
+    submitted_area: Area 2
   authors:
   - first_name: Stefan
     last_name: Ultes
@@ -119,6 +139,10 @@
     up to some extent, positive social aspects of conversations, which not only validates
     the methodology, but also provides further insights into the elusive topic of
     entrainment in human-human conversation.'
+  attributes:
+    paper_type: short
+    presentation_type: oral
+    submitted_area: Area 3
   authors:
   - first_name: Ramiro
     last_name: "G\xE1lvez"
@@ -144,6 +168,10 @@
     conversational thread. We show that adding inductive bias in the form of latent
     variables results in performance improvement, while providing a natural way to
     explain the decision.
+  attributes:
+    paper_type: long
+    presentation_type: oral
+    submitted_area: Area 3
   authors:
   - first_name: Ayush
     last_name: Jain
@@ -169,6 +197,10 @@
     reinforcement respectively. Experimental results suggest that LHUA outperforms
     competitive baselines from the literature, including its no-simulation, no-adaptation,
     and no-hindsight counterparts.
+  attributes:
+    paper_type: short
+    presentation_type: poster
+    submitted_area: Area 2
   authors:
   - first_name: Yan
     last_name: Cao
@@ -194,6 +226,10 @@
     from active learning with generalized binary search, the strategy asks the query
     with the highest expected reduction of entropy. We show that this significantly
     reduces dialog complexity while engaging the expert in meaningful dialog.
+  attributes:
+    paper_type: long
+    presentation_type: poster
+    submitted_area: Area 3
   authors:
   - first_name: Subhasis
     last_name: Ghosh
@@ -208,6 +244,10 @@
   title: Discovering Knowledge Graph Schema from Short Natural Language Text via Dialog
 - abstract: We describe an attentive listening system for the autonomous android robot
     ERICA.
+  attributes:
+    paper_type: long
+    presentation_type: oral
+    submitted_area: Area 1
   authors:
   - first_name: Koji
     last_name: Inoue
@@ -234,6 +274,10 @@
     given or predicted semantics and that these semantics do not appear repeatedly
     in the response. Synsets, which comprise sets of manually defined synonyms, are
     used as the form of assigned semantics. For a
+  attributes:
+    paper_type: short
+    presentation_type: oral
+    submitted_area: Area 1
   authors:
   - first_name: Cheng-Hsun
     last_name: Hsueh
@@ -254,6 +298,10 @@
     convergence has a lasting effect within a dialogue session if the system's wording
     is more consistent with the norms of the domain than the original wording of the
     speaker.
+  attributes:
+    paper_type: long
+    presentation_type: poster
+    submitted_area: Area 3
   authors:
   - first_name: Amanda
     last_name: Bergqvist
@@ -279,6 +327,10 @@
     natural language modules. Human subjects who engaged in dialogues with a baseline
     system rated the system's language skills as above average. Further, results confirm
     that human dialogue partners also vary in their informativeness.
+  attributes:
+    paper_type: long
+    presentation_type: oral
+    submitted_area: Area 2
   authors:
   - first_name: Maryam
     last_name: Zare
@@ -301,6 +353,10 @@
     live resource updates (e.g. available computers) and events in the building. We
     are able to demonstrate the system on several platforms: Google Home devices,
     Android phones, and a Furhat robot.'
+  attributes:
+    paper_type: short
+    presentation_type: poster
+    submitted_area: Area 2
   authors:
   - first_name: Weronika
     last_name: "Siei\u0144ska"
@@ -315,6 +371,10 @@
   title: Conversational Agents for Intelligent Buildings
 - abstract: 'Dialog systems capable of filling slots with numerical values have wide
     applicability to many task-oriented applications. '
+  attributes:
+    paper_type: short
+    presentation_type: oral
+    submitted_area: Area 1
   authors:
   - first_name: Hongjie
     last_name: Shi
@@ -329,6 +389,10 @@
     ends, which alters the way the participants interact with each other. Simulating
     conversations can give insights on turn-taking and spoken interactions between
     humans but can also used for analyzing and even predicting human behavior in conversations.
+  attributes:
+    paper_type: short
+    presentation_type: oral
+    submitted_area: Area 1
   authors:
   - first_name: Thilo
     last_name: Michael
@@ -351,6 +415,10 @@
     \ than implicit ones when the content of the questions is correct. Our findings\
     \ reveal helpful insights for creating a strategy to avoid user impression deterioration\
     \ during knowledge acquisition."
+  attributes:
+    paper_type: long
+    presentation_type: poster
+    submitted_area: Area 3
   authors:
   - first_name: Kazunori
     last_name: Komatani
@@ -373,6 +441,10 @@
     suggesting that studies on interpersonal dynamics should consider such high level
     dialogue activity types and their related NLP topics as important ingredients
     of their toolboxes.
+  attributes:
+    paper_type: short
+    presentation_type: poster
+    submitted_area: Area 2
   authors:
   - first_name: Simone
     last_name: Fuscone
@@ -389,6 +461,10 @@
     and simulations. Retico provides a range of incremental modules that are based
     on services like Google ASR, Google TTS and Rasa NLU. Incremental networks can
     be created either in code or with a graphical user interface.
+  attributes:
+    paper_type: long
+    presentation_type: oral
+    submitted_area: Area 2
   authors:
   - first_name: Thilo
     last_name: Michael
@@ -410,6 +486,10 @@
     system is robust to various forms of disfluency in the input. Overall, this domain-independent
     framework can be integrated into various dialogue systems to improve responsiveness,
     and is a step toward more natural, human-like turn-taking behavior.'
+  attributes:
+    paper_type: short
+    presentation_type: poster
+    submitted_area: Area 2
   authors:
   - first_name: Felix
     last_name: Gervits
@@ -426,6 +506,10 @@
     dialogues. In particular, we address the problem of annotating and modeling the
     coherence of next-turn candidates while considering the entire history of the
     dialogue.  '
+  attributes:
+    paper_type: short
+    presentation_type: oral
+    submitted_area: Area 1
   authors:
   - first_name: Alessandra
     last_name: Cervone
@@ -450,6 +534,10 @@
     Given the resource-intensive nature of data annotation, successfully annotating
     a new dataset automatically is key to answer the need for high quality, large
     datasets.'
+  attributes:
+    paper_type: long
+    presentation_type: poster
+    submitted_area: Area 3
   authors:
   - first_name: Itika
     last_name: Gupta
@@ -480,6 +568,10 @@
     and multimodal modules and how their computation can be distributed. We demonstrate
     the power and flexibility of our robot-ready spoken dialogue system to be integrated
     with almost any robot.
+  attributes:
+    paper_type: short
+    presentation_type: oral
+    submitted_area: Area 1
   authors:
   - first_name: Casey
     last_name: Kennington
@@ -506,6 +598,10 @@
     spatial questions that provides answers in agreement with human perception. These
     and other components are integrated into a multi-modal human-computer interaction
     pipeline.'
+  attributes:
+    paper_type: long
+    presentation_type: oral
+    submitted_area: Area 1
   authors:
   - first_name: Georgiy
     last_name: Platonov
@@ -529,6 +625,10 @@
     learn word groundings through interaction and show through a user study with 21
     participants that emotional displays improve the quantity and quality of the inputs
     provided to the robot.'
+  attributes:
+    paper_type: short
+    presentation_type: poster
+    submitted_area: Area 1
   authors:
   - first_name: David
     last_name: McNeill
@@ -539,6 +639,10 @@
   title: Learning Word Groundings from Humans Facilitated by Robot Emotional Displays
 - abstract: This paper describes the design and functionality of ConvoKit, an open-source
     toolkit for analyzing conversations and the social interactions embedded within.
+  attributes:
+    paper_type: short
+    presentation_type: poster
+    submitted_area: Area 3
   authors:
   - first_name: Jonathan
     last_name: Chang
@@ -557,6 +661,10 @@
   id: 71
   title: 'ConvoKit: A Toolkit for the Analysis of Conversations'
 - abstract: We present a comprehensive platform to run human-computer experiments
+  attributes:
+    paper_type: long
+    presentation_type: oral
+    submitted_area: Area 1
   authors:
   - first_name: Arne
     last_name: "K\xF6hn"
@@ -585,6 +693,10 @@
     \ confirm our findings, we present a human evaluation study that shows that our\
     \ system generates naturally-looking reflections that are also stylistically and\
     \ grammatically correct."
+  attributes:
+    paper_type: long
+    presentation_type: poster
+    submitted_area: Area 3
   authors:
   - first_name: Siqi
     last_name: Shen
@@ -604,6 +716,10 @@
     framework in reading comprehension, named CEGI. The framework injects two kinds
     of auxiliary commonsense evidence into comprehensive reading to equip the machine
     with the ability of rational thinking. Specifically, we build two evidence
+  attributes:
+    paper_type: long
+    presentation_type: poster
+    submitted_area: Area 3
   authors:
   - first_name: Ye
     last_name: Liu
@@ -632,6 +748,10 @@
     three types of evaluation protocols: automated, static, and interactive. Finally,
     the evaluation dimensions used in these papers are compared against our expert
     evaluation on the system-user dialogue data collected from the Alexa Prize 2020.'
+  attributes:
+    paper_type: long
+    presentation_type: poster
+    submitted_area: Area 3
   authors:
   - first_name: Sarah
     last_name: Finch
@@ -655,6 +775,10 @@
     improved by both reasoning with human knowledge and learning from task-completion
     experience. More interestingly, the robot was able to learn from navigation tasks
     to improve its dialog strategies.
+  attributes:
+    paper_type: long
+    presentation_type: poster
+    submitted_area: Area 2
   authors:
   - first_name: Keting
     last_name: Lu
@@ -678,6 +802,10 @@
     We present baselines for each sub-task using both conventional and neural approaches.
     Our experimental results demonstrate the need for further research in this direction
     to enable more informative conversational systems.'
+  attributes:
+    paper_type: short
+    presentation_type: oral
+    submitted_area: Area 2
   authors:
   - first_name: Seokhwan
     last_name: Kim
@@ -707,6 +835,10 @@
     in model performance. We also present transfer learning results which show that
     interactive learning in one domain improves policy model performance in related
     domains.
+  attributes:
+    paper_type: short
+    presentation_type: oral
+    submitted_area: Area 1
   authors:
   - first_name: Megha
     last_name: Jhunjhunwala
@@ -726,6 +858,10 @@
     change when users first communicate with an IVA in the same conversation thread.
     We measured quantity, quality, and diversity of language, and analyzed complexity
     using numerous features.
+  attributes:
+    paper_type: short
+    presentation_type: oral
+    submitted_area: Area 3
   authors:
   - first_name: Timothy
     last_name: Hewitt
@@ -746,6 +882,10 @@
     collecting travel guidance dialogue data from operators who give travel information
     to users. In this paper, we report our preliminary results on dialogue content
     and user satisfaction of operators and users.
+  attributes:
+    paper_type: short
+    presentation_type: oral
+    submitted_area: Area 2
   authors:
   - first_name: Tsunehiro
     last_name: Arimoto
@@ -772,6 +912,10 @@
     give systematic evidence of the diverse kinds of reasoning speakers employ, and
     build integrated models that recognize not only speaker reference but also speaker
     reasoning.
+  attributes:
+    paper_type: short
+    presentation_type: poster
+    submitted_area: Area 3
   authors:
   - first_name: Brian
     last_name: McMahan
@@ -794,6 +938,10 @@
     interesting phenomenon we observe is that the model picks up implicit meanings
     by splitting different aspects of the semantics of a single word across multiple
     attention heads.
+  attributes:
+    paper_type: long
+    presentation_type: oral
+    submitted_area: Area 3
   authors:
   - first_name: Adam
     last_name: Stiff
@@ -826,6 +974,10 @@
     model whose performance is an absolute 75.4\% improvement over the baseline model.
     We also report a human qualitative evaluation of the final model showing that
     it achieves high naturalness, semantic coherence and grammaticality.
+  attributes:
+    paper_type: short
+    presentation_type: poster
+    submitted_area: Area 1
   authors:
   - first_name: Lena
     last_name: Reed
@@ -852,6 +1004,10 @@
     this framework to an interdisciplinary undergraduate course where students with
     both technical and non-technical backgrounds are able to develop creative dialogue
     managers in a short period of time.
+  attributes:
+    paper_type: short
+    presentation_type: oral
+    submitted_area: Area 1
   authors:
   - first_name: James
     last_name: Finch
@@ -873,6 +1029,10 @@
     Experiments show that our method benefits from modeling the emotional consistency
     and outperforms the current state-of-the-art methods on multiple emotion classification
     datasets.
+  attributes:
+    paper_type: short
+    presentation_type: poster
+    submitted_area: Area 2
   authors:
   - first_name: Yan
     last_name: Wang
@@ -902,6 +1062,10 @@
     picklists altogether. We argue that our strategy simplifies the DST task while
     at the same time achieving state of the art performance on various popular evaluation
     sets including Multiwoz 2.1, where we achieve a joint goal accuracy beyond 55%.'
+  attributes:
+    paper_type: short
+    presentation_type: oral
+    submitted_area: Area 2
   authors:
   - first_name: Michael
     last_name: Heck
