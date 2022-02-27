@@ -158,16 +158,16 @@ The listed papers much each have a unique ID so that they may be referred to by 
 - id: Unique ID for the paper.
   authors:  # List of authors, structure detailed below.
     - first_name: First name e.g. Jane
-    - middle_name: (opt) Middle name e.g. Emily
-    - last_name: Last name e.g. Doe
-    - prefered_name: (opt) Prefered name, if not the same as first_name.
-    - institution: Name of the author's institution.
-    - email: Author's email.
-    - openreview: (opt) Author's OpenReview username.
-    - google_scholar: (opt) Author's Google Scholar ID.
-    - orcid: (opt) Author's ORCID ID.
-    - dblp: (opt) Author's DBLP ID.
-    - semantic_scholar: (opt) Author's Semantic Scholar ID.
+      middle_name: (opt) Middle name e.g. Emily
+      last_name: Last name e.g. Doe
+      preferred_name: (opt) Prefered name, if not the same as first_name.
+      institution: Name of the author's institution.
+      email: Author's email.
+      openreview: (opt) Author's OpenReview username.
+      google_scholar: (opt) Author's Google Scholar ID.
+      orcid: (opt) Author's ORCID ID.
+      dblp: (opt) Author's DBLP ID.
+      semantic_scholar: (opt) Author's Semantic Scholar ID.
   attributes: 
     # A list of key-value pairs used to manage other aspects of
     # the publication process. Below are examples of possible

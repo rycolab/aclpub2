@@ -11,6 +11,9 @@
   authors:
   - first_name: Chenguang
     last_name: Zhu
+    instituion: Microsoft Speech and Dialogue Research Group
+    openreview: ~Chenguang_Zhu1
+    email: chezhu@microsoft.com
   file: 2.pdf
   id: 2
   title: Boosting Naturalness of Language in Task-oriented Dialogues via Adversarial
