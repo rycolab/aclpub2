@@ -116,7 +116,7 @@ Lists the members of organizaing committee.
 ```yaml
 - role: Name of role, e.g. General Chair
   members:
-    - name: Committe member name as it should appear, e.g. John Doe
+    - name: Committee member name as it should appear, e.g. John Doe
       institution: Committee member's institution name as it should appear, e.g. University of California Berkeley, USA
 ```
 
@@ -127,7 +127,7 @@ Lists the members of program committee.
 ```yaml
 - role: Name of role, e.g. General Chair
   members:
-    - name: Committe member name as it should appear, e.g. John Doe
+    - name: Committee member name as it should appear, e.g. John Doe
       institution: Committee member's institution name as it should appear, e.g. University of California Berkeley, USA
 - role: Reviewers
   type: name_block  # By adding the name_block type in the role, names will be output in alphabetized blocks.
@@ -193,15 +193,32 @@ The listed papers much each have a unique ID so that they may be referred to by 
 
 Describes the conference program.
 This file is organized in blocks, each with a title, start, and end time, followed by a list of papers IDs.
+Instead of defining presentations, sessions may define subsessions, which have the same structure as the top-level session.
 
 ```yaml
 - title: Title of the conference session, e.g. Opening Remarks
   start_time: Start time of the session as an ISO datestring.
   end_time: End time of the session as an ISO datestring.
+  chair: (opt) Name of the chair of the session, e.g. Jane Doe.
+  location: Location that the session is taking place in.
   papers:
   - id: Paper ID
     start_time: Optional start time of the paper slot as an ISO datestring.
     end_time: Optional start time of the paper slot as an ISO datestring.
+# Or, if this is a session that is broken into subsessions:
+- title: Title of the conference session, e.g. Opening Remarks
+  start_time: Start time of the session as an ISO datestring.
+  end_time: End time of the session as an ISO datestring.
+  subsessions:
+    - title: Title of the conference session, e.g. Opening Remarks
+    start_time: Start time of the session as an ISO datestring.
+    end_time: End time of the session as an ISO datestring.
+    chair: (opt) Name of the chair of the session, e.g. Jane Doe.
+    location: Location that the session is taking place in.
+    papers:
+    - id: Paper ID
+      start_time: Optional start time of the paper slot as an ISO datestring.
+      end_time: Optional start time of the paper slot as an ISO datestring.
 ```
 
 ## Development
