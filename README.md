@@ -196,8 +196,9 @@ Instead of defining presentations, sessions may define subsessions, which have t
 - title: Title of the conference session, e.g. Opening Remarks
   start_time: Start time of the session as an ISO datestring.
   end_time: End time of the session as an ISO datestring.
+  location: Location that the session is taking place in, e.g. Main Hall or Online
   chair: (opt) Name of the chair of the session, e.g. Jane Doe.
-  location: Location that the session is taking place in.
+  url: (opt) URL to join or view the session, if applicable.
   papers:
   - id: Paper ID
     start_time: Optional start time of the paper slot as an ISO datestring.
