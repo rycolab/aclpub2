@@ -38,6 +38,11 @@ def generate_proceedings(path: str, overwrite: bool):
 
     sessions_by_date = process_program_proceedings(program)
     template = load_template("proceedings")
+
+    # Check if sponsors is None
+    if sponsors is None:
+        sponsors = ""
+
     rendered_template = template.render(
         root=str(root),
         conference=conference,
