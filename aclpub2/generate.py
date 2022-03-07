@@ -405,15 +405,15 @@ def load_configs(root: Path):
     """
     Loads all conference configuration files defined in the root directory.
     """
-    conference = load_config("conference_details", root)
-    papers = load_config("papers", root)
+    conference = load_config("conference_details", root, required=True)
+    papers = load_config("papers", root, required=True)
     for paper in papers:
         paper["title"] = normalize_latex_string(paper["title"])
     sponsors = load_config("sponsors", root)
     prefaces = load_config("prefaces", root)
     organizing_committee = load_config("organizing_committee", root)
     program_committee = load_config("program_committee", root)
-    invited_talks = load_config("invited_talks", root, required=False)
+    invited_talks = load_config("invited_talks", root)
 
     return (
         conference,
@@ -473,7 +473,7 @@ def load_configs_handbook(root: Path):
     )
 
 
-def load_config(config: str, root: Path, required=True):
+def load_config(config: str, root: Path, required=False):
     path = Path(root, f"{config}.yml")
     if not path.exists():
         if required:
