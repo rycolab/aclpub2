@@ -1,0 +1,170 @@
+- end_time: 2020-07-01 07:45:00
+  start_time: 2020-07-01 07:30:00
+  title: Opening Remarks
+- end_time: 2020-07-01 09:30:00
+  start_time: 2020-07-01 09:00:00
+  title: Break
+- title: Session 1
+  start_time: 2020-07-01 09:30:00
+  end_time: 2020-07-01 11:30:00
+  subsessions:
+    - end_time: 2020-07-01 10:20:00
+      tutorials:
+        - end_time: 2020-07-01 09:40:00
+          title: Tutorial 1
+          start_time: 2020-07-01 09:30:00
+          room: Hall 1
+          authors: André F. T. Martins, Tsvetomila Mihaylova, Nikita Nangia, and Vlad Niculae
+        - end_time: 2020-07-01 09:50:00
+          title: Tutorial 2
+          start_time: 2020-07-01 09:40:00
+          room: Hall 2
+          authors: André F. T. Martins, Tsvetomila Mihaylova, Nikita Nangia, and Vlad Niculae
+        - end_time: 2020-07-01 10:10:00
+          title: Tutorial 3
+          start_time: 2020-07-01 10:00:00
+          room: Hall 3
+          authors: André F. T. Martins, Tsvetomila Mihaylova, Nikita Nangia, and Vlad Niculae
+        - end_time: 2020-07-01 10:20:00
+          title: Tutorial 4
+          start_time: 2020-07-01 10:10:00
+          room: Hall 4
+          authors: André F. T. Martins, Tsvetomila Mihaylova, Nikita Nangia, and Vlad Niculae
+      start_time: 2020-07-01 09:30:00
+      title: Generation + Task-Oriented Dialogues (1)
+      chair: John Doe
+      location: Main Room
+    - end_time: 2020-07-01 10:45:00
+      start_time: 2020-07-01 10:20:00
+      title: Generation + Task-Oriented Dialogues (1) live QA
+      chair: John Doe
+      location: Main Room
+    - end_time: 2020-07-01 11:30:00
+      tutorials:
+        - end_time: 2020-07-01 10:55:00
+          title: Tutorial 5
+          start_time: 2020-07-01 10:45:00
+          room: Hall 1
+          authors: André F. T. Martins, Tsvetomila Mihaylova, Nikita Nangia, and Vlad Niculae
+        - end_time: 2020-07-01 11:05:00
+          title: Tutorial 6
+          start_time: 2020-07-01 10:55:00
+          room: Hall 1
+          authors: André F. T. Martins, Tsvetomila Mihaylova, Nikita Nangia, and Vlad Niculae
+        - end_time: 2020-07-01 11:20:00
+          title: Tutorial 7
+          start_time: 2020-07-01 11:10:00
+          room: Hall 3
+          authors: André F. T. Martins, Tsvetomila Mihaylova, Nikita Nangia, and Vlad Niculae
+        - end_time: 2020-07-01 11:30:00
+          title: Tutorial 8
+          start_time: 2020-07-01 11:20:00
+          room: Hall 2
+          authors: André F. T. Martins, Tsvetomila Mihaylova, Nikita Nangia, and Vlad Niculae
+      start_time: 2020-07-01 10:45:00
+      title: Demo (1) pre-recorded presentations + live QA
+      chair: John Doe
+      location: Main Room
+- end_time: 2020-07-01 11:50:00
+  start_time: 2020-07-01 11:30:00
+  title: Break
+- title: Session 2
+  start_time: 2020-07-01 11:50:00
+  end_time: 2020-07-01 15:30:00
+  subsessions:
+    - end_time: 2020-07-01 12:20:00
+      tutorials:
+        - end_time: 2020-07-01 12:00:00
+          title: Tutorial 9
+          room: Hall 1
+          start_time: 2020-07-01 11:50:00
+          authors: André F. T. Martins, Tsvetomila Mihaylova, Nikita Nangia, and Vlad Niculae
+        - end_time: 2020-07-01 12:10:00
+          title: Tutorial 10
+          start_time: 2020-07-01 12:00:00
+          room: Hall 2
+          authors: André F. T. Martins, Tsvetomila Mihaylova, Nikita Nangia, and Vlad Niculae
+        - end_time: 2020-07-01 12:20:00
+          title: Tutorial 11
+          start_time: 2020-07-01 12:10:00
+          room: Hall 5
+          authors: André F. T. Martins, Tsvetomila Mihaylova, Nikita Nangia, and Vlad Niculae
+      start_time: 2020-07-01 11:50:00
+      title: Knowledge Acquisition/Use and Behaviour Modeling (1)
+      chair: John Doe
+      location: Main Room
+    - end_time: 2020-07-01 12:40:00
+      start_time: 2020-07-01 12:20:00
+      title: Knowledge Acquisition/Use and Behaviour Modeling (1) live QA
+      chair: John Doe
+      location: Main Room
+    - end_time: 2020-07-01 15:30:00
+      start_time: 2020-07-01 12:40:00
+      title: Breakout Discussion Sessions
+      chair: John Doe
+      location: Main Room
+- end_time: 2020-07-01 16:00:00
+  start_time: 2020-07-01 15:30:00
+  title: Break
+- title: Session 3
+  start_time: 2020-07-01 16:00:00
+  end_time: 2020-07-01 19:15:00
+  subsessions:
+    - end_time: 2020-07-01 17:00:00
+      tutorials:
+        - end_time: 2020-07-01 16:15:00
+          title: Tutorial 12
+          start_time: 2020-07-01 16:00:00
+          room: Hall 1
+          authors: André F. T. Martins, Tsvetomila Mihaylova, Nikita Nangia, and Vlad Niculae
+        - end_time: 2020-07-01 16:30:00
+          title: Tutorial 13
+          start_time: 2020-07-01 16:15:00
+          room: Hall 4
+          authors: André F. T. Martins, Tsvetomila Mihaylova, Nikita Nangia, and Vlad Niculae
+        - end_time: 2020-07-01 16:45:00
+          title: Tutorial 14
+          start_time: 2020-07-01 16:30:00
+          room: Hall 6
+          authors: André F. T. Martins, Tsvetomila Mihaylova, Nikita Nangia, and Vlad Niculae
+        - end_time: 2020-07-01 17:00:00
+          title: Tutorial 15
+          start_time: 2020-07-01 16:45:00
+          room: Hall 9
+          authors: André F. T. Martins, Tsvetomila Mihaylova, Nikita Nangia, and Vlad Niculae
+      start_time: 2020-07-01 16:00:00
+      title: "Special Session: Greetings and Talks"
+      chair: John Doe
+      location: Main Room
+    - end_time: 2020-07-01 17:30:00
+      tutorials:
+        - end_time: 2020-07-01 17:15:00
+          title: Tutorial 16
+          start_time: 2020-07-01 17:00:00
+          room: Hall 1
+          authors: André F. T. Martins, Tsvetomila Mihaylova, Nikita Nangia, and Vlad Niculae
+        - end_time: 2020-07-01 17:30:00
+          title: Tutorial 17
+          start_time: 2020-07-01 17:15:00
+          room: Hall 2
+          authors: André F. T. Martins, Tsvetomila Mihaylova, Nikita Nangia, and Vlad Niculae
+      start_time: 2020-07-01 17:00:00
+      title: Demo (2) pre-recorded presentations + live QA
+      chair: John Doe
+      location: Main Room
+    - end_time: 2020-07-01 18:15:00
+      start_time: 2020-07-01 17:30:00
+      title: "Special Session: live QA"
+      chair: John Doe
+      location: Main Room
+    - end_time: 2020-07-01 19:15:00
+      start_time: 2020-07-01 18:15:00
+      title: "Special Session: Late-breaking"
+      chair: John Doe
+      location: Main Room
+- end_time: 2020-07-01 19:30:00
+  start_time: 2020-07-01 19:15:00
+  title: Break
+- end_time: 2020-07-01 20:15:00
+  start_time: 2020-07-01 19:30:00
+  title: Breakouts Discussion Sessions
