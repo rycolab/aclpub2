@@ -64,6 +64,7 @@
 %%%%%%%%%%%%
 % Sponsors %
 %%%%%%%%%%%%
+\BLOCK{if sponsors}
 \setcounter{page}{2}
 \vspace*{2cm}
 \noindent
@@ -88,6 +89,7 @@
   \bigskip
 \BLOCK{endfor}
 \newpage
+\BLOCK{endif}
 
 
 %%%%%%%%%%%%%
@@ -123,6 +125,7 @@ ISBN \VAR{conference.isbn}
 %%%%%%%%%%%%
 % Prefaces %
 %%%%%%%%%%%%
+\BLOCK{if prefaces}
 \BLOCK{for preface in prefaces}
   \begin{center}
    { \Large \textbf{\VAR{preface.title}}}
@@ -131,10 +134,12 @@ ISBN \VAR{conference.isbn}
   \VAR{load_file(root, "prefaces", preface.file)}
   \newpage
 \BLOCK{endfor}
+\BLOCK{endif}
 
 %%%%%%%%%%%%%%%%%%%%%%%%
 % Organizing Committee %
 %%%%%%%%%%%%%%%%%%%%%%%%
+\BLOCK{if organizing_committee}
 \begin{center}
 {\Large \textbf{Organizing Committee}}
 \end{center}
@@ -147,10 +152,12 @@ ISBN \VAR{conference.isbn}
   \newline
 \BLOCK{endfor}
 \newpage
+\BLOCK{endif}
 
 %%%%%%%%%%%%%%%%%%%%%
 % Program Committee %
 %%%%%%%%%%%%%%%%%%%%%
+\BLOCK{if program_committee}
 \begin{center}
 \Large \textbf{Program Committee}
 \end{center}
@@ -184,6 +191,7 @@ ISBN \VAR{conference.isbn}
 
 \BLOCK{endfor}
 \newpage
+\BLOCK{endif}
 
 %%%%%%%%%%%%%%%%%
 % Invited Talks %
