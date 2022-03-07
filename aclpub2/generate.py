@@ -32,11 +32,9 @@ def generate_proceedings(path: str, overwrite: bool):
         organizing_committee,
         program_committee,
         invited_talks,
-        program,
     ) = load_configs(root)
     id_to_paper, alphabetized_author_index = process_papers(papers, root, pax=True)
 
-    sessions_by_date = process_program_proceedings(program)
     template = load_template("proceedings")
 
     # Check if sponsors is None
@@ -54,7 +52,6 @@ def generate_proceedings(path: str, overwrite: bool):
         invited_talks=invited_talks,
         papers=papers,
         id_to_paper=id_to_paper,
-        program=sessions_by_date,
         alphabetized_author_index=alphabetized_author_index,
     )
     tex_file = Path(build_dir, "proceedings.tex")
@@ -417,9 +414,6 @@ def load_configs(root: Path):
     organizing_committee = load_config("organizing_committee", root)
     program_committee = load_config("program_committee", root)
     invited_talks = load_config("invited_talks", root, required=False)
-    program = load_config("program", root)
-    for entry in program:
-        entry["title"] = normalize_latex_string(entry["title"])
 
     return (
         conference,
@@ -429,7 +423,6 @@ def load_configs(root: Path):
         organizing_committee,
         program_committee,
         invited_talks,
-        program,
     )
 
 
