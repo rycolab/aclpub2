@@ -22,7 +22,13 @@
   id: 2
   title: Boosting Naturalness of Language in Task-oriented Dialogues via Adversarial
     Training
-- abstract: It is important to define meaningful and interpretable automatic evaluation
+  badges:
+    - type: relased_code
+      url: https://github.com/some/code
+    - type: released_model_artifact
+      url: https://aclanthology.org/attachments/model.tgz
+- abstract:
+    It is important to define meaningful and interpretable automatic evaluation
     metrics for open-domain dialog research. Standard language generation metrics
     have been shown to be ineffective for dialog. This paper introduces the FED metric
     (fine-grained evaluation of dialog), an automatic evaluation metric which uses
