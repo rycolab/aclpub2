@@ -220,40 +220,6 @@ ISBN \VAR{conference.isbn}
 \end{itemize}
 \newpage
 
-%%%%%%%%%%%
-% Program %
-%%%%%%%%%%%
-\renewcommand{\baselinestretch}{0.87}
-\setlength{\parindent}{0in}
-\setlength{\parskip}{2ex}
-
-\begin{center}
-{\Large \textbf{Conference Program}}
-\end{center}
-\vspace*{0.5em}
-
-\BLOCK{for date, pages in program}
-  \BLOCK{set ns = namespace(first=true)}
-  \BLOCK{for page in pages}
-    \begin{tabular}{p{24mm}p{124mm}}
-    \multicolumn{2}{l}{\bf \VAR{program_date(date)} \BLOCK{if ns.first is not true}(continued)\BLOCK{endif}} \\\\
-    \BLOCK{for entry in page}
-      \BLOCK{if entry.type is equalto("header")}
-      \VAR{session_times(entry)} & \emph{\VAR{entry.title}}\\\\
-      \BLOCK{endif}
-
-      \BLOCK{if entry.type is equalto("paper")}
-        \BLOCK{set paper = id_to_paper[entry.paper.id]}
-        & \hyperlink{page.\VAR{paper.page_range[0]}}{\emph{\VAR{paper.title}}}\\
-        & \VAR{join_names(", ", paper.authors, " and ")}\\\\
-      \BLOCK{endif}
-    \BLOCK{endfor}
-    \end{tabular}
-    \newpage
-    \BLOCK{set ns.first = false}
-  \BLOCK{endfor}
-\BLOCK{endfor}
-
 %%%%%%%%%%
 % Papers %
 %%%%%%%%%%
