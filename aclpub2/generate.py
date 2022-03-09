@@ -172,6 +172,8 @@ def get_conference_dates(conference) -> str:
     start_month = start_date.strftime("%B")
     end_month = end_date.strftime("%B")
     if start_month == end_month:
+        if start_date.day == end_date.day:
+            return f"{start_month} {start_date.day}"
         return f"{start_month} {start_date.day}-{end_date.day}"
     return f"{start_month} {start_date.day} - {end_month} {end_date.day}"
 
