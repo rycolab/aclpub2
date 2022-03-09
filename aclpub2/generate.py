@@ -190,7 +190,7 @@ def process_papers(papers, root: Path, pax: bool):
     id_to_paper = {}
     author_to_pages = defaultdict(list)
     for paper in papers:
-        pdf_path = Path(root, "papers", f"{paper['id']}.pdf")
+        pdf_path = Path(root, "papers", paper["file"])
         if pax:
             subprocess.run(
                 [
