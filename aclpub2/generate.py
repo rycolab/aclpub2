@@ -22,6 +22,9 @@ def generate_proceedings(path: str, overwrite: bool):
         raise Exception(
             f"Build directory {build_dir} is not empty, and the overwrite flag is false."
         )
+    if overwrite:
+        shutil.rmtree(str(build_dir), ignore_errors=True)
+        build_dir.mkdir()
 
     # Load and preprocess the .yml configuration.
     (
@@ -57,7 +60,23 @@ def generate_proceedings(path: str, overwrite: bool):
     tex_file = Path(build_dir, "proceedings.tex")
     with open(tex_file, "w+") as f:
         f.write(rendered_template)
-    subprocess.run(["pdflatex", f"-output-directory={build_dir}", str(tex_file)])
+    subprocess.run(
+        [
+            "pdflatex",
+            f"-output-directory={build_dir}",
+            "-save-size=40000",
+            str(tex_file),
+        ]
+    )
+    # subprocess.run(["makeindex", str(tex_file.with_suffix(".idx"))])
+    # subprocess.run(
+    #     [
+    #         "pdflatex",
+    #         "-save-size=800000",
+    #         f"-output-directory={build_dir}",
+    #         str(tex_file),
+    #     ]
+    # )
 
     # Split the proceedings into watermarked PDFs.
     watermarked_pdfs = Path(build_dir, "watermarked_pdfs")
@@ -194,15 +213,17 @@ def process_papers(papers, root: Path, pax: bool):
     for paper in papers:
         pdf_path = Path(root, "papers", paper["file"])
         if pax:
-            subprocess.run(
-                [
-                    "java",
-                    "-cp",
-                    f"{PARENT_DIR}/pax.jar:{PARENT_DIR}/pdfbox.jar",
-                    "pax.PDFAnnotExtractor",
-                    pdf_path,
-                ]
-            )
+            pax_path = pdf_path.with_suffix(".pax")
+            if not pax_path.exists():
+                subprocess.run(
+                    [
+                        "java",
+                        "-cp",
+                        f"{PARENT_DIR}/pax.jar:{PARENT_DIR}/pdfbox.jar",
+                        "pax.PDFAnnotExtractor",
+                        pdf_path,
+                    ]
+                )
         pdf = PdfFileReader(str(pdf_path))
         paper["num_pages"] = pdf.getNumPages()
         paper["page_range"] = (page, page + pdf.getNumPages() - 1)
