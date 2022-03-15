@@ -1,0 +1,41 @@
+\documentclass[11pt,oneside]{book}
+\usepackage{fancyhdr}
+\usepackage[a4paper,top=2cm,bottom=3cm,left=2cm,right=2cm,marginparwidth=1.75cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{pdfpages}
+\usepackage{times}
+\usepackage{pax}
+\usepackage{hyperref}
+
+\hypersetup{
+    colorlinks,
+    linktoc=all,
+    linkcolor=red,
+}
+\setlength{\paperwidth}{21cm}   % A4
+\setlength{\paperheight}{29.7cm}% A4
+\special{papersize=21cm, 29.7cm}
+\pdfpageheight\paperheight
+\pdfpagewidth\paperwidth
+\setlength\topmargin{-5mm} \setlength\oddsidemargin{-0cm}
+\setlength\textheight{24.7cm} \setlength\textwidth{16cm}
+\setlength\columnsep{0.6cm}  \newlength\titlebox \setlength\titlebox{2.00in}
+\setlength\headheight{5pt}   \setlength\headsep{0pt}
+\setlength\footskip{0.8cm}
+\setlength\parindent{0pt}
+
+\pagestyle{plain}
+\pagenumbering{arabic}
+\setcounter{page}{\VAR{paper.page_range[0]}}
+
+\begin{document}
+\renewcommand{\headrulewidth}{0pt}
+\AddToShipoutPicture*{
+  \setlength{\unitlength}{1mm}
+  \footnotesize
+  \put(105,16){\makebox(0,0){\emph{Proceedings of the \VAR{conference.name}}, pages \VAR{paper.page_range[0]} - \VAR{paper.page_range[1]}}}
+  \put(105,12){\makebox(0,0){\VAR{conference_dates}, \VAR{conference.start_date.year} 
+  \textcopyright \VAR{conference.start_date.year} Association for Computational Linguistics}}
+}
+\includepdf[pagecommand={\thispagestyle{plain}},pages=-]{\VAR{root}/papers/\VAR{paper.file}}
+\end{document}

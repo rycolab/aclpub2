@@ -1,0 +1,54 @@
+\documentclass[11pt,oneside]{book}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage[a4paper,top=2cm,bottom=3cm,left=2cm,right=2cm,marginparwidth=1.75cm]{geometry}
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage{multicol}
+\usepackage{pdfpages}
+\usepackage{times}
+
+\hypersetup{
+    colorlinks,
+    linktoc=all,
+    linkcolor=red,
+}
+\setlength{\paperwidth}{21cm}   % A4
+\setlength{\paperheight}{29.7cm}% A4
+\special{papersize=21cm, 29.7cm}
+\pdfpageheight\paperheight
+\pdfpagewidth\paperwidth
+\setlength\topmargin{-5mm} \setlength\oddsidemargin{-0cm}
+\setlength\textheight{24.7cm} \setlength\textwidth{16cm}
+\setlength\columnsep{0.6cm}  \newlength\titlebox \setlength\titlebox{2.00in}
+\setlength\headheight{5pt}   \setlength\headsep{0pt}
+\setlength\footskip{0.8cm}
+\setlength\parindent{0pt}
+
+\pagestyle{plain}
+
+\date{}
+\title{ACL Anthology}
+
+% General use macros
+\BLOCK{macro committee_member(member)}\VAR{member.first_name} \BLOCK{if member.middle_name is defined}\VAR{member.middle_name} \BLOCK{endif}\VAR{member.last_name}, \VAR{member.institution}\BLOCK{endmacro}
+
+\begin{document}
+%%%%%%%%%%%%%%%%
+% Author Index %
+%%%%%%%%%%%%%%%%
+\begin{huge}
+Author Index
+\end{huge}
+\vspace*{1em}
+\begin{multicols}{2}
+\BLOCK{for _, author_to_pages in alphabetized_author_index}
+\BLOCK{for author, pages in author_to_pages}
+\VAR{author}, \VAR{join_page_numbers(pages)}\\
+\BLOCK{endfor}
+\\ % Extra space between new letters.
+\BLOCK{endfor}
+\end{multicols}
+
+
+\end{document}

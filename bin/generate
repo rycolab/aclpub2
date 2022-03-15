@@ -2,23 +2,27 @@
 import argparse
 from aclpub2.generate import generate_proceedings, generate_handbook
 
-parser = argparse.ArgumentParser(description="Generate proceedings from an input direcotry.")
-parser.add_argument(
-    "path", type=str, help="Path to directory containing inputs."
-)
-parser.add_argument(
-    "--proceedings", action="store_true", help="If set, generates the proceedings."
-)
-parser.add_argument(
-    "--handbook", action="store_true", help="If set, generates the handbook."
-)
-parser.add_argument(
-    "--overwrite", action="store_true", help="If set, overwrites the generated files in the output."
-)
 
-args =parser.parse_args()
-#generate(**vars(parser.parse_args()))
-if args.proceedings == True:
-    generate_proceedings(args.path, args.overwrite)
-if args.handbook == True:
-    generate_handbook(args.path, args.overwrite)
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(
+        description="Generate proceedings from an input direcotry."
+    )
+    parser.add_argument("path", type=str, help="Path to directory containing inputs.")
+    parser.add_argument(
+        "--proceedings", action="store_true", help="If set, generates the proceedings."
+    )
+    parser.add_argument(
+        "--handbook", action="store_true", help="If set, generates the handbook."
+    )
+    parser.add_argument(
+        "--overwrite",
+        action="store_true",
+        help="If set, overwrites the generated files in the output.",
+    )
+
+    args = parser.parse_args()
+    # generate(**vars(parser.parse_args()))
+    if args.proceedings == True:
+        generate_proceedings(args.path, args.overwrite)
+    if args.handbook == True:
+        generate_handbook(args.path, args.overwrite)

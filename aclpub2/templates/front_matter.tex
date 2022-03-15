@@ -227,39 +227,4 @@ ISBN \VAR{conference.isbn}
 \end{itemize}
 \newpage
 
-%%%%%%%%%%
-% Papers %
-%%%%%%%%%%
-\pagenumbering{arabic}
-\setcounter{page}{1}
- \renewcommand{\headrulewidth}{0pt}
-\BLOCK{for paper in papers}
-  \addcontentsline{toc}{section}{TEMPLATE_TITLE}
-  \AddToShipoutPicture*{
-    \setlength{\unitlength}{1mm}
-    \footnotesize
-    \put(105,16){\makebox(0,0){\emph{Proceedings of the \VAR{conference.name}}, pages \VAR{paper.page_range[0]} - \VAR{paper.page_range[1]}}}
-    \put(105,12){\makebox(0,0){\VAR{conference_dates}, \VAR{conference.start_date.year} 
-    \textcopyright \VAR{conference.start_date.year} Association for Computational Linguistics}}
-  }
-  \includepdf[pagecommand={\thispagestyle{plain}},pages=-]{\VAR{root}/papers/\VAR{paper.file}}
-\BLOCK{endfor}
-
-%%%%%%%%%%%%%%%%
-% Author Index %
-%%%%%%%%%%%%%%%%
-\begin{huge}
-Author Index
-\end{huge}
-\vspace*{1em}
-\begin{multicols}{2}
-\BLOCK{for _, author_to_pages in alphabetized_author_index}
-\BLOCK{for author, pages in author_to_pages}
-\VAR{author}, \VAR{join_page_numbers(pages)}\\
-\BLOCK{endfor}
-\\ % Extra space between new letters.
-\BLOCK{endfor}
-\end{multicols}
-
-
 \end{document}
