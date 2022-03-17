@@ -1,7 +1,6 @@
 from collections import defaultdict
 from pathlib import Path
-from venv import create
-from PyPDF2 import PdfFileReader, PdfFileWriter
+from PyPDF2 import PdfFileReader
 
 from aclpub2.templates import load_template, TEMPLATE_DIR
 
