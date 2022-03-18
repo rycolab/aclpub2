@@ -198,10 +198,13 @@ ISBN \VAR{conference.isbn}
 \BLOCK{if invited_talks}
 \BLOCK{for talk in invited_talks}
   \begin{center}
-    {\LARGE \textbf{Invited Speaker: \VAR{talk.speaker_name}, \VAR{talk.institution}}}\\
+    {\LARGE \textbf{Keynote Talk: \VAR{talk.title}}\\}
+    \vspace*{0.2cm}
+    \textbf{\VAR{talk.speaker_name}}\\
+    \VAR{talk.institution}\\
     \vspace*{0.1cm}
-    {\Large \textbf{\VAR{talk.title}}}
   \end{center}
+
   \vspace*{0.2cm}
   \textbf{Abstract:} \VAR{load_file(root, "invited_talks", talk.abstract_file)}\\
   \newline
