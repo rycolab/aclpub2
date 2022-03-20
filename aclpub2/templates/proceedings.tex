@@ -74,13 +74,17 @@
 \vspace*{1cm}
 
 \BLOCK{macro generate_sponsor_tier(tier)}
-\vspace*{1cm}
   \noindent
-  {\Large \textbf{\VAR{tier.tier}}}\\\\
-  \BLOCK{for logo in tier.logos}
-    \includegraphics[width=2cm]{\VAR{root}/sponsor_logos/\VAR{logo}}\hfill
+  {\Large \textbf{\VAR{tier.tier}}}\\
+  \BLOCK{for logo_batched in tier.logos|batch(4)}
+    \BLOCK{for logo in logo_batched}
+      \begin{minipage}[c][0.21\linewidth][c]{0.21\linewidth}
+        \includegraphics[width=\linewidth]{\VAR{root}/sponsor_logos/\VAR{logo}}
+      \end{minipage}\hspace{0.05\linewidth}
+    \BLOCK{endfor}
+    \newline
   \BLOCK{endfor}
-  \vspace*{1cm}
+  \newline
 \BLOCK{endmacro}
 
 \BLOCK{for tier in sponsors}
@@ -242,7 +246,7 @@ ISBN \VAR{conference.isbn}
     \setlength{\unitlength}{1mm}
     \footnotesize
     \put(105,16){\makebox(0,0){\emph{Proceedings of the \VAR{conference.name}}, pages \VAR{paper.page_range[0]} - \VAR{paper.page_range[1]}}}
-    \put(105,12){\makebox(0,0){\VAR{conference_dates}, \VAR{conference.start_date.year} 
+    \put(105,12){\makebox(0,0){\VAR{conference_dates}, \VAR{conference.start_date.year}
     \textcopyright \VAR{conference.start_date.year} Association for Computational Linguistics}}
   }
   \includepdf[pagecommand={\thispagestyle{plain}},pages=-]{\VAR{root}/papers/\VAR{paper.file}}
