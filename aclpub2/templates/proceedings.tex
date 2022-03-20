@@ -234,6 +234,7 @@ ISBN \VAR{conference.isbn}
 \end{itemize}
 \newpage
 
+\BLOCK{if include_papers}  % Flag to generate only front matter or include papers.
 %%%%%%%%%%
 % Papers %
 %%%%%%%%%%
@@ -268,5 +269,6 @@ Author Index
 \BLOCK{endfor}
 \end{multicols}
 
+\BLOCK{endif}
 
 \end{document}
