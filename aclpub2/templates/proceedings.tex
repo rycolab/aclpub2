@@ -43,15 +43,15 @@
   \begin{center}
     \vspace{1.5cm}
 
-    {\LARGE \VAR{conference.abbreviation} \VAR{conference.start_date.year}}
+    {\LARGE \VAR{conference.anthology_venue_id} \VAR{conference.start_date.year}}
 
     \vspace*{65mm}
 
-    {\bf\LARGE \VAR{conference.name}}
+    {\bf\LARGE \VAR{conference.book_title}}
 
     \vspace*{5cm}
 
-    {\bf\LARGE \VAR{conference.volume}}
+    {\bf\LARGE \VAR{conference.cover_subtitle}}
 
     \vfill
 
@@ -68,7 +68,7 @@
 \vspace*{2cm}
 \noindent
 
-{\Large The \VAR{conference.abbreviation} organizers gratefully acknowledge the support from the following sponsors.}
+{\Large The \VAR{conference.anthology_venue_id} organizers gratefully acknowledge the support from the following sponsors.}
 \bigskip
 
 \vspace*{1cm}
@@ -102,7 +102,7 @@
 {\large
 
 \noindent
-\textcopyright \VAR{conference.start_date.year} The Association for Computational Linguistics\\
+\textcopyright \VAR{conference.start_date.year} \VAR{conference.publisher}\\
 
 \vspace*{2cm}
 \noindent
@@ -246,9 +246,9 @@ ISBN \VAR{conference.isbn}
   \AddToShipoutPicture*{
     \setlength{\unitlength}{1mm}
     \footnotesize
-    \put(105,16){\makebox(0,0){\emph{Proceedings of the \VAR{conference.name}}, pages \VAR{paper.page_range[0]} - \VAR{paper.page_range[1]}}}
+    \put(105,16){\makebox(0,0){\emph{Proceedings of the \VAR{conference.event_name}}, pages \VAR{paper.page_range[0]} - \VAR{paper.page_range[1]}}}
     \put(105,12){\makebox(0,0){\VAR{conference_dates}, \VAR{conference.start_date.year}
-    \textcopyright \VAR{conference.start_date.year} Association for Computational Linguistics}}
+    \textcopyright \VAR{conference.start_date.year} \VAR{conference.publisher}}}
   }
   \includepdf[pagecommand={\thispagestyle{plain}},pages=-]{\VAR{root}/papers/\VAR{paper.file}}
 \BLOCK{endfor}
