@@ -1,7 +1,7 @@
 # How to generate proceedings for \*CL Conferences and Workshops in aclpub2 format
 
 **aclpub2** supports the generation of Proceedings and Booklets for \*CL Conferences (ACL, NAACL, EMNLP, ... ) and related Workshops. 
-This README has been created to provide \*CL Conferences (ACL, NAACL, EMNLP, ... ) and Workshops organisers with the instructions to follow to generate proceedings in aclpub2 format. 
+This README has been created to provide the instructions to follow to generate proceedings/booklets in aclpub2 format. 
 
 The provided Python tool to generate the proceedings takes as input a set of files containing all information on the event (in the `.yml` format) and generates a `.tex` file containing the conference details, sponsors, prefaces, organizing and program committees, as well as the concatenation of all the watermarked accepted papers and the author index. Such `.tex` file is then compiled to generate the `pdf` file of the proceedings (to be sent to ACL Anthology following [these instructions](https://aclanthology.org/info/contrib/)).
 
