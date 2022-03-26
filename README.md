@@ -201,10 +201,12 @@ Each of the listed papers must have a unique ID so that they may be referred to 
       orcid: (opt) Author's ORCID ID.
       dblp: (opt) Author's DBLP ID.
       semantic_scholar: (opt) Author's Semantic Scholar ID.
-  attributes: 
+  attributes:
     # Key-value pairs used to manage other aspects of
     # the publication process. Below are examples of possible
-    # attributes.
+    # attributes. These attributes are not shown in the proceedings ... 
+    # but these are really useful in other steps, e.g., in the 
+    # definition of the program.
     paper_type: long | short
     presentation_type: oral | poster
     submitted_area: Semantics | Machine Learning | ...
