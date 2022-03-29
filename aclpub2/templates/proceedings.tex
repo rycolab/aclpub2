@@ -147,13 +147,14 @@ ISBN \VAR{conference.isbn}
 {\Large \textbf{Organizing Committee}}
 \end{center}
 \vspace*{1cm}
+\begin{description}
 \BLOCK{for role in organizing_committee}
-  \textbf{\VAR{role.role}}\\
+  \item{\bf \VAR{role.role}}\vspace{2mm}\\
   \BLOCK{for member in role.members}
     \VAR{committee_member(member)}\\
   \BLOCK{endfor}
-  \newline
 \BLOCK{endfor}
+\end{description}
 \newpage
 \BLOCK{endif}
 
@@ -165,23 +166,24 @@ ISBN \VAR{conference.isbn}
 \Large \textbf{Program Committee}
 \end{center}
 \vspace*{1cm}
+\begin{description}
 \BLOCK{for block in program_committee}
-  \textbf{\VAR{block.role}}\\
+  \item{\bf \VAR{block.role}}\vspace{2mm}\\
   \BLOCK{if block.entries[0].area}
     \BLOCK{for area in block.entries}
       \emph{\VAR{area.area}}\\
       \BLOCK{if area.members[0].institution}
         \BLOCK{for member in area.members}
-          \hspace*{1em} \VAR{committee_member(member)}\\
+          \VAR{committee_member(member)}\\
         \BLOCK{endfor}
       \BLOCK{endif}
       \BLOCK{if not area.members[0].institution}
-        \hspace*{1em} \VAR{join_name(", ", area.members)}\\
+        \VAR{join_name(", ", area.members)}\\
       \BLOCK{endif}
     \BLOCK{endfor}
   \BLOCK{else}
     \BLOCK{for member in block.entries}
-      \hspace*{1em} \VAR{committee_member(member)}\\
+      \VAR{committee_member(member)}\\
     \BLOCK{endfor}
   \BLOCK{endif}
   \BLOCK{if block.type is equalto("name_block")}
@@ -192,6 +194,7 @@ ISBN \VAR{conference.isbn}
   \BLOCK{endif}
 
 \BLOCK{endfor}
+\end{description}
 \newpage
 \BLOCK{endif}
 
