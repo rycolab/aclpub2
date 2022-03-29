@@ -82,9 +82,9 @@ publisher: published of the conference, generally "Association for Computational
 Here some example, first for a conference:
 
 ```yaml
-book_title: Proceedings of the 60th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)
+book_title: Proceedings of the 60th Annual Meeting of the Association for Computational Linguistics (Long Papers)
 event_name: The 60th Annual Meeting of the Association for Computational Linguistics
-cover_subtitle: Proceedings of the Conference (Volume 1: Long Papers)
+cover_subtitle: Proceedings of the Conference (Long Papers)
 anthology_venue_id: ACL
 start_date: 2022-05-22
 end_date: 2022-05-27
