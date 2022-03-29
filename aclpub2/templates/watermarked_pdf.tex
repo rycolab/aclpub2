@@ -33,8 +33,8 @@
 \AddToShipoutPicture*{
   \setlength{\unitlength}{1mm}
   \footnotesize
-  \put(105,12){\makebox(0,0){\emph{Proceedings of the \VAR{conference.event_name}}, pages \VAR{paper.page_range[0]} - \VAR{paper.page_range[1]}}}
-  \put(105,8){\makebox(0,0){\VAR{conference_dates}, \VAR{conference.start_date.year} 
+  \put(105,12){\makebox(0,0){\emph{\VAR{conference.book_title}}, pages \VAR{paper.page_range[0]} - \VAR{paper.page_range[1]}}}
+  \put(105,8){\makebox(0,0){\VAR{conference_dates}, \VAR{conference.start_date.year}
   \textcopyright \VAR{conference.start_date.year} Association for Computational Linguistics}}
 }
 \includepdf[pagecommand={\thispagestyle{plain}},pages=-]{\VAR{root}/papers/\VAR{paper.file}}

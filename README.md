@@ -64,8 +64,8 @@ This file should contain the key information about the conference, as its name, 
 Note that the ISBN of your conference/workshop will be provided by ACL.
 
 ```yaml
-book_title: name of the book; it should be in the form "Proceedings of ..." and it will be used in the bib file to name the event
-event_name: name of the Conference or Workshop and it will be used in the frontmatter of the proceedeings and in the watermark over the single papers
+book_title: name of the book; it should be in the form "Proceedings of ..." and it will be used in the bib file to name the event and to watermark the individual papers
+event_name: name of the Conference or Workshop and it will be used in the frontmatter of the proceedeings 
 cover_subtitle: the subtitle used in the cover of the proceedings, it can be in the form "Proceedings of the Conference, Vol. 1  (Long Papers)" or "Proceedings of the Workshop"
 anthology_venue_id: conference/workshop abbreviation or acronym, e.g. EMNLP
 start_date: Conference start date YYYY-MM-dd
