@@ -485,7 +485,7 @@ def process_program_workshop_handbook(
 
 
 def normalize_latex_string(text: str) -> str:
-    return text.replace("’", "'").replace("&", "\\&")
+    return text.replace("’", "'").replace("&", "\\&").replace("_", "\\_")
 
 
 def load_configs(root: Path):
@@ -500,6 +500,10 @@ def load_configs(root: Path):
     prefaces = load_config("prefaces", root)
     organizing_committee = load_config("organizing_committee", root)
     program_committee = load_config("program_committee", root)
+    for block in program_committee:
+        for entry in block["entries"]:
+            for k, v in entry.items():
+                entry[k] = normalize_latex_string(v)
     invited_talks = load_config("invited_talks", root)
 
     return (
@@ -525,6 +529,11 @@ def load_configs_handbook(root: Path):
     prefaces = load_config("prefaces_handbook", root)
     organizing_committee = load_config("organizing_committee", root)
     program_committee = load_config("program_committee", root)
+    for block in program_committee:
+        for entry in block["entries"]:
+            for k, v in entry.items():
+                print(k, v)
+                entry[k] = normalize_latex_string(v)
     tutorial_program = load_config("tutorial_program", root)
     tutorials = load_config("tutorials", root)
     invited_talks = load_config("invited_talks", root, required=False)

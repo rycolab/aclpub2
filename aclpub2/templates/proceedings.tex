@@ -181,15 +181,14 @@ ISBN \VAR{conference.isbn}
         \VAR{join_name(", ", area.members)}\\
       \BLOCK{endif}
     \BLOCK{endfor}
-  \BLOCK{else}
-    \BLOCK{for member in block.entries}
-      \VAR{committee_member(member)}\\
-    \BLOCK{endfor}
-  \BLOCK{endif}
-  \BLOCK{if block.type is equalto("name_block")}
+  \BLOCK{elif block.type is equalto("name_block")}
     \BLOCK{for name_block in group_by_last_name(block.entries)}
       \VAR{join_names(", ", name_block)}\\
       \newline
+    \BLOCK{endfor}
+  \BLOCK{else}
+    \BLOCK{for member in block.entries}
+      \VAR{committee_member(member)}\\
     \BLOCK{endfor}
   \BLOCK{endif}
 
