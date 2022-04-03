@@ -222,7 +222,7 @@ Each of the listed papers must have a unique ID so that they may be referred to 
 ```
 
 ## How to export yml files from OpenReview
-When running your workshop on OpenReview, it is possible to use their API for automatically extracting the `papers.yml` and `program_committee.yml` files. For this purpose, we provide two Python3 scripts for facilitating your work.
+When running your workshop on OpenReview, it is possible to use their API for automatically extracting the `papers.yml` and `program_committee.yml` files. For this purpose, in the folder `openreview` we provide two Python3 scripts for facilitating your work.
   
 1. `or2papers.py`: it creates the `papers.yml` file by extracting the papers marked as "accepted" as "Decision"; 
 
