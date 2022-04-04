@@ -29,7 +29,7 @@ download_pdf = eval(sys.argv[5]) if len(sys.argv)>5 else True
 if not download_all or not download_pdf:
     print("The output of this run cannot be used at ACLPUB2")
 
-acl_name = 'aclweb.org/ACL/2022/Conference' if len(sys.argv)>3 else sys.argv[3]
+acl_name = 'aclweb.org/ACL/2022/Conference' if len(sys.argv)<=3 else sys.argv[3]
 attachment_types = {"software":"software", "Data":"note"}
 
 papers_folder = "papers"
