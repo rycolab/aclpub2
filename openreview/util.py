@@ -88,5 +88,3 @@ def get_user(or_id,client_acl, force_institution=False):
         if 'semanticScholar' in c:
             ret["semantic_scholar_id"] = c['semanticScholar']
         return ret, False
-    # except:
-    #     print("CODE ERROR: or_id not found", or_id)  
