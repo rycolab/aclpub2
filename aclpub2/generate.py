@@ -94,6 +94,25 @@ def generate_proceedings(path: str, overwrite: bool):
         ]
     )
 
+    output_dir = Path("output")
+    shutil.rmtree(str(output_dir), ignore_errors=True)
+    output_dir.mkdir()
+    rearrange_outputs(build_dir, output_dir)
+
+
+def rearrange_outputs(build_dir: Path, output_dir: Path):
+    # Copy proceedings
+    shutil.copy2(
+        Path(build_dir, "proceedings.pdf"), Path(output_dir, "proceedings.pdf")
+    )
+    # Copy watermarked PDFs.
+    output_watermarked = Path(output_dir, "watermarked_pdfs")
+    output_watermarked.mkdir()
+    for file in Path(build_dir, "watermarked_pdfs").glob("*.pdf"):
+        shutil.copy2(file, output_watermarked)
+    # Copy the front matter as 0.pdf.
+    shutil.copy2(Path(build_dir, "front_matter.pdf"), Path(output_dir, "0.pdf"))
+
 
 def find_page_offset(proceedings_pdf):
     offset = None
