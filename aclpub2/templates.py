@@ -51,6 +51,7 @@ def group_by_last_name(entries) -> List[List[str]]:
     letters = list(alphabetized_names.keys())
     letters.sort()
     for letter in letters:
+        alphabetized_names[letter].sort(key=lambda x: x["last_name"])
         output.append(alphabetized_names[letter])
     return output
 
