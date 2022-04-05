@@ -42,7 +42,7 @@ if not os.path.exists(attachments_folder):
 
 
 submissions=list(openreview.tools.iterget_notes(client_acl, invitation=acl_name+'/-/Blind_Submission', details='original'))
-decision_by_forum={d.forum: d for d in list(openreview.tools.iterget_notes(client_acl, invitation=acl_name+'/Paper.*/-/Decision')) } 
+decision_by_forum={d.forum: d for d in list(openreview.tools.iterget_notes(client_acl, invitation=acl_name+'/Paper.*/-/Decision'))  if 'accept' in d.content['decision'].lower()} 
 
 
 papers = []
