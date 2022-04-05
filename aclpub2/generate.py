@@ -13,7 +13,7 @@ import shutil
 PARENT_DIR = Path(__file__).parent
 
 
-def generate_proceedings(path: str, overwrite: bool):
+def generate_proceedings(path: str, overwrite: bool, outdir: str):
     root = Path(path)
     build_dir = Path("build")
     build_dir.mkdir(exist_ok=True)
@@ -94,13 +94,13 @@ def generate_proceedings(path: str, overwrite: bool):
         ]
     )
 
-    output_dir = Path("output")
+    output_dir = Path(outdir)
     shutil.rmtree(str(output_dir), ignore_errors=True)
     output_dir.mkdir()
-    rearrange_outputs(build_dir, output_dir)
+    rearrange_outputs(root, build_dir, output_dir)
 
 
-def rearrange_outputs(build_dir: Path, output_dir: Path):
+def rearrange_outputs(input_path: Path, build_dir: Path, output_dir: Path):
     # Copy proceedings
     shutil.copy2(
         Path(build_dir, "proceedings.pdf"), Path(output_dir, "proceedings.pdf")
@@ -111,7 +111,9 @@ def rearrange_outputs(build_dir: Path, output_dir: Path):
     for file in Path(build_dir, "watermarked_pdfs").glob("*.pdf"):
         shutil.copy2(file, output_watermarked)
     # Copy the front matter as 0.pdf.
-    shutil.copy2(Path(build_dir, "front_matter.pdf"), Path(output_dir, "0.pdf"))
+    shutil.copy2(Path(build_dir, "front_matter.pdf"), Path(output_watermarked, "0.pdf"))
+    # Copy the inputs.
+    shutil.copytree(input_path, Path(output_dir, "inputs"))
 
 
 def find_page_offset(proceedings_pdf):
