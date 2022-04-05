@@ -18,9 +18,15 @@ if __name__ == "__main__":
         action="store_true",
         help="If set, overwrites the generated files in the output.",
     )
+    parser.add_argument(
+        "--outdir",
+        type=str,
+        default="output",
+        help="Directory to write final, ACL Anthology compatible generation outputs to.",
+    )
 
     args = parser.parse_args()
     if args.proceedings == True:
-        generate_proceedings(args.path, args.overwrite)
+        generate_proceedings(args.path, args.overwrite, args.outdir)
     if args.handbook == True:
         generate_handbook(args.path, args.overwrite)
