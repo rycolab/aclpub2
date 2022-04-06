@@ -9,6 +9,7 @@ import subprocess
 import yaml
 import roman
 import shutil
+import os
 
 PARENT_DIR = Path(__file__).parent
 
@@ -114,6 +115,10 @@ def rearrange_outputs(input_path: Path, build_dir: Path, output_dir: Path):
     shutil.copy2(Path(build_dir, "front_matter.pdf"), Path(output_watermarked, "0.pdf"))
     # Copy the inputs.
     shutil.copytree(input_path, Path(output_dir, "inputs"))
+    # Copy the attachments.
+    attachments_path = os.path.join(input_path, "attachments")
+    if os.path.isdir(attachments_path):
+        shutil.copytree(attachments_path, Path(output_dir, "attachments"))
 
 
 def find_page_offset(proceedings_pdf):
