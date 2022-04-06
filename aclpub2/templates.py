@@ -6,6 +6,13 @@ import jinja2
 
 TEMPLATE_DIR = Path(Path(__file__).parent, "templates")
 
+HOMOGLYPHS = {
+    "Ø": "o",
+    "Ö": "o",
+    "Ç": "c",
+    "Ş": "s",
+}
+
 
 def load_file(*args: str):
     with open(Path(*args)) as f:
@@ -46,14 +53,18 @@ def group_by_last_name(entries) -> List[List[str]]:
     alphabetized_names = defaultdict(list)
     for entry in entries:
         last_name = entry["last_name"]
-        alphabetized_names[last_name[0].lower()].append(entry)
+        alphabetized_names[homoglyph(last_name[0])].append(entry)
     output = []
     letters = list(alphabetized_names.keys())
     letters.sort()
     for letter in letters:
-        alphabetized_names[letter].sort(key=lambda x: x["last_name"])
+        alphabetized_names[letter].sort(key=lambda x: x["first_name"])
         output.append(alphabetized_names[letter])
     return output
+
+
+def homoglyph(char: str) -> str:
+    return HOMOGLYPHS.get(char, char.lower())
 
 
 def program_date(date) -> str:

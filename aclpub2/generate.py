@@ -252,6 +252,8 @@ def process_papers(papers, root: Path):
     alphabetized_author_index = defaultdict(list)
     for author, pages in sorted(author_to_pages.items()):
         alphabetized_author_index[author[0].lower()].append((author, pages))
+    for author_pages in alphabetized_author_index.values():
+        author_pages.sort(key=lambda entry: entry[0].lower())
     return id_to_paper, sorted(alphabetized_author_index.items())
 
 
