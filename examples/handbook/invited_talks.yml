@@ -1,13 +1,23 @@
-- title: Invited 1
+- title: "Advancing Technological Equity in Speech and Language Processing"
   abstract_file: invited1.tex
   bio_file: invited1_bio.tex
   date: 2020-07-01 18:30:00
   location: Room 1
   chair: Chair 1
+  speaker_name: Prof. Jhon Doe
 
-- title: Invited 2
+- title: "Learning and Processing Language from Wearables: Opportunities and Challenges"
   abstract_file: invited2.tex
   bio_file: invited2_bio.tex
   date: 2020-07-02 18:30:00
   location: Room 2
   chair: Chair 2
+  speaker_name: Prof. Jhona Doe
+
+- title: "Reliable Characterizations of NLP Systems as a Social Responsibility"
+  abstract_file: invited3.tex
+  bio_file: invited3_bio.tex
+  date: 2020-07-02 18:30:00
+  location: Room 2
+  chair: Chair 2
+  speaker_name: Prof. Jim Doe

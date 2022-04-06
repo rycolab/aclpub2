@@ -1,6 +1,7 @@
 - end_time: 2020-07-01 07:45:00
   start_time: 2020-07-01 07:30:00
   title: Opening Remarks
+  location: Main Room
 - end_time: 2020-07-01 09:30:00
   start_time: 2020-07-01 09:00:00
   title: Break
@@ -19,6 +20,12 @@
         - end_time: 2020-07-01 10:10:00
           id: 98
           start_time: 2020-07-01 10:00:00
+        - end_time: 2020-07-01 10:20:00
+          id: 103
+          start_time: 2020-07-01 10:10:00
+        - end_time: 2020-07-01 10:20:00
+          id: 103
+          start_time: 2020-07-01 10:10:00
         - end_time: 2020-07-01 10:20:00
           id: 103
           start_time: 2020-07-01 10:10:00
@@ -45,10 +52,113 @@
         - end_time: 2020-07-01 11:30:00
           id: 71
           start_time: 2020-07-01 11:20:00
+        - end_time: 2020-07-01 11:30:00
+          id: 71
+          start_time: 2020-07-01 11:20:00
+        - end_time: 2020-07-01 11:30:00
+          id: 71
+          start_time: 2020-07-01 11:20:00
       start_time: 2020-07-01 10:45:00
       title: Demo (1) pre-recorded presentations + live QA
       chair: John Doe
       location: Main Room
+    - end_time: 2020-07-01 11:30:00
+      papers:
+        - end_time: 2020-07-01 10:55:00
+          id: 28
+          start_time: 2020-07-01 10:45:00
+        - end_time: 2020-07-01 11:05:00
+          id: 44
+          start_time: 2020-07-01 10:55:00
+        - end_time: 2020-07-01 11:20:00
+          id: 72
+          start_time: 2020-07-01 11:10:00
+        - end_time: 2020-07-01 11:30:00
+          id: 71
+          start_time: 2020-07-01 11:20:00
+        - end_time: 2020-07-01 11:30:00
+          id: 71
+          start_time: 2020-07-01 11:20:00
+        - end_time: 2020-07-01 11:30:00
+          id: 71
+          start_time: 2020-07-01 11:20:00
+      start_time: 2020-07-01 10:45:00
+      title: Demo (1) pre-recorded presentations + live QA
+      chair: John Doe
+      location: Main Room
+    - end_time: 2020-07-01 11:30:00
+      papers:
+        - end_time: 2020-07-01 10:55:00
+          id: 28
+          start_time: 2020-07-01 10:45:00
+        - end_time: 2020-07-01 11:05:00
+          id: 44
+          start_time: 2020-07-01 10:55:00
+        - end_time: 2020-07-01 11:20:00
+          id: 72
+          start_time: 2020-07-01 11:10:00
+        - end_time: 2020-07-01 11:30:00
+          id: 71
+          start_time: 2020-07-01 11:20:00
+        - end_time: 2020-07-01 11:30:00
+          id: 71
+          start_time: 2020-07-01 11:20:00
+        - end_time: 2020-07-01 11:30:00
+          id: 71
+          start_time: 2020-07-01 11:20:00
+      start_time: 2020-07-01 10:45:00
+      title: Demo (1) pre-recorded presentations + live QA
+      chair: John Doe
+      location: Main Room
+    - end_time: 2020-07-01 11:30:00
+      papers:
+        - end_time: 2020-07-01 10:55:00
+          id: 28
+          start_time: 2020-07-01 10:45:00
+        - end_time: 2020-07-01 11:05:00
+          id: 44
+          start_time: 2020-07-01 10:55:00
+        - end_time: 2020-07-01 11:20:00
+          id: 72
+          start_time: 2020-07-01 11:10:00
+        - end_time: 2020-07-01 11:30:00
+          id: 71
+          start_time: 2020-07-01 11:20:00
+        - end_time: 2020-07-01 11:30:00
+          id: 71
+          start_time: 2020-07-01 11:20:00
+        - end_time: 2020-07-01 11:30:00
+          id: 71
+          start_time: 2020-07-01 11:20:00
+      start_time: 2020-07-01 10:45:00
+      title: Demo (1) pre-recorded presentations + live QA
+      chair: John Doe
+      location: Main Room
+    - end_time: 2020-07-01 11:30:00
+      papers:
+        - end_time: 2020-07-01 10:55:00
+          id: 28
+          start_time: 2020-07-01 10:45:00
+        - end_time: 2020-07-01 11:05:00
+          id: 44
+          start_time: 2020-07-01 10:55:00
+        - end_time: 2020-07-01 11:20:00
+          id: 72
+          start_time: 2020-07-01 11:10:00
+        - end_time: 2020-07-01 11:30:00
+          id: 71
+          start_time: 2020-07-01 11:20:00
+        - end_time: 2020-07-01 11:30:00
+          id: 71
+          start_time: 2020-07-01 11:20:00
+        - end_time: 2020-07-01 11:30:00
+          id: 71
+          start_time: 2020-07-01 11:20:00
+      start_time: 2020-07-01 10:45:00
+      title: Demo (1) pre-recorded presentations + live QA
+      chair: John Doe
+      location: Main Room
+
 - end_time: 2020-07-01 11:50:00
   start_time: 2020-07-01 11:30:00
   title: Break
@@ -67,8 +177,137 @@
         - end_time: 2020-07-01 12:20:00
           id: 89
           start_time: 2020-07-01 12:10:00
+        - end_time: 2020-07-01 12:20:00
+          id: 89
+          start_time: 2020-07-01 12:10:00
+        - end_time: 2020-07-01 12:20:00
+          id: 89
+          start_time: 2020-07-01 12:10:00
+        - end_time: 2020-07-01 12:20:00
+          id: 89
+          start_time: 2020-07-01 12:10:00
       start_time: 2020-07-01 11:50:00
       title: Knowledge Acquisition/Use and Behaviour Modeling (1)
+      chair: John Doe
+      location: Main Room
+    - end_time: 2020-07-01 12:20:00
+      papers:
+        - end_time: 2020-07-01 12:00:00
+          id: 78
+          start_time: 2020-07-01 11:50:00
+        - end_time: 2020-07-01 12:10:00
+          id: 12
+          start_time: 2020-07-01 12:00:00
+        - end_time: 2020-07-01 12:20:00
+          id: 89
+          start_time: 2020-07-01 12:10:00
+        - end_time: 2020-07-01 12:20:00
+          id: 89
+          start_time: 2020-07-01 12:10:00
+        - end_time: 2020-07-01 12:20:00
+          id: 89
+          start_time: 2020-07-01 12:10:00
+        - end_time: 2020-07-01 12:20:00
+          id: 89
+          start_time: 2020-07-01 12:10:00
+      start_time: 2020-07-01 11:50:00
+      title: Knowledge Acquisition/Use and Behaviour Modeling (2)
+      chair: John Doe
+      location: Main Room
+    - end_time: 2020-07-01 12:20:00
+      papers:
+        - end_time: 2020-07-01 12:00:00
+          id: 78
+          start_time: 2020-07-01 11:50:00
+        - end_time: 2020-07-01 12:10:00
+          id: 12
+          start_time: 2020-07-01 12:00:00
+        - end_time: 2020-07-01 12:20:00
+          id: 89
+          start_time: 2020-07-01 12:10:00
+        - end_time: 2020-07-01 12:20:00
+          id: 89
+          start_time: 2020-07-01 12:10:00
+        - end_time: 2020-07-01 12:20:00
+          id: 89
+          start_time: 2020-07-01 12:10:00
+        - end_time: 2020-07-01 12:20:00
+          id: 89
+          start_time: 2020-07-01 12:10:00
+      start_time: 2020-07-01 11:50:00
+      title: Knowledge Acquisition/Use and Behaviour Modeling (3)
+      chair: John Doe
+      location: Main Room
+    - end_time: 2020-07-01 12:20:00
+      papers:
+        - end_time: 2020-07-01 12:00:00
+          id: 78
+          start_time: 2020-07-01 11:50:00
+        - end_time: 2020-07-01 12:10:00
+          id: 12
+          start_time: 2020-07-01 12:00:00
+        - end_time: 2020-07-01 12:20:00
+          id: 89
+          start_time: 2020-07-01 12:10:00
+        - end_time: 2020-07-01 12:20:00
+          id: 89
+          start_time: 2020-07-01 12:10:00
+        - end_time: 2020-07-01 12:20:00
+          id: 89
+          start_time: 2020-07-01 12:10:00
+        - end_time: 2020-07-01 12:20:00
+          id: 89
+          start_time: 2020-07-01 12:10:00
+      start_time: 2020-07-01 11:50:00
+      title: Knowledge Acquisition/Use and Behaviour Modeling (4)
+      chair: John Doe
+      location: Main Room
+    - end_time: 2020-07-01 12:20:00
+      papers:
+        - end_time: 2020-07-01 12:00:00
+          id: 78
+          start_time: 2020-07-01 11:50:00
+        - end_time: 2020-07-01 12:10:00
+          id: 12
+          start_time: 2020-07-01 12:00:00
+        - end_time: 2020-07-01 12:20:00
+          id: 89
+          start_time: 2020-07-01 12:10:00
+        - end_time: 2020-07-01 12:20:00
+          id: 89
+          start_time: 2020-07-01 12:10:00
+        - end_time: 2020-07-01 12:20:00
+          id: 89
+          start_time: 2020-07-01 12:10:00
+        - end_time: 2020-07-01 12:20:00
+          id: 89
+          start_time: 2020-07-01 12:10:00
+      start_time: 2020-07-01 11:50:00
+      title: Knowledge Acquisition/Use and Behaviour Modeling (5)
+      chair: John Doe
+      location: Main Room
+    - end_time: 2020-07-01 12:20:00
+      papers:
+        - end_time: 2020-07-01 12:00:00
+          id: 78
+          start_time: 2020-07-01 11:50:00
+        - end_time: 2020-07-01 12:10:00
+          id: 12
+          start_time: 2020-07-01 12:00:00
+        - end_time: 2020-07-01 12:20:00
+          id: 89
+          start_time: 2020-07-01 12:10:00
+        - end_time: 2020-07-01 12:20:00
+          id: 89
+          start_time: 2020-07-01 12:10:00
+        - end_time: 2020-07-01 12:20:00
+          id: 89
+          start_time: 2020-07-01 12:10:00
+        - end_time: 2020-07-01 12:20:00
+          id: 89
+          start_time: 2020-07-01 12:10:00
+      start_time: 2020-07-01 11:50:00
+      title: Knowledge Acquisition/Use and Behaviour Modeling (6)
       chair: John Doe
       location: Main Room
     - end_time: 2020-07-01 12:40:00
@@ -102,6 +341,12 @@
         - end_time: 2020-07-01 17:00:00
           id: 18
           start_time: 2020-07-01 16:45:00
+        - end_time: 2020-07-01 17:00:00
+          id: 18
+          start_time: 2020-07-01 16:45:00
+        - end_time: 2020-07-01 17:00:00
+          id: 18
+          start_time: 2020-07-01 16:45:00
       start_time: 2020-07-01 16:00:00
       title: "Special Session: Greetings and Talks"
       chair: John Doe
@@ -114,8 +359,68 @@
         - end_time: 2020-07-01 17:30:00
           id: 61
           start_time: 2020-07-01 17:15:00
+        - end_time: 2020-07-01 17:30:00
+          id: 61
+          start_time: 2020-07-01 17:15:00
+        - end_time: 2020-07-01 17:30:00
+          id: 61
+          start_time: 2020-07-01 17:15:00
+        - end_time: 2020-07-01 17:30:00
+          id: 61
+          start_time: 2020-07-01 17:15:00
+        - end_time: 2020-07-01 17:30:00
+          id: 61
+          start_time: 2020-07-01 17:15:00
       start_time: 2020-07-01 17:00:00
       title: Demo (2) pre-recorded presentations + live QA
+      chair: John Doe
+      location: Main Room
+    - end_time: 2020-07-01 17:30:00
+      papers:
+        - end_time: 2020-07-01 17:15:00
+          id: 62
+          start_time: 2020-07-01 17:00:00
+        - end_time: 2020-07-01 17:30:00
+          id: 61
+          start_time: 2020-07-01 17:15:00
+        - end_time: 2020-07-01 17:30:00
+          id: 61
+          start_time: 2020-07-01 17:15:00
+        - end_time: 2020-07-01 17:30:00
+          id: 61
+          start_time: 2020-07-01 17:15:00
+        - end_time: 2020-07-01 17:30:00
+          id: 61
+          start_time: 2020-07-01 17:15:00
+        - end_time: 2020-07-01 17:30:00
+          id: 61
+          start_time: 2020-07-01 17:15:00
+      start_time: 2020-07-01 17:00:00
+      title: Demo (3) pre-recorded presentations + live QA
+      chair: John Doe
+      location: Main Room
+    - end_time: 2020-07-01 17:30:00
+      papers:
+        - end_time: 2020-07-01 17:15:00
+          id: 62
+          start_time: 2020-07-01 17:00:00
+        - end_time: 2020-07-01 17:30:00
+          id: 61
+          start_time: 2020-07-01 17:15:00
+        - end_time: 2020-07-01 17:30:00
+          id: 61
+          start_time: 2020-07-01 17:15:00
+        - end_time: 2020-07-01 17:30:00
+          id: 61
+          start_time: 2020-07-01 17:15:00
+        - end_time: 2020-07-01 17:30:00
+          id: 61
+          start_time: 2020-07-01 17:15:00
+        - end_time: 2020-07-01 17:30:00
+          id: 61
+          start_time: 2020-07-01 17:15:00
+      start_time: 2020-07-01 17:00:00
+      title: Demo (4) pre-recorded presentations + live QA
       chair: John Doe
       location: Main Room
     - end_time: 2020-07-01 18:15:00
@@ -134,210 +439,1195 @@
 - end_time: 2020-07-01 20:15:00
   start_time: 2020-07-01 19:30:00
   title: Breakouts Discussion Sessions
-- title: Session 1
-  start_time: 2020-07-02 05:00:00
-  end_time: 2020-07-02 07:10:00
-  subsessions:
-    - end_time: 2020-07-02 05:35:00
-      papers:
-        - end_time: 2020-07-02 05:10:00
-          id: 17
-          start_time: 2020-07-02 05:00:00
-        - end_time: 2020-07-02 05:20:00
-          id: 42
-          start_time: 2020-07-02 05:10:00
-        - end_time: 2020-07-02 05:30:00
-          id: 41
-          start_time: 2020-07-02 05:20:00
-      start_time: 2020-07-02 05:00:00
-      title: Knowledge Acquisition/Use and Behaviour Modeling (2)
-      chair: John Doe
-      location: Main Room
-    - end_time: 2020-07-02 06:00:00
-      start_time: 2020-07-02 05:35:00
-      title: Knowledge Acquisition/Use and Behaviour Modeling (2) live QA
-      chair: John Doe
-      location: Main Room
-    - end_time: 2020-07-02 06:45:00
-      papers:
-        - end_time: 2020-07-02 06:10:00
-          id: 58
-          start_time: 2020-07-02 06:00:00
-        - end_time: 2020-07-02 06:20:00
-          id: 94
-          start_time: 2020-07-02 06:10:00
-        - end_time: 2020-07-02 06:35:00
-          id: 102
-          start_time: 2020-07-02 06:25:00
-        - end_time: 2020-07-02 06:45:00
-          id: 97
-          start_time: 2020-07-02 06:35:00
-      start_time: 2020-07-02 06:00:00
-      title: Semantic and Pragmatics Modeling
-      chair: John Doe
-      location: Main Room
-    - end_time: 2020-07-02 07:10:00
-      start_time: 2020-07-02 06:45:00
-      title: Semantic and Pragmatics Modeling live QA
-      chair: John Doe
-      location: Main Room
-- end_time: 2020-07-02 07:30:00
-  start_time: 2020-07-02 07:10:00
-  title: Break
-- title: Session 2
-  start_time: 2020-07-02 07:30:00
-  end_time: 2020-07-02 08:20:00
-  subsessions:
-    - end_time: 2020-07-02 08:00:00
-      papers:
-        - end_time: 2020-07-02 07:40:00
-          id: 43
-          start_time: 2020-07-02 07:30:00
-        - end_time: 2020-07-02 07:50:00
-          id: 24
-          start_time: 2020-07-02 07:40:00
-        - end_time: 2020-07-02 08:00:00
-          id: 11
-          start_time: 2020-07-02 07:50:00
-      start_time: 2020-07-02 07:30:00
-      title: Modeling Convergence
-      chair: John Doe
-      location: Main Room
-    - end_time: 2020-07-02 08:20:00
-      start_time: 2020-07-02 08:00:00
-      title: Modeling Convergence live QA
-      chair: John Doe
-      location: Main Room
-- end_time: 2020-07-02 08:45:00
-  start_time: 2020-07-02 08:20:00
-  title: Break
-- end_time: 2020-07-02 09:30:00
-  start_time: 2020-07-02 08:45:00
-  title: Sponsor Booth
-- end_time: 2020-07-02 10:15:00
-  start_time: 2020-07-02 09:30:00
-  title: Breakout Discussion Sessions
-- end_time: 2020-07-02 10:45:00
-  start_time: 2020-07-02 10:15:00
-  title: Break
-- title: Session 3
-  start_time: 2020-07-02 10:45:00
-  end_time: 2020-07-02 11:50:00
-  subsessions:
-    - end_time: 2020-07-02 11:25:00
-      papers:
-        - end_time: 2020-07-02 10:55:00
-          id: 4
-          start_time: 2020-07-02 10:45:00
-        - end_time: 2020-07-02 11:15:00
-          id: 79
-          start_time: 2020-07-02 11:05:00
-        - end_time: 2020-07-02 11:25:00
-          id: 60
-          start_time: 2020-07-02 11:15:00
-      start_time: 2020-07-02 10:45:00
-      title: Evaluation + Corpora (1)
-    - end_time: 2020-07-02 11:50:00
-      start_time: 2020-07-02 11:25:00
-      title: Evaluation + Corpora (1) live QA
-- end_time: 2020-07-02 12:30:00
-  start_time: 2020-07-02 11:50:00
-  title: Break
 - title: Session 4
-  start_time: 2020-07-02 12:30:00
-  end_time: 2020-07-02 16:30:00
+  start_time: 2020-07-01 20:15:00
+  end_time: 2020-07-01 00:00:00
   subsessions:
-    - end_time: 2020-07-02 13:00:00
+    - end_time: 2020-07-01 21:00:00
       papers:
-        - end_time: 2020-07-02 12:45:00
-          id: 7
-          start_time: 2020-07-02 12:30:00
-        - end_time: 2020-07-02 13:00:00
-          id: 100
-          start_time: 2020-07-02 12:45:00
-      start_time: 2020-07-02 12:30:00
+        - end_time: 2020-07-01 20:15:00
+          id: 49
+          start_time: 2020-07-01 20:00:00
+        - end_time: 2020-07-01 20:30:00
+          id: 63
+          start_time: 2020-07-01 20:15:00
+        - end_time: 2020-07-01 20:45:00
+          id: 81
+          start_time: 2020-07-01 20:30:00
+        - end_time: 2020-07-01 21:00:00
+          id: 18
+          start_time: 2020-07-01 20:45:00
+        - end_time: 2020-07-01 21:00:00
+          id: 18
+          start_time: 2020-07-01 20:45:00
+        - end_time: 2020-07-01 21:00:00
+          id: 18
+          start_time: 2020-07-01 20:45:00
+      start_time: 2020-07-01 20:00:00
+      title: "Special Session: Greetings and Talks"
+      chair: John Doe
+      location: Main Room
+    - end_time: 2020-07-01 17:30:00
+      papers:
+        - end_time: 2020-07-01 17:15:00
+          id: 62
+          start_time: 2020-07-01 17:00:00
+        - end_time: 2020-07-01 17:30:00
+          id: 61
+          start_time: 2020-07-01 17:15:00
+        - end_time: 2020-07-01 17:30:00
+          id: 61
+          start_time: 2020-07-01 17:15:00
+        - end_time: 2020-07-01 17:30:00
+          id: 61
+          start_time: 2020-07-01 17:15:00
+        - end_time: 2020-07-01 17:30:00
+          id: 61
+          start_time: 2020-07-01 17:15:00
+      start_time: 2020-07-01 17:00:00
+      title: Demo (2) pre-recorded presentations + live QA
+      chair: John Doe
+      location: Main Room
+    - end_time: 2020-07-01 17:30:00
+      papers:
+        - end_time: 2020-07-01 17:15:00
+          id: 62
+          start_time: 2020-07-01 17:00:00
+        - end_time: 2020-07-01 17:30:00
+          id: 61
+          start_time: 2020-07-01 17:15:00
+        - end_time: 2020-07-01 17:30:00
+          id: 61
+          start_time: 2020-07-01 17:15:00
+        - end_time: 2020-07-01 17:30:00
+          id: 61
+          start_time: 2020-07-01 17:15:00
+        - end_time: 2020-07-01 17:30:00
+          id: 61
+          start_time: 2020-07-01 17:15:00
+        - end_time: 2020-07-01 17:30:00
+          id: 61
+          start_time: 2020-07-01 17:15:00
+      start_time: 2020-07-01 17:00:00
       title: Demo (3) pre-recorded presentations + live QA
       chair: John Doe
       location: Main Room
-    - end_time: 2020-07-02 16:30:00
-      start_time: 2020-07-02 13:00:00
+    - end_time: 2020-07-01 17:30:00
+      papers:
+        - end_time: 2020-07-01 17:15:00
+          id: 62
+          start_time: 2020-07-01 17:00:00
+        - end_time: 2020-07-01 17:30:00
+          id: 61
+          start_time: 2020-07-01 17:15:00
+        - end_time: 2020-07-01 17:30:00
+          id: 61
+          start_time: 2020-07-01 17:15:00
+        - end_time: 2020-07-01 17:30:00
+          id: 61
+          start_time: 2020-07-01 17:15:00
+        - end_time: 2020-07-01 17:30:00
+          id: 61
+          start_time: 2020-07-01 17:15:00
+      start_time: 2020-07-01 17:00:00
+      title: Demo (4) pre-recorded presentations + live QA
+      chair: John Doe
+      location: Main Room
+    - end_time: 2020-07-01 18:15:00
+      start_time: 2020-07-01 17:30:00
+      title: "Special Session: live QA"
+      chair: John Doe
+      location: Main Room
+    - end_time: 2020-07-01 19:15:00
+      start_time: 2020-07-01 18:15:00
+      title: "Special Session: Late-breaking"
+      chair: John Doe
+      location: Main Room
+- title: Session 5 - Poster Session
+  start_time: 2020-07-01 20:15:00
+  end_time: 2020-07-01 00:00:00
+  location: Main Room
+- title: Session 1
+  start_time: 2020-07-02 09:30:00
+  end_time: 2020-07-02 11:30:00
+  subsessions:
+    - end_time: 2020-07-02 10:20:00
+      papers:
+        - end_time: 2020-07-02 09:40:00
+          id: 22
+          start_time: 2020-07-02 09:30:00
+        - end_time: 2020-07-02 09:50:00
+          id: 76
+          start_time: 2020-07-02 09:40:00
+        - end_time: 2020-07-02 10:10:00
+          id: 98
+          start_time: 2020-07-02 10:00:00
+        - end_time: 2020-07-02 10:20:00
+          id: 103
+          start_time: 2020-07-02 10:10:00
+        - end_time: 2020-07-02 10:20:00
+          id: 103
+          start_time: 2020-07-02 10:10:00
+        - end_time: 2020-07-02 10:20:00
+          id: 103
+          start_time: 2020-07-02 10:10:00
+      start_time: 2020-07-02 09:30:00
+      title: Generation + Task-Oriented Dialogues (1)
+      chair: John Doe
+      location: Main Room
+    - end_time: 2020-07-02 10:45:00
+      start_time: 2020-07-02 10:20:00
+      title: Generation + Task-Oriented Dialogues (1) live QA
+      chair: John Doe
+      location: Main Room
+    - end_time: 2020-07-02 11:30:00
+      papers:
+        - end_time: 2020-07-02 10:55:00
+          id: 28
+          start_time: 2020-07-02 10:45:00
+        - end_time: 2020-07-02 11:05:00
+          id: 44
+          start_time: 2020-07-02 10:55:00
+        - end_time: 2020-07-02 11:20:00
+          id: 72
+          start_time: 2020-07-02 11:10:00
+        - end_time: 2020-07-02 11:30:00
+          id: 71
+          start_time: 2020-07-02 11:20:00
+        - end_time: 2020-07-02 11:30:00
+          id: 71
+          start_time: 2020-07-02 11:20:00
+        - end_time: 2020-07-02 11:30:00
+          id: 71
+          start_time: 2020-07-02 11:20:00
+      start_time: 2020-07-02 10:45:00
+      title: Demo (1) pre-recorded presentations + live QA
+      chair: John Doe
+      location: Main Room
+    - end_time: 2020-07-02 11:30:00
+      papers:
+        - end_time: 2020-07-02 10:55:00
+          id: 28
+          start_time: 2020-07-02 10:45:00
+        - end_time: 2020-07-02 11:05:00
+          id: 44
+          start_time: 2020-07-02 10:55:00
+        - end_time: 2020-07-02 11:20:00
+          id: 72
+          start_time: 2020-07-02 11:10:00
+        - end_time: 2020-07-02 11:30:00
+          id: 71
+          start_time: 2020-07-02 11:20:00
+        - end_time: 2020-07-02 11:30:00
+          id: 71
+          start_time: 2020-07-02 11:20:00
+        - end_time: 2020-07-02 11:30:00
+          id: 71
+          start_time: 2020-07-02 11:20:00
+      start_time: 2020-07-02 10:45:00
+      title: Demo (1) pre-recorded presentations + live QA
+      chair: John Doe
+      location: Main Room
+    - end_time: 2020-07-02 11:30:00
+      papers:
+        - end_time: 2020-07-02 10:55:00
+          id: 28
+          start_time: 2020-07-02 10:45:00
+        - end_time: 2020-07-02 11:05:00
+          id: 44
+          start_time: 2020-07-02 10:55:00
+        - end_time: 2020-07-02 11:20:00
+          id: 72
+          start_time: 2020-07-02 11:10:00
+        - end_time: 2020-07-02 11:30:00
+          id: 71
+          start_time: 2020-07-02 11:20:00
+        - end_time: 2020-07-02 11:30:00
+          id: 71
+          start_time: 2020-07-02 11:20:00
+        - end_time: 2020-07-02 11:30:00
+          id: 71
+          start_time: 2020-07-02 11:20:00
+      start_time: 2020-07-02 10:45:00
+      title: Demo (1) pre-recorded presentations + live QA
+      chair: John Doe
+      location: Main Room
+    - end_time: 2020-07-02 11:30:00
+      papers:
+        - end_time: 2020-07-02 10:55:00
+          id: 28
+          start_time: 2020-07-02 10:45:00
+        - end_time: 2020-07-02 11:05:00
+          id: 44
+          start_time: 2020-07-02 10:55:00
+        - end_time: 2020-07-02 11:20:00
+          id: 72
+          start_time: 2020-07-02 11:10:00
+        - end_time: 2020-07-02 11:30:00
+          id: 71
+          start_time: 2020-07-02 11:20:00
+        - end_time: 2020-07-02 11:30:00
+          id: 71
+          start_time: 2020-07-02 11:20:00
+        - end_time: 2020-07-02 11:30:00
+          id: 71
+          start_time: 2020-07-02 11:20:00
+      start_time: 2020-07-02 10:45:00
+      title: Demo (1) pre-recorded presentations + live QA
+      chair: John Doe
+      location: Main Room
+    - end_time: 2020-07-02 11:30:00
+      papers:
+        - end_time: 2020-07-02 10:55:00
+          id: 28
+          start_time: 2020-07-02 10:45:00
+        - end_time: 2020-07-02 11:05:00
+          id: 44
+          start_time: 2020-07-02 10:55:00
+        - end_time: 2020-07-02 11:20:00
+          id: 72
+          start_time: 2020-07-02 11:10:00
+        - end_time: 2020-07-02 11:30:00
+          id: 71
+          start_time: 2020-07-02 11:20:00
+        - end_time: 2020-07-02 11:30:00
+          id: 71
+          start_time: 2020-07-02 11:20:00
+        - end_time: 2020-07-02 11:30:00
+          id: 71
+          start_time: 2020-07-02 11:20:00
+      start_time: 2020-07-02 10:45:00
+      title: Demo (1) pre-recorded presentations + live QA
+      chair: John Doe
+      location: Main Room
+
+- end_time: 2020-07-02 11:50:00
+  start_time: 2020-07-02 11:30:00
+  title: Break
+- title: Session 2
+  start_time: 2020-07-02 11:50:00
+  end_time: 2020-07-02 15:30:00
+  subsessions:
+    - end_time: 2020-07-02 12:20:00
+      papers:
+        - end_time: 2020-07-02 12:00:00
+          id: 78
+          start_time: 2020-07-02 11:50:00
+        - end_time: 2020-07-02 12:10:00
+          id: 12
+          start_time: 2020-07-02 12:00:00
+        - end_time: 2020-07-02 12:20:00
+          id: 89
+          start_time: 2020-07-02 12:10:00
+        - end_time: 2020-07-02 12:20:00
+          id: 89
+          start_time: 2020-07-02 12:10:00
+        - end_time: 2020-07-02 12:20:00
+          id: 89
+          start_time: 2020-07-02 12:10:00
+        - end_time: 2020-07-02 12:20:00
+          id: 89
+          start_time: 2020-07-02 12:10:00
+      start_time: 2020-07-02 11:50:00
+      title: Knowledge Acquisition/Use and Behaviour Modeling (1)
+      chair: John Doe
+      location: Main Room
+    - end_time: 2020-07-02 12:20:00
+      papers:
+        - end_time: 2020-07-02 12:00:00
+          id: 78
+          start_time: 2020-07-02 11:50:00
+        - end_time: 2020-07-02 12:10:00
+          id: 12
+          start_time: 2020-07-02 12:00:00
+        - end_time: 2020-07-02 12:20:00
+          id: 89
+          start_time: 2020-07-02 12:10:00
+        - end_time: 2020-07-02 12:20:00
+          id: 89
+          start_time: 2020-07-02 12:10:00
+        - end_time: 2020-07-02 12:20:00
+          id: 89
+          start_time: 2020-07-02 12:10:00
+        - end_time: 2020-07-02 12:20:00
+          id: 89
+          start_time: 2020-07-02 12:10:00
+      start_time: 2020-07-02 11:50:00
+      title: Knowledge Acquisition/Use and Behaviour Modeling (2)
+      chair: John Doe
+      location: Main Room
+    - end_time: 2020-07-02 12:20:00
+      papers:
+        - end_time: 2020-07-02 12:00:00
+          id: 78
+          start_time: 2020-07-02 11:50:00
+        - end_time: 2020-07-02 12:10:00
+          id: 12
+          start_time: 2020-07-02 12:00:00
+        - end_time: 2020-07-02 12:20:00
+          id: 89
+          start_time: 2020-07-02 12:10:00
+        - end_time: 2020-07-02 12:20:00
+          id: 89
+          start_time: 2020-07-02 12:10:00
+        - end_time: 2020-07-02 12:20:00
+          id: 89
+          start_time: 2020-07-02 12:10:00
+        - end_time: 2020-07-02 12:20:00
+          id: 89
+          start_time: 2020-07-02 12:10:00
+      start_time: 2020-07-02 11:50:00
+      title: Knowledge Acquisition/Use and Behaviour Modeling (3)
+      chair: John Doe
+      location: Main Room
+    - end_time: 2020-07-02 12:20:00
+      papers:
+        - end_time: 2020-07-02 12:00:00
+          id: 78
+          start_time: 2020-07-02 11:50:00
+        - end_time: 2020-07-02 12:10:00
+          id: 12
+          start_time: 2020-07-02 12:00:00
+        - end_time: 2020-07-02 12:20:00
+          id: 89
+          start_time: 2020-07-02 12:10:00
+        - end_time: 2020-07-02 12:20:00
+          id: 89
+          start_time: 2020-07-02 12:10:00
+        - end_time: 2020-07-02 12:20:00
+          id: 89
+          start_time: 2020-07-02 12:10:00
+        - end_time: 2020-07-02 12:20:00
+          id: 89
+          start_time: 2020-07-02 12:10:00
+      start_time: 2020-07-02 11:50:00
+      title: Knowledge Acquisition/Use and Behaviour Modeling (4)
+      chair: John Doe
+      location: Main Room
+    - end_time: 2020-07-02 12:20:00
+      papers:
+        - end_time: 2020-07-02 12:00:00
+          id: 78
+          start_time: 2020-07-02 11:50:00
+        - end_time: 2020-07-02 12:10:00
+          id: 12
+          start_time: 2020-07-02 12:00:00
+        - end_time: 2020-07-02 12:20:00
+          id: 89
+          start_time: 2020-07-02 12:10:00
+        - end_time: 2020-07-02 12:20:00
+          id: 89
+          start_time: 2020-07-02 12:10:00
+        - end_time: 2020-07-02 12:20:00
+          id: 89
+          start_time: 2020-07-02 12:10:00
+        - end_time: 2020-07-02 12:20:00
+          id: 89
+          start_time: 2020-07-02 12:10:00
+      start_time: 2020-07-02 11:50:00
+      title: Knowledge Acquisition/Use and Behaviour Modeling (5)
+      chair: John Doe
+      location: Main Room
+    - end_time: 2020-07-02 12:20:00
+      papers:
+        - end_time: 2020-07-02 12:00:00
+          id: 78
+          start_time: 2020-07-02 11:50:00
+        - end_time: 2020-07-02 12:10:00
+          id: 12
+          start_time: 2020-07-02 12:00:00
+        - end_time: 2020-07-02 12:20:00
+          id: 89
+          start_time: 2020-07-02 12:10:00
+        - end_time: 2020-07-02 12:20:00
+          id: 89
+          start_time: 2020-07-02 12:10:00
+        - end_time: 2020-07-02 12:20:00
+          id: 89
+          start_time: 2020-07-02 12:10:00
+        - end_time: 2020-07-02 12:20:00
+          id: 89
+          start_time: 2020-07-02 12:10:00
+      start_time: 2020-07-02 11:50:00
+      title: Knowledge Acquisition/Use and Behaviour Modeling (6)
+      chair: John Doe
+      location: Main Room
+    - end_time: 2020-07-02 12:40:00
+      start_time: 2020-07-02 12:20:00
+      title: Knowledge Acquisition/Use and Behaviour Modeling (1) live QA
+      chair: John Doe
+      location: Main Room
+    - end_time: 2020-07-02 15:30:00
+      start_time: 2020-07-02 12:40:00
       title: Breakout Discussion Sessions
       chair: John Doe
       location: Main Room
-- end_time: 2020-07-02 17:00:00
-  start_time: 2020-07-02 16:30:00
+- end_time: 2020-07-02 16:00:00
+  start_time: 2020-07-02 15:30:00
   title: Break
-- title: Session 5
-  start_time: 2020-07-02 18:35:00
-  end_time: 2020-07-02 19:40:00
+- title: Session 3
+  start_time: 2020-07-02 16:00:00
+  end_time: 2020-07-02 19:15:00
   subsessions:
+    - end_time: 2020-07-02 17:00:00
+      papers:
+        - end_time: 2020-07-02 16:15:00
+          id: 49
+          start_time: 2020-07-02 16:00:00
+        - end_time: 2020-07-02 16:30:00
+          id: 63
+          start_time: 2020-07-02 16:15:00
+        - end_time: 2020-07-02 16:45:00
+          id: 81
+          start_time: 2020-07-02 16:30:00
+        - end_time: 2020-07-02 17:00:00
+          id: 18
+          start_time: 2020-07-02 16:45:00
+        - end_time: 2020-07-02 17:00:00
+          id: 18
+          start_time: 2020-07-02 16:45:00
+        - end_time: 2020-07-02 17:00:00
+          id: 18
+          start_time: 2020-07-02 16:45:00
+      start_time: 2020-07-02 16:00:00
+      title: "Special Session: Greetings and Talks"
+      chair: John Doe
+      location: Main Room
+    - end_time: 2020-07-02 17:30:00
+      papers:
+        - end_time: 2020-07-02 17:15:00
+          id: 62
+          start_time: 2020-07-02 17:00:00
+        - end_time: 2020-07-02 17:30:00
+          id: 61
+          start_time: 2020-07-02 17:15:00
+        - end_time: 2020-07-02 17:30:00
+          id: 61
+          start_time: 2020-07-02 17:15:00
+        - end_time: 2020-07-02 17:30:00
+          id: 61
+          start_time: 2020-07-02 17:15:00
+        - end_time: 2020-07-02 17:30:00
+          id: 61
+          start_time: 2020-07-02 17:15:00
+        - end_time: 2020-07-02 17:30:00
+          id: 61
+          start_time: 2020-07-02 17:15:00
+      start_time: 2020-07-02 17:00:00
+      title: Demo (2) pre-recorded presentations + live QA
+      chair: John Doe
+      location: Main Room
+    - end_time: 2020-07-02 17:30:00
+      papers:
+        - end_time: 2020-07-02 17:15:00
+          id: 62
+          start_time: 2020-07-02 17:00:00
+        - end_time: 2020-07-02 17:30:00
+          id: 61
+          start_time: 2020-07-02 17:15:00
+        - end_time: 2020-07-02 17:30:00
+          id: 61
+          start_time: 2020-07-02 17:15:00
+        - end_time: 2020-07-02 17:30:00
+          id: 61
+          start_time: 2020-07-02 17:15:00
+        - end_time: 2020-07-02 17:30:00
+          id: 61
+          start_time: 2020-07-02 17:15:00
+        - end_time: 2020-07-02 17:30:00
+          id: 61
+          start_time: 2020-07-02 17:15:00
+      start_time: 2020-07-02 17:00:00
+      title: Demo (3) pre-recorded presentations + live QA
+      chair: John Doe
+      location: Main Room
+    - end_time: 2020-07-02 17:30:00
+      papers:
+        - end_time: 2020-07-02 17:15:00
+          id: 62
+          start_time: 2020-07-02 17:00:00
+        - end_time: 2020-07-02 17:30:00
+          id: 61
+          start_time: 2020-07-02 17:15:00
+        - end_time: 2020-07-02 17:30:00
+          id: 61
+          start_time: 2020-07-02 17:15:00
+        - end_time: 2020-07-02 17:30:00
+          id: 61
+          start_time: 2020-07-02 17:15:00
+        - end_time: 2020-07-02 17:30:00
+          id: 61
+          start_time: 2020-07-02 17:15:00
+        - end_time: 2020-07-02 17:30:00
+          id: 61
+          start_time: 2020-07-02 17:15:00
+      start_time: 2020-07-02 17:00:00
+      title: Demo (4) pre-recorded presentations + live QA
+      chair: John Doe
+      location: Main Room
+    - end_time: 2020-07-02 18:15:00
+      start_time: 2020-07-02 17:30:00
+      title: "Special Session: live QA"
+      chair: John Doe
+      location: Main Room
     - end_time: 2020-07-02 19:15:00
-      papers:
-        - end_time: 2020-07-02 18:45:00
-          id: 2
-          start_time: 2020-07-02 18:35:00
-        - end_time: 2020-07-02 18:55:00
-          id: 38
-          start_time: 2020-07-02 18:45:00
-        - end_time: 2020-07-02 19:05:00
-          id: 83
-          start_time: 2020-07-02 18:55:00
-        - end_time: 2020-07-02 19:15:00
-          id: 87
-          start_time: 2020-07-02 19:05:00
-      start_time: 2020-07-02 18:35:00
-      title: Generation + Task-Oriented Dialogues (2)
+      start_time: 2020-07-02 18:15:00
+      title: "Special Session: Late-breaking"
       chair: John Doe
       location: Main Room
-    - end_time: 2020-07-02 19:40:00
-      start_time: 2020-07-02 19:15:00
-      title: Generation + Task-Oriented Dialogues (2) live QA
-      chair: John Doe
-      location: Main Room
-- title: Sessions 1
-  start_time: 2020-07-03 05:30:00
-  end_time: 2020-07-03 07:10:00
-  subsessions:
-    - end_time: 2020-07-03 06:05:00
-      chair: John Doe
-      location: Main Room
-      papers:
-        - end_time: 2020-07-03 05:40:00
-          id: 8
-          start_time: 2020-07-03 05:30:00
-        - end_time: 2020-07-03 05:50:00
-          id: 9
-          start_time: 2020-07-03 05:40:00
-        - end_time: 2020-07-03 06:05:00
-          id: 92
-          start_time: 2020-07-03 05:55:00
-      start_time: 2020-07-03 05:30:00
-      title: Evaluation + Corpora (2)
-    - end_time: 2020-07-03 06:30:00
-      start_time: 2020-07-03 06:05:00
-      title: Evaluation + Corpora (2) live QA
-      chair: John Doe
-      location: Main Room
-    - end_time: 2020-07-03 06:55:00
-      papers:
-        - end_time: 2020-07-03 06:40:00
-          id: 16
-          start_time: 2020-07-03 06:30:00
-        - end_time: 2020-07-03 06:55:00
-          id: 25
-          start_time: 2020-07-03 06:45:00
-      start_time: 2020-07-03 06:30:00
-      title: Dialogue Policy
-      chair: John Doe
-      location: Main Room
-    - end_time: 2020-07-03 07:10:00
-      start_time: 2020-07-03 06:55:00
-      title: Dialogue Policy live QA
-      chair: John Doe
-      location: Main Room
-- end_time: 2020-07-03 07:30:00
-  start_time: 2020-07-03 07:10:00
+- end_time: 2020-07-02 19:30:00
+  start_time: 2020-07-02 19:15:00
   title: Break
-- end_time: 2020-07-03 09:45:00
-  start_time: 2020-07-03 08:45:00
-  title: Business Meeting, Awards, Closing (live)
+- end_time: 2020-07-02 20:15:00
+  start_time: 2020-07-02 19:30:00
+  title: Breakouts Discussion Sessions
+- title: Session 4
+  start_time: 2020-07-02 20:15:00
+  end_time: 2020-07-02 00:00:00
+  subsessions:
+    - end_time: 2020-07-02 21:00:00
+      papers:
+        - end_time: 2020-07-02 20:15:00
+          id: 49
+          start_time: 2020-07-02 20:00:00
+        - end_time: 2020-07-02 20:30:00
+          id: 63
+          start_time: 2020-07-02 20:15:00
+        - end_time: 2020-07-02 20:45:00
+          id: 81
+          start_time: 2020-07-02 20:30:00
+        - end_time: 2020-07-02 21:00:00
+          id: 18
+          start_time: 2020-07-02 20:45:00
+        - end_time: 2020-07-02 21:00:00
+          id: 18
+          start_time: 2020-07-02 20:45:00
+        - end_time: 2020-07-02 21:00:00
+          id: 18
+          start_time: 2020-07-02 20:45:00
+      start_time: 2020-07-02 20:00:00
+      title: "Special Session: Greetings and Talks"
+      chair: John Doe
+      location: Main Room
+    - end_time: 2020-07-02 17:30:00
+      papers:
+        - end_time: 2020-07-02 17:15:00
+          id: 62
+          start_time: 2020-07-02 17:00:00
+        - end_time: 2020-07-02 17:30:00
+          id: 61
+          start_time: 2020-07-02 17:15:00
+        - end_time: 2020-07-02 17:30:00
+          id: 61
+          start_time: 2020-07-02 17:15:00
+        - end_time: 2020-07-02 17:30:00
+          id: 61
+          start_time: 2020-07-02 17:15:00
+        - end_time: 2020-07-02 17:30:00
+          id: 61
+          start_time: 2020-07-02 17:15:00
+      start_time: 2020-07-02 17:00:00
+      title: Demo (2) pre-recorded presentations + live QA
+      chair: John Doe
+      location: Main Room
+    - end_time: 2020-07-02 17:30:00
+      papers:
+        - end_time: 2020-07-02 17:15:00
+          id: 62
+          start_time: 2020-07-02 17:00:00
+        - end_time: 2020-07-02 17:30:00
+          id: 61
+          start_time: 2020-07-02 17:15:00
+        - end_time: 2020-07-02 17:30:00
+          id: 61
+          start_time: 2020-07-02 17:15:00
+        - end_time: 2020-07-02 17:30:00
+          id: 61
+          start_time: 2020-07-02 17:15:00
+        - end_time: 2020-07-02 17:30:00
+          id: 61
+          start_time: 2020-07-02 17:15:00
+        - end_time: 2020-07-02 17:30:00
+          id: 61
+          start_time: 2020-07-02 17:15:00
+      start_time: 2020-07-02 17:00:00
+      title: Demo (3) pre-recorded presentations + live QA
+      chair: John Doe
+      location: Main Room
+    - end_time: 2020-07-02 17:30:00
+      papers:
+        - end_time: 2020-07-02 17:15:00
+          id: 62
+          start_time: 2020-07-02 17:00:00
+        - end_time: 2020-07-02 17:30:00
+          id: 61
+          start_time: 2020-07-02 17:15:00
+        - end_time: 2020-07-02 17:30:00
+          id: 61
+          start_time: 2020-07-02 17:15:00
+        - end_time: 2020-07-02 17:30:00
+          id: 61
+          start_time: 2020-07-02 17:15:00
+        - end_time: 2020-07-02 17:30:00
+          id: 61
+          start_time: 2020-07-02 17:15:00
+      start_time: 2020-07-02 17:00:00
+      title: Demo (4) pre-recorded presentations + live QA
+      chair: John Doe
+      location: Main Room
+    - end_time: 2020-07-02 18:15:00
+      start_time: 2020-07-02 17:30:00
+      title: "Special Session: live QA"
+      chair: John Doe
+      location: Main Room
+    - end_time: 2020-07-02 19:15:00
+      start_time: 2020-07-02 18:15:00
+      title: "Special Session: Late-breaking"
+      chair: John Doe
+      location: Main Room
+- title: Session 5 - Poster Session
+  start_time: 2020-07-02 20:15:00
+  end_time: 2020-07-02 00:00:00
+  location: Main Room
+- title: Session 1
+  start_time: 2020-07-03 09:30:00
+  end_time: 2020-07-03 11:30:00
+  subsessions:
+    - end_time: 2020-07-03 10:20:00
+      papers:
+        - end_time: 2020-07-03 09:40:00
+          id: 22
+          start_time: 2020-07-03 09:30:00
+        - end_time: 2020-07-03 09:50:00
+          id: 76
+          start_time: 2020-07-03 09:40:00
+        - end_time: 2020-07-03 10:10:00
+          id: 98
+          start_time: 2020-07-03 10:00:00
+        - end_time: 2020-07-03 10:20:00
+          id: 103
+          start_time: 2020-07-03 10:10:00
+        - end_time: 2020-07-03 10:20:00
+          id: 103
+          start_time: 2020-07-03 10:10:00
+        - end_time: 2020-07-03 10:20:00
+          id: 103
+          start_time: 2020-07-03 10:10:00
+      start_time: 2020-07-03 09:30:00
+      title: Generation + Task-Oriented Dialogues (1)
+      chair: John Doe
+      location: Main Room
+    - end_time: 2020-07-03 10:45:00
+      start_time: 2020-07-03 10:20:00
+      title: Generation + Task-Oriented Dialogues (1) live QA
+      chair: John Doe
+      location: Main Room
+    - end_time: 2020-07-03 11:30:00
+      papers:
+        - end_time: 2020-07-03 10:55:00
+          id: 28
+          start_time: 2020-07-03 10:45:00
+        - end_time: 2020-07-03 11:05:00
+          id: 44
+          start_time: 2020-07-03 10:55:00
+        - end_time: 2020-07-03 11:20:00
+          id: 72
+          start_time: 2020-07-03 11:10:00
+        - end_time: 2020-07-03 11:30:00
+          id: 71
+          start_time: 2020-07-03 11:20:00
+        - end_time: 2020-07-03 11:30:00
+          id: 71
+          start_time: 2020-07-03 11:20:00
+        - end_time: 2020-07-03 11:30:00
+          id: 71
+          start_time: 2020-07-03 11:20:00
+      start_time: 2020-07-03 10:45:00
+      title: Demo (1) pre-recorded presentations + live QA
+      chair: John Doe
+      location: Main Room
+    - end_time: 2020-07-03 11:30:00
+      papers:
+        - end_time: 2020-07-03 10:55:00
+          id: 28
+          start_time: 2020-07-03 10:45:00
+        - end_time: 2020-07-03 11:05:00
+          id: 44
+          start_time: 2020-07-03 10:55:00
+        - end_time: 2020-07-03 11:20:00
+          id: 72
+          start_time: 2020-07-03 11:10:00
+        - end_time: 2020-07-03 11:30:00
+          id: 71
+          start_time: 2020-07-03 11:20:00
+        - end_time: 2020-07-03 11:30:00
+          id: 71
+          start_time: 2020-07-03 11:20:00
+        - end_time: 2020-07-03 11:30:00
+          id: 71
+          start_time: 2020-07-03 11:20:00
+      start_time: 2020-07-03 10:45:00
+      title: Demo (1) pre-recorded presentations + live QA
+      chair: John Doe
+      location: Main Room
+    - end_time: 2020-07-03 11:30:00
+      papers:
+        - end_time: 2020-07-03 10:55:00
+          id: 28
+          start_time: 2020-07-03 10:45:00
+        - end_time: 2020-07-03 11:05:00
+          id: 44
+          start_time: 2020-07-03 10:55:00
+        - end_time: 2020-07-03 11:20:00
+          id: 72
+          start_time: 2020-07-03 11:10:00
+        - end_time: 2020-07-03 11:30:00
+          id: 71
+          start_time: 2020-07-03 11:20:00
+        - end_time: 2020-07-03 11:30:00
+          id: 71
+          start_time: 2020-07-03 11:20:00
+        - end_time: 2020-07-03 11:30:00
+          id: 71
+          start_time: 2020-07-03 11:20:00
+      start_time: 2020-07-03 10:45:00
+      title: Demo (1) pre-recorded presentations + live QA
+      chair: John Doe
+      location: Main Room
+    - end_time: 2020-07-03 11:30:00
+      papers:
+        - end_time: 2020-07-03 10:55:00
+          id: 28
+          start_time: 2020-07-03 10:45:00
+        - end_time: 2020-07-03 11:05:00
+          id: 44
+          start_time: 2020-07-03 10:55:00
+        - end_time: 2020-07-03 11:20:00
+          id: 72
+          start_time: 2020-07-03 11:10:00
+        - end_time: 2020-07-03 11:30:00
+          id: 71
+          start_time: 2020-07-03 11:20:00
+        - end_time: 2020-07-03 11:30:00
+          id: 71
+          start_time: 2020-07-03 11:20:00
+        - end_time: 2020-07-03 11:30:00
+          id: 71
+          start_time: 2020-07-03 11:20:00
+      start_time: 2020-07-03 10:45:00
+      title: Demo (1) pre-recorded presentations + live QA
+      chair: John Doe
+      location: Main Room
+    - end_time: 2020-07-03 11:30:00
+      papers:
+        - end_time: 2020-07-03 10:55:00
+          id: 28
+          start_time: 2020-07-03 10:45:00
+        - end_time: 2020-07-03 11:05:00
+          id: 44
+          start_time: 2020-07-03 10:55:00
+        - end_time: 2020-07-03 11:20:00
+          id: 72
+          start_time: 2020-07-03 11:10:00
+        - end_time: 2020-07-03 11:30:00
+          id: 71
+          start_time: 2020-07-03 11:20:00
+        - end_time: 2020-07-03 11:30:00
+          id: 71
+          start_time: 2020-07-03 11:20:00
+        - end_time: 2020-07-03 11:30:00
+          id: 71
+          start_time: 2020-07-03 11:20:00
+      start_time: 2020-07-03 10:45:00
+      title: Demo (1) pre-recorded presentations + live QA
+      chair: John Doe
+      location: Main Room
+
+- end_time: 2020-07-03 11:50:00
+  start_time: 2020-07-03 11:30:00
+  title: Break
+- title: Session 2
+  start_time: 2020-07-03 11:50:00
+  end_time: 2020-07-03 15:30:00
+  subsessions:
+    - end_time: 2020-07-03 12:20:00
+      papers:
+        - end_time: 2020-07-03 12:00:00
+          id: 78
+          start_time: 2020-07-03 11:50:00
+        - end_time: 2020-07-03 12:10:00
+          id: 12
+          start_time: 2020-07-03 12:00:00
+        - end_time: 2020-07-03 12:20:00
+          id: 89
+          start_time: 2020-07-03 12:10:00
+        - end_time: 2020-07-03 12:20:00
+          id: 89
+          start_time: 2020-07-03 12:10:00
+        - end_time: 2020-07-03 12:20:00
+          id: 89
+          start_time: 2020-07-03 12:10:00
+        - end_time: 2020-07-03 12:20:00
+          id: 89
+          start_time: 2020-07-03 12:10:00
+      start_time: 2020-07-03 11:50:00
+      title: Knowledge Acquisition/Use and Behaviour Modeling (1)
+      chair: John Doe
+      location: Main Room
+    - end_time: 2020-07-03 12:20:00
+      papers:
+        - end_time: 2020-07-03 12:00:00
+          id: 78
+          start_time: 2020-07-03 11:50:00
+        - end_time: 2020-07-03 12:10:00
+          id: 12
+          start_time: 2020-07-03 12:00:00
+        - end_time: 2020-07-03 12:20:00
+          id: 89
+          start_time: 2020-07-03 12:10:00
+        - end_time: 2020-07-03 12:20:00
+          id: 89
+          start_time: 2020-07-03 12:10:00
+        - end_time: 2020-07-03 12:20:00
+          id: 89
+          start_time: 2020-07-03 12:10:00
+        - end_time: 2020-07-03 12:20:00
+          id: 89
+          start_time: 2020-07-03 12:10:00
+      start_time: 2020-07-03 11:50:00
+      title: Knowledge Acquisition/Use and Behaviour Modeling (2)
+      chair: John Doe
+      location: Main Room
+    - end_time: 2020-07-03 12:20:00
+      papers:
+        - end_time: 2020-07-03 12:00:00
+          id: 78
+          start_time: 2020-07-03 11:50:00
+        - end_time: 2020-07-03 12:10:00
+          id: 12
+          start_time: 2020-07-03 12:00:00
+        - end_time: 2020-07-03 12:20:00
+          id: 89
+          start_time: 2020-07-03 12:10:00
+        - end_time: 2020-07-03 12:20:00
+          id: 89
+          start_time: 2020-07-03 12:10:00
+        - end_time: 2020-07-03 12:20:00
+          id: 89
+          start_time: 2020-07-03 12:10:00
+        - end_time: 2020-07-03 12:20:00
+          id: 89
+          start_time: 2020-07-03 12:10:00
+      start_time: 2020-07-03 11:50:00
+      title: Knowledge Acquisition/Use and Behaviour Modeling (3)
+      chair: John Doe
+      location: Main Room
+    - end_time: 2020-07-03 12:20:00
+      papers:
+        - end_time: 2020-07-03 12:00:00
+          id: 78
+          start_time: 2020-07-03 11:50:00
+        - end_time: 2020-07-03 12:10:00
+          id: 12
+          start_time: 2020-07-03 12:00:00
+        - end_time: 2020-07-03 12:20:00
+          id: 89
+          start_time: 2020-07-03 12:10:00
+        - end_time: 2020-07-03 12:20:00
+          id: 89
+          start_time: 2020-07-03 12:10:00
+        - end_time: 2020-07-03 12:20:00
+          id: 89
+          start_time: 2020-07-03 12:10:00
+        - end_time: 2020-07-03 12:20:00
+          id: 89
+          start_time: 2020-07-03 12:10:00
+      start_time: 2020-07-03 11:50:00
+      title: Knowledge Acquisition/Use and Behaviour Modeling (4)
+      chair: John Doe
+      location: Main Room
+    - end_time: 2020-07-03 12:20:00
+      papers:
+        - end_time: 2020-07-03 12:00:00
+          id: 78
+          start_time: 2020-07-03 11:50:00
+        - end_time: 2020-07-03 12:10:00
+          id: 12
+          start_time: 2020-07-03 12:00:00
+        - end_time: 2020-07-03 12:20:00
+          id: 89
+          start_time: 2020-07-03 12:10:00
+        - end_time: 2020-07-03 12:20:00
+          id: 89
+          start_time: 2020-07-03 12:10:00
+        - end_time: 2020-07-03 12:20:00
+          id: 89
+          start_time: 2020-07-03 12:10:00
+        - end_time: 2020-07-03 12:20:00
+          id: 89
+          start_time: 2020-07-03 12:10:00
+      start_time: 2020-07-03 11:50:00
+      title: Knowledge Acquisition/Use and Behaviour Modeling (5)
+      chair: John Doe
+      location: Main Room
+    - end_time: 2020-07-03 12:20:00
+      papers:
+        - end_time: 2020-07-03 12:00:00
+          id: 78
+          start_time: 2020-07-03 11:50:00
+        - end_time: 2020-07-03 12:10:00
+          id: 12
+          start_time: 2020-07-03 12:00:00
+        - end_time: 2020-07-03 12:20:00
+          id: 89
+          start_time: 2020-07-03 12:10:00
+        - end_time: 2020-07-03 12:20:00
+          id: 89
+          start_time: 2020-07-03 12:10:00
+        - end_time: 2020-07-03 12:20:00
+          id: 89
+          start_time: 2020-07-03 12:10:00
+        - end_time: 2020-07-03 12:20:00
+          id: 89
+          start_time: 2020-07-03 12:10:00
+      start_time: 2020-07-03 11:50:00
+      title: Knowledge Acquisition/Use and Behaviour Modeling (6)
+      chair: John Doe
+      location: Main Room
+    - end_time: 2020-07-03 12:40:00
+      start_time: 2020-07-03 12:20:00
+      title: Knowledge Acquisition/Use and Behaviour Modeling (1) live QA
+      chair: John Doe
+      location: Main Room
+    - end_time: 2020-07-03 15:30:00
+      start_time: 2020-07-03 12:40:00
+      title: Breakout Discussion Sessions
+      chair: John Doe
+      location: Main Room
+- end_time: 2020-07-03 16:00:00
+  start_time: 2020-07-03 15:30:00
+  title: Break
+- title: Session 3
+  start_time: 2020-07-03 16:00:00
+  end_time: 2020-07-03 19:15:00
+  subsessions:
+    - end_time: 2020-07-03 17:00:00
+      papers:
+        - end_time: 2020-07-03 16:15:00
+          id: 49
+          start_time: 2020-07-03 16:00:00
+        - end_time: 2020-07-03 16:30:00
+          id: 63
+          start_time: 2020-07-03 16:15:00
+        - end_time: 2020-07-03 16:45:00
+          id: 81
+          start_time: 2020-07-03 16:30:00
+        - end_time: 2020-07-03 17:00:00
+          id: 18
+          start_time: 2020-07-03 16:45:00
+        - end_time: 2020-07-03 17:00:00
+          id: 18
+          start_time: 2020-07-03 16:45:00
+        - end_time: 2020-07-03 17:00:00
+          id: 18
+          start_time: 2020-07-03 16:45:00
+      start_time: 2020-07-03 16:00:00
+      title: "Special Session: Greetings and Talks"
+      chair: John Doe
+      location: Main Room
+    - end_time: 2020-07-03 17:30:00
+      papers:
+        - end_time: 2020-07-03 17:15:00
+          id: 62
+          start_time: 2020-07-03 17:00:00
+        - end_time: 2020-07-03 17:30:00
+          id: 61
+          start_time: 2020-07-03 17:15:00
+        - end_time: 2020-07-03 17:30:00
+          id: 61
+          start_time: 2020-07-03 17:15:00
+        - end_time: 2020-07-03 17:30:00
+          id: 61
+          start_time: 2020-07-03 17:15:00
+        - end_time: 2020-07-03 17:30:00
+          id: 61
+          start_time: 2020-07-03 17:15:00
+        - end_time: 2020-07-03 17:30:00
+          id: 61
+          start_time: 2020-07-03 17:15:00
+      start_time: 2020-07-03 17:00:00
+      title: Demo (2) pre-recorded presentations + live QA
+      chair: John Doe
+      location: Main Room
+    - end_time: 2020-07-03 17:30:00
+      papers:
+        - end_time: 2020-07-03 17:15:00
+          id: 62
+          start_time: 2020-07-03 17:00:00
+        - end_time: 2020-07-03 17:30:00
+          id: 61
+          start_time: 2020-07-03 17:15:00
+        - end_time: 2020-07-03 17:30:00
+          id: 61
+          start_time: 2020-07-03 17:15:00
+        - end_time: 2020-07-03 17:30:00
+          id: 61
+          start_time: 2020-07-03 17:15:00
+        - end_time: 2020-07-03 17:30:00
+          id: 61
+          start_time: 2020-07-03 17:15:00
+        - end_time: 2020-07-03 17:30:00
+          id: 61
+          start_time: 2020-07-03 17:15:00
+      start_time: 2020-07-03 17:00:00
+      title: Demo (3) pre-recorded presentations + live QA
+      chair: John Doe
+      location: Main Room
+    - end_time: 2020-07-03 17:30:00
+      papers:
+        - end_time: 2020-07-03 17:15:00
+          id: 62
+          start_time: 2020-07-03 17:00:00
+        - end_time: 2020-07-03 17:30:00
+          id: 61
+          start_time: 2020-07-03 17:15:00
+        - end_time: 2020-07-03 17:30:00
+          id: 61
+          start_time: 2020-07-03 17:15:00
+        - end_time: 2020-07-03 17:30:00
+          id: 61
+          start_time: 2020-07-03 17:15:00
+        - end_time: 2020-07-03 17:30:00
+          id: 61
+          start_time: 2020-07-03 17:15:00
+        - end_time: 2020-07-03 17:30:00
+          id: 61
+          start_time: 2020-07-03 17:15:00
+      start_time: 2020-07-03 17:00:00
+      title: Demo (4) pre-recorded presentations + live QA
+      chair: John Doe
+      location: Main Room
+    - end_time: 2020-07-03 18:15:00
+      start_time: 2020-07-03 17:30:00
+      title: "Special Session: live QA"
+      chair: John Doe
+      location: Main Room
+    - end_time: 2020-07-03 19:15:00
+      start_time: 2020-07-03 18:15:00
+      title: "Special Session: Late-breaking"
+      chair: John Doe
+      location: Main Room
+- end_time: 2020-07-03 19:30:00
+  start_time: 2020-07-03 19:15:00
+  title: Break
+- end_time: 2020-07-03 20:15:00
+  start_time: 2020-07-03 19:30:00
+  title: Breakouts Discussion Sessions
+- title: Session 4
+  start_time: 2020-07-03 20:15:00
+  end_time: 2020-07-03 00:00:00
+  subsessions:
+    - end_time: 2020-07-03 21:00:00
+      papers:
+        - end_time: 2020-07-03 20:15:00
+          id: 49
+          start_time: 2020-07-03 20:00:00
+        - end_time: 2020-07-03 20:30:00
+          id: 63
+          start_time: 2020-07-03 20:15:00
+        - end_time: 2020-07-03 20:45:00
+          id: 81
+          start_time: 2020-07-03 20:30:00
+        - end_time: 2020-07-03 21:00:00
+          id: 18
+          start_time: 2020-07-03 20:45:00
+        - end_time: 2020-07-03 21:00:00
+          id: 18
+          start_time: 2020-07-03 20:45:00
+        - end_time: 2020-07-03 21:00:00
+          id: 18
+          start_time: 2020-07-03 20:45:00
+      start_time: 2020-07-03 20:00:00
+      title: "Special Session: Greetings and Talks"
+      chair: John Doe
+      location: Main Room
+    - end_time: 2020-07-03 17:30:00
+      papers:
+        - end_time: 2020-07-03 17:15:00
+          id: 62
+          start_time: 2020-07-03 17:00:00
+        - end_time: 2020-07-03 17:30:00
+          id: 61
+          start_time: 2020-07-03 17:15:00
+        - end_time: 2020-07-03 17:30:00
+          id: 61
+          start_time: 2020-07-03 17:15:00
+        - end_time: 2020-07-03 17:30:00
+          id: 61
+          start_time: 2020-07-03 17:15:00
+        - end_time: 2020-07-03 17:30:00
+          id: 61
+          start_time: 2020-07-03 17:15:00
+      start_time: 2020-07-03 17:00:00
+      title: Demo (2) pre-recorded presentations + live QA
+      chair: John Doe
+      location: Main Room
+    - end_time: 2020-07-03 17:30:00
+      papers:
+        - end_time: 2020-07-03 17:15:00
+          id: 62
+          start_time: 2020-07-03 17:00:00
+        - end_time: 2020-07-03 17:30:00
+          id: 61
+          start_time: 2020-07-03 17:15:00
+        - end_time: 2020-07-03 17:30:00
+          id: 61
+          start_time: 2020-07-03 17:15:00
+        - end_time: 2020-07-03 17:30:00
+          id: 61
+          start_time: 2020-07-03 17:15:00
+        - end_time: 2020-07-03 17:30:00
+          id: 61
+          start_time: 2020-07-03 17:15:00
+        - end_time: 2020-07-03 17:30:00
+          id: 61
+          start_time: 2020-07-03 17:15:00
+      start_time: 2020-07-03 17:00:00
+      title: Demo (3) pre-recorded presentations + live QA
+      chair: John Doe
+      location: Main Room
+    - end_time: 2020-07-03 17:30:00
+      papers:
+        - end_time: 2020-07-03 17:15:00
+          id: 62
+          start_time: 2020-07-03 17:00:00
+        - end_time: 2020-07-03 17:30:00
+          id: 61
+          start_time: 2020-07-03 17:15:00
+        - end_time: 2020-07-03 17:30:00
+          id: 61
+          start_time: 2020-07-03 17:15:00
+        - end_time: 2020-07-03 17:30:00
+          id: 61
+          start_time: 2020-07-03 17:15:00
+        - end_time: 2020-07-03 17:30:00
+          id: 61
+          start_time: 2020-07-03 17:15:00
+      start_time: 2020-07-03 17:00:00
+      title: Demo (4) pre-recorded presentations + live QA
+      chair: John Doe
+      location: Main Room
+    - end_time: 2020-07-03 18:15:00
+      start_time: 2020-07-03 17:30:00
+      title: "Special Session: live QA"
+      chair: John Doe
+      location: Main Room
+    - end_time: 2020-07-03 19:15:00
+      start_time: 2020-07-03 18:15:00
+      title: "Special Session: Late-breaking"
+      chair: John Doe
+      location: Main Room
+- title: Session 5 - Poster Session
+  start_time: 2020-07-03 20:15:00
+  end_time: 2020-07-03 00:00:00
+  location: Main Room

@@ -140,12 +140,11 @@ def find_page_offset(proceedings_pdf):
             except ValueError as e:
                 if last_roman is not None:
                     raise ValueError(f"Failed to parse page numbers: {e}")
-    return offset
-
+    return offse
 
 def generate_handbook(path: str, overwrite: bool):
     root = Path(path)
-    build_dir = Path("build")
+    build_dir = Path("build/handbook")
     build_dir.mkdir(exist_ok=True)
 
     # Throw if the build directory isn't empty, and the user did not specify an overwrite.
@@ -205,6 +204,67 @@ def generate_handbook(path: str, overwrite: bool):
     subprocess.run(["makeindex", str(tex_file.with_suffix(".idx"))])
     subprocess.run(["pdflatex", f"-output-directory={build_dir}", str(tex_file)])
 
+def generate_handbook_small(path: str, overwrite: bool):
+    root = Path(path)
+    build_dir = Path("build/handbook_small")
+    build_dir.mkdir(exist_ok=True)
+
+    # Throw if the build directory isn't empty, and the user did not specify an overwrite.
+    if len([build_dir.iterdir()]) > 0 and not overwrite:
+        raise Exception(
+            f"Build directory {build_dir} is not empty, and the overwrite flag is false."
+        )
+    # Load and preprocess the .yml configuration.
+    (
+        conference,
+        papers,
+        sponsors,
+        prefaces,
+        organizing_committee,
+        program_committee,
+        tutorial_program,
+        tutorials,
+        invited_talks,
+        program,
+        workshops,
+        program_workshops,
+        workshop_days,
+    ) = load_configs_handbook(root)
+
+    id_to_paper, alphabetized_author_index = process_papers(papers, root)
+
+    template = load_template("handbook_small")
+    program = process_program_handbook(program)
+    tutorial_program = process_program_tutorial_handbook(
+        tutorial_program, max_lines=350
+    )
+    rendered_template = template.render(
+        root=str(root),
+        conference=conference,
+        conference_dates=get_conference_dates(conference),
+        sponsors=sponsors,
+        prefaces=prefaces,
+        organizing_committee=organizing_committee,
+        program_committee=program_committee,
+        tutorial_program=tutorial_program,
+        tutorials=tutorials,
+        invited_talks=invited_talks,
+        papers=papers,
+        id_to_paper=id_to_paper,
+        program=program,
+        workshops=workshops,
+        program_workshops=program_workshops,
+        workshop_days=workshop_days,
+        build_dir=str(build_dir),
+    )
+    tex_file = Path(build_dir, "handbook_small.tex")
+    with open(tex_file, "w+") as f:
+        f.write(rendered_template)
+    if not Path(build_dir, "content").exists():
+        shutil.copytree(f"{TEMPLATE_DIR}/content", f"{build_dir}/content")
+    subprocess.run(["pdflatex", f"-output-directory={build_dir}", str(tex_file)])
+    subprocess.run(["makeindex", str(tex_file.with_suffix(".idx"))])
+    subprocess.run(["pdflatex", f"-output-directory={build_dir}", str(tex_file)])
 
 def get_conference_dates(conference) -> str:
     start_date = conference["start_date"]
