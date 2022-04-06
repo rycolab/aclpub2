@@ -2,7 +2,7 @@ from collections import defaultdict
 from pathlib import Path
 from PyPDF2 import PdfFileReader
 
-from aclpub2.templates import load_template, TEMPLATE_DIR
+from aclpub2.templates import load_template, homoglyph, TEMPLATE_DIR
 
 import multiprocessing
 import subprocess
@@ -251,7 +251,7 @@ def process_papers(papers, root: Path):
         page += pdf.getNumPages()
     alphabetized_author_index = defaultdict(list)
     for author, pages in sorted(author_to_pages.items()):
-        alphabetized_author_index[author[0].lower()].append((author, pages))
+        alphabetized_author_index[homoglyph(author[0]).lower()].append((author, pages))
     for author_pages in alphabetized_author_index.values():
         author_pages.sort(key=lambda entry: entry[0].lower())
     return id_to_paper, sorted(alphabetized_author_index.items())
