@@ -8,6 +8,7 @@
 \usepackage{newunicodechar}
 \usepackage{upgreek}
 \usepackage{afterpage}
+\usepackage[english,latin]{babel}
 
 \newunicodechar{ș}{\cb{s}}
 \newunicodechar{ț}{\cb{t}}
@@ -318,10 +319,39 @@ PLACHOLDER FOR COVER
         .
 \newpage
         .
+\newpage
 %%%%%%%%%%%%%%
 % Back Cover %
 %%%%%%%%%%%%%%
-\thispagestyle{empty}
-PLACEHOLDER FOR BACK COVER
+\BLOCK{if sponsors}
+\noindent
+
+{\Large The \VAR{conference.anthology_venue_id} organizers gratefully acknowledge the support from the following sponsors.}
+\bigskip
+
+\vspace*{1cm}
+
+\BLOCK{macro generate_sponsor_tier(tier)}
+  \noindent
+  {\Large \textbf{\VAR{tier.tier}}}\\
+  \BLOCK{for logo_batched in tier.logos|batch(4)}
+    \BLOCK{for logo in logo_batched}
+      \begin{minipage}[c][0.21\linewidth][c]{0.21\linewidth}
+        \includegraphics[width=\linewidth]{\VAR{root}/sponsor_logos/\VAR{logo}}
+      \end{minipage}\hspace{0.05\linewidth}
+    \BLOCK{endfor}
+    \newline
+  \BLOCK{endfor}
+  \newline
+\BLOCK{endmacro}
+
+\BLOCK{for tier in sponsors}
+  \VAR{generate_sponsor_tier(tier)}
+  \bigskip
+\BLOCK{endfor}
+\newpage
+\BLOCK{endif}
+
+
 
 \end{document}

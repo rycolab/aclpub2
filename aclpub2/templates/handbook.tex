@@ -1,3 +1,4 @@
+\PassOptionsToPackage{latin,english}{babel}
 \documentclass[twoside,makeidx]{book}
 
 \usepackage[T1]{fontenc}
@@ -95,7 +96,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % General use jinja macros.
-\BLOCK{macro committee_member(member)}\VAR{member.first_name} \BLOCK{if member.middle_name is defined}\VAR{member.middle_name} \BLOCK{endif}\VAR{member.last_name}, \VAR{member.institution}\BLOCK{endmacro}
+\BLOCK{macro committee_member(member)}\VAR{member.first_name} \BLOCK{if member.middle_name is defined}\VAR{member.middle_name} \BLOCK{endif}\VAR{member.last_name}\BLOCK{if member.institution is defined}, \VAR{member.institution} \BLOCK{endif}\BLOCK{endmacro}
 
 %%%%%%%%%%%%
 % DOCUMENT %
@@ -158,6 +159,7 @@ PLACHOLDER FOR MAP
 \end{flushleft}
 \BLOCK{for block in program_committee}
   \textbf{\VAR{block.role}}\\
+  \BLOCK{if block.type is not equalto("name_block")}
   \BLOCK{if block.entries[0].institution}
     \BLOCK{for member in block.entries}
       \hspace*{1em} \VAR{committee_member(member)}\\
@@ -165,21 +167,21 @@ PLACHOLDER FOR MAP
   \BLOCK{endif}
   \BLOCK{if block.entries[0].area}
     \BLOCK{for area in block.entries}
-      \emph{\VAR{area.area}}\\
+      \emph{\VAR{area.area}}
       \BLOCK{if area.members[0].institution}
         \BLOCK{for member in area.members}
-          \hspace*{1em} \VAR{committee_member(member)}\\
+          \hspace*{1em} \VAR{committee_member(member)}
         \BLOCK{endfor}
       \BLOCK{endif}
       \BLOCK{if not area.members[0].institution}
-        \hspace*{1em} \VAR{join_names(", ", area.members)}\\
+        \hspace*{1em} \VAR{join_names(", ", area.members)}
       \BLOCK{endif}
     \BLOCK{endfor}
   \BLOCK{endif}
+  \BLOCK{endif}
   \BLOCK{if block.type is equalto("name_block")}
     \BLOCK{for name_block in group_by_last_name(block.entries)}
-      \VAR{join_names(", ", name_block)}\\
-      \newline
+      \VAR{join_names(", ", name_block)}
     \BLOCK{endfor}
   \BLOCK{endif}
 
@@ -189,19 +191,21 @@ PLACHOLDER FOR MAP
 %%%%%%%%%%%
 % Policy %
 %%%%%%%%%%%
+\setheaders{Anti-harassment Policy}{Anti-harassment Policy}
 \VAR{load_file(root, "harassment", "harassment.tex")}
 \newpage
 
 %%%%%%%%%%%
 % Meal_Info %
 %%%%%%%%%%%
+\setheaders{Meal Info}{Meal Info}
 \VAR{load_file(root, "meal", "meal.tex")}
 \newpage
 
 %%%%%%%%%%%
 % Tutorial %
 %%%%%%%%%%%
-
+\setheaders{Tutorials}{Tutorials}
 \BLOCK{for date, pages in tutorial_program}
 \chapter{Tutorials: \VAR{program_date(date)}}
 \setheaders{Tutorials}{\VAR{program_date(date)}}
@@ -232,13 +236,15 @@ PLACHOLDER FOR MAP
 %%%%%%%%%%%
 % Message from Tutoral CO-Chair
 %%%%%%%%%%%
+\setheaders{Message from Tutoral CO-Chair}{Message from Tutoral CO-Chair}
 \VAR{load_file(root, "tutorial_message", "tutorial_message.tex")}
 \newpage
 
 %%%%%%%%%%%%
 % Tutorial Details %
-%%%%%%%%%%%%
+%%%%%%%%%%%%0
 \BLOCK{for tutorial in tutorials}
+\setheaders{Tutorials}{Tutorials}
   \begin{flushleft}
    \section{\VAR{tutorial.title}}
     \setheaders{Tutorials}{\VAR{program_date(tutorial.date)}}
@@ -259,19 +265,24 @@ PLACHOLDER FOR MAP
 % Invited Talks %
 %%%%%%%%%%%%
 \setheaders{}{}
-\chapter{Invited Talks}
+\BLOCK{if invited_talks}
+\chapter{Keynotes}
 \BLOCK{for talk in invited_talks}
-  \begin{flushleft}
+  \begin{center}
     \section{\VAR{talk.title}}
-  \end{flushleft}
-  \textbf{\Large{\VAR{program_date(talk.date)}}}\\
-  \textit{\Large{\VAR{talk.location}}}\\
-  {\Large{Session chair: \VAR{talk.chair}}}\\
-  \vspace*{0.2cm}
+    \vspace*{0.2cm}
+    \textbf{\LARGE{\VAR{talk.speaker_name}}}\\
+    \VAR{talk.institution}\\
+    \vspace*{0.1cm}
+  \end{center}
 
-  \VAR{load_file(root, "invited_talks", talk.abstract_file)}
+  \vspace*{0.2cm}
+  \textbf{Abstract:} \VAR{load_file(root, "invited_talks", talk.abstract_file)}\\
+  \newline
+  \textbf{Bio:} \VAR{load_file(root, "invited_talks", talk.bio_file)}\\
   \newpage
 \BLOCK{endfor}
+\BLOCK{endif}
 
 %%%%%%%%%%%
 % Program %
