@@ -39,7 +39,7 @@ def generate_proceedings(path: str, overwrite: bool):
     ) = load_configs(root)
     id_to_paper, alphabetized_author_index = process_papers(papers, root)
 
-    # generate_watermarked_pdfs(id_to_paper.values(), conference, root)
+    generate_watermarked_pdfs(id_to_paper.values(), conference, root)
 
     template = load_template("proceedings")
     rendered_template = template.render(
@@ -68,31 +68,31 @@ def generate_proceedings(path: str, overwrite: bool):
         ]
     )
 
-    # rendered_template = template.render(
-    #     root=str(root),
-    #     conference=conference,
-    #     conference_dates=get_conference_dates(conference),
-    #     sponsors=sponsors,
-    #     prefaces=prefaces,
-    #     organizing_committee=organizing_committee,
-    #     program_committee=program_committee,
-    #     invited_talks=invited_talks,
-    #     papers=papers,
-    #     id_to_paper=id_to_paper,
-    #     alphabetized_author_index=alphabetized_author_index,
-    #     include_papers=True,
-    # )
-    # tex_file = Path(build_dir, "proceedings.tex")
-    # with open(tex_file, "w+") as f:
-    #     f.write(rendered_template)
-    # subprocess.run(
-    #     [
-    #         "pdflatex",
-    #         f"-output-directory={build_dir}",
-    #         "-save-size=40000",
-    #         str(tex_file),
-    #     ]
-    # )
+    rendered_template = template.render(
+        root=str(root),
+        conference=conference,
+        conference_dates=get_conference_dates(conference),
+        sponsors=sponsors,
+        prefaces=prefaces,
+        organizing_committee=organizing_committee,
+        program_committee=program_committee,
+        invited_talks=invited_talks,
+        papers=papers,
+        id_to_paper=id_to_paper,
+        alphabetized_author_index=alphabetized_author_index,
+        include_papers=True,
+    )
+    tex_file = Path(build_dir, "proceedings.tex")
+    with open(tex_file, "w+") as f:
+        f.write(rendered_template)
+    subprocess.run(
+        [
+            "pdflatex",
+            f"-output-directory={build_dir}",
+            "-save-size=40000",
+            str(tex_file),
+        ]
+    )
 
 
 def find_page_offset(proceedings_pdf):
@@ -226,6 +226,8 @@ def process_papers(papers, root: Path):
     alphabetized_author_index = defaultdict(list)
     for author, pages in sorted(author_to_pages.items()):
         alphabetized_author_index[author[0].lower()].append((author, pages))
+    for author_pages in alphabetized_author_index.values():
+        author_pages.sort(key=lambda entry: entry[0].lower())
     return id_to_paper, sorted(alphabetized_author_index.items())
 
 

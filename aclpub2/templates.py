@@ -2,12 +2,16 @@ from collections import defaultdict
 from pathlib import Path
 from typing import List, Any
 
-import homoglyphs as hg
 import jinja2
 
-homoglyphs = hg.Homoglyphs(languages={"en"}, strategy=hg.STRATEGY_LOAD)
-
 TEMPLATE_DIR = Path(Path(__file__).parent, "templates")
+
+HOMOGLYPHS = {
+    "Ø": "o",
+    "Ö": "o",
+    "Ç": "c",
+    "Ş": "s",
+}
 
 
 def load_file(*args: str):
@@ -49,11 +53,7 @@ def group_by_last_name(entries) -> List[List[str]]:
     alphabetized_names = defaultdict(list)
     for entry in entries:
         last_name = entry["last_name"]
-        print(last_name[0])
-        first_letter = homoglyphs.to_ascii(last_name[0])
-        print(homoglyphs.get_combinations("O"))
-        print(first_letter[0])
-        alphabetized_names[first_letter[0]].append(entry)
+        alphabetized_names[homoglyph(last_name[0])].append(entry)
     output = []
     letters = list(alphabetized_names.keys())
     letters.sort()
@@ -61,6 +61,10 @@ def group_by_last_name(entries) -> List[List[str]]:
         alphabetized_names[letter].sort(key=lambda x: x["first_name"])
         output.append(alphabetized_names[letter])
     return output
+
+
+def homoglyph(char: str) -> str:
+    return HOMOGLYPHS.get(char, char.lower())
 
 
 def program_date(date) -> str:
