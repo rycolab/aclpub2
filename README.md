@@ -214,7 +214,7 @@ Each of the listed papers must have a unique ID so that they may be referred to 
   attachments:
     # A list of additional files associated with the paper.
     # The type, along with one of file or url must be specified.
-    - type: Dataset | Note | Poster | Presentation | Software | Attachment
+    - type: dataset | note | poster | presentation | software | attachment
       file: Local file path, e.g. attachments/5.zip
       url: URL pointing to the file, e.g. https://openreview.net/attachment?id=abcdefg
   title: Title of the paper.
