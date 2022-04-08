@@ -22,11 +22,11 @@
   id: 2
   title: Boosting Naturalness of Language in Task-oriented Dialogues via Adversarial
     Training
-  badges:
-    - type: relased_code
-      url: https://github.com/some/code
-    - type: released_model_artifact
-      url: https://aclanthology.org/attachments/model.tgz
+  attachments:
+    - type: software
+      file: attachments/2.zip
+    - type: presentation
+      url: http://www.link.it/slides.pdf
 - abstract:
     It is important to define meaningful and interpretable automatic evaluation
     metrics for open-domain dialog research. Standard language generation metrics
