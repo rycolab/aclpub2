@@ -37,9 +37,13 @@ def generate_proceedings(path: str, overwrite: bool, outdir: str):
         organizing_committee,
         program_committee,
         invited_talks,
+        program,
     ) = load_configs(root)
     id_to_paper, alphabetized_author_index = process_papers(papers, root)
 
+    sessions_by_date = None
+    if program is not None:
+        sessions_by_date = process_program_proceedings(program)
     generate_watermarked_pdfs(id_to_paper.values(), conference, root)
 
     template = load_template("proceedings")
@@ -54,6 +58,7 @@ def generate_proceedings(path: str, overwrite: bool, outdir: str):
         invited_talks=invited_talks,
         papers=papers,
         id_to_paper=id_to_paper,
+        program=sessions_by_date,
         alphabetized_author_index=alphabetized_author_index,
         include_papers=False,
     )
@@ -80,6 +85,7 @@ def generate_proceedings(path: str, overwrite: bool, outdir: str):
         invited_talks=invited_talks,
         papers=papers,
         id_to_paper=id_to_paper,
+        program=sessions_by_date,
         alphabetized_author_index=alphabetized_author_index,
         include_papers=True,
     )
@@ -533,6 +539,10 @@ def load_configs(root: Path):
             for k, v in entry.items():
                 entry[k] = normalize_latex_string(v)
     invited_talks = load_config("invited_talks", root)
+    program = load_config("program", root)
+    if program is not None:
+        for entry in program:
+            entry["title"] = normalize_latex_string(entry["title"])
 
     return (
         conference,
@@ -542,6 +552,7 @@ def load_configs(root: Path):
         organizing_committee,
         program_committee,
         invited_talks,
+        program,
     )
 
 
