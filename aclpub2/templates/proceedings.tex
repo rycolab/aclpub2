@@ -284,9 +284,17 @@ ISBN \VAR{conference.isbn}
   \AddToShipoutPicture*{
     \setlength{\unitlength}{1mm}
     \footnotesize
-    \put(105,16){\makebox(0,0){\emph{\VAR{conference.book_title}}, pages \VAR{paper.page_range[0]} - \VAR{paper.page_range[1]}}}
-    \put(105,12){\makebox(0,0){\VAR{conference_dates}, \VAR{conference.start_date.year}
-    \textcopyright \VAR{conference.start_date.year} \VAR{conference.publisher}}}
+
+    \BLOCK{if conference.watermark_book_title}
+    \BLOCK{set title=conference.watermark_book_title}
+    \BLOCK{else}
+    \BLOCK{set title=conference.book_title}
+    \BLOCK{endif}
+
+    \put(0,14){\parbox[t]{\paperwidth}{\centering
+    							\emph{\VAR{title}}, pages \VAR{paper.page_range[0]} - \VAR{paper.page_range[1]} \\
+  	  						\VAR{conference_dates}, \VAR{conference.start_date.year} \textcopyright
+  							\VAR{conference.start_date.year} Association for Computational Linguistics}}
   }
   \includepdf[pagecommand={\thispagestyle{plain}},pages=-]{\VAR{root}/papers/\VAR{paper.file}}
 \BLOCK{endfor}
