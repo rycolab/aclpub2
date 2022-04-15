@@ -10,6 +10,7 @@ import yaml
 import roman
 import shutil
 import os
+import traceback
 
 PARENT_DIR = Path(__file__).parent
 
@@ -43,7 +44,12 @@ def generate_proceedings(path: str, overwrite: bool, outdir: str):
 
     sessions_by_date = None
     if program is not None:
-        sessions_by_date = process_program_proceedings(program)
+        try:
+            sessions_by_date = process_program_proceedings(program)
+        except:
+            print("Sorry. Your program.yml file seems malformed. It will be skipped.")
+            traceback.print_exc()
+            sessions_by_date = None
     generate_watermarked_pdfs(id_to_paper.values(), conference, root)
 
     template = load_template("proceedings")
@@ -527,6 +533,10 @@ def load_configs(root: Path):
     Loads all conference configuration files defined in the root directory.
     """
     conference = load_config("conference_details", root, required=True)
+    for item in conference:
+        if isinstance(conference[item], str):
+            conference[item] = normalize_latex_string(conference[item])
+
     papers = load_config("papers", root, required=True)
     for paper in papers:
         paper["title"] = normalize_latex_string(paper["title"])
