@@ -26,6 +26,7 @@ except:
     exit()
 
 acl_name = 'aclweb.org/ACL/2022/Conference' if len(sys.argv)<=3 else sys.argv[3]
+acl_name = acl_name.strip('/')
 
 def sort_role(t):
     return t["role"]
