@@ -10,6 +10,7 @@ import yaml
 import roman
 import shutil
 import os
+import glob
 import traceback
 
 PARENT_DIR = Path(__file__).parent
@@ -112,6 +113,11 @@ def generate_proceedings(path: str, overwrite: bool, outdir: str):
     output_dir.mkdir()
     rearrange_outputs(root, build_dir, output_dir)
 
+def copy_folder(input_path: Path, output_dir: Path):
+    if os.path.isdir(input_path):
+        shutil.copytree(input_path, output_dir)
+
+
 
 def rearrange_outputs(input_path: Path, build_dir: Path, output_dir: Path):
     # Copy proceedings
@@ -125,12 +131,21 @@ def rearrange_outputs(input_path: Path, build_dir: Path, output_dir: Path):
         shutil.copy2(file, output_watermarked)
     # Copy the front matter as 0.pdf.
     shutil.copy2(Path(build_dir, "front_matter.pdf"), Path(output_watermarked, "0.pdf"))
-    # Copy the inputs.
-    shutil.copytree(input_path, Path(output_dir, "inputs"))
-    # Copy the attachments.
-    attachments_path = os.path.join(input_path, "attachments")
-    if os.path.isdir(attachments_path):
-        shutil.copytree(attachments_path, Path(output_dir, "attachments"))
+    # Copy the inputs yaml.
+    input_copy_dir = Path(output_dir, "inputs")
+    input_copy_dir.mkdir()
+    files = glob.iglob(os.path.join(input_path, "*.y*ml"))
+    for file in files:
+        if os.path.isfile(file):
+            shutil.copy2(file, input_copy_dir)
+    # Copy other input folders.
+    for folder_to_copy in [ "papers",
+                            "invited_talks",
+                            "prefaces",
+                            "sponsor_logos",
+                            "attachments"]:
+        copy_folder(Path(input_path, folder_to_copy), Path(input_copy_dir, folder_to_copy))
+
 
 
 def find_page_offset(proceedings_pdf):
