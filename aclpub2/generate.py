@@ -547,7 +547,13 @@ def load_configs(root: Path):
     for block in program_committee:
         for entry in block["entries"]:
             for k, v in entry.items():
-                entry[k] = normalize_latex_string(v)
+                try:
+                    entry[k] = normalize_latex_string(v)
+                except:
+                    print("Warning: the following entry from the program_committee.yml is ill-formed")
+                    print("\t" + str(entry))
+                    input("Press a key to continue...")
+
     invited_talks = load_config("invited_talks", root)
     program = load_config("program", root)
     if program is not None:
