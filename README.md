@@ -3,7 +3,7 @@
 **aclpub2** supports the generation of Proceedings and Booklets for \*CL Conferences (ACL, NAACL, EMNLP, ... ) and related Workshops. 
 This README has been created to provide the instructions to follow to generate proceedings/booklets in aclpub2 format. 
 
-The provided Python tool to generate the proceedings takes as input a set of files containing all information on the event (in the `.yml` format) and generates a `.tex` file containing the conference details, sponsors, prefaces, organizing and program committees, as well as the concatenation of all the watermarked accepted papers and the author index. Such `.tex` file is then compiled to generate the `pdf` file of the proceedings (to be sent to ACL Anthology following [these instructions](https://aclanthology.org/info/contrib/)).
+The provided Python tool to generate the proceedings takes as input a set of files containing all information on the event (in the `.yml` format) and generates a `.tex` file containing the conference details, sponsors, prefaces, organizing and program committees, as well as the concatenation of all the watermarked accepted papers and the author index. Such `.tex` file is then compiled to generate the `pdf` file of the proceedings.
 
 
 ## Before starting
@@ -45,13 +45,13 @@ We strongly suggest taking a look at this [link](https://github.com/rycolab/aclp
 In addition, for the handbook, a file `program.yml` should be created [Jump to Handbook generation instructions](#Handbook-generation-instructions). 
 
 ## Expected output
-The generated proceedings should be sent to the ACL Anthology [(instructions)](https://aclanthology.org/info/contrib/) as a `.zip` or `.tgz` file containing a repository named with the conference/workshop acronym. Such repository should contain:
+The generated proceedings should be sent to the publication chairs as a `.zip` or `.tgz` file containing a repository named with the conference/workshop acronym. Such repository should contain:
 1. A folder named `input` containing all the input files (i.e., the `*.yml` and `*.tex` files used to generate the proceedings)
 2. A folder named `watermarked_pdf` containing all the pdfs of the watermarked camera ready papers AND the attacments 
 3. A folder name `attachments` containinng all files associated with the paper. Notice that these file must be correctly referred in the `papers.yml` file.
 4. A PDF file named `proceedings.pdf` containing the whole conference/workshop proceedings (i.e., the introduction and all the watermarked PDFs of the camera ready papers).
 
-Upload the resulting file (<conference>_data.tgz) to a file server or cloud storage (e.g. Google Drive) and email the link to it to the Anthology Director. Please do not send the file as an email attachment.
+Upload the resulting file (<conference>_data.tgz) to a file server or cloud storage (e.g., Google Drive) and email the link to it to the ACL publication chairs, who will assemble them for delivery to the Anthology. Please do not send the file as an email attachment.
 
 **Important:** Before generating the final proceedings, please carefully check the input pdfs of the camera ready papers with the ACLPUBCHECK tool, a Python tool that automatically detects author formatting errors, margin violations as well as many other common formatting errors in papers that are using the LaTeX sty file associated with ACL venues. The tool and instructions to use it can be found [here](https://github.com/acl-org/aclpubcheck). We *strongly suggest* to share with the authors this tool before the sumbission of their final camera ready, in order to reduce the effort of controlling possibly hundreds of papers. 
 
