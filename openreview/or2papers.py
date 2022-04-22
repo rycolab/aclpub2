@@ -91,7 +91,7 @@ for submission in tqdm(submissions):
     for att_type in attachment_types:
         if att_type in submission.content and submission.content[att_type]:
             attachments.append({"type": attachment_types[att_type],
-                            "file": "attachments/" + str(paper["id"]) + "_" + str(submission.content[att_type].split(".")[-1]),
+                            "file": "attachments/" + str(paper["id"]) + "." + str(submission.content[att_type].split(".")[-1]),
                             "open_review_id": str(submission.content[att_type])
                             } )
             if download_all:
