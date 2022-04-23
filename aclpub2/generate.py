@@ -142,9 +142,10 @@ def rearrange_outputs(input_path: Path, build_dir: Path, output_dir: Path):
     for folder_to_copy in [ "papers",
                             "invited_talks",
                             "prefaces",
-                            "sponsor_logos",
-                            "attachments"]:
+                            "sponsor_logos"]:
         copy_folder(Path(input_path, folder_to_copy), Path(input_copy_dir, folder_to_copy))
+
+    copy_folder(Path(input_path, "attachments"), Path(output_dir, "attachments"))
 
 
 
