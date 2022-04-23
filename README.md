@@ -47,7 +47,8 @@ In addition, for the handbook, a file `program.yml` should be created [Jump to H
 ## Expected output
 The generated proceedings should be sent to the publication chairs as a `.zip` or `.tgz` file containing a repository named with the conference/workshop acronym. Such repository should contain:
 1. A folder named `input` containing all the input files (i.e., the `*.yml` and `*.tex` files used to generate the proceedings)
-2. A folder named `watermarked_pdf` containing all the pdfs of the watermarked camera ready papers AND the attacments 
+2. A folder named `watermarked_pdf` containing all the pdfs of the watermarked camera ready papers. 
+ - **Important:** this folder *MUST* contain a file named `0.pdf` that only contain the initial part of the proceedings (from the cover to the table of contents). The software automatically build it, but please check it is added, otherwise the Proceedings cannot be added to the ACL Anthology.
 3. A folder name `attachments` containinng all files associated with the paper. Notice that these file must be correctly referred in the `papers.yml` file.
 4. A PDF file named `proceedings.pdf` containing the whole conference/workshop proceedings (i.e., the introduction and all the watermarked PDFs of the camera ready papers).
 
