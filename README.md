@@ -45,16 +45,19 @@ We strongly suggest taking a look at this [link](https://github.com/rycolab/aclp
 In addition, for the handbook, a file `program.yml` should be created [Jump to Handbook generation instructions](#Handbook-generation-instructions). 
 
 ## Expected output
-The generated proceedings should be sent to the publication chairs as a `.zip` or `.tgz` file containing a repository named with the conference/workshop acronym. Such repository should contain:
-1. A folder named `input` containing all the input files (i.e., the `*.yml` and `*.tex` files used to generate the proceedings)
+The generated proceedings should be sent to the publication chairs as a `.zip` or `.tgz` file containing a folder named with the conference/workshop acronym. This  folder should be automatically built by the system, but a check is always required especially if this material is to be loaded in the ACL Anthology. 
+If you are interested in an example of an output folder, just run the software on the test case, as discussed [here](#test-run).
+
+In a nutshell, such folder should contain:
+1. A PDF file named `proceedings.pdf` containing the whole conference/workshop proceedings (i.e., the introduction and all the watermarked PDFs of the camera ready papers).
 2. A folder named `watermarked_pdf` containing all the pdfs of the watermarked camera ready papers. 
- - **Important:** this folder *MUST* contain a file named `0.pdf` that only contain the initial part of the proceedings (from the cover to the table of contents). The software automatically build it, but please check it is added, otherwise the Proceedings cannot be added to the ACL Anthology.
-3. A folder name `attachments` containinng all files associated with the paper. Notice that these file must be correctly referred in the `papers.yml` file.
-4. A PDF file named `proceedings.pdf` containing the whole conference/workshop proceedings (i.e., the introduction and all the watermarked PDFs of the camera ready papers).
+ - **Important:** this folder *MUST* contain the special file named `0.pdf` that only contains the initial part of the proceedings (from the cover to the table of contents). The software automatically add it, but please check it, otherwise the Proceedings cannot be added to the ACL Anthology.
+3. A folder name `attachments` containinng all files attached to the indivual papers during their submission (e.g., the code attached to a paper). Notice that each attachment myst be correctly referred in the `papers.yml` file with respect to the base folder named `attachments`. Only in case no paper has an attachment, this folder can be omitted. 
+4. A folder named `input` containing all the input files used to generate the proceedings. In particular, this folder must contain the input `yml` and `tex` files used. You can also an the not watermarked pdfs in the subfolder `input/papers`. Plase avoid to add here the attachments of the individual papers (e.g., the code or software). They must be collected in the `attachments` folder described below. This folder is automatically built from the software and copied in the output folder, but please remember to check it. 
 
-Upload the resulting file (<conference>_data.tgz) to a file server or cloud storage (e.g., Google Drive) and email the link to it to the ACL publication chairs, who will assemble them for delivery to the Anthology. Please do not send the file as an email attachment.
+Upload the resulting file (`ACRONYM_data.tgz`) to a file server or cloud storage (e.g., Google Drive) and email the link to it to the ACL publication chairs, who will assemble them for delivery to the Anthology. Please do not send the file as an email attachment.
 
-**Important:** Before generating the final proceedings, please carefully check the input pdfs of the camera ready papers with the ACLPUBCHECK tool, a Python tool that automatically detects author formatting errors, margin violations as well as many other common formatting errors in papers that are using the LaTeX sty file associated with ACL venues. The tool and instructions to use it can be found [here](https://github.com/acl-org/aclpubcheck). We *strongly suggest* to share with the authors this tool before the sumbission of their final camera ready, in order to reduce the effort of controlling possibly hundreds of papers. 
+**REALLY IMPORTANT:** Before generating the final proceedings, please carefully check the input pdfs of the camera ready papers with the ACLPUBCHECK tool, a Python tool that automatically detects author formatting errors, margin violations as well as many other common formatting errors in papers that are using the LaTeX sty file associated with ACL venues. The tool and instructions to use it can be found [here](https://github.com/acl-org/aclpubcheck). We *strongly suggest* to share with the authors this tool before the sumbission of their final camera ready, in order to reduce the effort of controlling possibly hundreds of papers. 
 
 ## Manually editing yml input files
 Below you can find instructions (and examples) on how you should edit the `.yml` files with information on your conference/workshop.
@@ -322,11 +325,11 @@ Ensure that `PYTHONPATH` includes `.`, for example `export PYTHONPATH=.:$PYTHONP
 Run the CLI on the SIGDIAL example directory:
 
 ```
-./bin/generate examples/sigdial --proceedings --handbook
+./bin/generate examples/sigdial --proceedings
 ```
 
 The generated results, along with intermediate files and links, can then be found in
-the `build` directory in the directory in which you ran the command.
+the `output` directory in the directory in which you ran the command.
 
 ## Usage
 
