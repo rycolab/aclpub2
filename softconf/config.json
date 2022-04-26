@@ -1,0 +1,8 @@
+{
+"conf" : "CONFERENCENAMEe.g.acl2022",
+"track" : "TRACKNAMEe.g.demos",
+"username" : "YOURSOFTCONFUSERNAME",
+"password" : "YOURSOFTCONFPASSWORD",
+"service_program_committee" : "https://www.softconf.com/acl2022/demos/cgi-bin/scmd.cgi?scmd=webservice&token=REVIEWERWEBSERVICETOKEN",
+"service_papers" : "https://www.softconf.com/acl2022/demos/cgi-bin/scmd.cgi?scmd=webservice&token=SUBMISSIONSWEBSERVICETOKEN"
+}
