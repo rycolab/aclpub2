@@ -285,6 +285,10 @@ def process_papers(papers, root: Path):
     return id_to_paper, sorted(alphabetized_author_index.items())
 
 
+def error_hanlder(e):
+    print(traceback.print_exception(type(e), e, e.__traceback__))
+    input("\nSorry. I have problems compiling the watermarked papers. Press Enter to process another paper or Ctrl+C to quit.\n")
+
 def generate_watermarked_pdfs(papers_with_pages, conference, root: Path):
     build_dir = Path("build")
     watermarked_pdfs = Path(build_dir, "watermarked_pdfs")
@@ -294,6 +298,7 @@ def generate_watermarked_pdfs(papers_with_pages, conference, root: Path):
             pool.apply_async(
                 create_watermarked_pdf,
                 args=(paper, conference, root),
+                error_callback=error_hanlder
             )
         pool.close()
         pool.join()
