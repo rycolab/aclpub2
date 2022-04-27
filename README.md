@@ -11,7 +11,7 @@ The provided Python tool to generate the proceedings takes as input a set of fil
 ###  Which reviewing platform is you conference/workshop using?
 - OpenReview. This guide is for you, we will explain you how to use the provided tool to generate the proceedings (and the handbook) automatically from OpenReview. 
 - EasyChair (or any other reviewing platform). This guide is for you, we will explain you how to generate the proceedings starting from manually edited files.
-- SoftConf. You can either follow the istructions provided by this guide to generate the proceedings starting from manually edited files (this is the suggested option for small-medium size events) or follow the [ACLPUB instructions](https://github.com/acl-org/acl-pub/blob/gh-pages/aclpub-start.md).
+- SoftConf. You can either follow the istructions provided by this guide to generate the proceedings starting from manually edited files (this is the suggested option for small-medium size events) or follow the [ACLPUB instructions](https://github.com/acl-org/acl-pub/blob/gh-pages/aclpub-start.md). In case you choose to use aclpub2 from information uploaded to softconf, we have recently added scripts to automate the export of info about the papers and program committee from that platform in a format compatible with aclpub2. The process is not fully automated but can be useful to simplify the process. Please take a look at the folder `softconf`.
 
 
 ## Table of Contents
@@ -45,7 +45,8 @@ We strongly suggest taking a look at this [link](https://github.com/rycolab/aclp
 In addition, for the handbook, a file `program.yml` should be created [Jump to Handbook generation instructions](#Handbook-generation-instructions). 
 
 ## Expected output
-The generated proceedings should be sent to the publication chairs as a `.zip` or `.tgz` file containing a folder named with the conference/workshop acronym. This  folder should be automatically built by the system, but a check is always required especially if this material is to be loaded in the ACL Anthology. 
+The generated proceedings should be sent to the publication chairs as a `.zip` or `.tgz` file containing a folder named with the conference/workshop acronym. 
+The build process creates a directory called `output`. This directory should contain all of the files that the publication chairs need, but it is always a good idea to confirm that this directory contains all of the files described below.
 If you are interested in an example of an output folder, just run the software on the test case, as discussed [here](#test-run).
 
 In a nutshell, such folder should contain:
