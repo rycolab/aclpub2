@@ -363,6 +363,10 @@ the `--overwrite` flag helps ensure that local modifications are not accidentall
 The above describe a reasonable default usage of this package, but the behavior can easily be extended or modified by adjusting the contents of the `aclpub2/` directory.
 The main files to keep in mind are `aclpub2/templates/proceedings.tex` which contains the core Jinja template file, and `aclpub2/generate.py` which is responsible for rendering the template.
 
+### Font Encoding 
+
+The input templates use the T1 font encoding. If you are interested in different encodings (e.g., Vietnamese) you have to modify the `aclpub2/templates/proceedings.tex` by changing the statement `\usepackage[T1]{fontenc}` and specifying a different encoding, e.g., `\usepackage[T5]{fontenc}`.
+
 #### Jinja
 
 This project makes extensive use of Jinja to produce readable Latex templates.
