@@ -28,7 +28,7 @@
 \setlength\textheight{24.7cm} \setlength\textwidth{16cm}
 \setlength\columnsep{0.6cm}  \newlength\titlebox \setlength\titlebox{2.00in}
 \setlength\headheight{5pt}   \setlength\headsep{0pt}
-\setlength\footskip{0.8cm}
+\setlength\footskip{1.0cm}
 \setlength\parindent{0pt}
 
 \pagestyle{plain}
@@ -305,7 +305,7 @@ ISBN \VAR{conference.isbn}
     \BLOCK{set title=conference.book_title}
     \BLOCK{endif}
 
-    \put(0,14){\parbox[t]{\paperwidth}{\centering
+    \put(0,13){\parbox[t]{\paperwidth}{\centering
     							\emph{\VAR{title}}, pages \VAR{paper.page_range[0]} - \VAR{paper.page_range[1]} \\
   	  						\VAR{conference_dates}, \VAR{conference.start_date.year} \textcopyright
   							\VAR{conference.start_date.year} Association for Computational Linguistics}}
