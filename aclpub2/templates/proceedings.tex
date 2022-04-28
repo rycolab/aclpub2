@@ -216,10 +216,15 @@ ISBN \VAR{conference.isbn}
   \end{center}
 
   \vspace*{0.2cm}
+  \BLOCK{if talk.abstract_file}
   \textbf{Abstract:} \VAR{load_file(root, "invited_talks", talk.abstract_file)}\\
   \newline
+  \BLOCK{endif}
+
+  \BLOCK{if talk.bio_file}
   \textbf{Bio:} \VAR{load_file(root, "invited_talks", talk.bio_file)}\\
   \newpage
+  \BLOCK{endif}
 \BLOCK{endfor}
 \BLOCK{endif}
 
