@@ -196,6 +196,9 @@ ISBN \VAR{conference.isbn}
       \VAR{join_names(", ", name_block)}\\
       \newline
     \BLOCK{endfor}
+  \BLOCK{elif block.type is equalto("name_block_without_newlines")}
+    \VAR{to_string_sorting_by_last_name(block.entries)}\\
+    \newline
   \BLOCK{else}
     \BLOCK{for member in block.entries}
       \VAR{committee_member(member)}\\

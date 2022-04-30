@@ -64,6 +64,12 @@ def group_by_last_name(entries) -> List[List[str]]:
         output.append(alphabetized_names[letter])
     return output
 
+def to_string_sorting_by_last_name(entries) -> str:
+    res = []
+    groups = group_by_last_name(entries)
+    for group in groups:
+        res.append(join_names(", ", group))
+    return ", ".join(res)
 
 def homoglyph(char: str) -> str:
     return HOMOGLYPHS.get(char, char.lower())
@@ -94,6 +100,7 @@ LATEX_JINJA_ENV.globals.update(
     load_file=load_file,
     join_names=join_names,
     group_by_last_name=group_by_last_name,
+    to_string_sorting_by_last_name=to_string_sorting_by_last_name,
     program_date=program_date,
     session_times=session_times,
     join_page_numbers=join_page_numbers,
