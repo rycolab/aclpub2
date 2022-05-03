@@ -39,6 +39,7 @@ def generate_proceedings(path: str, overwrite: bool, outdir: str):
         organizing_committee,
         program_committee,
         invited_talks,
+        additional_pages,
         program,
     ) = load_configs(root)
     id_to_paper, alphabetized_author_index = process_papers(papers, root)
@@ -63,6 +64,7 @@ def generate_proceedings(path: str, overwrite: bool, outdir: str):
         organizing_committee=organizing_committee,
         program_committee=program_committee,
         invited_talks=invited_talks,
+        additional_pages=additional_pages,
         papers=papers,
         id_to_paper=id_to_paper,
         program=sessions_by_date,
@@ -90,6 +92,7 @@ def generate_proceedings(path: str, overwrite: bool, outdir: str):
         organizing_committee=organizing_committee,
         program_committee=program_committee,
         invited_talks=invited_talks,
+        additional_pages=additional_pages,
         papers=papers,
         id_to_paper=id_to_paper,
         program=sessions_by_date,
@@ -141,6 +144,7 @@ def rearrange_outputs(input_path: Path, build_dir: Path, output_dir: Path):
     # Copy other input folders.
     for folder_to_copy in [ "papers",
                             "invited_talks",
+                            "additional_pages",
                             "prefaces",
                             "sponsor_logos"]:
         copy_folder(Path(input_path, folder_to_copy), Path(input_copy_dir, folder_to_copy))
@@ -221,6 +225,7 @@ def generate_handbook(path: str, overwrite: bool):
         tutorial_program=tutorial_program,
         tutorials=tutorials,
         invited_talks=invited_talks,
+        additional_pages=additional_pages,
         papers=papers,
         id_to_paper=id_to_paper,
         program=program,
@@ -576,6 +581,7 @@ def load_configs(root: Path):
                     input("Press a key to continue...")
 
     invited_talks = load_config("invited_talks", root)
+    additional_pages = load_config("additional_pages", root)
     program = load_config("program", root)
     if program is not None:
         for entry in program:
@@ -589,6 +595,7 @@ def load_configs(root: Path):
         organizing_committee,
         program_committee,
         invited_talks,
+        additional_pages,
         program,
     )
 
@@ -613,6 +620,7 @@ def load_configs_handbook(root: Path):
     tutorial_program = load_config("tutorial_program", root)
     tutorials = load_config("tutorials", root)
     invited_talks = load_config("invited_talks", root, required=False)
+    additional_pages = load_config("additional_pages", root, required=False)
     program = load_config("program", root)
     for entry in program:
         entry["title"] = normalize_latex_string(entry["title"])
@@ -638,6 +646,7 @@ def load_configs_handbook(root: Path):
         tutorial_program,
         tutorials,
         invited_talks,
+        additional_pages,
         program,
         workshops,
         program_workshops,

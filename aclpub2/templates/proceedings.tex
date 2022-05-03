@@ -236,6 +236,20 @@ ISBN \VAR{conference.isbn}
 \BLOCK{endfor}
 \BLOCK{endif}
 
+%%%%%%%%%%%%%%%
+% Special Additional Pages %
+%%%%%%%%%%%%%%%
+\BLOCK{if additional_pages}
+\BLOCK{for additional_page in additional_pages}
+  \begin{center}
+   { \LARGE \textbf{\VAR{additional_page.title}}}
+  \end{center}
+  \vspace*{0.5cm}
+  \VAR{load_file(root, "additional_pages", additional_page.file)}
+  \newpage
+\BLOCK{endfor}
+\BLOCK{endif}
+
 %%%%%%%%%%%%%%%%%%%%%
 % Table of Contents %
 %%%%%%%%%%%%%%%%%%%%%
