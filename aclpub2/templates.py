@@ -11,8 +11,21 @@ def load_file(*args: str):
     with open(Path(*args)) as f:
         return f.read()
 
+def to_string_sorting_by_last_name(entries) -> str:
+    res = []
+    groups = group_by_last_name(entries)
+    for group in groups:
+        res.append(join_names(", ", group))
+    return ", ".join(res)
 
 def render_name(user):
+    name = user["first_name"] + " "
+    if "middle_name" in user:
+        name += user["middle_name"] + " "
+    name += "\index{"+user["last_name"]+"}"+user["last_name"]
+    return name
+
+def render_name_commitee(user):
     name = user["first_name"] + " "
     if "middle_name" in user:
         name += user["middle_name"] + " "
@@ -29,11 +42,25 @@ def join_names(delimiter: str, items: List[Any], delimiter_last: str = None):
         return delimiter_last.join((front, items[-1]))
     return delimiter.join(items)
 
+def join_names_commitee(delimiter: str, items: List[Any], delimiter_last: str = None):
+    items = list(map(render_name_commitee, items))
+    if len(items) == 1:
+        return items[0]
+    if delimiter_last:
+        front = delimiter.join(items[:-1])
+        return delimiter_last.join((front, items[-1]))
+    return delimiter.join(items)
 
 def index_author(author: str):
     n = author.split(" ")
     return "\index{" + n[-1] + ", " + " ".join(n[:-1]) + "}"
-
+def index_authors(author: str):
+    n = author.split(",")
+    s =""
+    for aut in n:
+        sur = aut.split(" ")[-1]
+        s+= "\index{"+sur+"}"
+    return s
 
 def join_page_numbers(page_numbers):
     linked = map(
@@ -85,6 +112,9 @@ LATEX_JINJA_ENV.globals.update(
     session_times=session_times,
     join_page_numbers=join_page_numbers,
     index_author=index_author,
+    to_string_sorting_by_last_name=to_string_sorting_by_last_name,
+    join_names_commitee= join_names_commitee,
+    index_authors = index_authors
 )
 
 

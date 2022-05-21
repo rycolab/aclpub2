@@ -1,5 +1,7 @@
 from collections import defaultdict
 from pathlib import Path
+
+import pandas as pd
 from PyPDF2 import PdfFileReader
 
 from aclpub2.templates import load_template, TEMPLATE_DIR
@@ -10,9 +12,24 @@ import yaml
 import roman
 import shutil
 import os
+from datetime import datetime
+import csv
 
 PARENT_DIR = Path(__file__).parent
-
+def render_name(user):
+    name = user["first_name"] + " "
+    if "middle_name" in user:
+        name += user["middle_name"] + " "
+    name += user["last_name"]
+    return name
+def join_names(delimiter: str, items, delimiter_last: str = None):
+    items = list(map(render_name, items))
+    if len(items) == 1:
+        return items[0]
+    if delimiter_last:
+        front = delimiter.join(items[:-1])
+        return delimiter_last.join((front, items[-1]))
+    return delimiter.join(items)
 
 def generate_proceedings(path: str, overwrite: bool, outdir: str):
     root = Path(path)
@@ -56,6 +73,7 @@ def generate_proceedings(path: str, overwrite: bool, outdir: str):
         id_to_paper=id_to_paper,
         alphabetized_author_index=alphabetized_author_index,
         include_papers=False,
+        datetime=datetime
     )
     tex_file = Path(build_dir, "front_matter.tex")
     with open(tex_file, "w+") as f:
@@ -82,6 +100,7 @@ def generate_proceedings(path: str, overwrite: bool, outdir: str):
         id_to_paper=id_to_paper,
         alphabetized_author_index=alphabetized_author_index,
         include_papers=True,
+        datetime=datetime
     )
     tex_file = Path(build_dir, "proceedings.tex")
     with open(tex_file, "w+") as f:
@@ -172,6 +191,8 @@ def generate_handbook(path: str, overwrite: bool):
         workshops,
         program_workshops,
         workshop_days,
+        workshop_days2,
+        papers_workshops
     ) = load_configs_handbook(root)
 
     id_to_paper, alphabetized_author_index = process_papers(papers, root)
@@ -197,8 +218,12 @@ def generate_handbook(path: str, overwrite: bool):
         program=program,
         workshops=workshops,
         program_workshops=program_workshops,
+        papers_workshops=papers_workshops,
         workshop_days=workshop_days,
+        workshop_days2=workshop_days2,
         build_dir=str(build_dir),
+        datetime = datetime,
+        print=debug
     )
     tex_file = Path(build_dir, "handbook.tex")
     with open(tex_file, "w+") as f:
@@ -208,6 +233,10 @@ def generate_handbook(path: str, overwrite: bool):
     subprocess.run(["pdflatex", f"-output-directory={build_dir}", str(tex_file)])
     subprocess.run(["makeindex", str(tex_file.with_suffix(".idx"))])
     subprocess.run(["pdflatex", f"-output-directory={build_dir}", str(tex_file)])
+
+def debug(text):
+  print(text)
+  return ''
 
 def generate_handbook_small(path: str, overwrite: bool):
     root = Path(path)
@@ -234,6 +263,8 @@ def generate_handbook_small(path: str, overwrite: bool):
         workshops,
         program_workshops,
         workshop_days,
+        workshop_days2,
+        papers_workshops
     ) = load_configs_handbook(root)
 
     id_to_paper, alphabetized_author_index = process_papers(papers, root)
@@ -243,6 +274,7 @@ def generate_handbook_small(path: str, overwrite: bool):
     tutorial_program = process_program_tutorial_handbook(
         tutorial_program, max_lines=350
     )
+
     rendered_template = template.render(
         root=str(root),
         conference=conference,
@@ -260,7 +292,11 @@ def generate_handbook_small(path: str, overwrite: bool):
         workshops=workshops,
         program_workshops=program_workshops,
         workshop_days=workshop_days,
+        workshop_days2=workshop_days2,
+        papers_workshops=papers_workshops,
         build_dir=str(build_dir),
+        datetime=datetime,
+        print=debug
     )
     tex_file = Path(build_dir, "handbook_small.tex")
     with open(tex_file, "w+") as f:
@@ -270,6 +306,134 @@ def generate_handbook_small(path: str, overwrite: bool):
     subprocess.run(["pdflatex", f"-output-directory={build_dir}", str(tex_file)])
     subprocess.run(["makeindex", str(tex_file.with_suffix(".idx"))])
     subprocess.run(["pdflatex", f"-output-directory={build_dir}", str(tex_file)])
+
+
+
+def generate_posters_guide(path: str, overwrite: bool):
+    root = Path(path)
+    build_dir = Path("build/posters_guide")
+    build_dir.mkdir(exist_ok=True)
+
+    # Throw if the build directory isn't empty, and the user did not specify an overwrite.
+    if len([build_dir.iterdir()]) > 0 and not overwrite:
+        raise Exception(
+            f"Build directory {build_dir} is not empty, and the overwrite flag is false."
+        )
+    # Load and preprocess the .yml configuration.
+    (
+        conference,
+        papers,
+        sponsors,
+        prefaces,
+        organizing_committee,
+        program_committee,
+        tutorial_program,
+        tutorials,
+        invited_talks,
+        program,
+        workshops,
+        program_workshops,
+        workshop_days,
+        workshop_days2,
+        papers_workshops
+    ) = load_configs_handbook(root)
+
+    # open the file in the write mode
+    f = open('poster_list.csv', 'w')
+    # create the csv writer
+    writer = csv.writer(f)
+    for session in program:
+        count = 1
+        try:
+            for subsession in session["subsessions"]:
+                for paper_slot in subsession["papers"]:
+                    if 'Poster' in subsession["title"]:
+                        try:
+                            if "DEMO" != paper_slot["attributes"]["Source"]:
+                                c = count
+                                for author in paper_slot["authors"]:
+                                    values = []
+                                    values.append(author["last_name"])
+                                    try:
+                                        values.append(author["middle_name"])
+                                    except:
+                                        values.append(" ")
+                                    values.append(author["first_name"])
+                                    values.append(session["title"])
+                                    values.append(subsession["title"])
+                                    values.append(c)
+                                    values.append(paper_slot["title"])
+                                    values.append(str(subsession["start_time"].strftime('%H:%M'))+"-"+str(subsession["end_time"].strftime('%H:%M')))
+                                    values.append(join_names(", ", paper_slot["authors"], " and "))
+
+                                    writer.writerow(values)
+                                count += 1
+                        except:
+                            c = count
+                            for author in paper_slot["authors"]:
+                                    values = []
+
+                                    values.append(author["last_name"])
+                                    try:
+                                        values.append(author["middle_name"])
+                                    except:
+                                        values.append(" ")
+                                    values.append(author["first_name"])
+                                    values.append(session["title"])
+                                    values.append(subsession["title"])
+                                    values.append(c)
+                                    values.append(paper_slot["title"])
+                                    values.append(str(subsession["start_time"].strftime('%H:%M')) + "-" + str(
+                                        subsession["end_time"].strftime('%H:%M')))
+                                    values.append(join_names(", ", paper_slot["authors"], " and "))
+                                    writer.writerow(values)
+                            count+=1
+
+        except:
+            pass
+
+    f.close()
+
+    id_to_paper, alphabetized_author_index = process_papers(papers, root)
+
+    template = load_template("posters_guide")
+    program = process_program_handbook(program)
+    tutorial_program = process_program_tutorial_handbook(
+        tutorial_program, max_lines=350
+    )
+
+    rendered_template = template.render(
+        root=str(root),
+        conference=conference,
+        conference_dates=get_conference_dates(conference),
+        sponsors=sponsors,
+        prefaces=prefaces,
+        organizing_committee=organizing_committee,
+        program_committee=program_committee,
+        tutorial_program=tutorial_program,
+        tutorials=tutorials,
+        invited_talks=invited_talks,
+        papers=papers,
+        id_to_paper=id_to_paper,
+        program=program,
+        workshops=workshops,
+        program_workshops=program_workshops,
+        workshop_days=workshop_days,
+        workshop_days2=workshop_days2,
+        papers_workshops=papers_workshops,
+        build_dir=str(build_dir),
+        datetime=datetime,
+        print=debug
+    )
+    tex_file = Path(build_dir, "posters_guide.tex")
+    with open(tex_file, "w+") as f:
+        f.write(rendered_template)
+    if not Path(build_dir, "content").exists():
+        shutil.copytree(f"{TEMPLATE_DIR}/content", f"{build_dir}/content")
+    subprocess.run(["pdflatex", f"-output-directory={build_dir}", str(tex_file)])
+    subprocess.run(["makeindex", str(tex_file.with_suffix(".idx"))])
+    subprocess.run(["pdflatex", f"-output-directory={build_dir}", str(tex_file)])
+
 
 def get_conference_dates(conference) -> str:
     start_date = conference["start_date"]
@@ -297,10 +461,10 @@ def process_papers(papers, root: Path):
     id_to_paper = {}
     author_to_pages = defaultdict(list)
     for paper in papers:
-        pdf_path = Path(root, "papers", paper["file"])
-        pdf = PdfFileReader(str(pdf_path))
-        paper["num_pages"] = pdf.getNumPages()
-        paper["page_range"] = (page, page + pdf.getNumPages() - 1)
+        #pdf_path = Path(root, "papers", paper["file"])
+        #pdf = PdfFileReader(str(pdf_path))
+        #paper["num_pages"] = pdf.getNumPages()
+        #paper["page_range"] = (page, page + pdf.getNumPages() - 1)
         id_to_paper[paper["id"]] = paper
         for author in paper["authors"]:
             given_names = author["first_name"]
@@ -308,7 +472,7 @@ def process_papers(papers, root: Path):
                 given_names += f" {author['middle_name']}"
             index_name = f"{author['last_name']}, {given_names}"
             author_to_pages[index_name].append(page)
-        page += pdf.getNumPages()
+        #page += pdf.getNumPages()
     alphabetized_author_index = defaultdict(list)
     for author, pages in sorted(author_to_pages.items()):
         alphabetized_author_index[author[0].lower()].append((author, pages))
@@ -427,7 +591,7 @@ def process_program_proceedings(program):
                     "type": "header",
                     "title": session["title"],
                     "start_time": session["start_time"],
-                    "end_time": session["end_time"],
+                    "end_time": session["end_time"]
                 }
             )
             if "papers" in session:
@@ -479,14 +643,19 @@ def process_program_tutorial_handbook(
         current_page = []
         for session in sessions:
             table_entries = []
+            val_dict = {}
+            val_dict["type"]= "header"
+            val_dict["title"]= session["title"]
+            val_dict["start_time"]= session["start_time"]
+            val_dict["end_time"]= session["end_time"]
+            try:
+                val_dict["chair"]= session["chair"]
+            except:
+                pass
             table_entries.append(
-                {
-                    "type": "header",
-                    "title": session["title"],
-                    "start_time": session["start_time"],
-                    "end_time": session["end_time"],
-                }
+                val_dict
             )
+
             if "tutorials" in session:
                 for tutorial in session["tutorials"]:
                     table_entries.append(
@@ -536,14 +705,19 @@ def process_program_workshop_handbook(
         current_page = []
         for session in sessions:
             table_entries = []
+            val_dict = {}
+            val_dict["type"] = "header"
+            val_dict["title"] = session["title"]
+            val_dict["start_time"] = session["start_time"]
+            val_dict["end_time"] = session["end_time"]
+            try:
+                val_dict["chair"] = session["chair"]
+            except:
+                pass
             table_entries.append(
-                {
-                    "type": "header",
-                    "title": session["title"],
-                    "start_time": session["start_time"],
-                    "end_time": session["end_time"],
-                }
+                val_dict
             )
+
             if "papers" in session:
                 for paper in session["papers"]:
                     table_entries.append(
@@ -627,16 +801,34 @@ def load_configs_handbook(root: Path):
     for entry in program:
         entry["title"] = normalize_latex_string(entry["title"])
     workshops = load_config("workshops", root)
+
     program_workshops = {}
     for workshop in workshops:
         program_workshops[workshop["id"]] = process_program_workshop_handbook(
-            load_config("workshops/" + str(workshop["id"]), root), max_lines=350
+            load_config("workshops/program_" + str(workshop["id"]), root), max_lines=350
         )
+    papers_workshops = {}
+    for workshop in workshops:
+        papers_workshops[workshop["id"]] = load_config("workshops/papers_" + str(workshop["id"]), root)
+
     workshop_days = []
+    workshop_days2 = []
     for workshop in workshops:
         wdate = workshop["date"]
+        wdate2 = None
+        try:
+            wdate2 = workshop["date2"]
+        except:
+            pass
         if wdate not in workshop_days:
-            workshop_days.append(wdate)
+            if wdate2 is None:
+                workshop_days.append(wdate)
+
+        if wdate not in workshop_days2:
+            if wdate2 is None:
+                pass
+            else:
+                workshop_days2.append(wdate)
 
     return (
         conference,
@@ -652,6 +844,8 @@ def load_configs_handbook(root: Path):
         workshops,
         program_workshops,
         workshop_days,
+        workshop_days2,
+        papers_workshops
     )
 
 

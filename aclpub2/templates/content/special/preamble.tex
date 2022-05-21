@@ -1,5 +1,5 @@
 \usepackage[T1]{fontenc}
-\usepackage{hyperref}
+\usepackage{imakeidx}
 \usepackage[utf8]{inputenc}
 \usepackage{textcomp}
 \usepackage{graphicx}
@@ -25,10 +25,9 @@
 \usepackage{ifthen}
 \usepackage{pstricks}
 \usepackage{rotating}
-\usepackage{makeidx}
 \usepackage{marginnote}
 \usepackage{ragged2e}
-
+\usepackage{hyperref}
 %\providecommand{\BIBand}{and}
 
 \newcommand{\leftheader}{}  
@@ -166,7 +165,7 @@
 %\renewcommand{\cleardoublepage}{\clearpage}
 
 % Min: index
-\makeindex
+\makeindex[title=Author Index]
 
 %\raggedbottom
 %\setlength{\parindent}{0pt}

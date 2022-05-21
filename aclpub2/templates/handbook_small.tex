@@ -1,5 +1,7 @@
+\PassOptionsToPackage{latin,english}{babel}
 \documentclass[twoside,makeidx]{book}
 
+\usepackage{tikz}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{xspace}
@@ -8,7 +10,9 @@
 \usepackage{newunicodechar}
 \usepackage{upgreek}
 \usepackage{afterpage}
-\usepackage[english,latin]{babel}
+ \usepackage{tabu}
+\usepackage{wrapfig}
+
 
 \newunicodechar{ș}{\cb{s}}
 \newunicodechar{ț}{\cb{t}}
@@ -26,13 +30,13 @@
 \usepackage[
   paperheight=210mm,
   paperwidth=148mm,
+  footskip=.57in,
   inner=.7in,
   outer=.45in,
-  bottom=.65in,
+  bottom=.92in,
   top=.7in,
   twoside]{geometry}
 
-\usepackage{tikz}
 \usetikzlibrary[positioning]
 \usetikzlibrary{patterns}
 
@@ -96,7 +100,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % General use jinja macros.
-\BLOCK{macro committee_member(member)}\VAR{member.first_name} \BLOCK{if member.middle_name is defined}\VAR{member.middle_name} \BLOCK{endif}\VAR{member.last_name}, \VAR{member.institution}\BLOCK{endmacro}
+\BLOCK{macro committee_member(member)}\VAR{member.first_name} \BLOCK{if member.middle_name is defined}\VAR{member.middle_name}\BLOCK{endif} \VAR{member.last_name}\BLOCK{if member.institution is defined}, \VAR{member.institution}\BLOCK{endif}\BLOCK{endmacro}
 
 %%%%%%%%%%%%
 % DOCUMENT %
@@ -104,11 +108,19 @@
 \begin{document}
 \thispagestyle{empty}
 \fancyfoot[C]{}
-PLACHOLDER FOR COVER
-\newpage
+\includepdf{/Users/uniba/Documents/GitHub/aclpub2/examples/handbook_acl2022/ACL_cover_v3.pdf}
 
-
+\fancyfoot[C]{\thepage}
+\pagenumbering{arabic}
+\setcounter{tocdepth}{2}
+\pagestyle{fancy}
 \setheaders{}{}
+
+%%%%%%%
+% TOC %
+%%%%%%%
+\tableofcontents
+\newpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%
 % Organizing Committee %
@@ -122,29 +134,35 @@ PLACHOLDER FOR COVER
     \BLOCK{for member in role.members}
       \VAR{committee_member(member)}\\
     \BLOCK{endfor}
-    \newline
+    \newline \vspace*{-0.1cm}\leavevmode\newline
   \BLOCK{endfor}
   \newpage
 
 %%%%%%%%%%%
+% Policy %
+%%%%%%%%%%%
+\setheaders{Anti-Harassment Policy}{Anti-Harassment Policy}
+\VAR{load_file(root, "harassment", "harassment.tex")}
+\newpage
+
+%%%%%%%%%%%
 % Tutorial %
 %%%%%%%%%%%
-
+\setheaders{Tutorials Program}{Tutorials Program}
 \BLOCK{for date, pages in tutorial_program}
-\section{Tutorials program}
-  \VAR{program_date(date)}
+\section{Tutorials Program}
+  {\Large \VAR{program_date(date)}}
   \BLOCK{set ns = namespace(first=true)}
   \BLOCK{for page in pages}
   \setlength\extrarowheight{-16pt}
-    \begin{longtable}{p{24mm}p{74mm}p{15mm}}
+    \begin{longtable}{p{20mm}p{74mm}p{20mm}}
     \BLOCK{for entry in page}
       \BLOCK{if entry.type is equalto("header")}
       \VAR{session_times(entry)} & \textbf{\emph{\VAR{entry.title}}} & \\\\
       \BLOCK{endif}
 
       \BLOCK{if entry.type is equalto("tutorial")}
-        & \emph{\VAR{entry.paper.title}} & \textit{$\quad$\VAR{entry.paper.room}}\\
-        & \VAR{entry.paper.authors} & \\\\\\
+        & \emph{\VAR{entry.paper.title}} - \VAR{entry.paper.authors} & \textit{$\quad$\VAR{entry.paper.room}}\\ \\\\
       \BLOCK{endif}
     \BLOCK{endfor}
     \end{longtable}
@@ -157,61 +175,112 @@ PLACHOLDER FOR COVER
 %%%%%%%%%%%%
 % Invited Talks %
 %%%%%%%%%%%%
-\setheaders{}{}
+\setheaders{Keynotes}{Keynotes}
+\BLOCK{if invited_talks}
 \section{Keynotes}
 \BLOCK{for talk in invited_talks}
-  \begin{flushleft}
-    \textbf{\large{\VAR{talk.title}}}\\
-    \large{\VAR{talk.speaker_name}}\\
-    \vspace*{-0.2cm}
-    \noindent\rule{4cm}{0.4pt}
-  \end{flushleft}
-  \textbf{\normalsize{\VAR{program_date(talk.date)}}} -
-  \textit{\normalsize{\VAR{talk.location}}} -
-  {\normalsize{Session chair: \VAR{talk.chair}}}
-
-  \VAR{load_file(root, "invited_talks", talk.abstract_file)}\\
-  %\newpage
-\noindent\rule{8cm}{0.4pt}\\\\
+  \VAR{load_file(root, "invited_talks", talk.abstract_file)}
 \BLOCK{endfor}
-\newpage
+\BLOCK{endif}
 
 %%%%%%%%%%%
 % Program %
 %%%%%%%%%%%
-\setheaders{}{}
+
+\section{Main Conference Program (Overview)}
+\VAR{load_file(root, "program_overview", "23.tex")}
+\VAR{load_file(root, "program_overview", "24.tex")}
+\VAR{load_file(root, "program_overview", "25.tex")}
+
 \setlength{\parindent}{0pt}
+\setheaders{Main Conference Program}{Main Conference Program}
 \BLOCK{for date, sessions in program}
-  \section{Main Conference: \VAR{program_date(date)}}
-  \BLOCK{for session in sessions}
+  \section{Main Conference Program: \VAR{program_date(date)}} \leavevmode\newline
+  \BLOCK{if "23" in program_date(date)}
+  \setheaders{Main Conference Program (Detailed Program): Day 1}{Main Conference Program (Detailed Program): Day 1}
+  \BLOCK{endif}
+ \BLOCK{if "24" in program_date(date)}
+ \setheaders{Main Conference Program (Detailed Program): Day 2}{Main Conference Program (Detailed Program): Day 2}
+  \BLOCK{endif}
+ \BLOCK{if "25" in program_date(date)}
+ \setheaders{Main Conference Program (Detailed Program): Day 3}{Main Conference Program (Detailed Program): Day 3}
+  \BLOCK{endif}
+
+   \BLOCK{for session in sessions}
     \BLOCK{if session.subsessions|length > 1}
-      \section{\VAR{session.title}}
+      {\leavevmode\newline{\Large{\textbf{\VAR{session.title} - \VAR{session.start_time.strftime('%H:%M')}-\VAR{session.end_time.strftime('%H:%M')}}}} \leavevmode\newline \leavevmode\newline
       \BLOCK{for subsession in session.subsessions}
-        \BLOCK{if subsession.papers|length > 1}
-          {\large \VAR{subsession.title}}\\
-          \VAR{subsession.location} \hfill \BLOCK{if subsession.chair}\textit{Chair: \VAR{subsession.chair}}\BLOCK{endif}\\
-          \vspace*{-0.05cm}
-          \noindent\rule{4cm}{0.4pt}\\\\
-          \BLOCK{for paper_slot in subsession.papers}
-          \BLOCK{set paper = id_to_paper[paper_slot.id]}
-            \textbf{\footnotesize{\VAR{paper.title}}}\\
-            \textit{\footnotesize{\VAR{join_names(", ", paper.authors, " and ")}}}
-            \BLOCK{if paper_slot.start_time}
-              \hfill
-              \VAR{paper_slot.start_time.strftime('%H:%M')}-\VAR{paper_slot.end_time.strftime('%H:%M')}
-            \BLOCK{endif}
-            \\
-          \BLOCK{endfor}\\
+        \BLOCK{if 'Poster' in subsession.title}
+         {\large \VAR{subsession.title}}\\
+         \VAR{session.start_time.strftime('%H:%M')}-\VAR{session.end_time.strftime('%H:%M')} (Forum)
+         \leavevmode\newline
+            \noindent\rule{4cm}{0.4pt}\leavevmode\newline
+
+        \BLOCK{endif}
+        \BLOCK{if 'Poster' not in subsession.title}
+          \BLOCK{if subsession.papers|length > 1}
+            {\Large \VAR{subsession.title}}\\
+
+         \vspace*{-0.27cm}
+         \noindent\VAR{subsession.start_time.strftime('%H:%M')}-\VAR{subsession.end_time.strftime('%H:%M')}
+         \BLOCK{if subsession.location}
+             (\VAR{subsession.location})
+         \BLOCK{endif}
+         \BLOCK{if subsession.chair} - \textit{Chair: \VAR{subsession.chair}} \leavevmode\newline\BLOCK{endif}\\
+            \vspace*{-0.3cm}
+            \noindent\rule{4cm}{0.4pt}
+           \BLOCK{set ns = namespace(first=true)}
+            \begin{longtable}{p{11mm}p{104mm}}
+            \BLOCK{for paper_slot in subsession.papers}
+              \footnotesize{\VAR{paper_slot.start_time.strftime('%H:%M')}-\VAR{paper_slot.end_time.strftime('%H:%M')}} &
+              \BLOCK{if "TACL" in paper_slot.attributes.Source}\footnotesize{[TACL]}\BLOCK{endif}
+              \BLOCK{if "CL" == paper_slot.attributes.Source}\footnotesize{[CL]}\BLOCK{endif} \footnotesize{\textbf{\VAR{paper_slot.title}} -
+              \textit{\VAR{join_names(", ", paper_slot.authors, " and ")}}} \\
+            \BLOCK{endfor}
+              \end{longtable}
+         \BLOCK{set ns.first = false}
+          \BLOCK{endif}
+         \BLOCK{if subsession.papers|length < 1}
+            {\Large \VAR{subsession.title}}\\
+         \VAR{session.start_time.strftime('%H:%M')}-\VAR{session.end_time.strftime('%H:%M')} (\VAR{subsession.location})
+         \leavevmode\newline
+            \noindent\rule{4cm}{0.4pt}\leavevmode\newline
+         \BLOCK{endif}
+
         \BLOCK{endif}
       \BLOCK{endfor}
     \BLOCK{endif}
 
+    \BLOCK{if session.subsessions|length < 1}
+      \BLOCK{if session.papers|length > 1}
+            {\Large \VAR{session.title}}\\
 
-    \BLOCK{if session.subsessions | length < 1}
-      \section{\VAR{session.title}}
+         \vspace*{-0.27cm}
+         \noindent\VAR{session.start_time.strftime('%H:%M')}-\VAR{session.end_time.strftime('%H:%M')}
+         \BLOCK{if session.location}
+             (\VAR{session.location})
+         \BLOCK{endif}
+         \BLOCK{if session.chair} - \textit{Chair: \VAR{session.chair}} \leavevmode\newline\BLOCK{endif}\\
+            \vspace*{-0.3cm}
+            \noindent\rule{4cm}{0.4pt}
+           \BLOCK{set ns = namespace(first=true)}
+            \begin{longtable}{p{11mm}p{104mm}}
+            \BLOCK{for paper_slot in session.papers}
+              \footnotesize{\VAR{paper_slot.start_time.strftime('%H:%M')}-\VAR{paper_slot.end_time.strftime('%H:%M')}} &
+              \BLOCK{if "TACL" in paper_slot.attributes.Source}\footnotesize{[TACL]}\BLOCK{endif}
+              \BLOCK{if "CL" == paper_slot.attributes.Source}\footnotesize{[CL]}\BLOCK{endif} \footnotesize{\textbf{\VAR{paper_slot.title}} -
+              \textit{\VAR{join_names(", ", paper_slot.authors, " and ")}}} \\
+            \BLOCK{endfor}
+              \end{longtable}
+         \BLOCK{set ns.first = false}
+      \BLOCK{endif}
+      \BLOCK{if session.papers|length < 1}
+      {\Large{\VAR{session.title}}}\leavevmode\newline
       \VAR{session.start_time.strftime('%H:%M')}-\VAR{session.end_time.strftime('%H:%M')}
       \BLOCK{if session.location}
-      - \VAR{session.location}
+       (\VAR{session.location})
+      \BLOCK{endif}
+      \leavevmode\newline
       \BLOCK{endif}
     \BLOCK{endif}
 
@@ -223,47 +292,35 @@ PLACHOLDER FOR COVER
 %%%%%%%%%%%
 % Workshops %
 %%%%%%%%%%%
-\setheaders{}{}
+\section{Workshops}
+      \leavevmode\newline  \leavevmode\newline \leavevmode\newline
+\setheaders{Workshops}{Workshops}
 \BLOCK{for workshop in workshops}
-    \section{\VAR{workshop.title}}
-    \label{w\VAR{workshop.id}}
-    \begin{center}
+    {\large\textbf{\VAR{workshop.title}}}
+      \vspace*{-0.2cm}
+    \begin{flushleft}
         Organizers: \VAR{workshop.chair}\\
-        \large{Venue: \VAR{workshop.location}}\\
-        \large{\textbf{\VAR{program_date(workshop.date)}}}
-    \end{center}
-    \vspace*{0.2cm}
-    \setheaders{\VAR{workshop.title}}{\VAR{program_date(workshop.date)}}
+        \url{\VAR{workshop.url}}\\ \leavevmode\newline
+        \normalsize{\textbf{\VAR{program_date(workshop.date)}}}
+        \BLOCK{if workshop.date2}
+        \normalsize{\textbf{- \VAR{program_date(workshop.date2)}}}
+        \BLOCK{endif} { (\textbf{\VAR{workshop.location}}})
+    \end{flushleft}
+    \label{w\VAR{workshop.id}}
+      {\small{\VAR{workshop.abstract}}}
 
-    \BLOCK{for date, pages in program_workshops[workshop.id]}
-    \vspace*{-0.6cm}
-      \BLOCK{set ns = namespace(first=true)}
-      \BLOCK{for page in pages}
-      \setlength\extrarowheight{-8pt}
-        \begin{longtable}{p{24mm}p{94mm}}
-        \BLOCK{for entry in page}
-          \BLOCK{if entry.type is equalto("header")}
-          \VAR{session_times(entry)} & \textbf{\emph{\VAR{entry.title}}} \\\\
-          \BLOCK{endif}
 
-          \BLOCK{if entry.type is equalto("paper")}
-            & \emph{\VAR{entry.paper.title}}  \\
-            & \VAR{entry.paper.authors}  \\\\\\
-          \BLOCK{endif}
-        \BLOCK{endfor}
-        \end{longtable}
-        \BLOCK{set ns.first = false}
-      \BLOCK{endfor}
-    \BLOCK{endfor}
-    \newpage
+        \noindent\rule{8cm}{0.4pt}
+    \vspace*{0.5cm}
+
 \BLOCK{endfor}
-
+\newpage
 
 %%%%%%%%%%%
 % Social Event
 %%%%%%%%%%%
-\setheaders{}{}
-\section{Social Event}
+\setheaders{Social Events}{Social Events}
+\section{Social Events}
 \vspace*{0.2cm}
 \VAR{load_file(root, "social_event", "social_event.tex")}
 \newpage
@@ -272,86 +329,29 @@ PLACHOLDER FOR COVER
 % Venue Map %
 %%%%%%%%%%%
 \section{Venue Map}
-\setheaders{}{}
+\setheaders{Venue Map}{Venue Map}
 \VAR{load_file(root, "venue_map", "venue_map.tex")}
 \newpage
 
 %%%%%%%%%%%
 % Local Guide %
 %%%%%%%%%%%
-\section{Local Guide}
-\setheaders{}{}
-\VAR{load_file(root, "local_guide", "local_guide.tex")}
-\newpage
+\setheaders{Local Guide}{Local Guide}
+\VAR{load_file(root, "local_guide_small", "local_guide.tex")}
 
 
 %%%%%%%%%%%%%%
 % Appendices %
 %%%%%%%%%%%%%%
 \cleardoublepage
-\addcontentsline{toc}{chapter}{Sponsorship}
 \setheaders{Sponsorship}{Sponsorship}
 \VAR{load_file(root, "sponsorship", "sponsorship.tex")}
-
-\newpage
-        .
-\newpage
-        .
-\newpage
-        .
-\newpage
-        .
-\newpage
-        .
-\newpage
-        .
-\newpage
-        .
-\newpage
-        .
-\newpage
-        .
-\newpage
-        .
-\newpage
-        .
-\newpage
-        .
-\newpage
-        .
-\newpage
 %%%%%%%%%%%%%%
 % Back Cover %
 %%%%%%%%%%%%%%
-\BLOCK{if sponsors}
-\noindent
-
-{\Large The \VAR{conference.anthology_venue_id} organizers gratefully acknowledge the support from the following sponsors.}
-\bigskip
-
-\vspace*{1cm}
-
-\BLOCK{macro generate_sponsor_tier(tier)}
-  \noindent
-  {\Large \textbf{\VAR{tier.tier}}}\\
-  \BLOCK{for logo_batched in tier.logos|batch(4)}
-    \BLOCK{for logo in logo_batched}
-      \begin{minipage}[c][0.21\linewidth][c]{0.21\linewidth}
-        \includegraphics[width=\linewidth]{\VAR{root}/sponsor_logos/\VAR{logo}}
-      \end{minipage}\hspace{0.05\linewidth}
-    \BLOCK{endfor}
-    \newline
-  \BLOCK{endfor}
-  \newline
-\BLOCK{endmacro}
-
-\BLOCK{for tier in sponsors}
-  \VAR{generate_sponsor_tier(tier)}
-  \bigskip
-\BLOCK{endfor}
-\newpage
-\BLOCK{endif}
-
+\cleardoublepage
+\setheaders{}{}
+\includepdf{/Users/uniba/Documents/GitHub/aclpub2/examples/handbook_acl2022/ACL-booklet_backcover_4.8.22_blue-bars.pdf}
 
 
 \end{document}
