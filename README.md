@@ -224,10 +224,10 @@ Each of the listed papers must have a unique ID so that they may be referred to 
     # The type, along with one of file or url must be specified.
     - type: dataset | note | poster | presentation | software | attachment
       file: Local file path, e.g. attachments/5.zip
-      url: URL pointing to the file, e.g. https://openreview.net/attachment?id=abcdefg
   title: Title of the paper.
   abstract: Abstract of the paper, usually a LaTeX fragment.
 ```
+Please notice that in the field ``title`` in the ``attachments`` group it is not possible to use external urls, but only files added in the attachment folder can be referred with the relative path.
 
 ## How to export yml files from OpenReview
 When running your workshop on OpenReview, it is possible to use their API for automatically extracting the `papers.yml` and `program_committee.yml` files. For this purpose, in the folder `openreview` we provide two Python3 scripts for facilitating your work.
