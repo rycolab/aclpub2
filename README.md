@@ -82,6 +82,7 @@ editors: list of the editors of the volume, in the form
     middle_name: middle nanme of the editor (e.g., D.)
     last_name: surname of the editor (e.g., Walker)
 publisher: published of the conference, generally "Association for Computational Linguistics"
+volume_name: a tag used by the ACL Anthology to characterize the new volume in a group of proceedings. For a volume of the main conference, it should be a tag from the list long|short|srw|demo|findings. For other volumes, such as workshops, it should be set to 1
 ```
 
 Here some example, first for a conference:
@@ -103,6 +104,7 @@ editors:
   - first_name: Aline
     last_name: Villavicencio
 publisher: Association for Computational Linguistics
+volume_name: long
 ```
 
 and for a workshop
@@ -126,6 +128,7 @@ editors:
   - first_name: Shimorina
     last_name: Anastasia
 publisher: Association for Computational Linguistics
+volume_name: 1
 ```
 
 
