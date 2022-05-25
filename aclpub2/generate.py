@@ -347,7 +347,7 @@ def create_watermarked_pdf(paper, conference, root: Path):
             ]
         )
     print(f"Compiling {paper['id']}")
-    subprocess.call(
+    returncode = subprocess.call(
         [
             "pdflatex",
             f"-output-directory={watermarked_pdfs}",
@@ -370,7 +370,7 @@ def create_watermarked_pdf(paper, conference, root: Path):
     )
     if returncode != 0:
         # Some PAX errors can be handled by trying a second time.
-        subprocess.call(
+        returncode = subprocess.call(
             [
                 "pdflatex",
                 "-halt-on-error",
@@ -381,6 +381,13 @@ def create_watermarked_pdf(paper, conference, root: Path):
             stderr=subprocess.DEVNULL,
             shell=False,
         )
+
+    if returncode > 0:
+        raise Exception("Sorry but it seems I cannot compile paper " + str(paper["file"]) + " and it will not be added to the output folder!"+
+                        "\nIt is generally due to a PDF with a problematic internal links."
+                        "\nA \"possible\" solution is to open the PDF with any preview system and export it again.")
+
+
 
 
 def process_program_handbook(program):
