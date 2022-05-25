@@ -83,7 +83,11 @@ editors: list of the editors of the volume, in the form
     last_name: surname of the editor (e.g., Walker)
 publisher: published of the conference, generally "Association for Computational Linguistics"
 volume_name: a tag used by the ACL Anthology to characterize the new volume in a group of proceedings. For a volume of the main conference, it should be a tag from the list long|short|srw|demo|findings. For other volumes, such as workshops, it should be set to 1
+watermark_book_title: [optional] If you do not want to use the text in the book_title as a watermark, you can specify here the alternative form. It is particularly usefull when the book_title is too long: in this case you can copy that text in this field and use the line break symbol \\ and, if the text is enclosed between " ", use \\\\
 ```
+
+**Notice**: avoid using LaTeX escape codes but simply use the characters in UTF8, e.g., Rilić instead of Rili'\\{c})).
+
 
 Here some example, first for a conference:
 
@@ -105,6 +109,7 @@ editors:
     last_name: Villavicencio
 publisher: Association for Computational Linguistics
 volume_name: long
+watermark_book_title: "Proceedings of the 60th Annual Meeting of the Association for Computational Linguistics\\\\Volume 1: Long Papers"
 ```
 
 and for a workshop
@@ -129,6 +134,7 @@ editors:
     last_name: Anastasia
 publisher: Association for Computational Linguistics
 volume_name: 1
+watermark_book_title: Proceedings of the 2nd Workshop on Human Evaluation of NLP Systems (HumEval 2021)
 ```
 
 
