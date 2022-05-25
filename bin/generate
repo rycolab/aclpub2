@@ -3,6 +3,16 @@ import argparse
 from aclpub2.generate import generate_proceedings, generate_handbook
 
 if __name__ == "__main__":
+    print("======================================================")
+    print("         _    ____ _     ____  _   _ ____ ____   ")
+    print("        / \  / ___| |   |  _ \| | | | __ )___ \  ")
+    print("       / _ \| |   | |   | |_) | | | |  _ \ __) | ")
+    print("      / ___ \ |___| |___|  __/| |_| | |_) / __/  ")
+    print("     /_/   \_\____|_____|_|    \___/|____/_____| ")
+    print()
+    print("Generate proceedings for *CL Conferences and Workshops")
+    print("======================================================")
+
     parser = argparse.ArgumentParser(
         description="Generate proceedings from an input direcotry."
     )
