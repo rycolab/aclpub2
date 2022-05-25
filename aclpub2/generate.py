@@ -3,6 +3,7 @@ from pathlib import Path
 from PyPDF2 import PdfFileReader
 
 from aclpub2.templates import load_template, homoglyph, TEMPLATE_DIR
+from aclpub2.check import check_required_conference_fields, avoid_latex_in_conference_field
 
 import multiprocessing
 import subprocess
@@ -52,6 +53,17 @@ def generate_proceedings(path: str, overwrite: bool, outdir: str):
             print("Sorry. Your program.yml file seems malformed. It will be skipped.")
             traceback.print_exc()
             sessions_by_date = None
+
+    #Consistency check of input material
+    is_ok = True
+    is_ok = is_ok and check_required_conference_fields(conference)
+    is_ok = is_ok and avoid_latex_in_conference_field(conference)
+
+    if not is_ok:
+        print("\nAt least one of your input files contains an error, please solve all issues to be compliant with the submission to the ACL Anthology.")
+        print("Please take a look at: https://github.com/rycolab/aclpub2/blob/main/README.md")
+        input("\nPress Enter to continue anyway or Ctrl+C to quit.\n")
+
     generate_watermarked_pdfs(id_to_paper.values(), conference, root)
 
     template = load_template("proceedings")
