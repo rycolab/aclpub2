@@ -213,7 +213,6 @@
 \VAR{load_file(root, "meal", "meal.tex")}
 \clearpage
 
-
 %%%%%%%%%%%
 % Social Event
 %%%%%%%%%%%
@@ -290,16 +289,28 @@
 %%%%%%%%%%%
 % Program %
 %%%%%%%%%%%
-
 \setheaders{Main Conference}{Main Conference}
 \chapter{Main Conference}
 \clearpage
-\section{Main Conference Program (Overview)}
-\VAR{load_file(root, "program_overview", "23.tex")}
-\VAR{load_file(root, "program_overview", "24.tex")}
-\VAR{load_file(root, "program_overview", "25.tex")}
-\setlength{\parindent}{0pt}
 
+%%%%%%%%%%%%
+% Overview %
+%%%%%%%%%%%%
+\section{Main Conference Program (Overview)}
+\BLOCK{for page in program_overview}
+  \begin{flushleft}
+  {\large \textbf{\VAR{page.title}}}
+  \end{flushleft}
+  \noindent\rule{8cm}{0.8pt}
+  \setlength{\parindent}{0pt}
+  \VAR{load_file(root, "program_overview", page.file)}
+  \newpage
+\BLOCK{endfor}
+
+
+%%%%%%%%%%%%
+% Detailed %
+%%%%%%%%%%%%
 \BLOCK{for date, sessions in program}
   \section{Main Conference: \VAR{program_date(date)}} \leavevmode\newline
   \setheaders{Main Conference Program (Detailed Program)}{Main Conference Program (Detailed Program)}

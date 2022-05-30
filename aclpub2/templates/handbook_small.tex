@@ -108,7 +108,6 @@
 \begin{document}
 \thispagestyle{empty}
 \fancyfoot[C]{}
-\includepdf{/Users/uniba/Documents/GitHub/aclpub2/examples/handbook_acl2022/ACL_cover_v3.pdf}
 
 \fancyfoot[C]{\thepage}
 \pagenumbering{arabic}
@@ -191,38 +190,41 @@
 %%%%%%%%%%%
 % Program %
 %%%%%%%%%%%
-
 \section{Main Conference Program (Overview)}
-\VAR{load_file(root, "program_overview", "23.tex")}
-\VAR{load_file(root, "program_overview", "24.tex")}
-\VAR{load_file(root, "program_overview", "25.tex")}
 
-\setlength{\parindent}{0pt}
+%%%%%%%%%%%%
+% Overview %
+%%%%%%%%%%%%
+\BLOCK{for page in program_overview}
+  \begin{flushleft}
+  {\large \textbf{\VAR{page.title}}}
+  \end{flushleft}
+  \noindent\rule{8cm}{0.8pt}
+  \setlength{\parindent}{0pt}
+  \VAR{load_file(root, "program_overview", page.file)}
+  \newpage
+\BLOCK{endfor}
+
+%%%%%%%%%%%%
+% Detailed %
+%%%%%%%%%%%%
 \setheaders{Main Conference Program}{Main Conference Program}
 \BLOCK{for date, sessions in program}
   \section{Main Conference Program: \VAR{program_date(date)}} \leavevmode\newline
-  \BLOCK{if "23" in program_date(date)}
-  \setheaders{Main Conference Program (Detailed Program): Day 1}{Main Conference Program (Detailed Program): Day 1}
-  \BLOCK{endif}
- \BLOCK{if "24" in program_date(date)}
- \setheaders{Main Conference Program (Detailed Program): Day 2}{Main Conference Program (Detailed Program): Day 2}
-  \BLOCK{endif}
- \BLOCK{if "25" in program_date(date)}
- \setheaders{Main Conference Program (Detailed Program): Day 3}{Main Conference Program (Detailed Program): Day 3}
-  \BLOCK{endif}
+  \setheaders{Main Conference Program (Detailed Program)}{Main Conference Program (Detailed Program)}
 
    \BLOCK{for session in sessions}
     \BLOCK{if session.subsessions|length > 1}
       {\leavevmode\newline{\Large{\textbf{\VAR{session.title} - \VAR{session.start_time.strftime('%H:%M')}-\VAR{session.end_time.strftime('%H:%M')}}}} \leavevmode\newline \leavevmode\newline
       \BLOCK{for subsession in session.subsessions}
-        \BLOCK{if 'Poster' in subsession.title}
+        \BLOCK{if 'Poster' in subsession.title or 'VPS' in subsession.title}
          {\large \VAR{subsession.title}}\\
-         \VAR{session.start_time.strftime('%H:%M')}-\VAR{session.end_time.strftime('%H:%M')} (Forum)
+         \VAR{session.start_time.strftime('%H:%M')}-\VAR{session.end_time.strftime('%H:%M')} (\VAR{subsession.location})
          \leavevmode\newline
             \noindent\rule{4cm}{0.4pt}\leavevmode\newline
 
         \BLOCK{endif}
-        \BLOCK{if 'Poster' not in subsession.title}
+        \BLOCK{if 'Poster' not in subsession.title and 'VPS' not in subsession.title}
           \BLOCK{if subsession.papers|length > 1}
             {\Large \VAR{subsession.title}}\\
 
@@ -237,10 +239,22 @@
            \BLOCK{set ns = namespace(first=true)}
             \begin{longtable}{p{11mm}p{104mm}}
             \BLOCK{for paper_slot in subsession.papers}
-              \footnotesize{\VAR{paper_slot.start_time.strftime('%H:%M')}-\VAR{paper_slot.end_time.strftime('%H:%M')}} &
+             \BLOCK{if paper_slot.start_time and paper_slot.end_time}
+              \footnotesize{\VAR{paper_slot.start_time.strftime('%H:%M')}-\VAR{paper_slot.end_time.strftime('%H:%M')}}
+             \BLOCK{endif}  &
+              \BLOCK{if paper_slot.attributes and paper_slot.attributes.Source}
               \BLOCK{if "TACL" in paper_slot.attributes.Source}\footnotesize{[TACL]}\BLOCK{endif}
-              \BLOCK{if "CL" == paper_slot.attributes.Source}\footnotesize{[CL]}\BLOCK{endif} \footnotesize{\textbf{\VAR{paper_slot.title}} -
-              \textit{\VAR{join_names(", ", paper_slot.authors, " and ")}}} \\
+              \BLOCK{if "CL" == paper_slot.attributes.Source}\footnotesize{[CL]}\BLOCK{endif}
+               \BLOCK{endif}
+               \footnotesize{\textbf{\VAR{paper_slot.title}} - }
+              \BLOCK{if paper_slot.authors}
+              \footnotesize{\textit{\VAR{join_names(", ", paper_slot.authors, " and ")}}}
+              \BLOCK{endif}
+              \BLOCK{if paper_slot.speaker}
+              \VAR{index_authors(paper_slot.speaker)}
+              \textit{\footnotesize{Speaker: \VAR{paper_slot.speaker}}}
+              \BLOCK{endif}
+              \\
             \BLOCK{endfor}
               \end{longtable}
          \BLOCK{set ns.first = false}
@@ -351,11 +365,5 @@
 \cleardoublepage
 \setheaders{Sponsorship}{Sponsorship}
 \VAR{load_file(root, "sponsorship", "sponsorship.tex")}
-%%%%%%%%%%%%%%
-% Back Cover %
-%%%%%%%%%%%%%%
-\cleardoublepage
-\setheaders{}{}
-
 
 \end{document}

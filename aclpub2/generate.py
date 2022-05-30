@@ -188,7 +188,8 @@ def generate_handbook(path: str, overwrite: bool):
         program_workshops,
         workshop_days,
         workshop_days2,
-        papers_workshops
+        papers_workshops,
+        program_overview
     ) = load_configs_handbook(root)
 
     template = load_template("handbook")
@@ -215,6 +216,7 @@ def generate_handbook(path: str, overwrite: bool):
         workshop_days2=workshop_days2,
         build_dir=str(build_dir),
         datetime = datetime,
+        program_overview=program_overview,
         print=debug
     )
     tex_file = Path(build_dir, "handbook.tex")
@@ -243,7 +245,6 @@ def generate_handbook_small(path: str, overwrite: bool):
     # Load and preprocess the .yml configuration.
     (
         conference,
-        papers,
         sponsors,
         prefaces,
         organizing_committee,
@@ -256,11 +257,9 @@ def generate_handbook_small(path: str, overwrite: bool):
         program_workshops,
         workshop_days,
         workshop_days2,
-        papers_workshops
+        papers_workshops,
+        program_overview
     ) = load_configs_handbook(root)
-
-    id_to_paper, alphabetized_author_index = process_papers(papers, root)
-
     template = load_template("handbook_small")
     program = process_program_handbook(program)
     tutorial_program = process_program_tutorial_handbook(
@@ -278,8 +277,6 @@ def generate_handbook_small(path: str, overwrite: bool):
         tutorial_program=tutorial_program,
         tutorials=tutorials,
         invited_talks=invited_talks,
-        papers=papers,
-        id_to_paper=id_to_paper,
         program=program,
         workshops=workshops,
         program_workshops=program_workshops,
@@ -288,6 +285,7 @@ def generate_handbook_small(path: str, overwrite: bool):
         papers_workshops=papers_workshops,
         build_dir=str(build_dir),
         datetime=datetime,
+        program_overview=program_overview,
         print=debug
     )
     tex_file = Path(build_dir, "handbook_small.tex")
@@ -314,7 +312,6 @@ def generate_posters_guide(path: str, overwrite: bool):
     # Load and preprocess the .yml configuration.
     (
         conference,
-        papers,
         sponsors,
         prefaces,
         organizing_committee,
@@ -327,7 +324,8 @@ def generate_posters_guide(path: str, overwrite: bool):
         program_workshops,
         workshop_days,
         workshop_days2,
-        papers_workshops
+        papers_workshops,
+        program_overview
     ) = load_configs_handbook(root)
 
     # open the file in the write mode
@@ -386,8 +384,6 @@ def generate_posters_guide(path: str, overwrite: bool):
 
     f.close()
 
-    id_to_paper, alphabetized_author_index = process_papers(papers, root)
-
     template = load_template("posters_guide")
     program = process_program_handbook(program)
     tutorial_program = process_program_tutorial_handbook(
@@ -405,8 +401,6 @@ def generate_posters_guide(path: str, overwrite: bool):
         tutorial_program=tutorial_program,
         tutorials=tutorials,
         invited_talks=invited_talks,
-        papers=papers,
-        id_to_paper=id_to_paper,
         program=program,
         workshops=workshops,
         program_workshops=program_workshops,
@@ -415,6 +409,7 @@ def generate_posters_guide(path: str, overwrite: bool):
         papers_workshops=papers_workshops,
         build_dir=str(build_dir),
         datetime=datetime,
+        program_overview=program_overview,
         print=debug
     )
     tex_file = Path(build_dir, "posters_guide.tex")
@@ -787,6 +782,7 @@ def load_configs_handbook(root: Path):
     tutorials = load_config("tutorials", root)
     invited_talks = load_config("invited_talks", root, required=False)
     program = load_config("program", root)
+    program_overview = load_config("program_overview", root)
     for entry in program:
         entry["title"] = normalize_latex_string(entry["title"])
     workshops = load_config("workshops", root)
@@ -833,7 +829,8 @@ def load_configs_handbook(root: Path):
         program_workshops,
         workshop_days,
         workshop_days2,
-        papers_workshops
+        papers_workshops,
+        program_overview
     )
 
 
