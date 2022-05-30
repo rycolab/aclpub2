@@ -410,3 +410,4 @@ examples/handbook_acl2022/front_page_handbook/front_page.tex
 examples/handbook_acl2022/front_page_handbook/ACL_cover_v3_handbook_full.pdf
 *.txt
 bin/build/transform in yml.py
+examples/handbook_acl2022/program_overview.yml
