@@ -12,8 +12,6 @@
 \usepackage{eurosym}
 \usepackage{tabu}
 \usepackage{wrapfig}
-\usepackage[colorlinks=true,linkcolor=blue!30!black,citecolor=blue!30!black,urlcolor=blue!30!black]{hyperref}
-
 \usepackage{tikz}
 \newunicodechar{ș}{\cb{s}}
 \newunicodechar{ț}{\cb{t}}
@@ -110,9 +108,11 @@
 \begin{document}
 \thispagestyle{empty}
 \fancyfoot[C]{}
-\includepdf{/Users/uniba/Documents/GitHub/aclpub2/examples/handbook_acl2022/ACL_cover_v3_handbook_full.pdf}
-%\includepdf[pages={2-2}]{/Users/uniba/Documents/GitHub/aclpub2/examples/handbook_acl2022/ACL-2022-program-overview_v1.pdf}
 
+%%%%%%%%%%%%%%%%%
+% Front Page %
+%%%%%%%%%%%%%%%%%
+\VAR{load_file(root, "front_page_handbook", "front_page.tex")}
 
 %%%%%%%
 % TOC %
@@ -302,15 +302,7 @@
 
 \BLOCK{for date, sessions in program}
   \section{Main Conference: \VAR{program_date(date)}} \leavevmode\newline
-    \BLOCK{if "23" in program_date(date)}
-  \setheaders{Main Conference Program (Detailed Program): Day 1}{Main Conference Program (Detailed Program): Day 1}
-  \BLOCK{endif}
- \BLOCK{if "24" in program_date(date)}
- \setheaders{Main Conference Program (Detailed Program): Day 2}{Main Conference Program (Detailed Program): Day 2}
-  \BLOCK{endif}
- \BLOCK{if "25" in program_date(date)}
- \setheaders{Main Conference Program (Detailed Program): Day 3}{Main Conference Program (Detailed Program): Day 3}
-  \BLOCK{endif}
+  \setheaders{Main Conference Program (Detailed Program)}{Main Conference Program (Detailed Program)}
 
   \BLOCK{for session in sessions}
     \BLOCK{set count = namespace(value=1)}
@@ -327,17 +319,29 @@
             \vspace*{-0.05cm}
             \noindent\rule{4cm}{0.4pt}\\\leavevmode\newline
             \BLOCK{for paper_slot in subsession.papers}
+            \BLOCK{if paper_slot.start_time and paper_slot.end_time}
               \VAR{paper_slot.start_time.strftime('%H:%M')}-\VAR{paper_slot.end_time.strftime('%H:%M')} \BLOCK{if subsession.location}(\VAR{subsession.location})\BLOCK{endif}\leavevmode\newline
-             \BLOCK{if "TACL" in paper_slot.attributes.Source}\footnotesize{[TACL]}\BLOCK{endif}
+             \BLOCK{endif}
+              \BLOCK{if paper_slot.attributes and paper_slot.attributes.Source}
+              \BLOCK{if "TACL" in paper_slot.attributes.Source}\footnotesize{[TACL]}\BLOCK{endif}
               \BLOCK{if "CL" == paper_slot.attributes.Source}\footnotesize{[CL]}\BLOCK{endif}
               \BLOCK{if "DEMO" == paper_slot.attributes.Source}\footnotesize{[DEMO]}\BLOCK{endif}
-              \BLOCK{if 'Poster' in subsession.title and "DEMO" != paper_slot.attributes.Source}
+             \BLOCK{endif}
+               \BLOCK{if 'Poster' in subsession.title and "DEMO" != paper_slot.attributes.Source}
               \footnotesize{\textbf{ \#\VAR{count.value} } }  \BLOCK{set count.value = count.value + 1}
               \BLOCK{endif}
               \textbf{\footnotesize{\VAR{paper_slot.title}}}\leavevmode\newline
+              \BLOCK{if paper_slot.authors}
               \textit{\footnotesize{\VAR{join_names(", ", paper_slot.authors, " and ")}}}\leavevmode\newline
+              \BLOCK{endif}
+              \BLOCK{if paper_slot.speaker}
+              \VAR{index_authors(paper_slot.speaker)}
+              \textit{\footnotesize{Speaker: \VAR{paper_slot.speaker}}}\leavevmode\newline
+              \BLOCK{endif}
+              \BLOCK{if paper_slot.abstract}
               \BLOCK{if paper_slot.abstract != "PLACEHOLDER"}
               {\footnotesize{\VAR{paper_slot.abstract}}} \leavevmode\newline
+              \BLOCK{endif}
               \BLOCK{endif}
 
               \BLOCK{if paper_slot.start_time}
@@ -385,7 +389,7 @@ During the days of the workshops, \textbf{Registration} will be held from 08:00.
     \vspace{0.3cm}
 \BLOCK{endfor}
 \BLOCK{for date in workshop_days2}
-    \large{\textbf{Thursday, May 26, 2022 - Friday, May 27, 2022} \leavevmode\newline
+    \large{\textbf{More days} \leavevmode\newline
     \noindent\rule{\textwidth}{0.4pt}
     \begin{longtable}{p{28mm}p{84mm}p{15mm}}
     \BLOCK{for workshop in workshops}
@@ -492,7 +496,6 @@ During the days of the workshops, \textbf{Registration} will be held from 08:00.
 \thispagestyle{empty}
 \noindent
 \setheaders{}{}
-\includepdf{/Users/uniba/Documents/GitHub/aclpub2/examples/handbook_acl2022/ACL-booklet_backcover_4.8.22_blue-bars.pdf}
 
 
 \end{document}

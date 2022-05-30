@@ -54,6 +54,7 @@ def join_names_commitee(delimiter: str, items: List[Any], delimiter_last: str = 
 def index_author(author: str):
     n = author.split(" ")
     return "\index{" + n[-1] + ", " + " ".join(n[:-1]) + "}"
+
 def index_authors(author: str):
     n = author.split(",")
     s =""

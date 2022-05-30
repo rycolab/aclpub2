@@ -400,3 +400,13 @@ examples/handbook_acl2022/sponsorship/ACL-sponsor-ad-pages_A5.pdf
 .idea/dataSources.local.xml
 bin/build/transform in yml.py
 bin/virtual_sessions.txt
+examples/handbook_acl2022/sponsorship/ACL-sponsor-ad-pages_A5.pdf
+examples/handbook_acl2022/sponsorship/ACL-booklet_backcover_4.8.22_blue-bars.pdf
+examples/handbook_acl2022/front_page_posters_demos/front_page.tex
+examples/handbook_acl2022/front_page_posters_demos/ACL_cover_v3_posters.pdf
+examples/handbook_acl2022/front_page_handbook_small/front_page.tex
+examples/handbook_acl2022/front_page_handbook_small/ACL_cover_v3.pdf
+examples/handbook_acl2022/front_page_handbook/front_page.tex
+examples/handbook_acl2022/front_page_handbook/ACL_cover_v3_handbook_full.pdf
+*.txt
+bin/build/transform in yml.py

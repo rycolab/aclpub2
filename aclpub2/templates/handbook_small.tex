@@ -116,6 +116,11 @@
 \pagestyle{fancy}
 \setheaders{}{}
 
+%%%%%%%%%%%%%%%%%
+% Front Page %
+%%%%%%%%%%%%%%%%%
+\VAR{load_file(root, "front_page_handbook_small", "front_page.tex")}
+
 %%%%%%%
 % TOC %
 %%%%%%%
@@ -337,7 +342,7 @@
 % Local Guide %
 %%%%%%%%%%%
 \setheaders{Local Guide}{Local Guide}
-\VAR{load_file(root, "local_guide_small", "local_guide.tex")}
+\VAR{load_file(root, "local_guide", "local_guide.tex")}
 
 
 %%%%%%%%%%%%%%
@@ -351,7 +356,6 @@
 %%%%%%%%%%%%%%
 \cleardoublepage
 \setheaders{}{}
-\includepdf{/Users/uniba/Documents/GitHub/aclpub2/examples/handbook_acl2022/ACL-booklet_backcover_4.8.22_blue-bars.pdf}
 
 
 \end{document}

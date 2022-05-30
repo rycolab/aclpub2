@@ -1,9 +1,6 @@
 from collections import defaultdict
 from pathlib import Path
 
-import pandas as pd
-from PyPDF2 import PdfFileReader
-
 from aclpub2.templates import load_template, TEMPLATE_DIR
 
 import multiprocessing
@@ -164,7 +161,7 @@ def find_page_offset(proceedings_pdf):
             except ValueError as e:
                 if last_roman is not None:
                     raise ValueError(f"Failed to parse page numbers: {e}")
-    return offse
+    return offset
 
 def generate_handbook(path: str, overwrite: bool):
     root = Path(path)
@@ -179,7 +176,6 @@ def generate_handbook(path: str, overwrite: bool):
     # Load and preprocess the .yml configuration.
     (
         conference,
-        papers,
         sponsors,
         prefaces,
         organizing_committee,
@@ -194,8 +190,6 @@ def generate_handbook(path: str, overwrite: bool):
         workshop_days2,
         papers_workshops
     ) = load_configs_handbook(root)
-
-    id_to_paper, alphabetized_author_index = process_papers(papers, root)
 
     template = load_template("handbook")
     program = process_program_handbook(program)
@@ -213,8 +207,6 @@ def generate_handbook(path: str, overwrite: bool):
         tutorial_program=tutorial_program,
         tutorials=tutorials,
         invited_talks=invited_talks,
-        papers=papers,
-        id_to_paper=id_to_paper,
         program=program,
         workshops=workshops,
         program_workshops=program_workshops,
@@ -782,11 +774,8 @@ def load_configs_handbook(root: Path):
     Loads all conference configuration files defined in the root directory.
     """
     conference = load_config("conference_details", root)
-    papers = load_config("papers", root)
-    for paper in papers:
-        paper["title"] = normalize_latex_string(paper["title"])
     sponsors = load_config("sponsors", root)
-    prefaces = load_config("prefaces_handbook", root)
+    prefaces = load_config("prefaces", root)
     organizing_committee = load_config("organizing_committee", root)
     program_committee = load_config("program_committee", root)
     for block in program_committee:
@@ -832,7 +821,6 @@ def load_configs_handbook(root: Path):
 
     return (
         conference,
-        papers,
         sponsors,
         prefaces,
         organizing_committee,

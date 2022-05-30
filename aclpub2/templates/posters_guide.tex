@@ -11,7 +11,6 @@
 \usepackage{upgreek}
 \usepackage{afterpage}
 
-
 \newunicodechar{ș}{\cb{s}}
 \newunicodechar{ț}{\cb{t}}
 
@@ -106,13 +105,17 @@
 \begin{document}
 \thispagestyle{empty}
 \fancyfoot[C]{}
-\includepdf{/Users/uniba/Documents/GitHub/aclpub2/examples/handbook_acl2022/ACL_cover_v3_posters.pdf}
 
 \fancyfoot[C]{\thepage}
 \pagenumbering{arabic}
 \setcounter{tocdepth}{2}
 \pagestyle{fancy}
 \setheaders{}{}
+
+%%%%%%%%%%%%%%%%%
+% Front Page %
+%%%%%%%%%%%%%%%%%
+\VAR{load_file(root, "front_page_posters_demos", "front_page.tex")}
 
 %%%%%%%
 % TOC %
@@ -161,12 +164,12 @@
  \setheaders{Posters Program (Detailed Program): Day 3}{Posters Conference Program (Detailed Program): Day 3}
   \BLOCK{endif}
 
-  \section{Posters Program: \VAR{program_date(date)}} \leavevmode\newline
+  \section{Posters: \VAR{program_date(date)}} \leavevmode\newline
   \BLOCK{for session in sessions}
    \BLOCK{set count = namespace(value=1)}
     \BLOCK{if session.subsessions|length > 1}
       \BLOCK{for subsession in session.subsessions}
-        \BLOCK{if 'Poster' in subsession.title}
+        \BLOCK{if 'Poster' in subsession.title or 'VPS' in subsession.title }
           \BLOCK{if subsession.papers|length > 1}
             {\Large \VAR{subsession.title}}\\
          \vspace*{-0.27cm}
@@ -180,11 +183,33 @@
            \BLOCK{set ns = namespace(first=true)}
             \begin{longtable}{p{11mm}p{104mm}}
             \BLOCK{for paper_slot in subsession.papers}
-            \BLOCK{if not 'DEMO' in paper_slot.attributes.Source}
+            \BLOCK{if paper_slot.attributes and not 'DEMO' in paper_slot.attributes.Source}
             \VAR{print(paper_slot.title)}
-              \footnotesize{\VAR{paper_slot.start_time.strftime('%H:%M')}-\VAR{paper_slot.end_time.strftime('%H:%M')}} &
+             \BLOCK{if paper_slot.start_time}
+              \footnotesize{\VAR{paper_slot.start_time.strftime('%H:%M')}-\VAR{paper_slot.end_time.strftime('%H:%M')}}
+              \BLOCK{endif} &
               \footnotesize{\textbf{ \#\VAR{count.value}  \VAR{paper_slot.title}} -
-              \textit{\VAR{join_names(", ", paper_slot.authors, " and ")}}} \BLOCK{set count.value = count.value + 1} \\
+              \textit{\VAR{join_names(", ", paper_slot.authors, " and ")}}} \BLOCK{set count.value = count.value + 1}
+              \\ \BLOCK{endif}
+            \BLOCK{if not paper_slot.attributes}
+            \VAR{print(paper_slot.title)}
+             \BLOCK{if paper_slot.start_time}
+              \footnotesize{\VAR{paper_slot.start_time.strftime('%H:%M')}-\VAR{paper_slot.end_time.strftime('%H:%M')}}
+              \BLOCK{endif} &
+              \BLOCK{if 'VPS' not in subsession.title}
+                \footnotesize{\textbf{ \#\VAR{count.value}}}
+                \BLOCK{set count.value = count.value + 1}
+              \BLOCK{endif}
+               \footnotesize{\textbf{\VAR{paper_slot.title}}}
+              \BLOCK{if paper_slot.authors}
+               -
+              \textit{\VAR{join_names(", ", paper_slot.authors, " and ")}}
+              \BLOCK{endif}
+              \BLOCK{if paper_slot.speaker}
+               \VAR{index_authors(paper_slot.speaker)}
+              \textit{Speaker: \VAR{paper_slot.speaker}}
+              \BLOCK{endif}
+              \\
               \BLOCK{endif}
             \BLOCK{endfor}
               \end{longtable}
@@ -192,8 +217,6 @@
         \BLOCK{endif}
       \BLOCK{endfor}
     \BLOCK{endif}
-
-
   \BLOCK{endfor}
           \newpage
 \BLOCK{endfor}
@@ -216,17 +239,17 @@
  \setheaders{Demos Program (Detailed Program): Day 3}{Demos Program (Detailed Program): Day 3}
   \BLOCK{endif}
 
-  \section{Demos Program: \VAR{program_date(date)}} \leavevmode\newline
+  \section{Demos: \VAR{program_date(date)}} \leavevmode\newline
   \BLOCK{for session in sessions}
 
     \BLOCK{if session.subsessions|length > 1}
 
       \BLOCK{for subsession in session.subsessions}
-        \BLOCK{if 'Poster' in subsession.title}
+        \BLOCK{if 'Poster' in subsession.title or 'VPS' in subsession.title}
           \BLOCK{if subsession.papers|length > 1}
             \BLOCK{set count = namespace(value=1)}
           \BLOCK{for paper_slot in subsession.papers}
-          \BLOCK{if 'DEMO' in paper_slot.attributes.Source}
+          \BLOCK{if paper_slot.attributes and 'DEMO' in paper_slot.attributes.Source}
                      \BLOCK{if count.value ==1}
                          {\Large \VAR{subsession.title}}\\
                          \vspace*{-0.27cm}
@@ -268,6 +291,16 @@
 \setheaders{Venue Map}{Venue Map}
 \section{Venue Map}
 \VAR{load_file(root, "venue_map", "venue_map.tex")}
+
+%%%%%%%%%%%%%%%%
+% Author Index %
+%%%%%%%%%%%%%%%%
+\cleardoublepage
+\addcontentsline{toc}{chapter}{Author Index}
+\setheaders{Author Index}{Author Index}
+\printindex
+\newpage
+
 %%%%%%%%%%%%%%
 % Appendices %
 %%%%%%%%%%%%%%
@@ -277,7 +310,5 @@
 % Back Cover %
 %%%%%%%%%%%%%%
 \cleardoublepage
-\includepdf{/Users/uniba/Documents/GitHub/aclpub2/examples/handbook_acl2022/ACL-booklet_backcover_4.8.22_blue-bars.pdf}
-
 
 \end{document}
