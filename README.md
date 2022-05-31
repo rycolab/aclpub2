@@ -393,31 +393,31 @@ In addition, it is also responsible for configuring some convenience functions t
 ** Work in progress **
 
 The script allows the generation of three different types of Handbook: 
-- Full Handbook (it includes all details about the program, including posters, virtual poster sessions and workshops)
-- Small Handbook (it includes only detail about the program of the main conference)
+- Full Handbook (it includes all details about the program, including main conference, posters, virtual poster sessions and workshops)
+- Small Handbook (it includes only details about the program of the main conference)
 - Poster and Demos Guide (it includes only the details about posters and demos, including virtual poster sessions)
 
 ### CLI
 
 ```bash
-# Generates the full handbook.
+# Generates the Full Handbook.
 ./bin/generate examples/handbook_acl --handbook
 
-# Generates the handbook snall.
+# Generates the Handbook Small.
 ./bin/generate examples/handbook_acl --handbook_small
 
 # Generates Posters and Demos Guide.
 ./bin/generate examples/handbook_acl --posters_guide
 
-# Generates all the three and overwrites the existing contents of the build directory.
+# Generates all the three before and overwrites the existing contents of the build directory.
 ./bin/generate examples/sigdial --handbook --handbook_small --posters_guide --overwrite
 ```
 
 Users may wish to make modifications to the output `.tex` files.
 Though we recommend first copying the `.tex` files to a new working directory,
 the `--overwrite` flag helps ensure that local modifications are not accidentally erased.
-The scripts to generate the handbook accept as input a set of `.yml` files and directories. 
 
+The scripts to generate the handbook accept as input a set of `.yml` files and directories. 
 In particular, the script expects to receive as input the following files:
 1. `conference_details.yml`
 2. `organizing_committee.yml`
@@ -433,7 +433,7 @@ In particular, the script expects to receive as input the following files:
 `conference_details.yml`, `organizing_committee.yml`, `program_committee.yml`, `prefaces.yml`, `invited_talks.yml` are the same already explained for the generation of proceedings.
 
 #### tutorials.yml
-This file should list the tutorials talks and associated room, date, and description. A directory containing the `.tex` files that provide the text of the description should be created in the same directory of the `.yml` files (named tutorials/).
+This file should list the tutorials talks and associated room, date, and description. A directory containing the `.tex` files that provide the text of the description should be created in the same directory of the `.yml` files (named tutorials/). Moreover, A directory containing the `.tex` files that provide the text of the Tutorial Chairs Message hould be created in the same directory of the `.yml` files (named tutorial_message/).
 As with the prefaces, the contents of the `.tex` files should not include usual headers and footers found within LaTeX files,
 and only what is usually found between the `\begin{document}` and `\end{document}` directives.
 
@@ -471,33 +471,45 @@ Each speech is defined by its title, room, speakers, start and end time.
 ```
 
 #### program.yml
-Describes the conference program.
-This file is organized in blocks, each with a title, start, and end time, followed by a list of papers IDs.
-Instead of defining presentations, sessions may define subsessions, which have the same structure as the top-level session.
+This file describes the main conference program.
+This file is organized in blocks, each with a title, start, and end time, followed by a list of papers.
+Instead of defining papers, sessions may define subsessions, which have the same structure as the top-level session.
 
 ```yaml
-- title: Title of the conference session, e.g. Opening Remarks
-  start_time: Start time of the session as an ISO datestring.
-  end_time: End time of the session as an ISO datestring.
-  location: Location that the session is taking place in, e.g. Main Hall or Online
-  chair: (opt) Name of the chair of the session, e.g. Jane Doe.
-  url: (opt) URL to join or view the session, if applicable.
-  papers:
-  - id: Paper ID
-    start_time: Optional start time of the paper slot as an ISO datestring.
-    end_time: Optional start time of the paper slot as an ISO datestring.
-# Or, if this is a session that is broken into subsessions:
-- title: Title of the conference session, e.g. Opening Remarks
-  start_time: Start time of the session as an ISO datestring.
-  end_time: End time of the session as an ISO datestring.
+- title: Session 1
+  start_time: 2022-05-23 11:00:00
+  end_time: 2022-05-23 12:30:00
   subsessions:
-    - title: Title of the conference session, e.g. Opening Remarks
-    start_time: Start time of the session as an ISO datestring.
-    end_time: End time of the session as an ISO datestring.
-    chair: (opt) Name of the chair of the session, e.g. Jane Doe.
-    location: Location that the session is taking place in.
-    papers:
-    - id: Paper ID
-      start_time: Optional start time of the paper slot as an ISO datestring.
-      end_time: Optional start time of the paper slot as an ISO datestring.
+    - title: 'AAA'
+      chair: Chair Name
+      location: Wicklow Hall 1
+      start_time: 2022-05-23 11:00:00
+      end_time: 2022-05-23 12:30:00
+      papers:
+        - id: '1428'
+          title: >-
+            Title Line1
+            Title Line2
+          abstract: >-
+            Abstract Line1
+            Abstract Line2
+          authors:
+            - emails: AAA@mail.com
+              first_name: AAA
+              last_name: BBB
+              name: CCC
+              username: ~AAABBB
+            - dblp_id: https://dblp.org/pid/111/6548r4y
+              emails: test@gmail.com
+              first_name: AAA
+              institution: BBB
+              last_name: CCC
+              name: AAA CCC
+              username: ~AAACCC
+          attributes:
+            Paper Type: long paper
+            Track: Track
+          assignments: []
+          start_time: 2022-05-23 11:00:00
+          end_time: 2022-05-23 11:15:00
 ```
