@@ -389,9 +389,6 @@ In addition, it is also responsible for configuring some convenience functions t
 
 
 ## Handbook generation
-
-** Work in progress **
-
 The script allows the generation of three different types of Handbook: 
 - Full Handbook (it includes all details about the program, including main conference, posters, virtual poster sessions and workshops)
 - Small Handbook (it includes only details about the program of the main conference)
@@ -531,14 +528,14 @@ This file lists the workshops and associated title, location, organizers, date, 
 `workshops.yml`
 ```yaml
 - date: 2022-05-26 00:00:00
-  title: \textbf{W1} - AAA
+  title: W1 - Workshop 1
   chair: Organizers
   location: Ecocem Room
   id: workshop_1
   url: https://aclweb.org/aclwiki/aaaaa
   abstract: Abstract.
 - date: 2022-05-26 00:00:00
-  title: \textbf{W2} - BBB
+  title: W2 - Workshop 2
   chair: Organizers
   location: Wicklow Hall 2a
   id: workshop_2
@@ -576,3 +573,18 @@ This file lists the workshops and associated title, location, organizers, date, 
   title: Title
   abstract: Abstract.
 ```
+
+#### Additional `tex` files
+Additional information should be included in order to obtain a complete handbook of the conference. Those must be placed in specific folders:
+1) `front_page_handbook/`
+2) `front_page_handbook_small/`
+3) `front_page_posters_demos/`
+4) `harassment/`
+5) `local_guide/`
+6) `meal/`
+7) `social_event/`
+8) `sponsorship/`
+9) `venue_map/`
+
+1 - 2 -3 are folders containing `.tex` and `.pdf` files for generating the front matter of the different versions of the handbook.
+4 is the folder containing the Anti Harassment Policy. 5 contains information about the local guide, while 6 and 7 are those where info about the meals and social events should be placed. 8 should include `.tex` and `.pdf` files about the pages reserved for sponsors and the backcover of the handbook. 9 includes information about the venue of the conference.
