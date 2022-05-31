@@ -387,9 +387,40 @@ Additional configuration for Jinja can be found in the `aclpub2/templates.py` fi
 The purpose of this file are to set up the Jinja environment with LaTeX-like block delimiters so that the `proceedings.tex` file can be syntax highlighted and otherwise interacted with in a fashion that is more natural for LaTeX users.
 In addition, it is also responsible for configuring some convenience functions that allow us to create some LaTeX structures in the final output `.tex` file that are easier to write in native Python than either the Jinja base syntax, or LaTeX alone.
 
-## Handbook generation instructions
+
+## Handbook generation
 
 ** Work in progress **
+
+The script allows the generation of three different types of Handbook: 
+- Full Handbook (it includes all details about the program, including posters, virtual poster sessions and workshops)
+- Small Handbook (it includes only detail about the program of the main conference)
+- Poster and Demos Guide (it includes only the details about posters and demos, including virtual poster sessions)
+
+### CLI
+
+```bash
+# Generates the full handbook.
+./bin/generate examples/handbook_acl --handbook
+
+# Generates the handbook snall.
+./bin/generate examples/handbook_acl --handbook_small
+
+# Generates Posters and Demos Guide.
+./bin/generate examples/handbook_acl --posters_guide
+
+# Generates all the three and overwrites the existing contents of the build directory.
+./bin/generate examples/sigdial --handbook --handbook_small --posters_guide --overwrite
+```
+
+Users may wish to make modifications to the output `.tex` files.
+Though we recommend first copying the `.tex` files to a new working directory,
+the `--overwrite` flag helps ensure that local modifications are not accidentally erased.
+
+
+The scripts to generate the handbook accept as input a set of `.yml` files and directories. 
+
+
 
 #### program.yml
 
@@ -423,31 +454,3 @@ Instead of defining presentations, sessions may define subsessions, which have t
       start_time: Optional start time of the paper slot as an ISO datestring.
       end_time: Optional start time of the paper slot as an ISO datestring.
 ```
-
-## Handbook generation
-The script allows the generation of three different types of Handbook: 
-- Full Handbook (it includes all details about the program, including posters, virtual poster sessions and workshops)
-- Small Handbook (it includes only detail about the program of the main conference)
-- Poster and Demos Guide (it includes only the details about posters and demos, including virtual poster sessions)
-
-### CLI
-
-```bash
-# Generates the full handbook.
-./bin/generate examples/handbook_acl --handbook
-
-# Generates the handbook snall.
-./bin/generate examples/handbook_acl --handbook_small
-
-# Generates Posters and Demos Guide.
-./bin/generate examples/handbook_acl --posters_guide
-
-# Generates all the three and overwrites the existing contents of the build directory.
-./bin/generate examples/sigdial --handbook --handbook_small --posters_guide --overwrite
-```
-
-Users may wish to make modifications to the output `.tex` files.
-Though we recommend first copying the `.tex` files to a new working directory,
-the `--overwrite` flag helps ensure that local modifications are not accidentally erased.
-
-The scripts to generate the handbook accept as input a set of `.yml` files and directories. 
