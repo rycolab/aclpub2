@@ -1,6 +1,6 @@
-# How to generate proceedings for \*CL Conferences and Workshops in aclpub2 format
+# How to generate proceedings\handbook for \*CL Conferences and Workshops in aclpub2 format
 
-**aclpub2** supports the generation of Proceedings and Booklets for \*CL Conferences (ACL, NAACL, EMNLP, ... ) and related Workshops. 
+**aclpub2** supports the generation of Proceedings and Handbook for \*CL Conferences (ACL, NAACL, EMNLP, ... ) and related Workshops. 
 This README has been created to provide the instructions to follow to generate proceedings/booklets in aclpub2 format. 
 
 The provided Python tool to generate the proceedings takes as input a set of files containing all information on the event (in the `.yml` format) and generates a `.tex` file containing the conference details, sponsors, prefaces, organizing and program committees, as well as the concatenation of all the watermarked accepted papers and the author index. Such `.tex` file is then compiled to generate the `pdf` file of the proceedings.
@@ -25,6 +25,7 @@ The provided Python tool to generate the proceedings takes as input a set of fil
 
 5. [Testing the tool to generate your proceedings](#Testing-the-tool-to-generate-your-proceedings)
 
+6. [Handbook Generation](#Handbook-generation)
 
 ## Proceedings input format and structure
 The scripts to generate the proceedings accept as input a set of `.yml` files and directories. A YML file is a text document that contains data formatted using YAML (YAML Ain't Markup Language), a human-readable data format used for data serialization. You can open a YML file in any text editor (or source code editor).
@@ -422,3 +423,11 @@ Instead of defining presentations, sessions may define subsessions, which have t
       start_time: Optional start time of the paper slot as an ISO datestring.
       end_time: Optional start time of the paper slot as an ISO datestring.
 ```
+
+## Handbook generation
+The script allows the generation of three different types of Handbook: 
+- Full Handbook (it includes all details about the program, including posters, virtual poster sessions and workshops)
+- Small Handbook (it includes only detail about the program of the main conference)
+- Poster and Demos Guide (it includes only the details about posters and demos, including virtual poster sessions)
+
+The scripts to generate the handbook accept as input a set of `.yml` files and directories. 
