@@ -430,4 +430,24 @@ The script allows the generation of three different types of Handbook:
 - Small Handbook (it includes only detail about the program of the main conference)
 - Poster and Demos Guide (it includes only the details about posters and demos, including virtual poster sessions)
 
+### CLI
+
+```bash
+# Generates the full handbook.
+./bin/generate examples/handbook_acl --handbook
+
+# Generates the handbook snall.
+./bin/generate examples/handbook_acl --handbook_small
+
+# Generates Posters and Demos Guide.
+./bin/generate examples/handbook_acl --posters_guide
+
+# Generates both and overwrites the existing contents of the build directory.
+./bin/generate examples/sigdial --proceedings --handbook --overwrite
+```
+
+Users may wish to make modifications to the output `.tex` files.
+Though we recommend first copying the `.tex` files to a new working directory,
+the `--overwrite` flag helps ensure that local modifications are not accidentally erased.
+
 The scripts to generate the handbook accept as input a set of `.yml` files and directories. 
