@@ -419,20 +419,58 @@ the `--overwrite` flag helps ensure that local modifications are not accidentall
 The scripts to generate the handbook accept as input a set of `.yml` files and directories. 
 
 In particular, the script expects to receive as input the following files:
-1. conference_details.yml
-2. organizing_committee.yml
-3. program_committee.yml
-4. prefaces.yml
-5. invited_talks.yml
-6. tutorials.yml
-7. tutorial_program.yml
-8. program.yml
-9. program_overview.yml
-11. workshops.yml
+1. `conference_details.yml`
+2. `organizing_committee.yml`
+3. `program_committee.yml`
+4. `prefaces.yml`
+5. `invited_talks.yml`
+6. `tutorials.yml`
+7. `tutorial_program.yml`
+8. `program_overview.yml`
+9. `program.yml`
+10. `workshops.yml`
 
+`conference_details.yml`, `organizing_committee.yml`, `program_committee.yml`, `prefaces.yml`, `invited_talks.yml` are the same already explained for the generation of proceedings.
+
+#### tutorials.yml
+This file should list the tutorials talks and associated room, date, and description. A directory containing the `.tex` files that provide the text of the description should be created in the same directory of the `.yml` files (named tutorials/).
+As with the prefaces, the contents of the `.tex` files should not include usual headers and footers found within LaTeX files,
+and only what is usually found between the `\begin{document}` and `\end{document}` directives.
+
+```yaml
+- title: T1 - Tutorial 1
+  file: tutorial1.tex
+  date: 2022-05-22 14:30:00
+  room: Liffey Hall 1
+```
+#### tutorial_program.yml
+This file describes the program of the tutorial sessions.
+This file is organized in blocks, each with a title, start, and end time, followed by a list of speeches.
+Instead of defining speeches, sessions may define subsessions, which have the same structure as the top-level session.
+Each speech is defined by its title, room, speakers, start and end time.
+
+```yaml
+- title: "Morning Tutorials"
+  start_time: 2022-05-22 09:30:00
+  end_time: 2022-05-22 13:00:00
+  subsessions:
+    - start_time: 2022-05-22 09:30:00
+      end_time: 2022-05-22 11:00:00
+      title: "Morning tutorials -- Session 1"
+      tutorials:
+        - start_time: 2022-05-22 09:30:00
+          end_time: 2022-05-22 11:00:00
+          title: "Tutorial 1 -- My Talk"
+          room: "Liffey Hall 1"
+          authors: "Speakers"
+        - start_time: 2022-05-22 09:30:00
+          end_time: 2022-05-22 11:00:00
+          title: "Tutorial 2 -- My Talk"
+          room: "Liffey Hall 2"
+          authors: "Speakers"
+```
 
 #### program.yml
-
 Describes the conference program.
 This file is organized in blocks, each with a title, start, and end time, followed by a list of papers IDs.
 Instead of defining presentations, sessions may define subsessions, which have the same structure as the top-level session.
