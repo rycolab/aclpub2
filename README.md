@@ -416,10 +416,19 @@ The script allows the generation of three different types of Handbook:
 Users may wish to make modifications to the output `.tex` files.
 Though we recommend first copying the `.tex` files to a new working directory,
 the `--overwrite` flag helps ensure that local modifications are not accidentally erased.
-
-
 The scripts to generate the handbook accept as input a set of `.yml` files and directories. 
 
+In particular, the script expects to receive as input the following files:
+1. conference_details.yml
+2. organizing_committee.yml
+3. program_committee.yml
+4. prefaces.yml
+5. invited_talks.yml
+6. tutorials.yml
+7. tutorial_program.yml
+8. program.yml
+9. program_overview.yml
+11. workshops.yml
 
 
 #### program.yml
