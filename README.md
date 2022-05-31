@@ -3,7 +3,7 @@
 **aclpub2** supports the generation of Proceedings and Booklets for \*CL Conferences (ACL, NAACL, EMNLP, ... ) and related Workshops. 
 This README has been created to provide the instructions to follow to generate proceedings/booklets in aclpub2 format. 
 
-The provided Python tool to generate the proceedings takes as input a set of files containing all information on the event (in the `.yml` format) and generates a `.tex` file containing the conference details, sponsors, prefaces, organizing and program committees, as well as the concatenation of all the watermarked accepted papers and the author index. Such `.tex` file is then compiled to generate the `pdf` file of the proceedings (to be sent to ACL Anthology following [these instructions](https://aclanthology.org/info/contrib/)).
+The provided Python tool to generate the proceedings takes as input a set of files containing all information on the event (in the `.yml` format) and generates a `.tex` file containing the conference details, sponsors, prefaces, organizing and program committees, as well as the concatenation of all the watermarked accepted papers and the author index. Such `.tex` file is then compiled to generate the `pdf` file of the proceedings.
 
 
 ## Before starting
@@ -11,7 +11,7 @@ The provided Python tool to generate the proceedings takes as input a set of fil
 ###  Which reviewing platform is you conference/workshop using?
 - OpenReview. This guide is for you, we will explain you how to use the provided tool to generate the proceedings (and the handbook) automatically from OpenReview. 
 - EasyChair (or any other reviewing platform). This guide is for you, we will explain you how to generate the proceedings starting from manually edited files.
-- SoftConf. You can either follow the istructions provided by this guide to generate the proceedings starting from manually edited files (this is the suggested option for small-medium size events) or follow the [ACLPUB instructions](https://github.com/acl-org/acl-pub/blob/gh-pages/aclpub-start.md).
+- SoftConf. You can either follow the istructions provided by this guide to generate the proceedings starting from manually edited files (this is the suggested option for small-medium size events) or follow the [ACLPUB instructions](https://github.com/acl-org/acl-pub/blob/gh-pages/aclpub-start.md). In case you choose to use aclpub2 from information uploaded to softconf, we have recently added scripts to automate the export of info about the papers and program committee from that platform in a format compatible with aclpub2. The process is not fully automated but can be useful to simplify the process. Please take a look at the folder `softconf`.
 
 
 ## Table of Contents
@@ -45,15 +45,20 @@ We strongly suggest taking a look at this [link](https://github.com/rycolab/aclp
 In addition, for the handbook, a file `program.yml` should be created [Jump to Handbook generation instructions](#Handbook-generation-instructions). 
 
 ## Expected output
-The generated proceedings should be sent to the ACL Anthology [(instructions)](https://aclanthology.org/info/contrib/) as a `.zip` or `.tgz` file containing a repository named with the conference/workshop acronym. Such repository should contain:
-1. A folder named `input` containing all the input files (i.e., the `*.yml` and `*.tex` files used to generate the proceedings)
-2. A folder named `watermarked_pdf` containing all the pdfs of the watermarked camera ready papers AND the attacments 
-3. A folder name `attachments` containinng all files associated with the paper. Notice that these file must be correctly referred in the `papers.yml` file.
-4. A PDF file named `proceedings.pdf` containing the whole conference/workshop proceedings (i.e., the introduction and all the watermarked PDFs of the camera ready papers).
+The generated proceedings should be sent to the publication chairs as a `.zip` or `.tgz` file containing a folder named with the conference/workshop acronym. 
+The build process creates a directory called `output`. This directory should contain all of the files that the publication chairs need, but it is always a good idea to confirm that this directory contains all of the files described below.
+If you are interested in an example of an output folder, just run the software on the test case, as discussed [here](#test-run).
 
-Upload the resulting file (<conference>_data.tgz) to a file server or cloud storage (e.g. Google Drive) and email the link to it to the Anthology Director. Please do not send the file as an email attachment.
+In a nutshell, such folder should contain:
+1. A PDF file named `proceedings.pdf` containing the whole conference/workshop proceedings (i.e., the introduction and all the watermarked PDFs of the camera ready papers).
+2. A folder named `watermarked_pdf` containing all the pdfs of the watermarked camera ready papers. 
+ - **Important:** this folder *MUST* contain the special file named `0.pdf` that only contains the initial part of the proceedings (from the cover to the table of contents). The software automatically add it, but please check it, otherwise the Proceedings cannot be added to the ACL Anthology.
+3. A folder name `attachments` containinng all files attached to the indivual papers during their submission (e.g., the code attached to a paper). Notice that each attachment myst be correctly referred in the `papers.yml` file with respect to the base folder named `attachments`. Only in case no paper has an attachment, this folder can be omitted. 
+4. A folder named `inputs` containing all the input files used to generate the proceedings. In particular, this folder must contain the input `yml` and `tex` files used. You can also an the not watermarked pdfs in the subfolder `inputs/papers`. Plase avoid to add here the attachments of the individual papers (e.g., the code or software). They must be collected in the `attachments` folder described below. This folder is automatically built from the software and copied in the output folder, but please remember to check it. 
 
-**Important:** Before generating the final proceedings, please carefully check the input pdfs of the camera ready papers with the ACLPUBCHECK tool, a Python tool that automatically detects author formatting errors, margin violations as well as many other common formatting errors in papers that are using the LaTeX sty file associated with ACL venues. The tool and instructions to use it can be found [here](https://github.com/acl-org/aclpubcheck). We *strongly suggest* to share with the authors this tool before the sumbission of their final camera ready, in order to reduce the effort of controlling possibly hundreds of papers. 
+Upload the resulting file (`ACRONYM_data.tgz`) to a file server or cloud storage (e.g., Google Drive) and email the link to it to the ACL publication chairs, who will assemble them for delivery to the Anthology. Please do not send the file as an email attachment.
+
+**REALLY IMPORTANT:** Before generating the final proceedings, please carefully check the input pdfs of the camera ready papers with the ACLPUBCHECK tool, a Python tool that automatically detects author formatting errors, margin violations as well as many other common formatting errors in papers that are using the LaTeX sty file associated with ACL venues. The tool and instructions to use it can be found [here](https://github.com/acl-org/aclpubcheck). We *strongly suggest* to share with the authors this tool before the sumbission of their final camera ready, in order to reduce the effort of controlling possibly hundreds of papers. 
 
 ## Manually editing yml input files
 Below you can find instructions (and examples) on how you should edit the `.yml` files with information on your conference/workshop.
@@ -77,7 +82,12 @@ editors: list of the editors of the volume, in the form
     middle_name: middle nanme of the editor (e.g., D.)
     last_name: surname of the editor (e.g., Walker)
 publisher: published of the conference, generally "Association for Computational Linguistics"
+volume_name: a tag used by the ACL Anthology to characterize the new volume in a group of proceedings. For a volume of the main conference, it should be a tag from the list long|short|srw|demo|findings. For other volumes, such as workshops, it should be set to 1
+watermark_book_title: [optional] If you do not want to use the text in the book_title as a watermark, you can specify here the alternative form. It is particularly usefull when the book_title is too long: in this case you can copy that text in this field and use the line break symbol \\ and, if the text is enclosed between " ", use \\\\
 ```
+
+**Notice**: avoid using LaTeX escape codes but simply use the characters in UTF8, e.g., Rilić instead of Rili'\\{c})).
+
 
 Here some example, first for a conference:
 
@@ -98,6 +108,8 @@ editors:
   - first_name: Aline
     last_name: Villavicencio
 publisher: Association for Computational Linguistics
+volume_name: long
+watermark_book_title: "Proceedings of the 60th Annual Meeting of the Association for Computational Linguistics\\\\Volume 1: Long Papers"
 ```
 
 and for a workshop
@@ -121,6 +133,8 @@ editors:
   - first_name: Shimorina
     last_name: Anastasia
 publisher: Association for Computational Linguistics
+volume_name: 1
+watermark_book_title: Proceedings of the 2nd Workshop on Human Evaluation of NLP Systems (HumEval 2021)
 ```
 
 
@@ -214,12 +228,12 @@ Each of the listed papers must have a unique ID so that they may be referred to 
   attachments:
     # A list of additional files associated with the paper.
     # The type, along with one of file or url must be specified.
-    - type: Dataset | Note | Poster | Presentation | Software | Attachment
+    - type: dataset | note | poster | presentation | software | attachment
       file: Local file path, e.g. attachments/5.zip
-      url: URL pointing to the file, e.g. https://openreview.net/attachment?id=abcdefg
   title: Title of the paper.
   abstract: Abstract of the paper, usually a LaTeX fragment.
 ```
+Please notice that in the field ``title`` in the ``attachments`` group it is not possible to use external urls, but only files added in the attachment folder can be referred with the relative path.
 
 ## How to export yml files from OpenReview
 When running your workshop on OpenReview, it is possible to use their API for automatically extracting the `papers.yml` and `program_committee.yml` files. For this purpose, in the folder `openreview` we provide two Python3 scripts for facilitating your work.
@@ -321,11 +335,11 @@ Ensure that `PYTHONPATH` includes `.`, for example `export PYTHONPATH=.:$PYTHONP
 Run the CLI on the SIGDIAL example directory:
 
 ```
-./bin/generate examples/sigdial --proceedings --handbook
+./bin/generate examples/sigdial --proceedings
 ```
 
 The generated results, along with intermediate files and links, can then be found in
-the `build` directory in the directory in which you ran the command.
+the `output` directory in the directory in which you ran the command.
 
 ## Usage
 
@@ -357,6 +371,10 @@ the `--overwrite` flag helps ensure that local modifications are not accidentall
 
 The above describe a reasonable default usage of this package, but the behavior can easily be extended or modified by adjusting the contents of the `aclpub2/` directory.
 The main files to keep in mind are `aclpub2/templates/proceedings.tex` which contains the core Jinja template file, and `aclpub2/generate.py` which is responsible for rendering the template.
+
+### Font Encoding 
+
+The input templates use the T1 font encoding. If you are interested in different encodings (e.g., Vietnamese) you have to modify the `aclpub2/templates/proceedings.tex` by changing the statement `\usepackage[T1]{fontenc}` and specifying a different encoding, e.g., `\usepackage[T5]{fontenc}`.
 
 #### Jinja
 
