@@ -442,8 +442,8 @@ The script allows the generation of three different types of Handbook:
 # Generates Posters and Demos Guide.
 ./bin/generate examples/handbook_acl --posters_guide
 
-# Generates both and overwrites the existing contents of the build directory.
-./bin/generate examples/sigdial --proceedings --handbook --overwrite
+# Generates all the three and overwrites the existing contents of the build directory.
+./bin/generate examples/sigdial --handbook --handbook_small --posters_guide --overwrite
 ```
 
 Users may wish to make modifications to the output `.tex` files.
