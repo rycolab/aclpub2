@@ -470,6 +470,17 @@ Each speech is defined by its title, room, speakers, start and end time.
           authors: "Speakers"
 ```
 
+#### program_overview.yml
+This file should list the additional files needed for including the main conference program overview. They should be included in a folder named  program_overview/ .
+```yaml
+- title: "Main Conference Program (Overview): Day 1"
+  file: 23.tex
+- title: "Main Conference Program (Overview): Day 2"
+  file: 24.tex
+- title: "Main Conference Program (Overview): Day 3"
+  file: 25.tex
+```
+
 #### program.yml
 This file describes the main conference program.
 This file is organized in blocks, each with a title, start, and end time, followed by a list of papers.
@@ -512,4 +523,56 @@ Instead of defining papers, sessions may define subsessions, which have the same
           assignments: []
           start_time: 2022-05-23 11:00:00
           end_time: 2022-05-23 11:15:00
+```
+
+#### workshops.yml
+This file lists the workshops and associated title, location, organizers, date, id, url and abstract. A directory containing files that provide the program of each workshop (`program_<Workshop ID>.yml`) and the list of papers (`papers_<Workshop ID>.yml`) should be created in the same directory of the main `.yml` file (named workshops/). 
+
+`workshops.yml`
+```yaml
+- date: 2022-05-26 00:00:00
+  title: \textbf{W1} - AAA
+  chair: Organizers
+  location: Ecocem Room
+  id: workshop_1
+  url: https://aclweb.org/aclwiki/aaaaa
+  abstract: Abstract.
+- date: 2022-05-26 00:00:00
+  title: \textbf{W2} - BBB
+  chair: Organizers
+  location: Wicklow Hall 2a
+  id: workshop_2
+  url: https://aaaaa.github.io/
+  abstract: Abstract.
+```
+
+
+`program_workshop_1.yml`
+```yaml
+- title: Opening Remarks
+  start_time: 2022-05-26 09:00:00
+  end_time: 2022-05-26 09:10:00
+- title: "Session 1"
+  start_time: 2022-05-26 09:10:00
+  end_time: 2022-05-26 10:30:00
+  location: Hybrid
+  papers:
+    - id: 2
+      start_time: 2022-05-26 09:10:00
+      end_time: 2022-05-26 09:30:00
+```
+
+`papers_workshop_1.yml`
+```yaml
+- id: 2
+  authors: 
+   - first_name: AAA
+     last_name: BBB
+     institution: Online University
+  attributes: 
+     paper_type: long
+     presentation_type: poster
+  file: 2.pdf
+  title: Title
+  abstract: Abstract.
 ```
