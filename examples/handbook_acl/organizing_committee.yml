@@ -1,0 +1,24 @@
+- members:
+  - first_name: AAA
+    institution: BBB
+    last_name: CCC
+  role: General Chair
+- members:
+  - first_name: AAA
+    institution: BBB
+    last_name: CCC
+  - first_name: DDD
+    institution: EEE
+    last_name: FFF
+  - first_name: GGG
+    institution: HHH
+    last_name: III
+  role: Program Chairs
+- members:
+  - first_name: AAA
+    institution: BBB
+    last_name: CCC
+  - first_name: DDD
+    institution: EEE
+    last_name: FFF
+  role: Local Organization Chairs

@@ -214,7 +214,7 @@
   \setheaders{Main Conference Program (Detailed Program)}{Main Conference Program (Detailed Program)}
 
    \BLOCK{for session in sessions}
-    \BLOCK{if session.subsessions|length > 1}
+    \BLOCK{if session.subsessions|length > 0}
       {\leavevmode\newline{\Large{\textbf{\VAR{session.title} - \VAR{session.start_time.strftime('%H:%M')}-\VAR{session.end_time.strftime('%H:%M')}}}} \leavevmode\newline \leavevmode\newline
       \BLOCK{for subsession in session.subsessions}
         \BLOCK{if 'Poster' in subsession.title or 'VPS' in subsession.title}
@@ -225,7 +225,7 @@
 
         \BLOCK{endif}
         \BLOCK{if 'Poster' not in subsession.title and 'VPS' not in subsession.title}
-          \BLOCK{if subsession.papers|length > 1}
+          \BLOCK{if subsession.papers|length > 0}
             {\Large \VAR{subsession.title}}\\
 
          \vspace*{-0.27cm}
@@ -271,7 +271,7 @@
     \BLOCK{endif}
 
     \BLOCK{if session.subsessions|length < 1}
-      \BLOCK{if session.papers|length > 1}
+      \BLOCK{if session.papers|length > 0}
             {\Large \VAR{session.title}}\\
 
          \vspace*{-0.27cm}

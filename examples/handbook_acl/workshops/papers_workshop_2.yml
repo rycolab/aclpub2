@@ -1,0 +1,19 @@
+- abstract: "Abstract."
+  attributes:
+    paper_type: long
+    presentation_type: oral
+    submitted_area: Area 2
+  authors:
+  - email: sss@test.edu
+    first_name: AAA
+    instituion: CCC
+    last_name: BBB
+    openreview: ~AAABBB
+  - email: Test
+    first_name: DDD
+    instituion: University
+    last_name: EEE
+    openreview: ~DDDEEE
+  file: 3.pdf
+  id: 3
+  title: "Title"

@@ -317,10 +317,10 @@
 
   \BLOCK{for session in sessions}
     \BLOCK{set count = namespace(value=1)}
-    \BLOCK{if session.subsessions|length > 1}
+    \BLOCK{if session.subsessions|length > 0}
      \leavevmode\newline{\Large{\textbf{\VAR{session.title} - \VAR{session.start_time.strftime('%H:%M')}-\VAR{session.end_time.strftime('%H:%M')}}}}
       \BLOCK{for subsession in session.subsessions}
-          \BLOCK{if subsession.papers|length > 1}
+          \BLOCK{if subsession.papers|length > 0}
                 {\subsection{\VAR{subsession.title}}}
          \VAR{subsession.start_time.strftime('%H:%M')}-\VAR{subsession.end_time.strftime('%H:%M')}
          \BLOCK{if subsession.location}

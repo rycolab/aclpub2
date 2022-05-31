@@ -1,0 +1,12 @@
+- entries:
+  - dblp_id: https://dblp.org/pid/4444/222-1
+    emails: test@mail.com
+    first_name: AAA
+    google_scholar_id: https://scholar.google.com/citations?user=_FSHOSIOS
+    homepage: https://dfilasf.github.io/
+    institution: ABBB
+    last_name: CCC
+    name: AAA CCC
+    username: ~AAA_CCC
+  role: ARR reviewers
+  type: name_block

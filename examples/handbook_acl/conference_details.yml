@@ -1,0 +1,18 @@
+book_title: "Title"
+event_name: "Name"
+cover_subtitle: "Subtitle"
+anthology_venue_id: ACL
+start_date: 2022-05-22
+end_date: 2022-05-27
+isbn: xxx-x-xxxxxxx-xx-x
+location: Online
+editors:
+  - first_name: Jhon
+    last_name: Doe
+  - first_name: Jane
+    last_name: Doe
+  - first_name: Jhason
+    last_name: Doe
+publisher: Association for Computational Linguistics
+watermark_book_title: "ACL meeting"
+volume_name: handbook

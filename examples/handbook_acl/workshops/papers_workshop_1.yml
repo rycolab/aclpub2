@@ -1,0 +1,11 @@
+- id: 2
+  authors: 
+   - first_name: AAA
+     last_name: BBB
+     institution: Online University
+  attributes: 
+     paper_type: long
+     presentation_type: poster
+  file: 2.pdf
+  title: Title
+  abstract: Abstract.

@@ -1,0 +1,281 @@
+- title: Opening Remarks and Presidential Address
+  chair: null
+  location: Auditorium
+  start_time: 2022-05-23 08:30:00
+  end_time: 2022-05-23 09:30:00
+  papers: []
+- title: "Keynote 1"
+  chair: null
+  location: Auditorium
+  start_time: 2022-05-23 09:30:00
+  end_time: 2022-05-23 10:30:00
+  papers: []
+- title: Coffee Break
+  chair: null
+  location: Forum
+  start_time: 2022-05-23 10:30:00
+  end_time: 2022-05-23 11:00:00
+  papers: []
+- title: Session 1
+  start_time: 2022-05-23 11:00:00
+  end_time: 2022-05-23 12:30:00
+  subsessions:
+    - title: 'AAA'
+      chair: null
+      location: Wicklow Hall 1
+      start_time: 2022-05-23 11:00:00
+      end_time: 2022-05-23 12:30:00
+      papers:
+        - id: '1428'
+          title: >-
+            Title
+          abstract: >-
+            Abstract Line1
+            Abstract Line2
+          authors:
+            - emails: AAA@mail.com
+              first_name: AAA
+              last_name: BBB
+              name: CCC
+              username: ~AAABBB
+            - dblp_id: https://dblp.org/pid/111/6548r4y
+              emails: test@gmail.com
+              first_name: AAA
+              institution: BBB
+              last_name: CCC
+              name: AAA CCC
+              username: ~AAACCC
+          attributes:
+            Paper Type: long paper
+            Track: Track
+          assignments: []
+          start_time: 2022-05-23 11:00:00
+          end_time: 2022-05-23 11:15:00
+    - title: BBB
+      chair: null
+      location: Wicklow Hall 2a
+      start_time: 2022-05-23 11:00:00
+      end_time: 2022-05-23 12:30:00
+      papers:
+        - id: '1436'
+          title: 'Title'
+          abstract: >-
+            Abstract.
+          authors:
+            - dblp_id: https://dblp.org/pid/34545/345345fgg
+              emails: test@gmail.com
+              first_name: AAA
+              google_scholar_id: https://scholar.google.com/citations?user=jUrfasf455=en
+              homepage: https://aaa.github.io/
+              institution: University
+              last_name: BBB
+              name: AAA BBB
+              orcid: https://orcid.org/0000-7756d-5757-45
+              semantic_scholar_id: https://www.semanticscholar.org/author/754ds54fs
+              username: ~AAAABBB
+          attributes:
+            Paper Type: long paper
+            Track: 'Track'
+          assignments: []
+          start_time: 2022-05-23 11:00:00
+          end_time: 2022-05-23 11:15:00
+    - title: 'Poster Session 1'
+      chair: null
+      location: Forum
+      start_time: 2022-05-23 11:00:00
+      end_time: 2022-05-23 12:30:41
+      papers:
+        - id: '1193'
+          title: >-
+            Title
+          abstract: >-
+            Abstract
+          authors:
+            - dblp_id: https://dblp.org/pid/445/56558
+              emails: test@gmail.com
+              first_name: AA
+              google_scholar_id: >-
+                https://scholar.google.com/citations?hl=en&user=dsewrtwettewtetwet&view_op=list_works&sortby=pubdate
+              homepage: https://aaa.github.io/
+              last_name: BBB
+              name: AAA
+              username: ~AAABBB
+          attributes:
+            Paper Type: long paper
+            Track: Track
+          assignments: []
+          start_time: 2022-05-23 11:00:00
+          end_time: 2022-05-23 12:30:41
+- title: Lunch Break
+  chair: null
+  location: Lunch is not served
+  start_time: 2022-05-23 12:30:00
+  end_time: 2022-05-23 14:00:00
+  papers: []
+- title: Session 2
+  start_time: 2022-05-23 14:00:00
+  end_time: 2022-05-23 15:00:00
+- title: Mini Break
+  chair: null
+  location: Forum
+  start_time: 2022-05-23 15:00:00
+  end_time: 2022-05-23 15:15:00
+  papers: []
+- title: Talks
+  chair: null
+  location: Auditorium
+  start_time: 2022-05-23 15:15:00
+  end_time: 2022-05-23 16:30:00
+  papers: []
+- title: Coffee Break
+  chair: null
+  location: Forum
+  start_time: 2022-05-23 16:30:00
+  end_time: 2022-05-23 17:00:00
+  papers: []
+- title: Session 3
+  start_time: 2022-05-23 17:00:00
+  end_time: 2022-05-23 18:00:00
+- title: 'Social Event'
+  chair: null
+  location: Guinness Storehouse
+  start_time: 2022-05-23 19:30:00
+  end_time: 2022-05-23 23:00:00
+  papers: []
+- title: Virtual Poster Session 1
+  chair: null
+  location: GatherTown
+  start_time: 2022-05-24 07:30:00
+  end_time: 2022-05-24 08:30:00
+  subsessions:
+    - title: "VPS1: Track"
+      location: GatherTown
+      start_time: 2022-05-24 07:30:00
+      end_time: 2022-05-24 08:30:00
+      papers:
+       - id: '291'
+         title: "Title"
+         speaker: AAAA
+       - id: '345'
+         title: "Title"
+         speaker: bbb
+- title: Next Big Ideas Talks
+  chair: null
+  location: Auditorium
+  start_time: 2022-05-24 09:00:00
+  end_time: 2022-05-24 10:30:00
+  papers: []
+- title: Coffee Break
+  chair: null
+  location: Forum
+  start_time: 2022-05-24 10:30:00
+  end_time: 2022-05-24 11:00:00
+  papers: []
+- title: Session 4
+  start_time: 2022-05-24 11:00:00
+  end_time: 2022-05-24 12:30:00
+- title: Lunch Break
+  chair: null
+  location: Lunch is not served
+  start_time: 2022-05-24 12:30:00
+  end_time: 2022-05-24 13:30:00
+  papers: []
+- title: ACL Business Meeting
+  chair: null
+  location: Auditorium
+  start_time: 2022-05-24 13:30:00
+  end_time: 2022-05-24 15:00:00
+  papers: []
+- title: Mini Break
+  chair: null
+  location: Forum
+  start_time: 2022-05-24 15:00:00
+  end_time: 2022-05-24 15:15:00
+  papers: []
+- title: Session 5
+  start_time: 2022-05-24 15:15:00
+  end_time: 2022-05-24 16:15:00
+- title: Coffee Break
+  chair: null
+  location: Forum
+  start_time: 2022-05-24 16:15:00
+  end_time: 2022-05-24 16:45:00
+  papers: []
+- title: >-
+    Keynote 2
+  chair: null
+  location: Auditorium
+  start_time: 2022-05-24 16:45:00
+  end_time: 2022-05-24 18:30:00
+  papers: []
+- title: Virtual Poster Session 2
+  chair: null
+  location: GatherTown
+  start_time: 2022-05-24 19:00:00
+  end_time: 2022-05-24 20:00:00
+  subsessions:
+    - title: "VPS2: BBBB"
+      location: GatherTown
+      start_time: 2022-05-24 19:00:00
+      end_time: 2022-05-24 20:00:00
+      papers:
+        - id: '173'
+          title: "Title"
+          speaker: Speaker
+        - id: '291'
+          title: "Title"
+          speaker: Speaker
+- title: >-
+    Keynote 3
+  chair: null
+  location: Auditorium
+  start_time: 2022-05-25 09:00:00
+  end_time: 2022-05-25 10:15:00
+  papers: []
+- title: Coffee Break
+  chair: null
+  location: Forum
+  start_time: 2022-05-25 10:15:00
+  end_time: 2022-05-25 10:45:00
+  papers: []
+- title: Session 6
+  start_time: 2022-05-25 10:45:00
+  end_time: 2022-05-25 12:15:00
+- title: Lunch Break
+  chair: null
+  location: Lunch is not served
+  start_time: 2022-05-25 12:15:00
+  end_time: 2022-05-25 13:30:00
+  papers: []
+- title: Session 7
+  start_time: 2022-05-25 13:30:00
+  end_time: 2022-05-25 14:30:00
+- title: Mini Break
+  chair: null
+  location: Forum
+  start_time: 2022-05-25 14:30:00
+  end_time: 2022-05-25 14:45:00
+  papers: []
+- title: Best Paper Awards
+  chair: null
+  location: Auditorium
+  start_time: 2022-05-25 14:45:00
+  end_time: 2022-05-25 16:00:00
+- title: Coffee Break
+  chair: null
+  location: Forum
+  start_time: 2022-05-25 16:00:00
+  end_time: 2022-05-25 16:30:00
+  papers: []
+- title: ACL Awards
+  chair: null
+  location: Auditorium
+  start_time: 2022-05-25 16:30:00
+  end_time: 2022-05-25 18:00:00
+  papers: []
+- title: Closing Session
+  chair: null
+  location: Auditorium
+  start_time: 2022-05-25 18:00:00
+  end_time: 2022-05-25 18:30:00
+  papers: []

@@ -1,0 +1,14 @@
+- date: 2022-05-26 00:00:00
+  title: \textbf{W1} - AAA
+  chair: Organizers
+  location: Ecocem Room
+  id: workshop_1
+  url: https://aclweb.org/aclwiki/aaaaa
+  abstract: Abstract.
+- date: 2022-05-26 00:00:00
+  title: \textbf{W2} - BBB
+  chair: Organizers
+  location: Wicklow Hall 2a
+  id: workshop_2
+  url: https://aaaaa.github.io/
+  abstract: Abstract.

@@ -1,0 +1,61 @@
+- end_time: 2022-05-26 09:10:00
+  start_time: 2022-05-26 09:00:00
+  title: Opening Remarks
+- title: Session 1
+  start_time: 2022-05-26 09:10:00 
+  end_time: 2022-05-26 10:30:00
+  subsessions:
+    - end_time: 2022-05-26 10:30:00
+      papers:
+        - end_time: 2022-05-26 09:30:00
+          id: 3
+          start_time: 2022-05-26 09:10:00
+      start_time: 2022-05-26 09:10:00
+      title: Session
+      chair: AAAA
+      location: Main Room
+- end_time: 2022-05-26 11:00:00
+  start_time: 2022-05-26 10:30:00
+  title: Coffee Break
+- end_time: 2022-05-26 11:40:00
+  start_time: 2022-05-26 11:00:00
+  title: Poster Session (Gathertown)
+- title: Session 2
+  start_time: 2022-05-26 11:40:00
+  end_time: 2022-05-26 12:30:00
+  subsessions:
+    - end_time: 2022-05-26 12:00:00
+      papers:
+        - end_time: 2022-05-26 12:00:00
+          id: 3
+          start_time: 2022-05-26 11:40:00
+      start_time: 2022-05-26 11:40:00
+      chair: AAA
+      location: Main Room
+      title: Oral Session
+    - end_time: 2022-05-26 12:20:00
+      start_time: 2022-05-26 12:00:00
+      title: Findings
+      chair: AAA
+      location: Main Room
+- end_time: 2022-05-26 14:00:00
+  start_time: 2022-05-26 12:30:00
+  title: Lunch Break
+- end_time: 2022-05-26 15:00:00
+  start_time: 2022-05-26 14:00:00
+  title: Invited Talk 1
+- end_time: 2022-05-26 15:30:00
+  start_time: 2022-05-26 15:00:00
+  title: Coffee Break
+- end_time: 2022-05-26 16:10:00
+  start_time: 2022-05-26 15:30:00
+  title: Invited Talk 2
+- end_time: 2022-05-26 16:50:00
+  start_time: 2022-05-26 16:10:00
+  title: Invited Talk 3
+- end_time: 2022-05-26 17:50:00
+  start_time: 2022-05-26 16:50:00
+  title: Round Table
+- end_time: 2022-05-26 18:00:00
+  start_time: 2022-05-26 17:50:00
+  title: Closing remarks

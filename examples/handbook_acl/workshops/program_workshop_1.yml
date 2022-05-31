@@ -1,0 +1,43 @@
+- title: Opening Remarks
+  start_time: 2022-05-26 09:00:00
+  end_time: 2022-05-26 09:10:00
+- title: "Session 1"
+  start_time: 2022-05-26 09:10:00
+  end_time: 2022-05-26 10:30:00
+  location: Hybrid
+  papers:
+    - id: 2
+      start_time: 2022-05-26 09:10:00
+      end_time: 2022-05-26 09:30:00
+- title: Coffee Break
+  start_time: 2022-05-26 10:30:00
+  end_time: 2022-05-26 11:00:00
+- title: "Poster Session 1"
+  start_time: 2022-05-26 11:00:00
+  end_time: 2022-05-26 12:30:00
+  location: Hybrid
+  papers:
+        - id: 2
+- title: Lunch Break
+  start_time: 2022-05-26 12:30:00
+  end_time: 2022-05-26 14:00:00
+- title: "Session 2"
+  start_time: 2022-05-26 14:00:00
+  end_time: 2022-05-26 15:00:00
+  location: Hybrid
+  papers:
+    - id: 2
+      start_time: 2022-05-26 14:00:00
+      end_time: 2022-05-26 14:20:00
+- title: Coffee Break
+  start_time: 2022-05-26 15:00:00
+  end_time: 2022-05-26 15:30:00
+- title: "Poster Session 2"
+  start_time: 2022-05-26 15:30:00
+  end_time: 2022-05-26 17:00:00
+  location: Hybrid
+  papers:
+        - id: 2
+- title: Closing Remarks
+  start_time: 2022-05-26 17:00:00
+  end_time: 2022-05-26 17:10:00

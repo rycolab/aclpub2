@@ -1,0 +1,26 @@
+- title: Talk 1
+  abstract_file: invited1.tex
+  speaker_name: AAA
+  institution: BBB
+  bio_file: null
+  date: 2022-05-23 09:30:00
+  location: Auditorium
+  chair: null
+
+- title: Talk 2
+  abstract_file: invited2.tex
+  speaker_name: AAA
+  institution: BBB
+  bio_file: null
+  date: 2022-05-23 09:30:00
+  location: Auditorium
+  chair: null
+
+- title: Talk 3
+  abstract_file: invited3.tex
+  speaker_name: AAA
+  institution: BBB
+  bio_file: null
+  date: 2022-05-23 09:30:00
+  location: Auditorium
+  chair: null
