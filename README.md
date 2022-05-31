@@ -480,7 +480,7 @@ Instead of defining papers, sessions may define subsessions, which have the same
   start_time: 2022-05-23 11:00:00
   end_time: 2022-05-23 12:30:00
   subsessions:
-    - title: 'AAA'
+    - title: 'Subsession 1'
       chair: Chair Name
       location: Wicklow Hall 1
       start_time: 2022-05-23 11:00:00
