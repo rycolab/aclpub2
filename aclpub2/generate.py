@@ -3,7 +3,10 @@ from pathlib import Path
 from PyPDF2 import PdfFileReader
 
 from aclpub2.templates import load_template, homoglyph, TEMPLATE_DIR
-from aclpub2.check import check_required_conference_fields, avoid_latex_in_conference_field
+from aclpub2.check import (
+    check_required_conference_fields,
+    avoid_latex_in_conference_field,
+)
 
 import multiprocessing
 import subprocess
@@ -54,14 +57,18 @@ def generate_proceedings(path: str, overwrite: bool, outdir: str):
             traceback.print_exc()
             sessions_by_date = None
 
-    #Consistency check of input material
+    # Consistency check of input material
     is_ok = True
     is_ok = is_ok and check_required_conference_fields(conference)
     is_ok = is_ok and avoid_latex_in_conference_field(conference)
 
     if not is_ok:
-        print("\nAt least one of your input files contains an error, please solve all issues to be compliant with the submission to the ACL Anthology.")
-        print("Please take a look at: https://github.com/rycolab/aclpub2/blob/main/README.md")
+        print(
+            "\nAt least one of your input files contains an error, please solve all issues to be compliant with the submission to the ACL Anthology."
+        )
+        print(
+            "Please take a look at: https://github.com/rycolab/aclpub2/blob/main/README.md"
+        )
         input("\nPress Enter to continue anyway or Ctrl+C to quit.\n")
 
     generate_watermarked_pdfs(id_to_paper.values(), conference, root)
@@ -128,10 +135,10 @@ def generate_proceedings(path: str, overwrite: bool, outdir: str):
     output_dir.mkdir()
     rearrange_outputs(root, build_dir, output_dir)
 
+
 def copy_folder(input_path: Path, output_dir: Path):
     if os.path.isdir(input_path):
         shutil.copytree(input_path, output_dir)
-
 
 
 def rearrange_outputs(input_path: Path, build_dir: Path, output_dir: Path):
@@ -154,15 +161,18 @@ def rearrange_outputs(input_path: Path, build_dir: Path, output_dir: Path):
         if os.path.isfile(file):
             shutil.copy2(file, input_copy_dir)
     # Copy other input folders.
-    for folder_to_copy in [ "papers",
-                            "invited_talks",
-                            "additional_pages",
-                            "prefaces",
-                            "sponsor_logos"]:
-        copy_folder(Path(input_path, folder_to_copy), Path(input_copy_dir, folder_to_copy))
+    for folder_to_copy in [
+        "papers",
+        "invited_talks",
+        "additional_pages",
+        "prefaces",
+        "sponsor_logos",
+    ]:
+        copy_folder(
+            Path(input_path, folder_to_copy), Path(input_copy_dir, folder_to_copy)
+        )
 
     copy_folder(Path(input_path, "attachments"), Path(output_dir, "attachments"))
-
 
 
 def find_page_offset(proceedings_pdf):
@@ -304,7 +314,10 @@ def process_papers(papers, root: Path):
 
 def error_hanlder(e):
     print(traceback.print_exception(type(e), e, e.__traceback__))
-    input("\nSorry. I have problems compiling the watermarked papers. Press Enter to process another paper or Ctrl+C to quit.\n")
+    input(
+        "\nSorry. I have problems compiling the watermarked papers. Press Enter to process another paper or Ctrl+C to quit.\n"
+    )
+
 
 def generate_watermarked_pdfs(papers_with_pages, conference, root: Path):
     build_dir = Path("build")
@@ -315,7 +328,7 @@ def generate_watermarked_pdfs(papers_with_pages, conference, root: Path):
             pool.apply_async(
                 create_watermarked_pdf,
                 args=(paper, conference, root),
-                error_callback=error_hanlder
+                error_callback=error_hanlder,
             )
         pool.close()
         pool.join()
@@ -383,11 +396,13 @@ def create_watermarked_pdf(paper, conference, root: Path):
         )
 
     if returncode > 0:
-        raise Exception("Sorry but it seems I cannot compile paper " + str(paper["file"]) + " and it will not be added to the output folder!"+
-                        "\nIt is generally due to a PDF with a problematic internal links."
-                        "\nA \"possible\" solution is to open the PDF with any preview system and export it again.")
-
-
+        raise Exception(
+            "Sorry but it seems I cannot compile paper "
+            + str(paper["file"])
+            + " and it will not be added to the output folder!"
+            + "\nIt is generally due to a PDF with a problematic internal links."
+            '\nA "possible" solution is to open the PDF with any preview system and export it again.'
+        )
 
 
 def process_program_handbook(program):
@@ -404,7 +419,7 @@ def process_program_proceedings(program):
     a median paper entry line length of 3 lines (including title and authors),
     and that a maximum of 35 schedule lines will fit on one page.
     """
-    max_lines = 35
+    max_lines = 32
     paper_median_lines = 3
     header_lines = 2
     sessions_by_date = defaultdict(list)
@@ -595,7 +610,9 @@ def load_configs(root: Path):
                 try:
                     entry[k] = normalize_latex_string(v)
                 except:
-                    print("Warning: the following entry from the program_committee.yml is ill-formed")
+                    print(
+                        "Warning: the following entry from the program_committee.yml is ill-formed"
+                    )
                     print("\t" + str(entry))
                     input("Press a key to continue...")
 
