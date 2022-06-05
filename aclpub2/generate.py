@@ -3,11 +3,14 @@ from pathlib import Path
 from PyPDF2 import PdfFileReader
 
 from aclpub2.templates import load_template, homoglyph, TEMPLATE_DIR
-from aclpub2.check import check_required_conference_fields, avoid_latex_in_conference_field
+from aclpub2.check import (
+    check_required_conference_fields,
+    avoid_latex_in_conference_field,
+)
+from aclpub2.config import load_configs, load_configs_handbook
 
 import multiprocessing
 import subprocess
-import yaml
 import roman
 import shutil
 import os
@@ -54,14 +57,18 @@ def generate_proceedings(path: str, overwrite: bool, outdir: str):
             traceback.print_exc()
             sessions_by_date = None
 
-    #Consistency check of input material
+    # Consistency check of input material
     is_ok = True
     is_ok = is_ok and check_required_conference_fields(conference)
     is_ok = is_ok and avoid_latex_in_conference_field(conference)
 
     if not is_ok:
-        print("\nAt least one of your input files contains an error, please solve all issues to be compliant with the submission to the ACL Anthology.")
-        print("Please take a look at: https://github.com/rycolab/aclpub2/blob/main/README.md")
+        print(
+            "\nAt least one of your input files contains an error, please solve all issues to be compliant with the submission to the ACL Anthology."
+        )
+        print(
+            "Please take a look at: https://github.com/rycolab/aclpub2/blob/main/README.md"
+        )
         input("\nPress Enter to continue anyway or Ctrl+C to quit.\n")
 
     generate_watermarked_pdfs(id_to_paper.values(), conference, root)
@@ -128,10 +135,10 @@ def generate_proceedings(path: str, overwrite: bool, outdir: str):
     output_dir.mkdir()
     rearrange_outputs(root, build_dir, output_dir)
 
+
 def copy_folder(input_path: Path, output_dir: Path):
     if os.path.isdir(input_path):
         shutil.copytree(input_path, output_dir)
-
 
 
 def rearrange_outputs(input_path: Path, build_dir: Path, output_dir: Path):
@@ -154,15 +161,18 @@ def rearrange_outputs(input_path: Path, build_dir: Path, output_dir: Path):
         if os.path.isfile(file):
             shutil.copy2(file, input_copy_dir)
     # Copy other input folders.
-    for folder_to_copy in [ "papers",
-                            "invited_talks",
-                            "additional_pages",
-                            "prefaces",
-                            "sponsor_logos"]:
-        copy_folder(Path(input_path, folder_to_copy), Path(input_copy_dir, folder_to_copy))
+    for folder_to_copy in [
+        "papers",
+        "invited_talks",
+        "additional_pages",
+        "prefaces",
+        "sponsor_logos",
+    ]:
+        copy_folder(
+            Path(input_path, folder_to_copy), Path(input_copy_dir, folder_to_copy)
+        )
 
     copy_folder(Path(input_path, "attachments"), Path(output_dir, "attachments"))
-
 
 
 def find_page_offset(proceedings_pdf):
@@ -304,7 +314,10 @@ def process_papers(papers, root: Path):
 
 def error_hanlder(e):
     print(traceback.print_exception(type(e), e, e.__traceback__))
-    input("\nSorry. I have problems compiling the watermarked papers. Press Enter to process another paper or Ctrl+C to quit.\n")
+    input(
+        "\nSorry. I have problems compiling the watermarked papers. Press Enter to process another paper or Ctrl+C to quit.\n"
+    )
+
 
 def generate_watermarked_pdfs(papers_with_pages, conference, root: Path):
     build_dir = Path("build")
@@ -315,7 +328,7 @@ def generate_watermarked_pdfs(papers_with_pages, conference, root: Path):
             pool.apply_async(
                 create_watermarked_pdf,
                 args=(paper, conference, root),
-                error_callback=error_hanlder
+                error_callback=error_hanlder,
             )
         pool.close()
         pool.join()
@@ -383,11 +396,13 @@ def create_watermarked_pdf(paper, conference, root: Path):
         )
 
     if returncode > 0:
-        raise Exception("Sorry but it seems I cannot compile paper " + str(paper["file"]) + " and it will not be added to the output folder!"+
-                        "\nIt is generally due to a PDF with a problematic internal links."
-                        "\nA \"possible\" solution is to open the PDF with any preview system and export it again.")
-
-
+        raise Exception(
+            "Sorry but it seems I cannot compile paper "
+            + str(paper["file"])
+            + " and it will not be added to the output folder!"
+            + "\nIt is generally due to a PDF with a problematic internal links."
+            '\nA "possible" solution is to open the PDF with any preview system and export it again.'
+        )
 
 
 def process_program_handbook(program):
@@ -453,233 +468,3 @@ def process_program_proceedings(program):
         current_page = []
         total_lines = 0
     return sorted(entries_by_date.items())
-
-
-def process_program_tutorial_handbook(
-    program, max_lines=35, paper_median_lines=3, header_lines=2
-):
-    """
-    process_program organizes program sessions by date, and manually cuts
-    program entries in order to avoid page overflow. This is done by assuming
-    a median paper entry line length of 3 lines (including title and authors),
-    and that a maximum of 35 schedule lines will fit on one page.
-    """
-    sessions_by_date = defaultdict(list)
-    for session in program:
-        if "subsessions" in session:
-            for session in session["subsessions"]:
-                sessions_by_date[session["start_time"].date()].append(session)
-        else:
-            sessions_by_date[session["start_time"].date()].append(session)
-    entries_by_date = {}
-    for date, sessions in sessions_by_date.items():
-        total_lines = 0
-        pages = []
-        current_page = []
-        for session in sessions:
-            table_entries = []
-            table_entries.append(
-                {
-                    "type": "header",
-                    "title": session["title"],
-                    "start_time": session["start_time"],
-                    "end_time": session["end_time"],
-                }
-            )
-            if "tutorials" in session:
-                for tutorial in session["tutorials"]:
-                    table_entries.append(
-                        {
-                            "type": "tutorial",
-                            "paper": tutorial,
-                        }
-                    )
-            # Split the table lines so that no page overflows.
-            for entry in table_entries:
-                if entry["type"] == "header":
-                    total_lines += header_lines
-                elif entry["type"] == "tutorial":
-                    total_lines += paper_median_lines
-                current_page.append(entry)
-                if total_lines >= max_lines:
-                    pages.append(current_page)
-                    current_page = []
-                    total_lines = 0
-        pages.append(current_page)
-        entries_by_date[date] = pages
-        current_page = []
-        total_lines = 0
-    return sorted(entries_by_date.items())
-
-
-def process_program_workshop_handbook(
-    program, max_lines=35, paper_median_lines=3, header_lines=2
-):
-    """
-    process_program organizes program sessions by date, and manually cuts
-    program entries in order to avoid page overflow. This is done by assuming
-    a median paper entry line length of 3 lines (including title and authors),
-    and that a maximum of 35 schedule lines will fit on one page.
-    """
-    sessions_by_date = defaultdict(list)
-    for session in program:
-        if "subsessions" in session:
-            for session in session["subsessions"]:
-                sessions_by_date[session["start_time"].date()].append(session)
-        else:
-            sessions_by_date[session["start_time"].date()].append(session)
-    entries_by_date = {}
-    for date, sessions in sessions_by_date.items():
-        total_lines = 0
-        pages = []
-        current_page = []
-        for session in sessions:
-            table_entries = []
-            table_entries.append(
-                {
-                    "type": "header",
-                    "title": session["title"],
-                    "start_time": session["start_time"],
-                    "end_time": session["end_time"],
-                }
-            )
-            if "papers" in session:
-                for paper in session["papers"]:
-                    table_entries.append(
-                        {
-                            "type": "paper",
-                            "paper": paper,
-                        }
-                    )
-            # Split the table lines so that no page overflows.
-            for entry in table_entries:
-                if entry["type"] == "header":
-                    total_lines += header_lines
-                elif entry["type"] == "tutorial":
-                    total_lines += paper_median_lines
-                current_page.append(entry)
-                if total_lines >= max_lines:
-                    pages.append(current_page)
-                    current_page = []
-                    total_lines = 0
-        pages.append(current_page)
-        entries_by_date[date] = pages
-        current_page = []
-        total_lines = 0
-    return sorted(entries_by_date.items())
-
-
-def normalize_latex_string(text: str) -> str:
-    return text.replace("’", "'").replace("&", "\\&").replace("_", "\\_")
-
-
-def load_configs(root: Path):
-    """
-    Loads all conference configuration files defined in the root directory.
-    """
-    conference = load_config("conference_details", root, required=True)
-    for item in conference:
-        if isinstance(conference[item], str):
-            conference[item] = normalize_latex_string(conference[item])
-
-    papers = load_config("papers", root, required=True)
-    for paper in papers:
-        paper["title"] = normalize_latex_string(paper["title"])
-    sponsors = load_config("sponsors", root)
-    prefaces = load_config("prefaces", root)
-    organizing_committee = load_config("organizing_committee", root)
-    program_committee = load_config("program_committee", root)
-    for block in program_committee:
-        for entry in block["entries"]:
-            for k, v in entry.items():
-                try:
-                    entry[k] = normalize_latex_string(v)
-                except:
-                    print("Warning: the following entry from the program_committee.yml is ill-formed")
-                    print("\t" + str(entry))
-                    input("Press a key to continue...")
-
-    invited_talks = load_config("invited_talks", root)
-    additional_pages = load_config("additional_pages", root)
-    program = load_config("program", root)
-    if program is not None:
-        for entry in program:
-            entry["title"] = normalize_latex_string(entry["title"])
-
-    return (
-        conference,
-        papers,
-        sponsors,
-        prefaces,
-        organizing_committee,
-        program_committee,
-        invited_talks,
-        additional_pages,
-        program,
-    )
-
-
-def load_configs_handbook(root: Path):
-    """
-    Loads all conference configuration files defined in the root directory.
-    """
-    conference = load_config("conference_details", root)
-    papers = load_config("papers", root)
-    for paper in papers:
-        paper["title"] = normalize_latex_string(paper["title"])
-    sponsors = load_config("sponsors", root)
-    prefaces = load_config("prefaces_handbook", root)
-    organizing_committee = load_config("organizing_committee", root)
-    program_committee = load_config("program_committee", root)
-    for block in program_committee:
-        for entry in block["entries"]:
-            for k, v in entry.items():
-                print(k, v)
-                entry[k] = normalize_latex_string(v)
-    tutorial_program = load_config("tutorial_program", root)
-    tutorials = load_config("tutorials", root)
-    invited_talks = load_config("invited_talks", root, required=False)
-    additional_pages = load_config("additional_pages", root, required=False)
-    program = load_config("program", root)
-    for entry in program:
-        entry["title"] = normalize_latex_string(entry["title"])
-    workshops = load_config("workshops", root)
-    program_workshops = {}
-    for workshop in workshops:
-        program_workshops[workshop["id"]] = process_program_workshop_handbook(
-            load_config("workshops/" + str(workshop["id"]), root), max_lines=350
-        )
-    workshop_days = []
-    for workshop in workshops:
-        wdate = workshop["date"]
-        if wdate not in workshop_days:
-            workshop_days.append(wdate)
-
-    return (
-        conference,
-        papers,
-        sponsors,
-        prefaces,
-        organizing_committee,
-        program_committee,
-        tutorial_program,
-        tutorials,
-        invited_talks,
-        additional_pages,
-        program,
-        workshops,
-        program_workshops,
-        workshop_days,
-    )
-
-
-def load_config(config: str, root: Path, required=False):
-    path = Path(root, f"{config}.yml")
-    if not path.exists():
-        if required:
-            raise ValueError(
-                f"{config} is a required configuration but {config}.yml was not found"
-            )
-        return None
-    with open(path, "r", encoding="utf-8") as f:
-        return yaml.safe_load(f)
