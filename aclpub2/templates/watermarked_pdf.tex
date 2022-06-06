@@ -26,7 +26,7 @@
 
 \pagestyle{plain}
 \pagenumbering{arabic}
-\setcounter{page}{\VAR{paper.page_range[0]}}
+\setcounter{page}{\VAR{paper.start_page}}
 
 \begin{document}
 \renewcommand{\headrulewidth}{0pt}
@@ -41,7 +41,7 @@
   \BLOCK{endif}
 
   \put(0,13){\parbox[t]{\paperwidth}{\centering
-  							\emph{\VAR{title}}, pages \VAR{paper.page_range[0]} - \VAR{paper.page_range[1]} \\
+  							\emph{\VAR{title}}, pages \VAR{paper.start_page} - \VAR{paper.end_page} \\
 	  						\VAR{conference_dates}, \VAR{conference.start_date.year} \textcopyright
 							\VAR{conference.start_date.year} Association for Computational Linguistics}}
 
