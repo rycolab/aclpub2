@@ -1,22 +1,42 @@
 from collections import defaultdict
 from dataclasses import dataclass
 import yaml
-from typing import List
+from typing import List, Optional
 from pathlib import Path
+import datetime
 
 
 @dataclass
 class Person(yaml.YAMLObject):
     first_name: str
-    middle_name: str
     last_name: str
-    institution: str
+    middle_name: Optional[str] = None
+    institution: Optional[str] = None
+    yaml_tag: str = "!Person"
+
+
+@dataclass
+class Conference(yaml.YAMLObject):
+    book_title: str
+    event_name: str
+    cover_subtitle: str
+    anthology_venue_id: str
+    start_date: datetime.date
+    end_date: datetime.date
+    isbn: str
+    location: str
+    editors: Optional[List[Person]]
+    yaml_tag: str = "!Conference"
 
 
 @dataclass
 class Paper(yaml.YAMLObject):
     title: str
     authors: List[Person]
+    num_pages: Optional[int] = 0
+    start_page: Optional[int] = 0
+    end_page: Optional[int] = 0
+    yaml_tag: str = "!Paper"
 
 
 def load_configs(root: Path):
@@ -24,13 +44,12 @@ def load_configs(root: Path):
     Loads all conference configuration files defined in the root directory.
     """
     conference = load_config("conference_details", root, required=True)
-    for item in conference:
-        if isinstance(conference[item], str):
-            conference[item] = normalize_latex_string(conference[item])
-
+    # for item in conference:
+    #     if isinstance(conference[item], str):
+    #         conference[item] = normalize_latex_string(conference[item])
     papers = load_config("papers", root, required=True)
-    for paper in papers:
-        paper["title"] = normalize_latex_string(paper["title"])
+    # for paper in papers:
+    #     paper["title"] = normalize_latex_string(paper["title"])
     sponsors = load_config("sponsors", root)
     prefaces = load_config("prefaces", root)
     organizing_committee = load_config("organizing_committee", root)
@@ -130,7 +149,7 @@ def load_config(config: str, root: Path, required=False):
             )
         return None
     with open(path, "r", encoding="utf-8") as f:
-        return yaml.safe_load(f)
+        return yaml.load(f, Loader=yaml.Loader)
 
 
 def normalize_latex_string(text: str) -> str:

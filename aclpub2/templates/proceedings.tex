@@ -264,7 +264,7 @@ ISBN \VAR{conference.isbn}
 \newcommand\page[1]{\rightskip=25pt \dotfill\rlap{\hbox to 25pt{\hfill#1}}\par}
 \begin{itemize}[leftmargin=*,label={}]
   \BLOCK{for paper in papers}
-     \item \hyperlink{page.\VAR{paper.page_range[0]}}{\emph{\VAR{paper.title}}}\\ \hspace*{2em} \VAR{join_names(", ", paper.authors, " and ")}\dotfill \hyperlink{page.\VAR{paper.page_range[0]}}{\VAR{paper.page_range[0]}}
+     \item \hyperlink{page.\VAR{paper.start_page}}{\emph{\VAR{paper.title}}}\\ \hspace*{2em} \VAR{join_names(", ", paper.authors, " and ")}\dotfill \hyperlink{page.\VAR{paper.start_page}}{\VAR{paper.start_page}}
   \BLOCK{endfor}
 \end{itemize}
 \newpage
@@ -294,7 +294,7 @@ ISBN \VAR{conference.isbn}
 
       \BLOCK{if entry.type is equalto("paper")}
         \BLOCK{set paper = id_to_paper[entry.paper.id]}
-        & \hyperlink{page.\VAR{paper.page_range[0]}}{\emph{\VAR{paper.title}}}\\
+        & \hyperlink{page.\VAR{paper.start_page}}{\emph{\VAR{paper.title}}}\\
         & \VAR{join_names(", ", paper.authors, " and ")}\\\\
       \BLOCK{endif}
     \BLOCK{endfor}
@@ -325,7 +325,7 @@ ISBN \VAR{conference.isbn}
     \BLOCK{endif}
 
     \put(0,13){\parbox[t]{\paperwidth}{\centering
-    							\emph{\VAR{title}}, pages \VAR{paper.page_range[0]} - \VAR{paper.page_range[1]} \\
+    							\emph{\VAR{title}}, pages \VAR{paper.start_page} - \VAR{paper.end_page} \\
   	  						\VAR{conference_dates}, \VAR{conference.start_date.year} \textcopyright
   							\VAR{conference.start_date.year} Association for Computational Linguistics}}
   }

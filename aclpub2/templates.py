@@ -6,14 +6,7 @@ import jinja2
 
 TEMPLATE_DIR = Path(Path(__file__).parent, "templates")
 
-HOMOGLYPHS = {
-    "Ø": "o",
-    "Ö": "o",
-    "Ç": "c",
-    "Ş": "s",
-    "Š": "s",
-    "Á": "a"
-}
+HOMOGLYPHS = {"Ø": "o", "Ö": "o", "Ç": "c", "Ş": "s", "Š": "s", "Á": "a"}
 
 
 def load_file(*args: str):
@@ -22,10 +15,10 @@ def load_file(*args: str):
 
 
 def render_name(user):
-    name = user["first_name"] + " "
-    if "middle_name" in user:
-        name += user["middle_name"] + " "
-    name += user["last_name"]
+    name = user.first_name + " "
+    if user.middle_name:
+        name += user.middle_name + " "
+    name += user.last_name
     return name
 
 
@@ -64,12 +57,14 @@ def group_by_last_name(entries) -> List[List[str]]:
         output.append(alphabetized_names[letter])
     return output
 
+
 def to_string_sorting_by_last_name(entries) -> str:
     res = []
     groups = group_by_last_name(entries)
     for group in groups:
         res.append(join_names(", ", group))
     return ", ".join(res)
+
 
 def homoglyph(char: str) -> str:
     return HOMOGLYPHS.get(char, char.lower())

@@ -59,8 +59,8 @@ def generate_proceedings(path: str, overwrite: bool, outdir: str):
 
     # Consistency check of input material
     is_ok = True
-    is_ok = is_ok and check_required_conference_fields(conference)
-    is_ok = is_ok and avoid_latex_in_conference_field(conference)
+    # is_ok = is_ok and check_required_conference_fields(conference)
+    # is_ok = is_ok and avoid_latex_in_conference_field(conference)
 
     if not is_ok:
         print(
@@ -267,8 +267,8 @@ def generate_handbook(path: str, overwrite: bool):
 
 
 def get_conference_dates(conference) -> str:
-    start_date = conference["start_date"]
-    end_date = conference["end_date"]
+    start_date = conference.start_date
+    end_date = conference.end_date
     start_month = start_date.strftime("%B")
     end_month = end_date.strftime("%B")
     if start_month == end_month:
@@ -292,16 +292,17 @@ def process_papers(papers, root: Path):
     id_to_paper = {}
     author_to_pages = defaultdict(list)
     for paper in papers:
-        pdf_path = Path(root, "papers", paper["file"])
+        pdf_path = Path(root, "papers", paper.file)
         pdf = PdfFileReader(str(pdf_path))
-        paper["num_pages"] = pdf.getNumPages()
-        paper["page_range"] = (page, page + pdf.getNumPages() - 1)
-        id_to_paper[paper["id"]] = paper
-        for author in paper["authors"]:
-            given_names = author["first_name"]
-            if "middle_name" in author:
-                given_names += f" {author['middle_name']}"
-            index_name = f"{author['last_name']}, {given_names}"
+        paper.num_pages = pdf.getNumPages()
+        paper.start_page = page
+        paper.end_page = page + pdf.getNumPages() - 1
+        id_to_paper[paper.id] = paper
+        for author in paper.authors:
+            given_names = author.first_name
+            if author.middle_name:
+                given_names += f" {author.middle_name}"
+            index_name = f"{author.last_name}, {given_names}"
             author_to_pages[index_name].append(page)
         page += pdf.getNumPages()
     alphabetized_author_index = defaultdict(list)
@@ -344,10 +345,10 @@ def create_watermarked_pdf(paper, conference, root: Path):
         conference=conference,
         conference_dates=get_conference_dates(conference),
     )
-    tex_file = Path(watermarked_pdfs, f"{paper['id']}.tex")
+    tex_file = Path(watermarked_pdfs, f"{paper.id}.tex")
     with open(tex_file, "w+") as f:
         f.write(rendered_template)
-    pdf_path = Path(root, "papers", paper["file"])
+    pdf_path = Path(root, "papers", paper.file)
     pax_path = pdf_path.with_suffix(".pax")
     if not pax_path.exists():
         subprocess.call(
@@ -359,7 +360,7 @@ def create_watermarked_pdf(paper, conference, root: Path):
                 pdf_path,
             ]
         )
-    print(f"Compiling {paper['id']}")
+    print(f"Compiling {paper.id}")
     returncode = subprocess.call(
         [
             "pdflatex",
@@ -398,7 +399,7 @@ def create_watermarked_pdf(paper, conference, root: Path):
     if returncode > 0:
         raise Exception(
             "Sorry but it seems I cannot compile paper "
-            + str(paper["file"])
+            + str(paper.file)
             + " and it will not be added to the output folder!"
             + "\nIt is generally due to a PDF with a problematic internal links."
             '\nA "possible" solution is to open the PDF with any preview system and export it again.'
@@ -419,7 +420,7 @@ def process_program_proceedings(program):
     a median paper entry line length of 3 lines (including title and authors),
     and that a maximum of 35 schedule lines will fit on one page.
     """
-    max_lines = 35
+    max_lines = 32
     paper_median_lines = 3
     header_lines = 2
     sessions_by_date = defaultdict(list)
