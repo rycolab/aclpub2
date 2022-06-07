@@ -1,4 +1,3 @@
---- !Conference
 book_title: Proceedings of the 21th Annual Meeting of the Special Interest Group on Discourse and Dialogue
 event_name: Annual Meeting of the Special Interest Group on Discourse and Dialogue
 cover_subtitle: Proceedings of the Conference
@@ -8,29 +7,21 @@ end_date: 2020-07-03
 isbn: 978-1-952148-02-6
 location: 1st virtual meeting
 editors:
-  - !Person
-    first_name: Smaranda
+  - first_name: Smaranda
     last_name: Muresan
-  - !Person
-    first_name: Vivian
+  - first_name: Vivian
     last_name: Chen
-  - !Person
-    first_name: Kennington
+  - first_name: Kennington
     last_name: Casey
-  - !Person
-    first_name: Vandyke
+  - first_name: Vandyke
     last_name: David
-  - !Person
-    first_name: Dethlefs
+  - first_name: Dethlefs
     last_name: Nina
-  - !Person
-    first_name: Inoue
+  - first_name: Inoue
     last_name: Koji
-  - !Person
-    first_name: Ekstedt
+  - first_name: Ekstedt
     last_name: Erik
-  - !Person
-    first_name: Ultes
+  - first_name: Ultes
     last_name: Stefan
 publisher: Association for Computational Linguistics
 #watermark_book_title: Proceedings of the 21th Annual Meeting of the\\ Special Interest Group on Discourse and Dialogue
