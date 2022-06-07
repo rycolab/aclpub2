@@ -1,5 +1,4 @@
-- !Paper
-  abstract: The natural language generation (NLG) module in a task-oriented dialogue
+- abstract: The natural language generation (NLG) module in a task-oriented dialogue
     system produces user-facing utterances conveying required information. Thus, it
     is critical for the generated response to be natural and fluent. We propose to
     integrate adversarial training to produce more human-like responses. The model
@@ -14,8 +13,7 @@
     presentation_type: poster
     submitted_area: Area 2
   authors:
-  - !Person
-    email: chezhu@microsoft.com
+  - email: chezhu@microsoft.com
     first_name: Chenguang
     instituion: Microsoft Speech and Dialogue Research Group
     last_name: Zhu
@@ -29,8 +27,7 @@
       file: attachments/2.zip
     - type: presentation
       file: attachments/2.pptx
-- !Paper
-  abstract:
+- abstract:
     It is important to define meaningful and interpretable automatic evaluation
     metrics for open-domain dialog research. Standard language generation metrics
     have been shown to be ineffective for dialog. This paper introduces the FED metric
@@ -46,17 +43,14 @@
     presentation_type: poster
     submitted_area: Area 1
   authors:
-  - !Person
-    first_name: Shikib
+  - first_name: Shikib
     last_name: Mehri
-  - !Person
-    first_name: Maxine
+  - first_name: Maxine
     last_name: Eskenazi
   file: 4.pdf
   id: 4
   title: Unsupervised Evaluation of Interactive Dialog with DialoGPT
-- !Paper
-  abstract: For the past 15 years, in computer-supported collaborative learning applications,
+- abstract: For the past 15 years, in computer-supported collaborative learning applications,
     conversational agents have been used to structure group interactions in online
     chat-based environments. A series of experimental studies has provided an empirical
     foundation for the design of chat-based conversational agents that significantly
@@ -69,24 +63,19 @@
     presentation_type: poster
     submitted_area: Area 2
   authors:
-  - !Person
-    first_name: Yansen
+  - first_name: Yansen
     last_name: Wang
-  - !Person
-    first_name: R.
+  - first_name: R.
     last_name: Murray
     middle_name: Charles
-  - !Person
-    first_name: Haogang
+  - first_name: Haogang
     last_name: Bao
-  - !Person
-    first_name: Carolyn
+  - first_name: Carolyn
     last_name: Rose
   file: 7.pdf
   id: 7
   title: Agent-Based Dynamic Collaboration Support in a Smart Office Space
-- !Paper
-  abstract: There is a growing interest in developing goal-oriented dialog systems
+- abstract: There is a growing interest in developing goal-oriented dialog systems
     which serve users in accomplishing complex tasks through multi-turn conversations.
     Although many methods are devised to evaluate and improve the performance of individual
     dialog components, there is a lack of comprehensive empirical study on how different
@@ -105,30 +94,23 @@
     presentation_type: oral
     submitted_area: Area 3
   authors:
-  - !Person
-    first_name: Ryuichi
+  - first_name: Ryuichi
     last_name: Takanobu
-  - !Person
-    first_name: Qi
+  - first_name: Qi
     last_name: Zhu
-  - !Person
-    first_name: Jinchao
+  - first_name: Jinchao
     last_name: Li
-  - !Person
-    first_name: Baolin
+  - first_name: Baolin
     last_name: Peng
-  - !Person
-    first_name: Jianfeng
+  - first_name: Jianfeng
     last_name: Gao
-  - !Person
-    first_name: Minlie
+  - first_name: Minlie
     last_name: Huang
   file: 8.pdf
   id: 8
   title: Is Your Goal-Oriented Dialog Model Performing Really Well? Empirical Analysis
     of System-wise Evaluation
-- !Paper
-  abstract: The differences in decision making between behavioural models of voice
+- abstract: The differences in decision making between behavioural models of voice
     interfaces are hard to capture using existing measures for the absolute performance
     of such models. For instance, two models may have a similar task success rate,
     but very different ways of getting there. In this paper, we propose a general
@@ -141,17 +123,14 @@
     presentation_type: oral
     submitted_area: Area 2
   authors:
-  - !Person
-    first_name: Stefan
+  - first_name: Stefan
     last_name: Ultes
-  - !Person
-    first_name: Wolfgang
+  - first_name: Wolfgang
     last_name: Maier
   file: 9.pdf
   id: 9
   title: Similarity Scoring for Dialogue Behaviour Comparison
-- !Paper
-  abstract: 'Acoustic/prosodic (a/p) entrainment has been associated with multiple
+- abstract: 'Acoustic/prosodic (a/p) entrainment has been associated with multiple
     positive social aspects of human-human conversations. However, research on its
     effects is still preliminary, first because how to model it is far from standardized,
     and second because most of the reported findings rely on small corpora or on corpora
@@ -171,25 +150,20 @@
     presentation_type: oral
     submitted_area: Area 3
   authors:
-  - !Person
-    first_name: Ramiro
+  - first_name: Ramiro
     last_name: "G\xE1lvez"
     middle_name: H.
-  - !Person
-    first_name: Lara
+  - first_name: Lara
     last_name: Gauder
-  - !Person
-    first_name: Jordi
+  - first_name: Jordi
     last_name: Luque
-  - !Person
-    first_name: "Agust\xEDn"
+  - first_name: "Agust\xEDn"
     last_name: Gravano
   file: 11.pdf
   id: 11
   title: 'A unifying framework for modeling acoustic/prosodic entrainment: definition
     and evaluation on two large corpora'
-- !Paper
-  abstract: In this work, we study collaborative online conversations. Such conversations
+- abstract: In this work, we study collaborative online conversations. Such conversations
     are rich in content, constructive and motivated by a shared goal. Automatically
     identifying such conversations requires modeling complex discourse behaviors,
     which characterize the flow of information, sentiment and community structure
@@ -205,26 +179,20 @@
     presentation_type: oral
     submitted_area: Area 3
   authors:
-  - !Person
-    first_name: Ayush
+  - first_name: Ayush
     last_name: Jain
-  - !Person
-    first_name: Maria
+  - first_name: Maria
     last_name: Pacheco
-  - !Person
-    first_name: Steven
+  - first_name: Steven
     last_name: Lancette
-  - !Person
-    first_name: Mahak
+  - first_name: Mahak
     last_name: Goindani
-  - !Person
-    first_name: Dan
+  - first_name: Dan
     last_name: Goldwasser
   file: 12.pdf
   id: 12
   title: Identifying Collaborative Conversations using Latent Discourse Behaviors
-- !Paper
-  abstract: Reinforcement learning (RL) methods have been widely used for learning
+- abstract: Reinforcement learning (RL) methods have been widely used for learning
     dialog policies. Sample efficiency, i.e., the efficiency of learning from limited
     dialog experience, is particularly important in RL-based dialog policy learning,
     because interacting with people is costly and low-quality dialog policies produce
@@ -240,23 +208,18 @@
     presentation_type: poster
     submitted_area: Area 2
   authors:
-  - !Person
-    first_name: Yan
+  - first_name: Yan
     last_name: Cao
-  - !Person
-    first_name: Keting
+  - first_name: Keting
     last_name: Lu
-  - !Person
-    first_name: Xiaoping
+  - first_name: Xiaoping
     last_name: Chen
-  - !Person
-    first_name: Shiqi
+  - first_name: Shiqi
     last_name: Zhang
   file: 16.pdf
   id: 16
   title: Adaptive Dialog Policy Learning with Hindsight and User Modeling
-- !Paper
-  abstract: We study the problem of schema discovery for knowledge graphs. We propose
+- abstract: We study the problem of schema discovery for knowledge graphs. We propose
     a solution where an agent engages in multi-turn dialog with an expert for this
     purpose. Each mini-dialog focuses on a short natural language statement, and looks
     to elicit the expert's desired schema-based interpretation of that statement,
@@ -274,53 +237,41 @@
     presentation_type: poster
     submitted_area: Area 3
   authors:
-  - !Person
-    first_name: Subhasis
+  - first_name: Subhasis
     last_name: Ghosh
-  - !Person
-    first_name: Arpita
+  - first_name: Arpita
     last_name: Kundu
-  - !Person
-    first_name: Aniket
+  - first_name: Aniket
     last_name: Pramanick
-  - !Person
-    first_name: Indrajit
+  - first_name: Indrajit
     last_name: Bhattacharya
   file: 17.pdf
   id: 17
   title: Discovering Knowledge Graph Schema from Short Natural Language Text via Dialog
-- !Paper
-  abstract: We describe an attentive listening system for the autonomous android robot
+- abstract: We describe an attentive listening system for the autonomous android robot
     ERICA.
   attributes:
     paper_type: long
     presentation_type: oral
     submitted_area: Area 1
   authors:
-  - !Person
-    first_name: Koji
+  - first_name: Koji
     last_name: Inoue
-  - !Person
-    first_name: Divesh
+  - first_name: Divesh
     last_name: Lala
-  - !Person
-    first_name: Kenta
+  - first_name: Kenta
     last_name: Yamamoto
-  - !Person
-    first_name: Shizuka
+  - first_name: Shizuka
     last_name: Nakamura
-  - !Person
-    first_name: Katsuya
+  - first_name: Katsuya
     last_name: Takanashi
-  - !Person
-    first_name: Tatsuya
+  - first_name: Tatsuya
     last_name: Kawahara
   file: 18.pdf
   id: 18
   title: 'An Attentive Listening System with Android ERICA: Comparison of Autonomous
     and WOZ Interactions'
-- !Paper
-  abstract: Neural encoder-decoder models have shown promising performance for human-computer
+- abstract: Neural encoder-decoder models have shown promising performance for human-computer
     dialogue systems over the past few years. However, due to the maximum-likelihood
     objective for the decoder, the generated responses are often universal and safe
     to the point that they lack meaningful information and are no longer relevant
@@ -334,17 +285,14 @@
     presentation_type: oral
     submitted_area: Area 1
   authors:
-  - !Person
-    first_name: Cheng-Hsun
+  - first_name: Cheng-Hsun
     last_name: Hsueh
-  - !Person
-    first_name: Wei-Yun
+  - first_name: Wei-Yun
     last_name: Ma
   file: 22.pdf
   id: 22
   title: Semantic Guidance of Dialogue Generation with Reinforcement Learning
-- !Paper
-  abstract: The present study aims to examine the prevalent notion that people entrain
+- abstract: The present study aims to examine the prevalent notion that people entrain
     to the vocabulary of a dialogue system. Although previous research shows that
     people will replace their choice of words with simple substitutes, studies using
     more challenging substitutions are sparse. In this paper, we investigate whether
@@ -361,23 +309,18 @@
     presentation_type: poster
     submitted_area: Area 3
   authors:
-  - !Person
-    first_name: Amanda
+  - first_name: Amanda
     last_name: Bergqvist
-  - !Person
-    first_name: Ramesh
+  - first_name: Ramesh
     last_name: Manuvinakurike
-  - !Person
-    first_name: Deepthi
+  - first_name: Deepthi
     last_name: Karkada
-  - !Person
-    first_name: Maike
+  - first_name: Maike
     last_name: Paetzel
   file: 24.pdf
   id: 24
   title: Nontrivial Lexical Convergence in a Geography-Themed Game
-- !Paper
-  abstract: This paper presents MDP policy learning for agents to learn strategic
+- abstract: This paper presents MDP policy learning for agents to learn strategic
     behavior--how to play board games--during multimodal dialogues. Policies are trained
     offline in simulation, with dialogues carried out in a formal language. The agent
     has a temporary belief state for the dialogue, and a persistent knowledge store
@@ -395,29 +338,22 @@
     presentation_type: oral
     submitted_area: Area 2
   authors:
-  - !Person
-    first_name: Maryam
+  - first_name: Maryam
     last_name: Zare
-  - !Person
-    first_name: Ali
+  - first_name: Ali
     last_name: Ayub
-  - !Person
-    first_name: Aishan
+  - first_name: Aishan
     last_name: Liu
-  - !Person
-    first_name: Sweekar
+  - first_name: Sweekar
     last_name: Sudhakara
-  - !Person
-    first_name: Alan
+  - first_name: Alan
     last_name: Wagner
-  - !Person
-    first_name: Rebecca
+  - first_name: Rebecca
     last_name: Passonneau
   file: 25.pdf
   id: 25
   title: Dialogue Policies for Learning Board Games through Multimodal Communication
-- !Paper
-  abstract: 'We will demonstrate a deployed conversational AI system that acts as
+- abstract: 'We will demonstrate a deployed conversational AI system that acts as
     a host of a smart-building on a university campus. The system combines open-domain
     social conversation with task-based conversation regarding navigation in the building,
     live resource updates (e.g. available computers) and events in the building. We
@@ -428,37 +364,30 @@
     presentation_type: poster
     submitted_area: Area 2
   authors:
-  - !Person
-    first_name: Weronika
+  - first_name: Weronika
     last_name: "Siei\u0144ska"
-  - !Person
-    first_name: Christian
+  - first_name: Christian
     last_name: Dondrup
-  - !Person
-    first_name: Nancie
+  - first_name: Nancie
     last_name: Gunson
-  - !Person
-    first_name: Oliver
+  - first_name: Oliver
     last_name: Lemon
   file: 28.pdf
   id: 28
   title: Conversational Agents for Intelligent Buildings
-- !Paper
-  abstract: 'Dialog systems capable of filling slots with numerical values have wide
+- abstract: 'Dialog systems capable of filling slots with numerical values have wide
     applicability to many task-oriented applications. '
   attributes:
     paper_type: short
     presentation_type: oral
     submitted_area: Area 1
   authors:
-  - !Person
-    first_name: Hongjie
+  - first_name: Hongjie
     last_name: Shi
   file: 38.pdf
   id: 38
   title: A Sequence-to-sequence Approach for Numerical Slot-filling Dialog Systems
-- !Paper
-  abstract: Conversations over the telephone require timely turn-taking cues that
+- abstract: Conversations over the telephone require timely turn-taking cues that
     signal the participants when to speak and when to listen. When a two-way transmission
     delay is introduced into such conversations, the immediate feedback is delayed,
     and the interactivity of the conversation is impaired. With delayed speech on
@@ -471,17 +400,14 @@
     presentation_type: oral
     submitted_area: Area 1
   authors:
-  - !Person
-    first_name: Thilo
+  - first_name: Thilo
     last_name: Michael
-  - !Person
-    first_name: Sebastian
+  - first_name: Sebastian
     last_name: "M\xF6ller"
   file: 41.pdf
   id: 41
   title: Simulating Turn-Taking in Conversations with Delayed Transmission
-- !Paper
-  abstract: "For the acquisition of knowledge through dialogues, it is crucial for\
+- abstract: "For the acquisition of knowledge through dialogues, it is crucial for\
     \ systems to ask questions that do not diminish the user\u2019s willingness to\
     \ talk, i.e., that do not degrade the user\u2019s impression. This paper reports\
     \ the results of our analysis on how user impression changes depending on the\
@@ -500,17 +426,14 @@
     presentation_type: poster
     submitted_area: Area 3
   authors:
-  - !Person
-    first_name: Kazunori
+  - first_name: Kazunori
     last_name: Komatani
-  - !Person
-    first_name: Mikio
+  - first_name: Mikio
     last_name: Nakano
   file: 42.pdf
   id: 42
   title: User Impressions of Questions to Acquire Lexical Knowledge
-- !Paper
-  abstract: Cognitive models of conversation and research on user-adaptation in dialogue
+- abstract: Cognitive models of conversation and research on user-adaptation in dialogue
     systems involves a better understanding of speakers convergence in conversation.
     Convergence effects have been established on controlled data sets, for various
     acoustic and linguistic variables. Tracking interpersonal dynamics on generic
@@ -529,21 +452,17 @@
     presentation_type: poster
     submitted_area: Area 2
   authors:
-  - !Person
-    first_name: Simone
+  - first_name: Simone
     last_name: Fuscone
-  - !Person
-    first_name: Benoit
+  - first_name: Benoit
     last_name: Favre
-  - !Person
-    first_name: Laurent
+  - first_name: Laurent
     last_name: "Pr\xE9vot"
   file: 43.pdf
   id: 43
   title: Filtering conversations through dialogue acts labels for improving corpus-based
     convergence studies
-- !Paper
-  abstract: In this paper we present the newest version of retico - a python-based
+- abstract: In this paper we present the newest version of retico - a python-based
     incremental dialogue framework to create state-of-the-art spoken dialogue systems
     and simulations. Retico provides a range of incremental modules that are based
     on services like Google ASR, Google TTS and Rasa NLU. Incremental networks can
@@ -553,14 +472,12 @@
     presentation_type: oral
     submitted_area: Area 2
   authors:
-  - !Person
-    first_name: Thilo
+  - first_name: Thilo
     last_name: Michael
   file: 44.pdf
   id: 44
   title: 'Retico: An incremental framework for spoken dialogue systems'
-- !Paper
-  abstract: 'Turn-entry timing is an important requirement for conversation, and one
+- abstract: 'Turn-entry timing is an important requirement for conversation, and one
     that spoken dialogue systems largely fail at. In this paper, we introduce a computational
     framework based on work from Psycholinguistics, which is aimed at achieving proper
     turn-taking timing for situated agents. The approach involves incremental processing
@@ -580,23 +497,18 @@
     presentation_type: poster
     submitted_area: Area 2
   authors:
-  - !Person
-    first_name: Felix
+  - first_name: Felix
     last_name: Gervits
-  - !Person
-    first_name: Ravenna
+  - first_name: Ravenna
     last_name: Thielstrom
-  - !Person
-    first_name: Antonio
+  - first_name: Antonio
     last_name: Roque
-  - !Person
-    first_name: Matthias
+  - first_name: Matthias
     last_name: Scheutz
   file: 49.pdf
   id: 49
   title: 'It''s About Time: Turn-Entry Timing For Situated Human-Robot Dialogue'
-- !Paper
-  abstract: 'In this work, we investigate the human perception of coherence in open-domain
+- abstract: 'In this work, we investigate the human perception of coherence in open-domain
     dialogues. In particular, we address the problem of annotating and modeling the
     coherence of next-turn candidates while considering the entire history of the
     dialogue.  '
@@ -605,17 +517,14 @@
     presentation_type: oral
     submitted_area: Area 1
   authors:
-  - !Person
-    first_name: Alessandra
+  - first_name: Alessandra
     last_name: Cervone
-  - !Person
-    first_name: Giuseppe
+  - first_name: Giuseppe
     last_name: Riccardi
   file: 58.pdf
   id: 58
   title: Is this Dialogue Coherent? Learning from Dialogue Acts and Entities
-- !Paper
-  abstract: 'Our goal is to develop and deploy a virtual assistant health coach that
+- abstract: 'Our goal is to develop and deploy a virtual assistant health coach that
     can help patients set realistic physical activity goals and live a more active
     lifestyle. Since there is no publicly shared dataset of health coaching dialogues,
     the first phase of our research focused on data collection. We hired a certified
@@ -636,39 +545,29 @@
     presentation_type: poster
     submitted_area: Area 3
   authors:
-  - !Person
-    first_name: Itika
+  - first_name: Itika
     last_name: Gupta
-  - !Person
-    first_name: Barbara
+  - first_name: Barbara
     last_name: Eugenio
     middle_name: Di
-  - !Person
-    first_name: Brian
+  - first_name: Brian
     last_name: Ziebart
-  - !Person
-    first_name: Aiswarya
+  - first_name: Aiswarya
     last_name: Baiju
-  - !Person
-    first_name: Bing
+  - first_name: Bing
     last_name: Liu
-  - !Person
-    first_name: Ben
+  - first_name: Ben
     last_name: Gerber
-  - !Person
-    first_name: Lisa
+  - first_name: Lisa
     last_name: Sharp
-  - !Person
-    first_name: Nadia
+  - first_name: Nadia
     last_name: Nabulsi
-  - !Person
-    first_name: Mary
+  - first_name: Mary
     last_name: Smart
   file: 60.pdf
   id: 60
   title: 'Human-Human Health Coaching via Text Messages: Corpus, Annotation, and Analysis'
-- !Paper
-  abstract: Spoken interaction with a physical robot requires a dialogue system that
+- abstract: Spoken interaction with a physical robot requires a dialogue system that
     is modular, multimodal, distributive, incremental and temporally aligned. In this
     demo paper, we make significant contributions towards fulfilling these requirements
     by expanding upon the ReTiCo incremental framework. We outline the incremental
@@ -680,26 +579,20 @@
     presentation_type: oral
     submitted_area: Area 1
   authors:
-  - !Person
-    first_name: Casey
+  - first_name: Casey
     last_name: Kennington
-  - !Person
-    first_name: Daniele
+  - first_name: Daniele
     last_name: Moro
-  - !Person
-    first_name: Lucas
+  - first_name: Lucas
     last_name: Marchand
-  - !Person
-    first_name: Jake
+  - first_name: Jake
     last_name: Carns
-  - !Person
-    first_name: David
+  - first_name: David
     last_name: McNeill
   file: 61.pdf
   id: 61
   title: 'rrSDS: Towards a Robot-ready Spoken Dialogue System'
-- !Paper
-  abstract: ' physical blocks world, despite its relative simplicity, requires (in
+- abstract: ' physical blocks world, despite its relative simplicity, requires (in
     fully interactive form) a rich set of functional capabilities, ranging from vision
     to natural language understanding. In this work we tackle spatial question answering
     in a holistic way, using a vision system, speech input and output mediated by
@@ -716,24 +609,19 @@
     presentation_type: oral
     submitted_area: Area 1
   authors:
-  - !Person
-    first_name: Georgiy
+  - first_name: Georgiy
     last_name: Platonov
-  - !Person
-    first_name: Lenhart
+  - first_name: Lenhart
     last_name: Schubert
-  - !Person
-    first_name: Benjamin
+  - first_name: Benjamin
     last_name: Kane
-  - !Person
-    first_name: Aaron
+  - first_name: Aaron
     last_name: Gindi
   file: 62.pdf
   id: 62
   title: A Spoken Dialogue System for Spatial Question Answering in a Physical Blocks
     World
-- !Paper
-  abstract: 'In working towards accomplishing a human-level acquisition and understanding
+- abstract: 'In working towards accomplishing a human-level acquisition and understanding
     of language, a robot must meet two requirements: the ability to learn words from
     interactions with its physical environment, and the ability to learn language
     from people in settings for language use, such as spoken dialogue. In a live interactive
@@ -748,75 +636,58 @@
     presentation_type: poster
     submitted_area: Area 1
   authors:
-  - !Person
-    first_name: David
+  - first_name: David
     last_name: McNeill
-  - !Person
-    first_name: Casey
+  - first_name: Casey
     last_name: Kennington
   file: 63.pdf
   id: 63
   title: Learning Word Groundings from Humans Facilitated by Robot Emotional Displays
-- !Paper
-  abstract: This paper describes the design and functionality of ConvoKit, an open-source
+- abstract: This paper describes the design and functionality of ConvoKit, an open-source
     toolkit for analyzing conversations and the social interactions embedded within.
   attributes:
     paper_type: short
     presentation_type: poster
     submitted_area: Area 3
   authors:
-  - !Person
-    first_name: Jonathan
+  - first_name: Jonathan
     last_name: Chang
     middle_name: P.
-  - !Person
-    first_name: Caleb
+  - first_name: Caleb
     last_name: Chiam
-  - !Person
-    first_name: Liye
+  - first_name: Liye
     last_name: Fu
-  - !Person
-    first_name: Andrew
+  - first_name: Andrew
     last_name: Wang
-  - !Person
-    first_name: Justine
+  - first_name: Justine
     last_name: Zhang
-  - !Person
-    first_name: Cristian
+  - first_name: Cristian
     last_name: Danescu-Niculescu-Mizil
   file: 71.pdf
   id: 71
   title: 'ConvoKit: A Toolkit for the Analysis of Conversations'
-- !Paper
-  abstract: We present a comprehensive platform to run human-computer experiments
+- abstract: We present a comprehensive platform to run human-computer experiments
   attributes:
     paper_type: long
     presentation_type: oral
     submitted_area: Area 1
   authors:
-  - !Person
-    first_name: Arne
+  - first_name: Arne
     last_name: "K\xF6hn"
-  - !Person
-    first_name: Julia
+  - first_name: Julia
     last_name: Wichlacz
-  - !Person
-    first_name: Christine
+  - first_name: Christine
     last_name: "Sch\xE4fer"
-  - !Person
-    first_name: "\xC1lvaro"
+  - first_name: "\xC1lvaro"
     last_name: Torralba
-  - !Person
-    first_name: Joerg
+  - first_name: Joerg
     last_name: Hoffmann
-  - !Person
-    first_name: Alexander
+  - first_name: Alexander
     last_name: Koller
   file: 72.pdf
   id: 72
   title: 'MC-Saar-Instruct: a Platform for Minecraft Instruction Giving Agents'
-- !Paper
-  abstract: "We introduce a counseling dialogue system that seeks to assist counselors\
+- abstract: "We introduce a counseling dialogue system that seeks to assist counselors\
     \ while they are learning and refining their counseling skills. The system generates\
     \ counselors\u2019reflections  \u2013  i.e.,  responses that reflect back on what\
     \ the client has said given the dialogue history. Our method builds upon the new\
@@ -833,24 +704,19 @@
     presentation_type: poster
     submitted_area: Area 3
   authors:
-  - !Person
-    first_name: Siqi
+  - first_name: Siqi
     last_name: Shen
-  - !Person
-    first_name: Charles
+  - first_name: Charles
     last_name: Welch
-  - !Person
-    first_name: Rada
+  - first_name: Rada
     last_name: Mihalcea
-  - !Person
-    first_name: "Ver\xF3nica"
+  - first_name: "Ver\xF3nica"
     last_name: "P\xE9rez-Rosas"
   file: 76.pdf
   id: 76
   title: Counseling-Style Reflection Generation Using Generative Pretrained Transformers
     with Augmented Context
-- !Paper
-  abstract: Human tackle reading comprehension not only based on the given context
+- abstract: Human tackle reading comprehension not only based on the given context
     itself but often rely on the commonsense beyond. To empower the machine with commonsense
     reasoning, in this paper, we propose a Commonsense Evidence Generation and Injection
     framework in reading comprehension, named CEGI. The framework injects two kinds
@@ -861,27 +727,21 @@
     presentation_type: poster
     submitted_area: Area 3
   authors:
-  - !Person
-    first_name: Ye
+  - first_name: Ye
     last_name: Liu
-  - !Person
-    first_name: Tao
+  - first_name: Tao
     last_name: Yang
-  - !Person
-    first_name: Zeyu
+  - first_name: Zeyu
     last_name: You
-  - !Person
-    first_name: Wei
+  - first_name: Wei
     last_name: Fan
-  - !Person
-    first_name: Philip
+  - first_name: Philip
     last_name: Yu
     middle_name: S.
   file: 78.pdf
   id: 78
   title: Commonsense Evidence Generation and Injection in Reading Comprehension
-- !Paper
-  abstract: ' conversational AI-based dialogue management has increasingly become
+- abstract: ' conversational AI-based dialogue management has increasingly become
     a trending topic, the need for a standardized and reliable evaluation procedure
     grows even more pressing. The current state of affairs suggests various evaluation
     protocols to assess chat-oriented dialogue management systems, rendering it difficult
@@ -899,20 +759,17 @@
     presentation_type: poster
     submitted_area: Area 3
   authors:
-  - !Person
-    first_name: Sarah
+  - first_name: Sarah
     last_name: Finch
     middle_name: E.
-  - !Person
-    first_name: Jinho
+  - first_name: Jinho
     last_name: Choi
     middle_name: D.
   file: 79.pdf
   id: 79
   title: 'Towards Unified Dialogue System Evaluation: A Comprehensive Analysis of
     Current Evaluation Protocols'
-- !Paper
-  abstract: Reinforcement learning and probabilistic reasoning algorithms aim at learning
+- abstract: Reinforcement learning and probabilistic reasoning algorithms aim at learning
     from interaction experiences and reasoning with probabilistic contextual knowledge
     respectively. In this research, we develop algorithms for robot task completions,
     while looking into the complementary strengths of reinforcement learning and probabilistic
@@ -929,23 +786,18 @@
     presentation_type: poster
     submitted_area: Area 2
   authors:
-  - !Person
-    first_name: Keting
+  - first_name: Keting
     last_name: Lu
-  - !Person
-    first_name: Shiqi
+  - first_name: Shiqi
     last_name: Zhang
-  - !Person
-    first_name: Peter
+  - first_name: Peter
     last_name: Stone
-  - !Person
-    first_name: Xiaoping
+  - first_name: Xiaoping
     last_name: Chen
   file: 81.pdf
   id: 81
   title: Learning and Reasoning for Robot Dialog and Navigation Tasks
-- !Paper
-  abstract: 'Most prior work on task-oriented dialogue systems are restricted to a
+- abstract: 'Most prior work on task-oriented dialogue systems are restricted to a
     limited coverage of domain APIs, while users oftentimes have domain related requests
     that are not covered by the APIs. In this paper, we propose to expand coverage
     of task-oriented dialogue systems by incorporating external unstructured knowledge
@@ -961,30 +813,23 @@
     presentation_type: oral
     submitted_area: Area 2
   authors:
-  - !Person
-    first_name: Seokhwan
+  - first_name: Seokhwan
     last_name: Kim
-  - !Person
-    first_name: Mihail
+  - first_name: Mihail
     last_name: Eric
-  - !Person
-    first_name: Karthik
+  - first_name: Karthik
     last_name: Gopalakrishnan
-  - !Person
-    first_name: Behnam
+  - first_name: Behnam
     last_name: Hedayatnia
-  - !Person
-    first_name: Yang
+  - first_name: Yang
     last_name: Liu
-  - !Person
-    first_name: Dilek
+  - first_name: Dilek
     last_name: Hakkani-Tur
   file: 83.pdf
   id: 83
   title: 'Beyond Domain APIs: Task-oriented Conversational Modeling with Unstructured
     Knowledge Access'
-- !Paper
-  abstract: We present a framework for improving task-oriented dialog systems through
+- abstract: We present a framework for improving task-oriented dialog systems through
     online interactive teaching with human trainers. A dialog policy trained with
     imitation learning on a limited corpus may not generalize well to novel dialog
     flows often uncovered in live interactions. This issue is magnified in multi-action
@@ -1001,20 +846,16 @@
     presentation_type: oral
     submitted_area: Area 1
   authors:
-  - !Person
-    first_name: Megha
+  - first_name: Megha
     last_name: Jhunjhunwala
-  - !Person
-    first_name: Caleb
+  - first_name: Caleb
     last_name: Bryant
-  - !Person
-    first_name: Pararth
+  - first_name: Pararth
     last_name: Shah
   file: 87.pdf
   id: 87
   title: Multi-Action Dialog Policy Learning with Interactive Human Teaching
-- !Paper
-  abstract: We investigate differences in user communication with live chat agents
+- abstract: We investigate differences in user communication with live chat agents
     versus a commercial Intelligent Virtual Agent (IVA). This case study compares
     the two types of interactions in the same domain for the same company filling
     the same purposes. We compared 16,794 human-to-human conversations and 27,674
@@ -1028,18 +869,15 @@
     presentation_type: oral
     submitted_area: Area 3
   authors:
-  - !Person
-    first_name: Timothy
+  - first_name: Timothy
     last_name: Hewitt
-  - !Person
-    first_name: Ian
+  - first_name: Ian
     last_name: Beaver
   file: 89.pdf
   id: 89
   title: A Case Study of User Communication Styles with Customer Service Agents versus
     Intelligent Virtual Agents
-- !Paper
-  abstract: We are studying a cooperation style where multiple speakers can provide
+- abstract: We are studying a cooperation style where multiple speakers can provide
     both advanced dialogue services and operator education. We focus on a style in
     which two operators interact with a user by pretending to be a single operator.
     For two operators to effectively act as one, each must adjust his/her conversational
@@ -1055,32 +893,24 @@
     presentation_type: oral
     submitted_area: Area 2
   authors:
-  - !Person
-    first_name: Tsunehiro
+  - first_name: Tsunehiro
     last_name: Arimoto
-  - !Person
-    first_name: Ryuichiro
+  - first_name: Ryuichiro
     last_name: Higashinaka
-  - !Person
-    first_name: Kou
+  - first_name: Kou
     last_name: Tanaka
-  - !Person
-    first_name: Takahito
+  - first_name: Takahito
     last_name: Kawanishi
-  - !Person
-    first_name: Hiroaki
+  - first_name: Hiroaki
     last_name: Sugiyama
-  - !Person
-    first_name: Hiroshi
+  - first_name: Hiroshi
     last_name: Sawada
-  - !Person
-    first_name: Hiroshi
+  - first_name: Hiroshi
     last_name: Ishiguro
   file: 92.pdf
   id: 92
   title: Collection and Analysis of Dialogues Provided by Two Speakers Acting as One
-- !Paper
-  abstract: We analyze a corpus of referential communication through the lens of quantitative
+- abstract: We analyze a corpus of referential communication through the lens of quantitative
     models of speaker reasoning.  Different models place different emphases on linguistic
     reasoning and collaborative reasoning.  This leads models to make different assessments
     of the risks and rewards of using specific utterances in specific contexts.  By
@@ -1093,17 +923,14 @@
     presentation_type: poster
     submitted_area: Area 3
   authors:
-  - !Person
-    first_name: Brian
+  - first_name: Brian
     last_name: McMahan
-  - !Person
-    first_name: Matthew
+  - first_name: Matthew
     last_name: Stone
   file: 94.pdf
   id: 94
   title: Analyzing Speaker Strategy in Referential Communication
-- !Paper
-  abstract: Contextualized language modeling using deep Transformer networks has been
+- abstract: Contextualized language modeling using deep Transformer networks has been
     applied to a variety of natural language processing tasks with remarkable success.
     However, we find that these models are not a panacea for a question-answering
     dialogue agent corpus task, which has hundreds of classes in a long-tailed frequency
@@ -1122,21 +949,17 @@
     presentation_type: oral
     submitted_area: Area 3
   authors:
-  - !Person
-    first_name: Adam
+  - first_name: Adam
     last_name: Stiff
-  - !Person
-    first_name: Qi
+  - first_name: Qi
     last_name: Song
-  - !Person
-    first_name: Eric
+  - first_name: Eric
     last_name: Fosler-Lussier
   file: 97.pdf
   id: 97
   title: How Self-Attention Improves Rare Class Performance in a Question-Answering
     Dialogue Agent
-- !Paper
-  abstract: Natural language generators (NLGs) for task-oriented dialogue typically
+- abstract: Natural language generators (NLGs) for task-oriented dialogue typically
     take a meaning representation (MR) as input, and are trained end-to-end with a
     corpus of MR/utterance pairs, where the MRs cover a specific set of dialogue acts
     and domain attributes. Creation of such datasets is labor intensive and time consuming.
@@ -1162,27 +985,21 @@
     presentation_type: poster
     submitted_area: Area 1
   authors:
-  - !Person
-    first_name: Lena
+  - first_name: Lena
     last_name: Reed
-  - !Person
-    first_name: Vrindavan
+  - first_name: Vrindavan
     last_name: Harrison
-  - !Person
-    first_name: Shereen
+  - first_name: Shereen
     last_name: Oraby
-  - !Person
-    first_name: Dilek
+  - first_name: Dilek
     last_name: Hakkani-Tur
-  - !Person
-    first_name: Marilyn
+  - first_name: Marilyn
     last_name: Walker
   file: 98.pdf
   id: 98
   title: 'Learning from Mistakes: Combining Ontologies via Self-Training for Dialogue
     Generation'
-- !Paper
-  abstract: This demo paper presents Emora STDM (State Transition Dialogue Manager),
+- abstract: This demo paper presents Emora STDM (State Transition Dialogue Manager),
     a dialogue system development framework that provides novel workflows for rapid
     prototyping of chat-based dialogue managers as well as collaborative development
     of complex interactions. Our framework caters to a wide range of expertise levels
@@ -1198,19 +1015,16 @@
     presentation_type: oral
     submitted_area: Area 1
   authors:
-  - !Person
-    first_name: James
+  - first_name: James
     last_name: Finch
     middle_name: D.
-  - !Person
-    first_name: Jinho
+  - first_name: Jinho
     last_name: Choi
     middle_name: D.
   file: 100.pdf
   id: 100
   title: 'Emora STDM: A Versatile Framework for Innovative Dialogue System Development'
-- !Paper
-  abstract: Emotion recognition in conversation (ERC) is an important topic for developing
+- abstract: Emotion recognition in conversation (ERC) is an important topic for developing
     empathetic machines in a variety of areas including social opinion mining, health-care
     and so on. In this paper, we propose a method to model ERC task as sequence tagging
     where a Conditional Random Field (CRF) layer is leveraged to learn the emotional
@@ -1226,26 +1040,20 @@
     presentation_type: poster
     submitted_area: Area 2
   authors:
-  - !Person
-    first_name: Yan
+  - first_name: Yan
     last_name: Wang
-  - !Person
-    first_name: Jiayu
+  - first_name: Jiayu
     last_name: Zhang
-  - !Person
-    first_name: Jun
+  - first_name: Jun
     last_name: Ma
-  - !Person
-    first_name: Shaojun
+  - first_name: Shaojun
     last_name: Wang
-  - !Person
-    first_name: Jing
+  - first_name: Jing
     last_name: Xiao
   file: 102.pdf
   id: 102
   title: Contextualized Emotion Recognition in Conversation as Sequence Tagging
-- !Paper
-  abstract: 'Task-oriented dialog systems rely on dialog state tracking (DST) to monitor
+- abstract: 'Task-oriented dialog systems rely on dialog state tracking (DST) to monitor
     the user''s goal during the course of an interaction. Multi-domain and open-vocabulary
     settings complicate the task considerably and demand scalable solutions. In this
     paper we present a new approach to DST which makes use of various copy mechanisms
@@ -1265,27 +1073,20 @@
     presentation_type: oral
     submitted_area: Area 2
   authors:
-  - !Person
-    first_name: Michael
+  - first_name: Michael
     last_name: Heck
-  - !Person
-    first_name: Carel
+  - first_name: Carel
     last_name: Niekerk
     middle_name: van
-  - !Person
-    first_name: Nurul
+  - first_name: Nurul
     last_name: Lubis
-  - !Person
-    first_name: Christian
+  - first_name: Christian
     last_name: Geishauser
-  - !Person
-    first_name: Hsien-Chin
+  - first_name: Hsien-Chin
     last_name: Lin
-  - !Person
-    first_name: Marco
+  - first_name: Marco
     last_name: Moresi
-  - !Person
-    first_name: Milica
+  - first_name: Milica
     last_name: Gasic
   file: 103.pdf
   id: 103
