@@ -1,0 +1,321 @@
+\PassOptionsToPackage{latin,english}{babel}
+\documentclass[twoside,makeidx]{book}
+
+\usepackage{tikz}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{xspace}
+\usepackage{subcaption}
+\usepackage{combelow}
+\usepackage{newunicodechar}
+\usepackage{upgreek}
+\usepackage{afterpage}
+
+\newunicodechar{ș}{\cb{s}}
+\newunicodechar{ț}{\cb{t}}
+
+%% \usepackage{fontspec,xunicode,xltxtra}
+%% \setromanfont[Mapping=tex-text]{Times}
+%% \setsansfont[Mapping=tex-text]{Lucida Grande}.
+%% \setmonofont{Courier New}
+
+\usepackage{pdfpages}
+
+% set paper size and margins; needs to be adapted for A5 ideally, we
+% should have a document class for conference handbooks where A5
+% vs. letter-halved is a class option
+\usepackage[
+  paperheight=210mm,
+  paperwidth=148mm,
+  footskip=.57in,
+  inner=.7in,
+  outer=.45in,
+  bottom=.92in,
+  top=.7in,
+  twoside]{geometry}
+
+\usetikzlibrary[positioning]
+\usetikzlibrary{patterns}
+
+\newcounter{dummy} % hack, see content/maps.tex, not sure if it works though
+
+% Lots of macros
+\input{\VAR{build_dir}/content/special/preamble}
+\input{\VAR{build_dir}/content/special/macros}
+
+\input{\VAR{build_dir}/content/setup/venues}    % macros for event locations
+\input{\VAR{build_dir}/content/setup/sessions}  % session titles and venues
+
+%\usepackage{fourier} % use modern font, not the ghastly 90s fonts plaguing most ACL style files
+
+\renewcommand{\normalsize}{\fontsize{8}{9}\selectfont}
+\renewcommand{\small}{\fontsize{7}{8}\selectfont}
+\renewcommand{\footnotesize}{\fontsize{6}{6}\selectfont}
+\renewcommand{\large}{\fontsize{10}{11}\selectfont}
+\renewcommand{\Large}{\fontsize{12}{14}\selectfont}
+\renewcommand{\huge}{\fontsize{14}{17}\selectfont}
+
+% version of \cleardoublepage to ensure we use an even page
+% standard \cleardoublepage will ensure odd page
+\makeatletter
+\newcommand*\cleardoublepageEVEN{\clearpage\if@twoside
+  \ifodd\c@page \hbox{}\newpage\if@twocolumn\hbox{}%
+  \newpage\fi\fi\fi}
+\makeatother
+
+% for each part of the conference, add the .bib file produced with
+% meta2bibtex.py here:
+
+
+%TO BE UNCOMMENTED
+%\bibliography{auto/tacl/papers.bib}
+%
+%
+%
+%\bibliography{auto/BioNLP/papers.bib}
+%\bibliography{auto/CALCS/papers.bib}
+%\bibliography{auto/CogCL/papers.bib}
+%\bibliography{auto/DLNLPLR/papers.bib}
+%\bibliography{auto/ECONLP/papers.bib}
+%\bibliography{auto/MML_Challenge/papers.bib}
+%\bibliography{auto/MRQA/papers.bib}
+%\bibliography{auto/MSR/papers.bib}
+%\bibliography{auto/NEWS/papers.bib}
+%\bibliography{auto/NLPOSS/papers.bib}
+%\bibliography{auto/NLPTEA/papers.bib}
+%\bibliography{auto/NMT/papers.bib}
+%\bibliography{auto/RELNLP/papers.bib}
+%\bibliography{auto/RepL4NLP/papers.bib}
+%\bibliography{auto/SocialNLP/papers.bib}
+%\bibliography{auto/demos/papers.bib}
+%\bibliography{auto/papers/papers.bib}
+%\bibliography{auto/srw/papers.bib}
+\bibliography{auto/tutorial/papers.bib}
+%
+%% Special bib for the workshops
+%\bibliography{content/workshops/papers.bib}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% General use jinja macros.
+\BLOCK{macro committee_member(member)}\VAR{member.first_name} \BLOCK{if member.middle_name is defined}\VAR{member.middle_name}\BLOCK{endif} \VAR{member.last_name}\BLOCK{if member.institution is defined}, \VAR{member.institution}\BLOCK{endif}\BLOCK{endmacro}
+
+%%%%%%%%%%%%
+% DOCUMENT %
+%%%%%%%%%%%%
+\begin{document}
+\thispagestyle{empty}
+\fancyfoot[C]{}
+
+\fancyfoot[C]{\thepage}
+\pagenumbering{arabic}
+\setcounter{tocdepth}{2}
+\pagestyle{fancy}
+\setheaders{}{}
+
+%%%%%%%%%%%%%%%%%
+% Front Page %
+%%%%%%%%%%%%%%%%%
+\VAR{load_file(root, "front_page_posters_demos", "front_page.tex")}
+
+%%%%%%%
+% TOC %
+%%%%%%%
+\tableofcontents
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+% Organizing Committee %
+%%%%%%%%%%%%%%%%%%%%%%%%
+\setlength{\parindent}{0pt}
+\begin{flushleft}
+  \section{Organizing Committee}
+  \end{flushleft}
+  \BLOCK{for role in organizing_committee}
+    \textbf{\VAR{role.role}}\\
+    \BLOCK{for member in role.members}
+      \VAR{committee_member(member)}\\
+    \BLOCK{endfor}
+    \newline \vspace*{-0.1cm}\leavevmode\newline
+  \BLOCK{endfor}
+  \newpage
+
+
+%%%%%%%%%%%
+% Policy %
+%%%%%%%%%%%
+\setheaders{Anti-Harassment Policy}{Anti-Harassment Policy}
+\VAR{load_file(root, "harassment", "harassment.tex")}
+\newpage
+
+%%%%%%%%%%%
+% Program %
+%%%%%%%%%%%
+
+
+\setlength{\parindent}{0pt}
+\BLOCK{for date, sessions in program}
+\BLOCK{if "23" in program_date(date)}
+  \setheaders{Posters Program (Detailed Program): Day 1}{Posters Conference Program (Detailed Program): Day 1}
+  \BLOCK{endif}
+ \BLOCK{if "24" in program_date(date)}
+ \setheaders{Posters Program (Detailed Program): Day 2}{Posters Conference Program (Detailed Program): Day 2}
+  \BLOCK{endif}
+ \BLOCK{if "25" in program_date(date)}
+ \setheaders{Posters Program (Detailed Program): Day 3}{Posters Conference Program (Detailed Program): Day 3}
+  \BLOCK{endif}
+
+  \section{Posters: \VAR{program_date(date)}} \leavevmode\newline
+  \BLOCK{for session in sessions}
+   \BLOCK{set count = namespace(value=1)}
+    \BLOCK{if session.subsessions|length > 0}
+      \BLOCK{for subsession in session.subsessions}
+        \BLOCK{if 'Poster' in subsession.title or 'VPS' in subsession.title }
+          \BLOCK{if subsession.papers|length > 0}
+            {\Large \VAR{subsession.title}}\\
+         \vspace*{-0.27cm}
+         \noindent\VAR{subsession.start_time.strftime('%H:%M')}-\VAR{subsession.end_time.strftime('%H:%M')}
+         \BLOCK{if subsession.location}
+            - \VAR{subsession.location}
+         \BLOCK{endif}
+         \BLOCK{if subsession.chair} - \textit{Chair: \VAR{subsession.chair}} \leavevmode\newline\BLOCK{endif}\\\leavevmode\newline
+            \vspace*{-0.3cm}
+            \noindent\rule{4cm}{0.4pt}
+           \BLOCK{set ns = namespace(first=true)}
+            \begin{longtable}{p{11mm}p{104mm}}
+            \BLOCK{for paper_slot in subsession.papers}
+            \BLOCK{if paper_slot.attributes and not 'DEMO' in paper_slot.attributes.Source}
+            \VAR{print(paper_slot.title)}
+             \BLOCK{if paper_slot.start_time}
+              \footnotesize{\VAR{paper_slot.start_time.strftime('%H:%M')}-\VAR{paper_slot.end_time.strftime('%H:%M')}}
+              \BLOCK{endif} &
+              \footnotesize{\textbf{ \#\VAR{count.value}  \VAR{paper_slot.title}} -
+              \textit{\VAR{join_names(", ", paper_slot.authors, " and ")}}} \BLOCK{set count.value = count.value + 1}
+              \\ \BLOCK{endif}
+            \BLOCK{if not paper_slot.attributes}
+            \VAR{print(paper_slot.title)}
+             \BLOCK{if paper_slot.start_time}
+              \footnotesize{\VAR{paper_slot.start_time.strftime('%H:%M')}-\VAR{paper_slot.end_time.strftime('%H:%M')}}
+              \BLOCK{endif} &
+              \BLOCK{if 'VPS' not in subsession.title}
+                \footnotesize{\textbf{ \#\VAR{count.value}}}
+                \BLOCK{set count.value = count.value + 1}
+              \BLOCK{endif}
+               \footnotesize{\textbf{\VAR{paper_slot.title}}}
+              \BLOCK{if paper_slot.authors}
+               -
+              \textit{\VAR{join_names(", ", paper_slot.authors, " and ")}}
+              \BLOCK{endif}
+              \BLOCK{if paper_slot.speaker}
+               \VAR{index_authors(paper_slot.speaker)}
+              \textit{Speaker: \VAR{paper_slot.speaker}}
+              \BLOCK{endif}
+              \\
+              \BLOCK{endif}
+            \BLOCK{endfor}
+              \end{longtable}
+          \BLOCK{endif}
+        \BLOCK{endif}
+      \BLOCK{endfor}
+    \BLOCK{endif}
+  \BLOCK{endfor}
+          \newpage
+\BLOCK{endfor}
+
+
+
+%%%%%%%%%%%
+% Program Demos %
+%%%%%%%%%%%
+
+\setlength{\parindent}{0pt}
+\BLOCK{for date, sessions in program}
+\BLOCK{if "23" in program_date(date)}
+  \setheaders{Demos  Program (Detailed Program): Day 1}{Demos Program (Detailed Program): Day 1}
+  \BLOCK{endif}
+ \BLOCK{if "24" in program_date(date)}
+ \setheaders{Demos Program (Detailed Program): Day 2}{Demos Program (Detailed Program): Day 2}
+  \BLOCK{endif}
+ \BLOCK{if "25" in program_date(date)}
+ \setheaders{Demos Program (Detailed Program): Day 3}{Demos Program (Detailed Program): Day 3}
+  \BLOCK{endif}
+
+  \section{Demos: \VAR{program_date(date)}} \leavevmode\newline
+  \BLOCK{for session in sessions}
+
+    \BLOCK{if session.subsessions|length > 0}
+
+      \BLOCK{for subsession in session.subsessions}
+        \BLOCK{if 'Poster' in subsession.title or 'VPS' in subsession.title}
+          \BLOCK{if subsession.papers|length > 0}
+            \BLOCK{set count = namespace(value=1)}
+          \BLOCK{for paper_slot in subsession.papers}
+          \BLOCK{if paper_slot.attributes and 'DEMO' in paper_slot.attributes.Source}
+                     \BLOCK{if count.value ==1}
+                         {\Large \VAR{subsession.title}}\\
+                         \vspace*{-0.27cm}
+                         \noindent\VAR{subsession.start_time.strftime('%H:%M')}-\VAR{subsession.end_time.strftime('%H:%M')}
+                         \BLOCK{if subsession.location}
+                            - \VAR{subsession.location}
+                         \BLOCK{endif}
+                         \BLOCK{if subsession.chair} - \textit{Chair: \VAR{subsession.chair}} \leavevmode\newline\BLOCK{endif}\\\leavevmode\newline
+                            \vspace*{-0.3cm}
+                            \noindent\rule{4cm}{0.4pt}
+                           \BLOCK{set ns = namespace(first=true)}
+                            \begin{longtable}{p{11mm}p{104mm}}
+                      \BLOCK{endif}
+
+                \VAR{print(paper_slot.title)}
+                  \footnotesize{\VAR{paper_slot.start_time.strftime('%H:%M')}-\VAR{paper_slot.end_time.strftime('%H:%M')}} &
+                  \footnotesize{\textbf{ \VAR{paper_slot.title}} -
+                  \textit{\VAR{join_names(", ", paper_slot.authors, " and ")}}} \BLOCK{set count.value = count.value + 1} \\
+            \BLOCK{endif}
+              \BLOCK{endfor}
+                  \BLOCK{if count.value !=1}
+                    \end{longtable}
+                  \BLOCK{endif}
+          \BLOCK{endif}
+        \BLOCK{endif}
+      \BLOCK{endfor}
+    \BLOCK{endif}
+
+
+  \BLOCK{endfor}
+          \newpage
+\BLOCK{endfor}
+
+
+%%%%%%%%%%%
+% Venue Map %
+%%%%%%%%%%%
+\cleardoublepage
+\setheaders{Venue Map}{Venue Map}
+\section{Venue Map}
+\VAR{load_file(root, "venue_map", "venue_map.tex")}
+
+%%%%%%%%%%%%%%%%
+% Author Index %
+%%%%%%%%%%%%%%%%
+\cleardoublepage
+\addcontentsline{toc}{chapter}{Author Index}
+\setheaders{Author Index}{Author Index}
+\printindex
+\newpage
+
+%%%%%%%%%%%%%%
+% Appendices %
+%%%%%%%%%%%%%%
+\cleardoublepage
+\addcontentsline{toc}{chapter}{Sponsorship}
+\setheaders{Sponsorship}{Sponsorship}
+\VAR{load_file(root, "sponsorship", "sponsorship.tex")}
+
+\newpage
+
+%%%%%%%%%%%%%%
+% Back Cover %
+%%%%%%%%%%%%%%
+\thispagestyle{empty}
+\noindent
+\setheaders{}{}
+
+\end{document}
