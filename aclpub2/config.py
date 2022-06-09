@@ -40,6 +40,10 @@ def load_configs(root: Path):
     if program is not None:
         for entry in program:
             entry["title"] = normalize_latex_string(entry["title"])
+            if "subsessions" in entry:
+                for sub_entry in entry["subsessions"]:
+                    sub_entry["title"] = normalize_latex_string(sub_entry["title"])
+
 
     # Consistency check of input material
     is_ok = True

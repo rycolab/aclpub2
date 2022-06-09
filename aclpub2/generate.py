@@ -351,6 +351,7 @@ def create_watermarked_pdf(paper, conference, root: Path):
     returncode = subprocess.call(
         [
             "pdflatex",
+            "-halt-on-error",
             f"-output-directory={watermarked_pdfs}",
             str(tex_file),
         ],
