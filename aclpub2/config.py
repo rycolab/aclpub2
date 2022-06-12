@@ -44,7 +44,6 @@ def load_configs(root: Path):
                 for sub_entry in entry["subsessions"]:
                     sub_entry["title"] = normalize_latex_string(sub_entry["title"])
 
-
     # Consistency check of input material
     is_ok = True
     is_ok = is_ok and check_required_conference_fields(conference)
@@ -81,13 +80,12 @@ def load_configs_handbook(root: Path):
     for paper in papers:
         paper["title"] = normalize_latex_string(paper["title"])
     sponsors = load_config("sponsors", root)
-    prefaces = load_config("prefaces_handbook", root)
+    prefaces = load_config("prefaces", root)
     organizing_committee = load_config("organizing_committee", root)
     program_committee = load_config("program_committee", root)
     for block in program_committee:
         for entry in block["entries"]:
             for k, v in entry.items():
-                print(k, v)
                 entry[k] = normalize_latex_string(v)
     tutorial_program = load_config("tutorial_program", root)
     tutorials = load_config("tutorials", root)
@@ -97,9 +95,16 @@ def load_configs_handbook(root: Path):
     for entry in program:
         entry["title"] = normalize_latex_string(entry["title"])
     workshops = load_config("workshops", root)
-    workshop_configs = []
+    workshop_programs = {}
     for workshop in workshops:
-        workshop_configs.append(load_config("workshops/" + str(workshop["id"]), root))
+        workshop_programs[workshop["id"]] = load_config(
+            "workshops/program_" + str(workshop["id"]), root, required=True
+        )
+    workshop_papers = {}
+    for workshop in workshops:
+        workshop_papers[workshop["id"]] = load_config(
+            "workshops/papers_" + str(workshop["id"]), root, required=True
+        )
 
     return (
         conference,
@@ -114,7 +119,8 @@ def load_configs_handbook(root: Path):
         additional_pages,
         program,
         workshops,
-        workshop_configs,
+        workshop_programs,
+        workshop_papers,
     )
 
 

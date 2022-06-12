@@ -176,12 +176,12 @@
         \BLOCK{endfor}
       \BLOCK{endif}
       \BLOCK{if not area.members[0].institution}
-        \VAR{join_names_commitee(", ", area.members)}\\
+        \VAR{join_names(", ", area.members)}\\
       \BLOCK{endif}
     \BLOCK{endfor}
   \BLOCK{elif block.type is equalto("name_block")}
     \BLOCK{for name_block in group_by_last_name(block.entries)}
-      \VAR{join_names_commitee(", ", name_block)}\\
+      \VAR{join_names(", ", name_block)}\\
       \newline
     \BLOCK{endfor}
   \BLOCK{elif block.type is equalto("name_block_without_newlines")}
@@ -255,7 +255,7 @@
       \BLOCK{if entry.type is equalto("tutorial")}
         & \emph{\VAR{entry.paper.title}} & \textit{$\quad$\VAR{entry.paper.room}}\\
         & \VAR{entry.paper.authors} \leavevmode\newline & \\
-        \VAR{index_authors(entry.paper.authors)}
+        \VAR{index_speakers(entry.paper.authors)}
       \BLOCK{endif}
     \BLOCK{endfor}
     \end{longtable}
@@ -346,7 +346,7 @@
               \textit{\footnotesize{\VAR{join_names(", ", paper_slot.authors, " and ")}}}\leavevmode\newline
               \BLOCK{endif}
               \BLOCK{if paper_slot.speaker}
-              \VAR{index_authors(paper_slot.speaker)}
+              \VAR{index_speakers(paper_slot.speaker)}
               \textit{\footnotesize{Speaker: \VAR{paper_slot.speaker}}}\leavevmode\newline
               \BLOCK{endif}
               \BLOCK{if paper_slot.abstract}
@@ -357,7 +357,6 @@
 
               \BLOCK{if paper_slot.start_time}
                 \hfill
-                \VAR{print(paper_slot.title)}
               \BLOCK{endif}
             \BLOCK{endfor}
           \BLOCK{endif}
@@ -444,17 +443,16 @@ During the days of the workshops, \textbf{Registration} will be held from 08:00.
           \small{\VAR{session_times(entry)}} & \small{\textbf{\emph{\VAR{entry.title}}} \BLOCK{if entry.chair} - Chair: \VAR{entry.chair}\BLOCK{endif}  } \\\\
           \BLOCK{endif}
           \BLOCK{if entry.type is equalto("paper")}
-            \BLOCK{for wpa in papers_workshops[workshop.id]}
-                \BLOCK{if wpa.id == entry.paper.id}
-                    \BLOCK{if entry.paper.start_time}
-                         \footnotesize{\VAR{entry.paper.start_time.strftime('%H:%M')}-\VAR{entry.paper.end_time.strftime('%H:%M')}}
-                    \BLOCK{endif}
-                    &
-                    \small{\emph{\VAR{wpa.title}}}  \\
-                    & \small{\VAR{join_names(", ", wpa.authors, " and ")}}\BLOCK{if wpa.speaker} - Speaker: \VAR{wpa.speaker} \BLOCK{endif} \\\\
+            \BLOCK{for wpa in workshop_papers[workshop.id]}
+              \BLOCK{if wpa.id == entry.paper.id}
+                \BLOCK{if entry.paper.start_time}
+                  \footnotesize{\VAR{entry.paper.start_time.strftime('%H:%M')}-\VAR{entry.paper.end_time.strftime('%H:%M')}}
                 \BLOCK{endif}
+                &
+                \small{\emph{\VAR{wpa.title}}}  \\
+                & \small{\VAR{join_names(", ", wpa.authors, " and ")}}\BLOCK{if wpa.speaker} - Speaker: \VAR{wpa.speaker} \BLOCK{endif} \\\\
+              \BLOCK{endif}
             \BLOCK{endfor}
-
           \BLOCK{endif}
         \BLOCK{endfor}
         \end{longtable}
