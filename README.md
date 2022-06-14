@@ -422,3 +422,8 @@ Instead of defining presentations, sessions may define subsessions, which have t
       start_time: Optional start time of the paper slot as an ISO datestring.
       end_time: Optional start time of the paper slot as an ISO datestring.
 ```
+
+
+### Common Errors
+
+If you are using OSX and you get a too many files open error, consider setting ``ulimit -n 10240``.
