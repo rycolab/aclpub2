@@ -6,14 +6,7 @@ import jinja2
 
 TEMPLATE_DIR = Path(Path(__file__).parent, "templates")
 
-HOMOGLYPHS = {
-    "Ø": "o",
-    "Ö": "o",
-    "Ç": "c",
-    "Ş": "s",
-    "Š": "s",
-    "Á": "a"
-}
+HOMOGLYPHS = {"Ø": "o", "Ö": "o", "Ç": "c", "Ş": "s", "Š": "s", "Á": "a"}
 
 
 def load_file(*args: str):
@@ -25,7 +18,7 @@ def render_name(user):
     name = user["first_name"] + " "
     if "middle_name" in user:
         name += user["middle_name"] + " "
-    name += user["last_name"]
+    name += user["last_name"] + "\index{" + user["last_name"] + "}"
     return name
 
 
@@ -42,6 +35,15 @@ def join_names(delimiter: str, items: List[Any], delimiter_last: str = None):
 def index_author(author: str):
     n = author.split(" ")
     return "\index{" + n[-1] + ", " + " ".join(n[:-1]) + "}"
+
+
+def index_speakers(author: str):
+    n = author.split(",")
+    s = ""
+    for aut in n:
+        sur = aut.split(" ")[-1]
+        s += "\index{" + sur + "}"
+    return s
 
 
 def join_page_numbers(page_numbers):
@@ -64,12 +66,14 @@ def group_by_last_name(entries) -> List[List[str]]:
         output.append(alphabetized_names[letter])
     return output
 
+
 def to_string_sorting_by_last_name(entries) -> str:
     res = []
     groups = group_by_last_name(entries)
     for group in groups:
         res.append(join_names(", ", group))
     return ", ".join(res)
+
 
 def homoglyph(char: str) -> str:
     return HOMOGLYPHS.get(char, char.lower())
@@ -105,6 +109,7 @@ LATEX_JINJA_ENV.globals.update(
     session_times=session_times,
     join_page_numbers=join_page_numbers,
     index_author=index_author,
+    index_speakers=index_speakers,
 )
 
 

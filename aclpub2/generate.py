@@ -208,18 +208,21 @@ def generate_handbook(path: str, overwrite: bool):
         additional_pages,
         program,
         workshops,
-        workshop_configs,
+        workshop_programs,
+        workshop_papers,
     ) = load_configs_handbook(root)
     program_workshops = {}
-    for workshop_config in workshop_configs:
-        program_workshops[workshop["id"]] = process_program(workshop_config)
+    for id, program in workshop_programs.items():
+        program_workshops[id] = process_program(program)
     workshop_days = []
     for workshop in workshops:
         wdate = workshop["date"]
         if wdate not in workshop_days:
             workshop_days.append(wdate)
 
-    id_to_paper, alphabetized_author_index = process_papers(papers, root)
+    id_to_paper = {}
+    for paper in papers:
+        id_to_paper[paper["id"]] = paper
 
     template = load_template("handbook")
     program = process_program_handbook(program)
@@ -242,6 +245,7 @@ def generate_handbook(path: str, overwrite: bool):
         workshops=workshops,
         program_workshops=program_workshops,
         workshop_days=workshop_days,
+        workshop_papers=workshop_papers,
         build_dir=str(build_dir),
     )
     tex_file = Path(build_dir, "handbook.tex")
@@ -300,7 +304,7 @@ def process_papers(papers, root: Path):
     return id_to_paper, sorted(alphabetized_author_index.items())
 
 
-def error_hanlder(e):
+def error_handler(e):
     print(traceback.print_exception(type(e), e, e.__traceback__))
     input(
         "\nSorry. I have problems compiling the watermarked papers. Press Enter to process another paper or Ctrl+C to quit.\n"
@@ -316,7 +320,7 @@ def generate_watermarked_pdfs(papers_with_pages, conference, root: Path):
             pool.apply_async(
                 create_watermarked_pdf,
                 args=(paper, conference, root),
-                error_callback=error_hanlder,
+                error_callback=error_handler,
             )
         pool.close()
         pool.join()
