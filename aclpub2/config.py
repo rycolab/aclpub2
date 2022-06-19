@@ -3,7 +3,12 @@ import yaml
 
 
 def normalize_latex_string(text: str) -> str:
-    return text.replace("’", "'").replace("&", "\\&").replace("_", "\\_")
+    return (
+        text.replace("’", "'")
+        .replace("&", "\\&")
+        .replace("_", "\\_")
+        .replace("%", "\\%")
+    )
 
 
 def load_configs(root: Path):
@@ -79,6 +84,7 @@ def load_configs_handbook(root: Path):
     papers = load_config("papers", root)
     for paper in papers:
         paper["title"] = normalize_latex_string(paper["title"])
+        paper["abstract"] = normalize_latex_string(paper["abstract"])
     sponsors = load_config("sponsors", root)
     prefaces = load_config("prefaces", root)
     organizing_committee = load_config("organizing_committee", root)
