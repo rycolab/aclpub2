@@ -164,7 +164,9 @@ This file should list the members of the organizaing committee. You should edit 
 ```yaml
 - role: Name of role, e.g. General Chair
   members:
-    - name: Committee member name as it should appear, e.g. John Doe
+    - first_name: Committee member first name
+      middle_name: Committee member middle names
+      last_name: Committee member last name
       institution: Committee member's institution name as it should appear, e.g. University of California Berkeley, USA
 ```
 
@@ -174,7 +176,9 @@ This file should list the members of the program committee. You can edit this fi
 ```yaml
 - role: Name of role, e.g. General Chair
   members:
-    - name: Committee member name as it should appear, e.g. John Doe
+    - first_name: Committee member first name
+      middle_name: Committee member middle names
+      last_name: Committee member last name
       institution: Committee member's institution name as it should appear, e.g. University of California Berkeley, USA
 - role: Reviewers
   type: name_block  # By adding the name_block type in the role, names will be output in alphabetized blocks.
