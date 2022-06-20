@@ -1,4 +1,5 @@
 from pathlib import Path
+
 import yaml
 
 
@@ -111,6 +112,7 @@ def load_configs_handbook(root: Path):
         workshop_papers[workshop["id"]] = load_config(
             "workshops/papers_" + str(workshop["id"]), root, required=True
         )
+    program_overview = load_config("program_overview", root)
 
     return (
         conference,
@@ -124,6 +126,7 @@ def load_configs_handbook(root: Path):
         invited_talks,
         additional_pages,
         program,
+        program_overview,
         workshops,
         workshop_programs,
         workshop_papers,

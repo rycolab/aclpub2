@@ -207,6 +207,7 @@ def generate_handbook(path: str, overwrite: bool):
         invited_talks,
         additional_pages,
         program,
+        program_overview,
         workshops,
         workshop_programs,
         workshop_papers,
@@ -222,7 +223,7 @@ def generate_handbook(path: str, overwrite: bool):
 
     id_to_paper = {}
     for paper in papers:
-        id_to_paper[paper["id"]] = paper
+        id_to_paper[str(paper["id"])] = paper
 
     template = load_template("handbook")
     program = process_program_handbook(program)
@@ -242,6 +243,7 @@ def generate_handbook(path: str, overwrite: bool):
         papers=papers,
         id_to_paper=id_to_paper,
         program=program,
+        program_overview=program_overview,
         workshops=workshops,
         program_workshops=program_workshops,
         workshop_days=workshop_days,
