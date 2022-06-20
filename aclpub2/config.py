@@ -101,6 +101,9 @@ def load_configs_handbook(root: Path):
     program = load_config("program", root)
     for entry in program:
         entry["title"] = normalize_latex_string(entry["title"])
+        if "subsessions" in entry:
+            for subentry in entry["subsessions"]:
+                subentry["title"] = normalize_latex_string(subentry["title"])
     workshops = load_config("workshops", root)
     workshop_programs = {}
     for workshop in workshops:
