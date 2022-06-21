@@ -77,6 +77,14 @@ def load_configs(root: Path):
     )
 
 
+def normalize_program(program):
+    for entry in program:
+        entry["title"] = normalize_latex_string(entry["title"])
+        if "subsessions" in entry:
+            for subentry in entry["subsessions"]:
+                subentry["title"] = normalize_latex_string(subentry["title"])
+
+
 def load_configs_handbook(root: Path):
     """
     Loads all conference configuration files defined in the root directory.
@@ -95,15 +103,12 @@ def load_configs_handbook(root: Path):
             for k, v in entry.items():
                 entry[k] = normalize_latex_string(v)
     tutorial_program = load_config("tutorial_program", root)
+    normalize_program(tutorial_program)
     tutorials = load_config("tutorials", root)
     invited_talks = load_config("invited_talks", root, required=False)
     additional_pages = load_config("additional_pages", root, required=False)
     program = load_config("program", root)
-    for entry in program:
-        entry["title"] = normalize_latex_string(entry["title"])
-        if "subsessions" in entry:
-            for subentry in entry["subsessions"]:
-                subentry["title"] = normalize_latex_string(subentry["title"])
+    normalize_program(program)
     workshops = load_config("workshops", root)
     workshop_programs = {}
     for workshop in workshops:
