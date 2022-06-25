@@ -3,6 +3,7 @@
 
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
+\usepackage{amsmath}
 \usepackage{xspace}
 \usepackage{subcaption}
 \usepackage{combelow}
@@ -278,7 +279,6 @@
 \setheaders{Tutorials}{Tutorials}
   \begin{flushleft}
    \section{\VAR{tutorial.title}}
-    \setheaders{Tutorials}{\VAR{program_date(tutorial.date)}}
   \end{flushleft}
   \vspace*{0.2cm}
   \VAR{load_file(root, "tutorials", tutorial.file)}
@@ -291,7 +291,6 @@
 %%%%%%%%%%%
 \setheaders{Main Conference}{Main Conference}
 \chapter{Main Conference}
-\clearpage
 
 %%%%%%%%%%%%
 % Overview %
@@ -320,46 +319,47 @@
     \BLOCK{if session.subsessions|length > 0}
      \leavevmode\newline{\Large{\textbf{\VAR{session.title} - \VAR{session.start_time.strftime('%H:%M')}-\VAR{session.end_time.strftime('%H:%M')}}}}
       \BLOCK{for subsession in session.subsessions}
-          \BLOCK{if subsession.papers|length > 0}
-                {\subsection{\VAR{subsession.title}}}
-         \VAR{subsession.start_time.strftime('%H:%M')}-\VAR{subsession.end_time.strftime('%H:%M')}
-         \BLOCK{if subsession.location}
-             (\VAR{subsession.location})
-         \BLOCK{endif}
-         \BLOCK{if subsession.chair}\textit{Chair: \VAR{subsession.chair}} \leavevmode\newline\BLOCK{endif}\\
-            \vspace*{-0.05cm}
-            \noindent\rule{4cm}{0.4pt}\\\leavevmode\newline
-            \BLOCK{for paper_slot in subsession.papers}
+        \BLOCK{if subsession.papers|length > 0}
+          {\subsection{\VAR{subsession.title}}}
+          \VAR{subsession.start_time.strftime('%H:%M')}-\VAR{subsession.end_time.strftime('%H:%M')}
+          \BLOCK{if subsession.location}
+            (\VAR{subsession.location})
+          \BLOCK{endif}
+          \BLOCK{if subsession.chair}\textit{Chair: \VAR{subsession.chair}} \leavevmode\newline\BLOCK{endif}\\
+          \vspace*{-0.05cm}
+          \noindent\rule{4cm}{0.4pt}\\\leavevmode\newline
+          \BLOCK{for paper_slot in subsession.papers}
+            \newline
             \BLOCK{set paper = id_to_paper[paper_slot.id]}
-            \BLOCK{if paper_slot.start_time and paper_slot.end_time}
-              \VAR{paper_slot.start_time.strftime('%H:%M')}-\VAR{paper_slot.end_time.strftime('%H:%M')} \BLOCK{if subsession.location}(\VAR{subsession.location})\BLOCK{endif}\leavevmode\newline
-             \BLOCK{endif}
-              \BLOCK{if paper.attributes and paper.attributes.Source}
+            \BLOCK{if paper.attributes and paper.attributes.Source}
               \BLOCK{if "TACL" in paper.attributes.Source}\footnotesize{[TACL]}\BLOCK{endif}
               \BLOCK{if "CL" == paper.attributes.Source}\footnotesize{[CL]}\BLOCK{endif}
               \BLOCK{if "DEMO" == paper.attributes.Source}\footnotesize{[DEMO]}\BLOCK{endif}
-             \BLOCK{endif}
-               \BLOCK{if 'Poster' in subsession.title and "DEMO" != paper.attributes.Source}
-              \footnotesize{\textbf{ \#\VAR{count.value} } }  \BLOCK{set count.value = count.value + 1}
-              \BLOCK{endif}
-              \textbf{\footnotesize{\VAR{paper.title}}}\leavevmode\newline
-              \BLOCK{if paper.authors}
-              \textit{\footnotesize{\VAR{join_names(", ", paper.authors, " and ")}}}\leavevmode\newline
-              \BLOCK{endif}
-              \BLOCK{if paper_slot.speaker}
+            \BLOCK{endif}
+            \BLOCK{if 'Poster' in subsession.title and "DEMO" != paper.attributes.Source}
+            \footnotesize{\textbf{ \#\VAR{count.value} } }  \BLOCK{set count.value = count.value + 1}
+            \BLOCK{endif}
+            \textbf{\footnotesize{\VAR{paper.title}}}\newline
+            \BLOCK{if paper.authors}
+              \textit{\footnotesize{\VAR{join_names(", ", paper.authors, " and ")}}}\leavevmode\hfill
+            \BLOCK{endif}
+            \BLOCK{if paper_slot.start_time and paper_slot.end_time}
+              \footnotesize{\VAR{paper_slot.start_time.strftime('%H:%M')}-\VAR{paper_slot.end_time.strftime('%H:%M')}}
+              \BLOCK{if subsession.location}(\VAR{subsession.location})\BLOCK{endif}\leavevmode\newline
+            \BLOCK{endif}
+            \BLOCK{if paper_slot.speaker}
               \VAR{index_speakers(paper_slot.speaker)}
               \textit{\footnotesize{Speaker: \VAR{paper_slot.speaker}}}\leavevmode\newline
-              \BLOCK{endif}
-              \BLOCK{if paper.abstract}
-              \BLOCK{if paper.abstract != "PLACEHOLDER"}
-              {\footnotesize{\VAR{paper.abstract}}} \leavevmode\newline
-              \BLOCK{endif}
-              \BLOCK{endif}
-
-              \BLOCK{if paper_slot.start_time}
-                \hfill
-              \BLOCK{endif}
-            \BLOCK{endfor}
+            \BLOCK{endif}
+            \BLOCK{if paper.abstract}
+            \BLOCK{if paper.abstract != "PLACEHOLDER"}
+            {\footnotesize{\VAR{paper.abstract}}} \leavevmode\newline
+            \BLOCK{endif}
+            \BLOCK{endif}
+            \BLOCK{if paper_slot.start_time}
+             \hfill
+            \BLOCK{endif}
+          \BLOCK{endfor}
           \BLOCK{endif}
       \BLOCK{endfor}
     \BLOCK{endif}
