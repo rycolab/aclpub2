@@ -182,12 +182,12 @@
         \VAR{join_names(", ", area.members)}\\
       \BLOCK{endif}
     \BLOCK{endfor}
-  \BLOCK{elif block.type is equalto("name_block")}
+  \BLOCK{elif block.type is equalto("split_name_block")}
     \BLOCK{for name_block in group_by_last_name(block.entries)}
       \VAR{join_names(", ", name_block)}\\
       \newline
     \BLOCK{endfor}
-  \BLOCK{elif block.type is equalto("name_block_without_newlines")}
+  \BLOCK{elif block.type is equalto("name_block")}
     \VAR{to_string_sorting_by_last_name(block.entries)}\\
     \newline
   \BLOCK{else}
