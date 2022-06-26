@@ -6,7 +6,7 @@ import jinja2
 
 TEMPLATE_DIR = Path(Path(__file__).parent, "templates")
 
-HOMOGLYPHS = {"Ø": "o", "Ö": "o", "Ç": "c", "Ş": "s", "Š": "s", "Á": "a", "\c{S}": "s"}
+HOMOGLYPHS = {"Ø": "o", "Ö": "o", "Ç": "c", "Ş": "s", "Š": "s", "Á": "a", "\c{S}": "s", "Ü": "u"}
 
 
 def load_file(*args: str):
