@@ -214,7 +214,8 @@ def generate_handbook(path: str, overwrite: bool):
     ) = load_configs_handbook(root)
     program_workshops = {}
     for id, workshop_program in workshop_programs.items():
-        program_workshops[id] = process_program(workshop_program)
+        if workshop_program is not None:
+            program_workshops[id] = process_program(workshop_program)
     workshop_days = []
     for workshop in workshops:
         wdate = workshop["date"]
