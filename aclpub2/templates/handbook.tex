@@ -394,7 +394,7 @@ During the days of the workshops, \textbf{Registration} will be held from 08:00.
     \noindent\rule{\textwidth}{0.4pt}
     \begin{longtable}{p{28mm}p{84mm}p{15mm}}
     \BLOCK{for workshop in workshops}
-        \BLOCK{if workshop.date is equalto(date) and not workshop.date2}
+        \BLOCK{if workshop.date is equalto(date) or workshop.date2 is equalto(date)}
           \small{\VAR{workshop.location}} & \small{\VAR{workshop.title}} & \small{  p.\pageref{w\VAR{workshop.id}}} \\\\
         \BLOCK{endif}
     \BLOCK{endfor}
@@ -406,7 +406,7 @@ During the days of the workshops, \textbf{Registration} will be held from 08:00.
     \noindent\rule{\textwidth}{0.4pt}
     \begin{longtable}{p{28mm}p{84mm}p{15mm}}
     \BLOCK{for workshop in workshops}
-        \BLOCK{if workshop.date is equalto(date) and workshop.date2}
+        \BLOCK{if workshop.date is equalto(date) or workshop.date2 is equalto(date)}
           \small{\VAR{workshop.location}} & \small{\VAR{workshop.title}} & \small{  p.\pageref{w\VAR{workshop.id}}} \\\\
         \BLOCK{endif}
     \BLOCK{endfor}
