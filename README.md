@@ -231,7 +231,7 @@ Each of the listed papers must have a unique ID so that they may be referred to 
   file: File name relative to the papers/ directory, e.g. 1.pdf
   attachments:
     # A list of additional files associated with the paper.
-    # The type, along with one of file or url must be specified.
+    # The type, along with one of file must be specified.
     - type: dataset | note | poster | presentation | software | attachment
       file: Local file path, e.g. attachments/5.zip
   title: Title of the paper.
