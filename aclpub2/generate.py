@@ -111,6 +111,14 @@ def generate_proceedings(path: str, overwrite: bool, outdir: str):
             str(tex_file),
         ]
     )
+    subprocess.run(
+        [
+            "pdflatex",
+            f"-output-directory={build_dir}",
+            "-save-size=40000",
+            str(tex_file),
+        ]
+    )
 
     output_dir = Path(outdir)
     shutil.rmtree(str(output_dir), ignore_errors=True)
