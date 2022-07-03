@@ -111,6 +111,7 @@ def generate_proceedings(path: str, overwrite: bool, outdir: str):
             str(tex_file),
         ]
     )
+    # Must run the latex compilation twice to include internal links.
     subprocess.run(
         [
             "pdflatex",
