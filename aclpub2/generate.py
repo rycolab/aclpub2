@@ -12,6 +12,7 @@ import shutil
 import os
 import glob
 import traceback
+import yaml
 
 PARENT_DIR = Path(__file__).parent
 
@@ -124,7 +125,7 @@ def generate_proceedings(path: str, overwrite: bool, outdir: str):
     output_dir = Path(outdir)
     shutil.rmtree(str(output_dir), ignore_errors=True)
     output_dir.mkdir()
-    rearrange_outputs(root, build_dir, output_dir)
+    rearrange_outputs(root, build_dir, output_dir, papers)
 
 
 def copy_folder(input_path: Path, output_dir: Path):
@@ -132,7 +133,7 @@ def copy_folder(input_path: Path, output_dir: Path):
         shutil.copytree(input_path, output_dir)
 
 
-def rearrange_outputs(input_path: Path, build_dir: Path, output_dir: Path):
+def rearrange_outputs(input_path: Path, build_dir: Path, output_dir: Path, papers):
     # Copy proceedings
     shutil.copy2(
         Path(build_dir, "proceedings.pdf"), Path(output_dir, "proceedings.pdf")
@@ -151,6 +152,9 @@ def rearrange_outputs(input_path: Path, build_dir: Path, output_dir: Path):
     for file in files:
         if os.path.isfile(file):
             shutil.copy2(file, input_copy_dir)
+    # Overwrite the papers.yml with information that contains page ranges
+    with open(Path(input_copy_dir, "papers.yml"), "w") as new_papers_yml:
+        yaml.dump(papers, new_papers_yml)
     # Copy other input folders.
     for folder_to_copy in [
         "papers",
@@ -299,7 +303,8 @@ def process_papers(papers, root: Path):
         pdf_path = Path(root, "papers", paper["file"])
         pdf = PdfFileReader(str(pdf_path))
         paper["num_pages"] = pdf.getNumPages()
-        paper["page_range"] = (page, page + pdf.getNumPages() - 1)
+        paper["start_page"] = page
+        paper["end_page"] = page + pdf.getNumPages() - 1
         id_to_paper[paper["id"]] = paper
         for author in paper["authors"]:
             given_names = author["first_name"]
