@@ -173,8 +173,8 @@ def get_program_committee():
                 "last_name": capitalize_name(row["Last Name"]),
                 "name": full_name(row["First Name"], row["Last Name"]),
                 "emails": row["Email"],
-                "homepage": row[""],
-                "dblp_id": row[""],
+                "homepage": "",
+                "dblp_id": "",
                 "google_scholar_id": row["Google Scholar ID"],
                 "semantic_scholar_id": row["Semantic Scholar ID"],
                 "orcid": row["ORCID"],
@@ -240,12 +240,12 @@ def get_files():
 def get_papers():
     papers = []
     filename = wget.download(config["service_papers"])
-    with open(filename) as f:   
+    with open(filename, encoding='utf-8', errors='ignore') as f:   
         reader = csv.DictReader(f)
         for row in reader:
             authors = []
-            if row["Acceptance Status"] == "Accept":
-                for i in range(1, 28):
+            if row["Acceptance Status"].startswith("Accept"):
+                for i in range(1, 11):
                     if row[f"{i}: Last Name"] != "":
                         authors.append({
                             "emails": row[f"{i}: Email"],
