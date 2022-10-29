@@ -15,7 +15,7 @@ These are the credentials of a manager account for the conference or workshop on
 Finally, two *webservices* must be activated in SOFTCONF before running the export script, and their link must be added to the configuration file.
 
 In order to actovate Webservices, first of all check that *Enable webservices* in *Other tools* -> *Webservices* is set to *yes*.
-Then, open the *Spreadsheet maker* and create two webservices, one for the *Submissions* spreadsheet, and one for the *Reviewer/Author Profile Information* spreadsheet. Note their links (which can be found in the *Other tools* -> *Webservices* page, and put them respectively as values for the two last variables in the config file:
+Then, open the *Spreadsheet maker* and create two webservices, one for the *Submissions* spreadsheet, and one for the *Reviewer/Author Profile Information* spreadsheet, and select 'csv (UTF-8) before generating the webservice. Note their links (which can be found in the *Other tools* -> *Webservices* page, and put them respectively as values for the two last variables in the config file:
 
  * service_program_committee
  * service_papers
