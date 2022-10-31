@@ -23,12 +23,11 @@ args = parser.parse_args()
 
 all_entries = []
 with open(args.csv_path, 'r') as f:
-    reader = csv.reader(f, delimiter=',')
-    header = next(reader)
+    reader = csv.DictReader(f)
     for row in reader:
         row_out = collections.OrderedDict()
         authors = collections.defaultdict(dict)
-        for k, v in zip(header, row):
+        for k, v in row.items():
             if k.split(':')[0].isnumeric():
                 if not v:
                     continue
