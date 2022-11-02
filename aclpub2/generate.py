@@ -43,7 +43,7 @@ def generate_proceedings(path: str, overwrite: bool, outdir: str):
         additional_pages,
         program,
     ) = load_configs(root)
-    id_to_paper, alphabetized_author_index = process_papers(papers, root)
+    id_to_paper, alphabetized_author_index, archival_papers = process_papers(papers, root)
 
     sessions_by_date = None
     if program is not None:
@@ -67,7 +67,7 @@ def generate_proceedings(path: str, overwrite: bool, outdir: str):
         program_committee=program_committee,
         invited_talks=invited_talks,
         additional_pages=additional_pages,
-        papers=papers,
+        archival_papers=archival_papers,
         id_to_paper=id_to_paper,
         program=sessions_by_date,
         alphabetized_author_index=alphabetized_author_index,
@@ -95,7 +95,7 @@ def generate_proceedings(path: str, overwrite: bool, outdir: str):
         program_committee=program_committee,
         invited_talks=invited_talks,
         additional_pages=additional_pages,
-        papers=papers,
+        archival_papers=archival_papers,
         id_to_paper=id_to_paper,
         program=sessions_by_date,
         alphabetized_author_index=alphabetized_author_index,
@@ -299,13 +299,18 @@ def process_papers(papers, root: Path):
     page = 1
     id_to_paper = {}
     author_to_pages = defaultdict(list)
+    archival_papers = []
     for paper in papers:
+        # Always add the paper to the id-to-paper map.
+        id_to_paper[paper["id"]] = paper
+        # If the paper is not archival, skip the rest of the processing.
+        if not "archival" in paper or not paper["archival"]:
+            continue
         pdf_path = Path(root, "papers", paper["file"])
         pdf = PdfFileReader(str(pdf_path))
         paper["num_pages"] = pdf.getNumPages()
         paper["start_page"] = page
         paper["end_page"] = page + pdf.getNumPages() - 1
-        id_to_paper[paper["id"]] = paper
         for author in paper["authors"]:
             given_names = author["first_name"]
             if "middle_name" in author:
@@ -313,12 +318,13 @@ def process_papers(papers, root: Path):
             index_name = f"{author['last_name']}, {given_names}"
             author_to_pages[index_name].append(page)
         page += pdf.getNumPages()
+        archival_papers.append(paper)
     alphabetized_author_index = defaultdict(list)
     for author, pages in sorted(author_to_pages.items()):
         alphabetized_author_index[homoglyph(author[0]).lower()].append((author, pages))
     for author_pages in alphabetized_author_index.values():
         author_pages.sort(key=lambda entry: entry[0].lower())
-    return id_to_paper, sorted(alphabetized_author_index.items())
+    return id_to_paper, sorted(alphabetized_author_index.items()), archival_papers
 
 
 def error_handler(e):
@@ -334,6 +340,8 @@ def generate_watermarked_pdfs(papers_with_pages, conference, root: Path):
     watermarked_pdfs.mkdir(exist_ok=True)
     with multiprocessing.Pool(processes=multiprocessing.cpu_count()) as pool:
         for paper in papers_with_pages:
+            if not "archival" in paper or not paper["archival"]:
+                continue
             pool.apply_async(
                 create_watermarked_pdf,
                 args=(paper, conference, root),

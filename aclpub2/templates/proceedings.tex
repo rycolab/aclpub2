@@ -264,7 +264,7 @@ ISBN \VAR{conference.isbn}
 \vspace*{1em}
 \newcommand\page[1]{\rightskip=25pt \dotfill\rlap{\hbox to 25pt{\hfill#1}}\par}
 \begin{itemize}[leftmargin=*,label={}]
-  \BLOCK{for paper in papers}
+  \BLOCK{for paper in archival_papers}
      \item \hyperlink{page.\VAR{paper.start_page}}{\emph{\VAR{paper.title}}}\\ \hspace*{2em} \VAR{join_names(", ", paper.authors, " and ")}\dotfill \hyperlink{page.\VAR{paper.start_page}}{\VAR{paper.start_page}}
   \BLOCK{endfor}
 \end{itemize}
@@ -313,7 +313,7 @@ ISBN \VAR{conference.isbn}
 \pagenumbering{arabic}
 \setcounter{page}{1}
  \renewcommand{\headrulewidth}{0pt}
-\BLOCK{for paper in papers}
+\BLOCK{for paper in archival_papers}
   \addcontentsline{toc}{section}{TEMPLATE_TITLE}
   \AddToShipoutPicture*{
     \setlength{\unitlength}{1mm}
