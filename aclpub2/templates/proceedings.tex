@@ -256,6 +256,7 @@ ISBN \VAR{conference.isbn}
 %%%%%%%%%%%%%%%%%%%%%
 % Table of Contents %
 %%%%%%%%%%%%%%%%%%%%%
+\BLOCK{if archival_papers}
 \newpage  % Empty page before TOC
 \pagestyle{plain}
 \begin{center}
@@ -268,6 +269,8 @@ ISBN \VAR{conference.isbn}
      \item \hyperlink{page.\VAR{paper.start_page}}{\emph{\VAR{paper.title}}}\\ \hspace*{2em} \VAR{join_names(", ", paper.authors, " and ")}\dotfill \hyperlink{page.\VAR{paper.start_page}}{\VAR{paper.start_page}}
   \BLOCK{endfor}
 \end{itemize}
+\BLOCK{endif}
+
 \newpage
 
 %%%%%%%%%%%
@@ -336,6 +339,7 @@ ISBN \VAR{conference.isbn}
 %%%%%%%%%%%%%%%%
 % Author Index %
 %%%%%%%%%%%%%%%%
+\BLOCK{if alphabetized_author_index}
 \begin{huge}
 Author Index
 \end{huge}
@@ -348,6 +352,7 @@ Author Index
 \\ % Extra space between new letters.
 \BLOCK{endfor}
 \end{multicols}
+\BLOCK{endif}
 
 \BLOCK{endif}
 
