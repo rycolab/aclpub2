@@ -256,6 +256,7 @@ ISBN \VAR{conference.isbn}
 %%%%%%%%%%%%%%%%%%%%%
 % Table of Contents %
 %%%%%%%%%%%%%%%%%%%%%
+\BLOCK{if archival_papers}
 \newpage  % Empty page before TOC
 \pagestyle{plain}
 \begin{center}
@@ -269,6 +270,7 @@ ISBN \VAR{conference.isbn}
   \BLOCK{endfor}
 \end{itemize}
 \newpage
+\BLOCK{endif}
 
 %%%%%%%%%%%
 % Program %

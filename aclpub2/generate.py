@@ -43,7 +43,6 @@ def generate_proceedings(path: str, overwrite: bool, outdir: str):
         additional_pages,
         program,
     ) = load_configs(root)
-    id_to_paper, alphabetized_author_index, archival_papers = process_papers(papers, root)
 
     sessions_by_date = None
     if program is not None:
@@ -54,7 +53,7 @@ def generate_proceedings(path: str, overwrite: bool, outdir: str):
             traceback.print_exc()
             sessions_by_date = None
 
-    generate_watermarked_pdfs(id_to_paper.values(), conference, root)
+    id_to_paper, alphabetized_author_index, archival_papers = process_papers(papers, root)
 
     template = load_template("proceedings")
     rendered_template = template.render(
@@ -85,6 +84,11 @@ def generate_proceedings(path: str, overwrite: bool, outdir: str):
         ]
     )
 
+    # If there are no papers, exit.
+    if papers is None:
+        return
+
+    generate_watermarked_pdfs(id_to_paper.values(), conference, root)
     rendered_template = template.render(
         root=str(root),
         conference=conference,
@@ -296,6 +300,8 @@ def process_papers(papers, root: Path):
     - alphabetizes and splits author names, and associates them with the start pages
         of papers they authored, in preparation for index generation
     """
+    if papers is None:
+        return None, None, None
     page = 1
     id_to_paper = {}
     author_to_pages = defaultdict(list)

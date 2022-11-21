@@ -1,0 +1,387 @@
+- entries:
+  - first_name: Dilek
+    institution: Amazon
+    last_name: Hakkani-Tur
+  - first_name: Annie
+    institution: Google
+    last_name: Louis
+  - first_name: Mikio
+    institution: Honda Research Institute
+    last_name: Nakano
+  - first_name: Rebecca
+    institution: Penn State University
+    last_name: Passonneau
+    middle_name: J.
+  - first_name: Gabriel
+    institution: KTH
+    last_name: Skantze
+  - first_name: Manfred
+    institution: "Universit\xE4t Potsdam"
+    last_name: Stede
+  - first_name: David
+    institution: University of Southern California
+    last_name: Traum
+  - first_name: Koichiro
+    institution: Nara Institute of Science and Technology
+    last_name: Yoshino
+  role: Senior Program Committee
+- entries:
+  - first_name: Sean
+    institution: Microsoft Research, United States
+    last_name: Andrist
+  - first_name: Masahiro
+    institution: Kyoto Institute of Technology, Japan
+    last_name: Araki
+  - first_name: Ron
+    institution: USC Institute for Creative Technologies, United States
+    last_name: Artstein
+  - first_name: Yoav
+    institution: Cornell University, United States
+    last_name: Artzi
+  - first_name: Timo
+    institution: "Universit\xE4t Hamburg, Germany"
+    last_name: Baumann
+  - first_name: Frederic
+    institution: Aix Marseille Universite - LIS/CNRS, France
+    last_name: Bechet
+  - first_name: Steve
+    institution: Aculab plc, United Kingdom
+    last_name: Beet
+  - first_name: Jose
+    institution: "Universit\xE0t Polit\xE8cnica de Val\xE8ncia, Spain"
+    last_name: Benedi
+    middle_name: Miguel
+  - first_name: Luciana
+    institution: Universidad Nacional de Cordoba, Argentina
+    last_name: Benotti
+  - first_name: Yonatan
+    institution: Carnegie Mellon University, United States
+    last_name: Bisk
+  - first_name: Nate
+    institution: Cerence, United States
+    last_name: Blaylock
+  - first_name: Dan
+    institution: Microsoft Research, United States
+    last_name: Bohus
+  - first_name: Johan
+    institution: KTH, Sweden
+    last_name: Boye
+  - first_name: "Chlo\xE9"
+    institution: IRIT - CNRS, France
+    last_name: Braud
+  - first_name: Hendrik
+    institution: Bielefeld University, Germany
+    last_name: Buschmeier
+  - first_name: Andrew
+    institution: University of Cambridge, United Kingdom
+    last_name: Caines
+  - first_name: Christophe
+    institution: "Universit\xE9 de Lorraine, CNRS, LORIA, France"
+    last_name: Cerisara
+  - first_name: Senthil
+    institution: Microsoft, United States
+    last_name: Chandramohan
+  - first_name: Lin
+    institution: Head of AI, Cambia Health Solutions, United States
+    last_name: Chen
+  - first_name: Paul
+    institution: Facebook, United States
+    last_name: Crook
+  - first_name: Heriberto
+    institution: University of Lincoln, United Kingdom
+    last_name: Cuayahuitl
+  - first_name: Nina
+    institution: University of Hull, United Kingdom
+    last_name: Dethlefs
+  - first_name: David
+    institution: University of Southern California, United States
+    last_name: DeVault
+  - first_name: Barbara
+    institution: University of Illinois at Chicago, United States
+    last_name: Eugenio
+    middle_name: Di
+  - first_name: Jens
+    institution: KTH Speech, Music and Hearing, Sweden
+    last_name: Edlund
+  - first_name: Maxine
+    institution: Carnegie Mellon University, United States
+    last_name: Eskenazi
+  - first_name: Keelan
+    institution: Educational Testing Service, United States
+    last_name: Evanini
+  - first_name: Mauro
+    institution: Fondazione Ugo Bordoni, Italy
+    last_name: Falcone
+  - first_name: Michel
+    institution: Microsoft Research, United States
+    last_name: Galley
+  - first_name: Milica
+    institution: Heinrich Heine University Duesseldorf, Germany
+    last_name: Gasic
+  - first_name: Kallirroi
+    institution: University of Southern California, ICT, United States
+    last_name: Georgila
+  - first_name: Alborz
+    institution: Facebook AI, United States
+    last_name: Geramifard
+  - first_name: Debanjan
+    institution: Educational Testing Service, United States
+    last_name: Ghosh
+  - first_name: Jonathan
+    institution: "Universit\xE9 Paris-Diderot (Paris 7), France"
+    last_name: Ginzburg
+  - first_name: Joakim
+    institution: KTH, Sweden
+    last_name: Gustafson
+  - first_name: Ivan
+    institution: "Technische Universit\xE4t Darmstadt, Germany"
+    last_name: Habernal
+  - first_name: Helen
+    institution: Heriot-Watt University, United Kingdom
+    last_name: Hastie
+  - first_name: Michael
+    institution: Heinrich Heine University, Germany
+    last_name: Heck
+  - first_name: Behnam
+    institution: Amazon, United States
+    last_name: Hedayatnia
+  - first_name: Ryuichiro
+    institution: NTT Media Intelligence Labs., Japan
+    last_name: Higashinaka
+  - first_name: Takuya
+    institution: NEC Central Research Laboratories, Japan
+    last_name: Hiraoka
+  - first_name: Thomas
+    institution: University of Rochester, United States
+    last_name: Howard
+  - first_name: David
+    institution: Heriot-Watt University, United Kingdom
+    last_name: Howcroft
+    middle_name: M.
+  - first_name: Ruihong
+    institution: Texas A&M University, United States
+    last_name: Huang
+  - first_name: Michimasa
+    institution: The University of Electro-Communications, Japan
+    last_name: Inaba
+  - first_name: Koji
+    institution: Kyoto University, Japan
+    last_name: Inoue
+  - first_name: Filip
+    institution: Apple Inc., United Kingdom
+    last_name: Jurcicek
+  - first_name: Tatsuya
+    institution: Kyoto University, Japan
+    last_name: Kawahara
+  - first_name: Chris
+    institution: Columbia University, United States
+    last_name: Kedzie
+  - first_name: Simon
+    institution: Toshiba Research Europe Ltd, United Kingdom
+    last_name: Keizer
+  - first_name: Chandra
+    institution: Senior AI Research Scientist, Uber AI, United States
+    last_name: Khatri
+  - first_name: Alexander
+    institution: Saarland University, Germany
+    last_name: Koller
+  - first_name: Kazunori
+    institution: Osaka University, Japan
+    last_name: Komatani
+  - first_name: Ivana
+    institution: DFKI, Germany
+    last_name: Kruijff-Korbayova
+  - first_name: Kornel
+    institution: Carnegie Mellon University, United States
+    last_name: Laskowski
+  - first_name: Fabrice
+    institution: Avignon Univ., France
+    last_name: Lefevre
+  - first_name: Oliver
+    institution: Heriot-Watt University, United Kingdom
+    last_name: Lemon
+  - first_name: Junyi
+    institution: University of Texas at Austin, United States
+    last_name: Li
+    middle_name: Jessy
+  - first_name: Pierre
+    institution: Norwegian Computing Centre, Norway
+    last_name: Lison
+  - first_name: Bing
+    institution: Facebook, United States
+    last_name: Liu
+  - first_name: Eduardo
+    institution: University of Zaragoza, Spain
+    last_name: Solano
+    middle_name: Lleida
+  - first_name: Ramon
+    institution: University of Granada, Spain
+    last_name: Lopez-Cozar
+  - first_name: Nurul
+    institution: Heinrich Heine University, Germany
+    last_name: Lubis
+  - first_name: Ross
+    institution: Semio, United States
+    last_name: Mead
+  - first_name: Teruhisa
+    institution: Honda Research Institute USA, United States
+    last_name: Misu
+  - first_name: Seungwhan
+    institution: Facebook Conversational AI, United States
+    last_name: Moon
+  - first_name: Raymond
+    institution: University of Texas at Austin, United States
+    last_name: Mooney
+  - first_name: Elena
+    institution: University of Liverpool, United Kingdom
+    last_name: Musi
+  - first_name: Satoshi
+    institution: Nara Institute of Science and Technology and RIKEN AIP Center, Japan
+    last_name: Nakamura
+  - first_name: Vincent
+    institution: University of Texas at Dallas, United States
+    last_name: Ng
+  - first_name: Douglas
+    institution: INRS-EMT (Univ. of Quebec), Canada
+    last_name: O'Shaughnessy
+  - first_name: Alexandros
+    institution: Uber AI, United States
+    last_name: Papangelis
+  - first_name: Cecile
+    institution: CSIRO, Australia
+    last_name: Paris
+  - first_name: Nanyun
+    institution: University of Southern California, United States
+    last_name: Peng
+  - first_name: Laura
+    institution: School of Informatics, University of Edinburgh, United Kingdom
+    last_name: Perez-Beltrachini
+  - first_name: Paul
+    institution: The Open University, United Kingdom
+    last_name: Piwek
+  - first_name: Heather
+    institution: Mount Holyoke College, United States
+    last_name: Pon-Barry
+  - first_name: Andrei
+    institution: HEIG-VD / HES-SO, Switzerland
+    last_name: Popescu-Belis
+  - first_name: Abhinav
+    institution: Google Research, United States
+    last_name: Rastogi
+  - first_name: Ehud
+    institution: University of Aberdeen, United Kingdom
+    last_name: Reiter
+  - first_name: Norbert
+    institution: DFKI GmbH, Germany
+    last_name: Reithinger
+  - first_name: Antonio
+    institution: Tufts University, United States
+    last_name: Roque
+  - first_name: Carolyn
+    institution: Carnegie Mellon University, United States
+    last_name: Rose
+  - first_name: Clayton
+    institution: Infoscitex Corp., United States
+    last_name: Rothwell
+  - first_name: Sakriani
+    institution: Nara Institute of Science and Technology (NAIST) / RIKEN AIP, Japan
+    last_name: Sakti
+  - first_name: Ruhi
+    institution: Amazon, United States
+    last_name: Sarikaya
+  - first_name: David
+    institution: University of Potsdam, Germany
+    last_name: Schlangen
+  - first_name: Ethan
+    institution: Interactions LLC, United States
+    last_name: Selfridge
+  - first_name: Georg
+    institution: Intel Corp., Germany
+    last_name: Stemmer
+  - first_name: Matthew
+    institution: Rutgers University, United States
+    last_name: Stone
+  - first_name: Svetlana
+    institution: Toshiba Europe, United Kingdom
+    last_name: Stoyanchev
+  - first_name: Kristina
+    institution: Union College, United States
+    last_name: Striegnitz
+  - first_name: Pei-Hao
+    institution: PolyAI, United Kingdom
+    last_name: Su
+  - first_name: Hiroaki
+    institution: NTT Communication Science Labs., Japan
+    last_name: Sugiyama
+  - first_name: "Ant\xF3nio"
+    institution: DETI/IEETA, University of Aveiro, Portugal
+    last_name: Teixeira
+  - first_name: Takenobu
+    institution: Tokyo Institute of Technology, Japan
+    last_name: Tokunaga
+  - first_name: Bo-Hsiang
+    institution: University of Cambridge, United Kingdom
+    last_name: Tseng
+  - first_name: Gokhan
+    institution: Amazon Alexa AI, United States
+    last_name: Tur
+  - first_name: Stefan
+    institution: Mercedes-Benz AG, Germany
+    last_name: Ultes
+  - first_name: David
+    institution: Apple, United Kingdom
+    last_name: Vandyke
+  - first_name: Hsin-Min
+    institution: Academia Sinica, Taiwan
+    last_name: Wang
+  - first_name: Yi-Chia
+    institution: Uber AI, United States
+    last_name: Wang
+  - first_name: Nigel
+    institution: University of Texas at El Paso, United States
+    last_name: Ward
+  - first_name: Jason
+    institution: Apple, United States
+    last_name: Williams
+    middle_name: D
+  - first_name: Tom
+    institution: Colorado School of Mines, United States
+    last_name: Williams
+  - first_name: Yen-chen
+    institution: University of Cambridge, United Kingdom
+    last_name: Wu
+  - first_name: Steve
+    institution: Cambridge University, United Kingdom
+    last_name: Young
+  - first_name: Zhou
+    institution: University of California, Davis, United States
+    last_name: Yu
+  - first_name: Kai
+    institution: Shanghai Jiao Tong University, China
+    last_name: Yu
+  - first_name: Jian
+    institution: Dongguan University of Technology and Hong Kong University of Science
+      and Technology, China
+    last_name: ZHANG
+  role: Program Committee
+- entries:
+  - first_name: Zeyu
+    last_name: Dai
+  - first_name: Shrey
+    last_name: Desai
+  - first_name: Sanuj
+    last_name: Sharma
+  - first_name: Wenlin
+    last_name: Yao
+  role: Secondary Reviewers
+- entries:
+  - first_name: Asli
+    institution: Microsoft Research, USA
+    last_name: Celikyilmaz
+  - first_name: Diane
+    institution: University of Pittsburgh, USA
+    last_name: Litman
+  - first_name: Gabriel
+    institution: KTH Royal Institute of Technology, Sweden
+    last_name: Skantze
+  role: Invited Speakers

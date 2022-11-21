@@ -1,0 +1,63 @@
+- members:
+  - first_name: Olivier
+    institution: Google Research, France
+    last_name: Pietquin
+  role: General Chair
+- members:
+  - first_name: Smaranda
+    institution: Columbia University, USA
+    last_name: Muresan
+  - first_name: Vivian
+    institution: National Taiwan University, Taiwan
+    last_name: Chen
+  role: Program Chairs
+- members:
+  - first_name: Casey
+    institution: Boise State University, USA
+    last_name: Kennington
+  role: Local / Virtual Chair
+- members:
+  - first_name: David
+    institution: Apple Inc., United Kingdom
+    last_name: Vandyke
+  role: Sponsorship Chair
+- members:
+  - first_name: Nina
+    institution: University of Hull, United Kingdom
+    last_name: Dethlefs
+  role: Mentoring Chair
+- members:
+  - first_name: Stefan
+    institution: Mercedes-Benz AG, Germany
+    last_name: Ultes
+  role: Publication Chair
+- members:
+  - first_name: Koji
+    institution: Kyoto University, Japan
+    last_name: Inoue
+  - first_name: Erik
+    institution: KTH Royal Institute of Technology, Sweden
+    last_name: Ekstedt
+  role: Video Presentation Chair
+- members:
+  - first_name: 'President:'
+    institution: KTH Royal Institute of Technology, Sweden
+    last_name: Skantze
+    middle_name: Gabriel
+  - first_name: Vice
+    institution: Honda Research Institute, Japan
+    last_name: Nakano
+    middle_name: 'President: Mikio'
+  - first_name: 'Secretary:'
+    institution: Educational Testing Service (ETS) Research, USA
+    last_name: Ramanarayanan
+    middle_name: Vikram
+  - first_name: 'Treasurer:'
+    institution: Interactions, USA
+    last_name: Selfridge
+    middle_name: Ethan
+  - first_name: President
+    institution: Apple, USA
+    last_name: Williams
+    middle_name: 'Emeritus: Jason'
+  role: SIGdial Officers

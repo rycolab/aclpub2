@@ -1,0 +1,72 @@
+- end_time: 2020-07-01 07:45:00
+  start_time: 2020-07-01 07:30:00
+  title: Opening Remarks
+- end_time: 2020-07-01 09:30:00
+  start_time: 2020-07-01 09:00:00
+  title: Break
+- title: Session 1
+  start_time: 2020-07-01 09:30:00
+  end_time: 2020-07-01 11:30:00
+- end_time: 2020-07-01 11:50:00
+  start_time: 2020-07-01 11:30:00
+  title: Break
+- title: Session 2
+  start_time: 2020-07-01 11:50:00
+  end_time: 2020-07-01 15:30:00
+- end_time: 2020-07-01 16:00:00
+  start_time: 2020-07-01 15:30:00
+  title: Break
+- title: Session 3
+  start_time: 2020-07-01 16:00:00
+  end_time: 2020-07-01 19:15:00
+- end_time: 2020-07-01 19:30:00
+  start_time: 2020-07-01 19:15:00
+  title: Break
+- end_time: 2020-07-01 20:15:00
+  start_time: 2020-07-01 19:30:00
+  title: Breakouts Discussion Sessions
+- title: Session 1
+  start_time: 2020-07-02 05:00:00
+  end_time: 2020-07-02 07:10:00
+- end_time: 2020-07-02 07:30:00
+  start_time: 2020-07-02 07:10:00
+  title: Break
+- title: Session 2
+  start_time: 2020-07-02 07:30:00
+  end_time: 2020-07-02 08:20:00
+- end_time: 2020-07-02 08:45:00
+  start_time: 2020-07-02 08:20:00
+  title: Break
+- end_time: 2020-07-02 09:30:00
+  start_time: 2020-07-02 08:45:00
+  title: Sponsor Booth
+- end_time: 2020-07-02 10:15:00
+  start_time: 2020-07-02 09:30:00
+  title: Breakout Discussion Sessions
+- end_time: 2020-07-02 10:45:00
+  start_time: 2020-07-02 10:15:00
+  title: Break
+- title: Session 3
+  start_time: 2020-07-02 10:45:00
+  end_time: 2020-07-02 11:50:00
+- end_time: 2020-07-02 12:30:00
+  start_time: 2020-07-02 11:50:00
+  title: Break
+- title: Session 4
+  start_time: 2020-07-02 12:30:00
+  end_time: 2020-07-02 16:30:00
+- end_time: 2020-07-02 17:00:00
+  start_time: 2020-07-02 16:30:00
+  title: Break
+- title: Session 5
+  start_time: 2020-07-02 18:35:00
+  end_time: 2020-07-02 19:40:00
+- title: Sessions 1
+  start_time: 2020-07-03 05:30:00
+  end_time: 2020-07-03 07:10:00
+- end_time: 2020-07-03 07:30:00
+  start_time: 2020-07-03 07:10:00
+  title: Break
+- end_time: 2020-07-03 09:45:00
+  start_time: 2020-07-03 08:45:00
+  title: Business Meeting, Awards, Closing (live)
