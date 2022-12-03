@@ -222,7 +222,9 @@ ISBN \VAR{conference.isbn}
     {\LARGE \textbf{Keynote Talk: \VAR{talk.title}}\\}
     \vspace*{0.2cm}
     \textbf{\VAR{talk.speaker_name}}\\
+    \BLOCK{if talk.institution}
     \VAR{talk.institution}\\
+    \BLOCK{endif}
     \vspace*{0.1cm}
   \end{center}
 
