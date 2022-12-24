@@ -17,7 +17,7 @@ import yaml
 PARENT_DIR = Path(__file__).parent
 
 
-def generate_proceedings(path: str, overwrite: bool, outdir: str):
+def generate_proceedings(path: str, overwrite: bool, outdir: str, nopax: bool):
     root = Path(path)
     build_dir = Path("build")
     build_dir.mkdir(exist_ok=True)
@@ -72,6 +72,7 @@ def generate_proceedings(path: str, overwrite: bool, outdir: str):
         program=sessions_by_date,
         alphabetized_author_index=alphabetized_author_index,
         include_papers=False,
+        nopax=nopax,
     )
     tex_file = Path(build_dir, "front_matter.tex")
     with open(tex_file, "w+") as f:
@@ -100,6 +101,7 @@ def generate_proceedings(path: str, overwrite: bool, outdir: str):
         program=sessions_by_date,
         alphabetized_author_index=alphabetized_author_index,
         include_papers=True,
+        nopax=nopax,
     )
     tex_file = Path(build_dir, "proceedings.tex")
     with open(tex_file, "w+") as f:
