@@ -304,19 +304,29 @@ def process_papers(papers, root: Path):
     archival_papers = []
     for paper in papers:
         # Always add the paper to the id-to-paper map.
+        if "id" not in paper:
+            raise ValueError(f"missing 'id' in paper: {paper}")
         id_to_paper[paper["id"]] = paper
         # If the paper is not archival, skip the rest of the processing.
-        if not "archival" in paper or not paper["archival"]:
+        if "archival" not in paper or not paper["archival"]:
             continue
+        if "file" not in paper:
+            raise ValueError(f"missing 'file' in paper {paper['id']}")
         pdf_path = Path(root, "papers", paper["file"])
         pdf = PdfFileReader(str(pdf_path))
         paper["num_pages"] = pdf.getNumPages()
         paper["start_page"] = page
         paper["end_page"] = page + pdf.getNumPages() - 1
+        if "authors" not in paper:
+            raise ValueError(f"missing 'authors' in paper {paper['id']}")
         for author in paper["authors"]:
+            if "first_name" not in author:
+                raise ValueError(f"missing 'first_name' in author of paper {paper['id']}")
             given_names = author["first_name"]
             if "middle_name" in author:
                 given_names += f" {author['middle_name']}"
+            if "last_name" not in author:
+                raise ValueError(f"missing 'last_name' in author of paper {paper['id']}")
             index_name = f"{author['last_name']}, {given_names}"
             author_to_pages[index_name].append(page)
         page += pdf.getNumPages()
