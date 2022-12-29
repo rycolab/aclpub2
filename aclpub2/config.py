@@ -21,9 +21,10 @@ def load_configs(root: Path):
         if isinstance(conference[item], str):
             conference[item] = normalize_latex_string(conference[item])
 
-    papers = load_config("papers", root, required=True)
-    for paper in papers:
-        paper["title"] = normalize_latex_string(paper["title"])
+    papers = load_config("papers", root)
+    if papers is not None:
+        for paper in papers:
+            paper["title"] = normalize_latex_string(paper["title"])
     sponsors = load_config("sponsors", root)
     prefaces = load_config("prefaces", root)
     organizing_committee = load_config("organizing_committee", root)

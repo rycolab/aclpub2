@@ -17,7 +17,7 @@ import yaml
 PARENT_DIR = Path(__file__).parent
 
 
-def generate_proceedings(path: str, overwrite: bool, outdir: str, nopax: bool):
+def generate_proceedings(path: str, overwrite: bool, outdir: str, nopax: bool, frontmatter: bool):
     root = Path(path)
     build_dir = Path("build")
     build_dir.mkdir(exist_ok=True)
@@ -43,7 +43,6 @@ def generate_proceedings(path: str, overwrite: bool, outdir: str, nopax: bool):
         additional_pages,
         program,
     ) = load_configs(root)
-    id_to_paper, alphabetized_author_index, archival_papers = process_papers(papers, root)
 
     sessions_by_date = None
     if program is not None:
@@ -54,7 +53,7 @@ def generate_proceedings(path: str, overwrite: bool, outdir: str, nopax: bool):
             traceback.print_exc()
             sessions_by_date = None
 
-    generate_watermarked_pdfs(id_to_paper.values(), conference, root)
+    id_to_paper, alphabetized_author_index, archival_papers = process_papers(papers, root)
 
     template = load_template("proceedings")
     rendered_template = template.render(
@@ -86,6 +85,34 @@ def generate_proceedings(path: str, overwrite: bool, outdir: str, nopax: bool):
         ]
     )
 
+    # Regenerate the output directory.
+    output_dir = Path(outdir)
+    shutil.rmtree(str(output_dir), ignore_errors=True)
+    output_dir.mkdir()
+
+    # Copy the inputs yaml.
+    input_copy_dir = Path(output_dir, "inputs")
+    input_copy_dir.mkdir()
+    files = glob.iglob(os.path.join(root, "*.y*ml"))
+    for file in files:
+        if os.path.isfile(file):
+            shutil.copy2(file, input_copy_dir)
+
+    # If there are no papers, treat the front_matter as the proceedings and exit.
+    if papers is None:
+        shutil.copy2(
+            Path(build_dir, "front_matter.pdf"), Path(output_dir, "proceedings.pdf")
+        )
+        return
+
+    # If frontmatter is set, output the front matter and exit.
+    if frontmatter:
+        shutil.copy2(
+            Path(build_dir, "front_matter.pdf"), Path(output_dir, "front_matter.pdf")
+        )
+        return
+
+    generate_watermarked_pdfs(id_to_paper.values(), conference, root)
     rendered_template = template.render(
         root=str(root),
         conference=conference,
@@ -124,18 +151,6 @@ def generate_proceedings(path: str, overwrite: bool, outdir: str, nopax: bool):
         ]
     )
 
-    output_dir = Path(outdir)
-    shutil.rmtree(str(output_dir), ignore_errors=True)
-    output_dir.mkdir()
-    rearrange_outputs(root, build_dir, output_dir, papers)
-
-
-def copy_folder(input_path: Path, output_dir: Path):
-    if os.path.isdir(input_path):
-        shutil.copytree(input_path, output_dir)
-
-
-def rearrange_outputs(input_path: Path, build_dir: Path, output_dir: Path, papers):
     # Copy proceedings
     shutil.copy2(
         Path(build_dir, "proceedings.pdf"), Path(output_dir, "proceedings.pdf")
@@ -147,13 +162,6 @@ def rearrange_outputs(input_path: Path, build_dir: Path, output_dir: Path, paper
         shutil.copy2(file, output_watermarked)
     # Copy the front matter as 0.pdf.
     shutil.copy2(Path(build_dir, "front_matter.pdf"), Path(output_watermarked, "0.pdf"))
-    # Copy the inputs yaml.
-    input_copy_dir = Path(output_dir, "inputs")
-    input_copy_dir.mkdir()
-    files = glob.iglob(os.path.join(input_path, "*.y*ml"))
-    for file in files:
-        if os.path.isfile(file):
-            shutil.copy2(file, input_copy_dir)
     # Overwrite the papers.yml with information that contains page ranges
     with open(Path(input_copy_dir, "papers.yml"), "w") as new_papers_yml:
         yaml.dump(papers, new_papers_yml)
@@ -166,10 +174,15 @@ def rearrange_outputs(input_path: Path, build_dir: Path, output_dir: Path, paper
         "sponsor_logos",
     ]:
         copy_folder(
-            Path(input_path, folder_to_copy), Path(input_copy_dir, folder_to_copy)
+            Path(root, folder_to_copy), Path(input_copy_dir, folder_to_copy)
         )
 
-    copy_folder(Path(input_path, "attachments"), Path(output_dir, "attachments"))
+    copy_folder(Path(root, "attachments"), Path(output_dir, "attachments"))
+
+
+def copy_folder(input_path: Path, output_dir: Path):
+    if os.path.isdir(input_path):
+        shutil.copytree(input_path, output_dir)
 
 
 def find_page_offset(proceedings_pdf):
@@ -298,6 +311,8 @@ def process_papers(papers, root: Path):
     - alphabetizes and splits author names, and associates them with the start pages
         of papers they authored, in preparation for index generation
     """
+    if papers is None:
+        return None, None, None
     page = 1
     id_to_paper = {}
     author_to_pages = defaultdict(list)

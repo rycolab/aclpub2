@@ -1,0 +1,17 @@
+- title: Invited 1
+  abstract_file: invited1.tex
+  speaker_name: Jhon Doe
+  institution: University of California
+  bio_file: invited1_bio.tex
+  date: 2020-07-01 18:30:00
+  location: Room 1
+  chair: Chair 1
+
+- title: Invited 2
+  abstract_file: invited2.tex
+  speaker_name: Jennifer Doe
+  institution: University of New York
+  bio_file: invited2_bio.tex
+  date: 2020-07-02 18:30:00
+  location: Room 2
+  chair: Chair 2
