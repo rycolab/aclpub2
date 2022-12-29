@@ -34,6 +34,11 @@ if __name__ == "__main__":
         help="If set, excludes PAX, which can be helpful when compiling large proceedings.",
     )
     parser.add_argument(
+        "--frontmatter",
+        action="store_true",
+        help="If set, only generates the front matter.",
+    )
+    parser.add_argument(
         "--outdir",
         type=str,
         default="output",
@@ -42,6 +47,6 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
     if args.proceedings == True:
-        generate_proceedings(args.path, args.overwrite, args.outdir, args.nopax)
+        generate_proceedings(args.path, args.overwrite, args.outdir, args.nopax, args.frontmatter)
     if args.handbook == True:
         generate_handbook(args.path, args.overwrite)

@@ -17,7 +17,7 @@ import yaml
 PARENT_DIR = Path(__file__).parent
 
 
-def generate_proceedings(path: str, overwrite: bool, outdir: str, nopax: bool):
+def generate_proceedings(path: str, overwrite: bool, outdir: str, nopax: bool, frontmatter: bool):
     root = Path(path)
     build_dir = Path("build")
     build_dir.mkdir(exist_ok=True)
@@ -102,6 +102,13 @@ def generate_proceedings(path: str, overwrite: bool, outdir: str, nopax: bool):
     if papers is None:
         shutil.copy2(
             Path(build_dir, "front_matter.pdf"), Path(output_dir, "proceedings.pdf")
+        )
+        return
+
+    # If frontmatter is set, output the front matter and exit.
+    if frontmatter:
+        shutil.copy2(
+            Path(build_dir, "front_matter.pdf"), Path(output_dir, "front_matter.pdf")
         )
         return
 
