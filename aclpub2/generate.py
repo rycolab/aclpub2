@@ -17,7 +17,7 @@ import yaml
 PARENT_DIR = Path(__file__).parent
 
 
-def generate_proceedings(path: str, overwrite: bool, outdir: str):
+def generate_proceedings(path: str, overwrite: bool, outdir: str, nopax: bool):
     root = Path(path)
     build_dir = Path("build")
     build_dir.mkdir(exist_ok=True)
@@ -71,6 +71,7 @@ def generate_proceedings(path: str, overwrite: bool, outdir: str):
         program=sessions_by_date,
         alphabetized_author_index=alphabetized_author_index,
         include_papers=False,
+        nopax=nopax,
     )
     tex_file = Path(build_dir, "front_matter.tex")
     with open(tex_file, "w+") as f:
@@ -120,6 +121,7 @@ def generate_proceedings(path: str, overwrite: bool, outdir: str):
         program=sessions_by_date,
         alphabetized_author_index=alphabetized_author_index,
         include_papers=True,
+        nopax=nopax,
     )
     tex_file = Path(build_dir, "proceedings.tex")
     with open(tex_file, "w+") as f:
@@ -310,19 +312,29 @@ def process_papers(papers, root: Path):
     archival_papers = []
     for paper in papers:
         # Always add the paper to the id-to-paper map.
+        if "id" not in paper:
+            raise ValueError(f"missing 'id' in paper: {paper}")
         id_to_paper[paper["id"]] = paper
         # If the paper is not archival, skip the rest of the processing.
-        if not "archival" in paper or not paper["archival"]:
+        if "archival" not in paper or not paper["archival"]:
             continue
+        if "file" not in paper:
+            raise ValueError(f"missing 'file' in paper {paper['id']}")
         pdf_path = Path(root, "papers", paper["file"])
         pdf = PdfFileReader(str(pdf_path))
         paper["num_pages"] = pdf.getNumPages()
         paper["start_page"] = page
         paper["end_page"] = page + pdf.getNumPages() - 1
+        if "authors" not in paper:
+            raise ValueError(f"missing 'authors' in paper {paper['id']}")
         for author in paper["authors"]:
+            if "first_name" not in author:
+                raise ValueError(f"missing 'first_name' in author of paper {paper['id']}")
             given_names = author["first_name"]
             if "middle_name" in author:
                 given_names += f" {author['middle_name']}"
+            if "last_name" not in author:
+                raise ValueError(f"missing 'last_name' in author of paper {paper['id']}")
             index_name = f"{author['last_name']}, {given_names}"
             author_to_pages[index_name].append(page)
         page += pdf.getNumPages()
