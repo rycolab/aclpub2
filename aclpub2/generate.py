@@ -323,7 +323,7 @@ def process_papers(papers, root: Path):
             raise ValueError(f"missing 'id' in paper: {paper}")
         id_to_paper[paper["id"]] = paper
         # If the paper is not archival, skip the rest of the processing.
-        if "archival" not in paper or not paper["archival"]:
+        if "archival" in paper and not paper["archival"]:
             continue
         if "file" not in paper:
             raise ValueError(f"missing 'file' in paper {paper['id']}")
