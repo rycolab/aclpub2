@@ -323,7 +323,7 @@ def process_papers(papers, root: Path):
             raise ValueError(f"missing 'id' in paper: {paper}")
         id_to_paper[paper["id"]] = paper
         # If the paper is not archival, skip the rest of the processing.
-        if "archival" not in paper or not paper["archival"]:
+        if "archival" in paper and not paper["archival"]:
             continue
         if "file" not in paper:
             raise ValueError(f"missing 'file' in paper {paper['id']}")
@@ -367,7 +367,7 @@ def generate_watermarked_pdfs(papers_with_pages, conference, root: Path):
     watermarked_pdfs.mkdir(exist_ok=True)
     with multiprocessing.Pool(processes=multiprocessing.cpu_count()) as pool:
         for paper in papers_with_pages:
-            if not "archival" in paper or not paper["archival"]:
+            if "archival" in paper and not paper["archival"]:
                 continue
             pool.apply_async(
                 create_watermarked_pdf,

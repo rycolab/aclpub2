@@ -236,6 +236,8 @@ Each of the listed papers must have a unique ID so that they may be referred to 
       file: Local file path, e.g. attachments/5.zip
   title: Title of the paper.
   abstract: Abstract of the paper, usually a LaTeX fragment.
+  archival: Whether or not the paper is archival. Default is True, set to false to
+      exclude a paper from the proceedings.
 ```
 Please notice that in the field ``title`` in the ``attachments`` group it is not possible to use external urls, but only files added in the attachment folder can be referred with the relative path.
 
