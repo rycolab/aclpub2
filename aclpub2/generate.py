@@ -367,7 +367,7 @@ def generate_watermarked_pdfs(papers_with_pages, conference, root: Path):
     watermarked_pdfs.mkdir(exist_ok=True)
     with multiprocessing.Pool(processes=multiprocessing.cpu_count()) as pool:
         for paper in papers_with_pages:
-            if not "archival" in paper or not paper["archival"]:
+            if "archival" in paper and not paper["archival"]:
                 continue
             pool.apply_async(
                 create_watermarked_pdf,
