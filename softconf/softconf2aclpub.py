@@ -256,11 +256,11 @@ def get_papers():
                             "institution": tex_escape(row[f"{i}: Affiliation"])
                         })
                 paper = {
-                    "abstract": tex_escape(row["Summary"]),
+                    "abstract": tex_escape(row["Abstract"]),
                     "attributes": {
-                        "paper_type": "long paper",
+                        "paper_type": row["Submission Type"],
                         "presentation_type": "N/A",
-                        "submitted_area": "System Demonstrations",
+                        "submitted_area": row["Track"],
                     },
                     "authors": authors,
                     "decision": "Accept to main conference",
@@ -285,9 +285,9 @@ def get_papers():
         yaml.dump(papers, fo, width=4096)
 
 # main
-get_conference_details()
-get_program_committee()
-get_files()
+#get_conference_details()
+#get_program_committee()
+#get_files()
 get_papers()
 
 
