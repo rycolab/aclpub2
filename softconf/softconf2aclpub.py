@@ -285,9 +285,9 @@ def get_papers():
         yaml.dump(papers, fo, width=4096)
 
 # main
-#get_conference_details()
-#get_program_committee()
-#get_files()
+get_conference_details()
+get_program_committee()
+get_files()
 get_papers()
 
 
