@@ -6,9 +6,9 @@
 \usepackage{eurosym}
 
 
-\usepackage[T1]{fontenc}
+%\usepackage[T1]{fontenc}
 % For Vietnamese characters
-% \usepackage[T5]{fontenc}
+\usepackage[T5]{fontenc}
 \usepackage[utf8]{inputenc}
 
 \usepackage{multicol}
@@ -222,12 +222,30 @@ ISBN \VAR{conference.isbn}
 \BLOCK{for talk in invited_talks}
   \begin{center}
     {\LARGE \textbf{Keynote Talk: \VAR{talk.title}}\\}
-    \vspace*{0.2cm}
+    \vspace*{0.5cm}
+    %\begin{minipage}[c][0.35\linewidth][c]{0.35\linewidth}
+     % \end{minipage}\\
     \textbf{\VAR{talk.speaker_name}}\\
     \BLOCK{if talk.institution}
     \VAR{talk.institution}\\
     \BLOCK{endif}
-    \vspace*{0.1cm}
+    
+    \BLOCK{if talk.photo}
+   \begin{center}
+        \includegraphics[width=0.3\linewidth]{\VAR{root}/invited_talks/\VAR{talk.photo}}
+     \end{center}    
+    \BLOCK{endif}
+    
+    \BLOCK{if talk.date}
+    \textbf{\VAR{talk.date}} -- 
+    \BLOCK{endif}
+    \BLOCK{if talk.time}
+    Time: \textbf{\VAR{talk.time}} --
+    \BLOCK{endif}
+    \BLOCK{if talk.location}
+    Room: \textbf{\VAR{talk.location}}\\
+    \BLOCK{endif}
+    
   \end{center}
 
   \vspace*{0.2cm}
