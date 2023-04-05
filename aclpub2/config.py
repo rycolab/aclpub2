@@ -42,6 +42,7 @@ def load_configs(root: Path):
                     input("Press a key to continue...")
 
     invited_talks = load_config("invited_talks", root)
+    panels = load_config("panels", root)
     additional_pages = load_config("additional_pages", root)
     program = load_config("program", root)
     if program is not None:
@@ -73,6 +74,7 @@ def load_configs(root: Path):
         organizing_committee,
         program_committee,
         invited_talks,
+        panels,
         additional_pages,
         program,
     )
@@ -107,6 +109,7 @@ def load_configs_handbook(root: Path):
     normalize_program(tutorial_program)
     tutorials = load_config("tutorials", root)
     invited_talks = load_config("invited_talks", root, required=False)
+    panels = load_config("panels", root, required=False)
     additional_pages = load_config("additional_pages", root, required=False)
     program = load_config("program", root)
     normalize_program(program)
@@ -133,6 +136,7 @@ def load_configs_handbook(root: Path):
         tutorial_program,
         tutorials,
         invited_talks,
+        panels,
         additional_pages,
         program,
         program_overview,

@@ -261,6 +261,78 @@ ISBN \VAR{conference.isbn}
 \BLOCK{endfor}
 \BLOCK{endif}
 
+
+%%%%%%%%%%%%%%%%%
+% Panels %
+%%%%%%%%%%%%%%%%%
+\BLOCK{if panels}
+\BLOCK{for panel in panels}
+  \begin{center}
+    {\LARGE \textbf{Panel: \VAR{panel.title}}}
+    
+    \BLOCK{if panel.photo}
+        \begin{center}
+        \includegraphics[width=\linewidth]{\VAR{root}/panels/\VAR{panel.photo}}
+        \end{center}
+    \BLOCK{endif}
+    
+    \vspace*{0.5cm}
+    \BLOCK{if panel.date}
+    \textbf{\VAR{panel.date}} -- 
+    \BLOCK{endif}
+    \BLOCK{if panel.time}
+    Time: \textbf{\VAR{panel.time}} --
+    \BLOCK{endif}
+    \BLOCK{if panel.location}
+    Room: \textbf{\VAR{panel.location}}
+    \BLOCK{endif}
+  \end{center}
+  \BLOCK{if panel.abstract_file}
+  \VAR{load_file(root, "panels", panel.abstract_file)}\\
+  \BLOCK{endif}
+  \newline
+    %\begin{minipage}[c][0.35\linewidth][c]{0.35\linewidth}
+     % \end{minipage}\\
+    \BLOCK{if panel.moderators} 
+    	\BLOCK{for moderator in panel.moderators} 
+    	    \BLOCK{if moderator.name}
+    			\textbf{\textbf{Moderator: }\VAR{moderator.name}},
+    		\BLOCK{endif}
+    		\BLOCK{if moderator.institution}
+    		 	\textbf{\VAR{moderator.institution}}
+    		\BLOCK{endif}
+    		\BLOCK{if moderator.bio_file}
+  				\VAR{load_file(root, "panels", moderator.bio_file)}\\
+
+  			\BLOCK{endif}
+    		 
+    	\BLOCK{endfor}
+    \BLOCK{endif}  
+    
+    \BLOCK{if panel.panelists} 
+        \textbf{Panelists: }\\
+    	\BLOCK{for panelist in panel.panelists} 
+    	    \BLOCK{if panelist.name}
+    			\textbf{\VAR{panelist.name}},
+    		\BLOCK{endif}
+    		\BLOCK{if panelist.institution}
+    		 	\VAR{panelist.institution}
+    		\BLOCK{endif}
+    		\BLOCK{if panelist.bio_file}
+  				\VAR{load_file(root, "panels", panelist.bio_file)}\\
+  				\newline
+
+  			\BLOCK{endif}
+    		 
+    	\BLOCK{endfor}
+    \BLOCK{endif}
+
+
+  \newpage
+  
+\BLOCK{endfor}
+\BLOCK{endif}
+
 %%%%%%%%%%%%%%%
 % Special Additional Pages %
 %%%%%%%%%%%%%%%
