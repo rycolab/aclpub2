@@ -29,17 +29,18 @@ def load_configs(root: Path):
     prefaces = load_config("prefaces", root)
     organizing_committee = load_config("organizing_committee", root)
     program_committee = load_config("program_committee", root)
-    for block in program_committee:
-        for entry in block["entries"]:
-            for k, v in entry.items():
-                try:
-                    entry[k] = normalize_latex_string(v)
-                except:
-                    print(
-                        "Warning: the following entry from the program_committee.yml is ill-formed"
-                    )
-                    print("\t" + str(entry))
-                    input("Press a key to continue...")
+    if program_committee is not None:
+        for block in program_committee:
+            for entry in block["entries"]:
+                for k, v in entry.items():
+                    try:
+                        entry[k] = normalize_latex_string(v)
+                    except:
+                        print(
+                            "Warning: the following entry from the program_committee.yml is ill-formed"
+                        )
+                        print("\t" + str(entry))
+                        input("Press a key to continue...")
 
     invited_talks = load_config("invited_talks", root)
     panels = load_config("panels", root)
