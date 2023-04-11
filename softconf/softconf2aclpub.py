@@ -264,7 +264,7 @@ def get_papers():
                     "attributes": {
                         "paper_type": row["Submission Type"],
                         "presentation_type": "N/A",
-                        "submitted_area": row["Track"],
+                        "submitted_area": row["Track"] if "Track" in row else "",
                     },
                     "authors": authors,
                     "decision": "Accept to main conference",
