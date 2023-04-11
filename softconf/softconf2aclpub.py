@@ -246,6 +246,10 @@ def get_papers():
             authors = []
             if row["Acceptance Status"].startswith("Accept"):
                 for i in range(1, 11):
+                    try:
+                        row[f"{i}: Last Name"]
+                    except:
+                        continue
                     if row[f"{i}: Last Name"] != "":
                         authors.append({
                             "emails": row[f"{i}: Email"],
