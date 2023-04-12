@@ -246,6 +246,10 @@ def get_papers():
             authors = []
             if row["Acceptance Status"].startswith("Accept"):
                 for i in range(1, 11):
+                    try:
+                        row[f"{i}: Last Name"]
+                    except:
+                        continue
                     if row[f"{i}: Last Name"] != "":
                         authors.append({
                             "emails": row[f"{i}: Email"],
@@ -260,7 +264,7 @@ def get_papers():
                     "attributes": {
                         "paper_type": row["Submission Type"],
                         "presentation_type": "N/A",
-                        "submitted_area": row["Track"],
+                        "submitted_area": row["Track"] if "Track" in row else "",
                     },
                     "authors": authors,
                     "decision": "Accept to main conference",
