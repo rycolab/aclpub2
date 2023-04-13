@@ -286,7 +286,7 @@ def get_papers():
             
     # write the YAML
     with open("papers.yml", "w") as fo:
-        yaml.dump(papers, fo, width=4096)
+        yaml.dump(papers, fo, width=4096, allow_unicode=True)
 
 # main
 get_conference_details()
