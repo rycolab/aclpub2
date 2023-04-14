@@ -151,7 +151,7 @@ def get_conference_details():
 
     # write the YAML
     with open("conference_details.yml", "w") as fo:
-        yaml.dump(conference_details, fo)
+        yaml.dump(conference_details, fo, allow_unicode=True)
 
 def get_program_committee():
     program_committee = [
@@ -189,7 +189,7 @@ def get_program_committee():
 
     # write the YAML
     with open("program_committee.yml", "w") as fo:
-        yaml.dump(program_committee, fo)
+        yaml.dump(program_committee, fo, allow_unicode=True)
 
 def get_files():
     br = mechanize.Browser()
@@ -286,7 +286,7 @@ def get_papers():
             
     # write the YAML
     with open("papers.yml", "w") as fo:
-        yaml.dump(papers, fo, width=4096)
+        yaml.dump(papers, fo, width=4096, allow_unicode=True)
 
 # main
 get_conference_details()
