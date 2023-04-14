@@ -13,8 +13,6 @@ from glob import glob
 import os
 import shutil
 import re
-import pdb
-import chardet
 
 with open("config.json") as f:
     config = json.load(f)
@@ -262,9 +260,9 @@ def get_papers():
                             "institution": tex_escape(row[f"{i}: Affiliation"])
                         })
                 paper = {
-                    "abstract": tex_escape(row["Abstract"]),
+                    "abstract": tex_escape(row["Summary"]),
                     "attributes": {
-                        "paper_type": row["Submission Type"],
+                        "paper_type": row["Submission Type"] if "Submission Type" in row else "",
                         "presentation_type": "N/A",
                         "submitted_area": row["Track"] if "Track" in row else "",
                     },
