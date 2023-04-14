@@ -1,8 +1,8 @@
 {
-"conf" : "eacl2023",
-"track" : "RAIL2023",
-"username" : "<User>",
-"password" : "<Password>",
-"service_program_committee" : "https://softconf.com/eacl2023/LoResMT2023/cgi-bin/scmd.cgi?scmd=webservice&token=2T-G4C9E3P9P7J4C5B3G3A3",
-"service_papers" : "https://softconf.com/eacl2023/SlavicNLP2023/cgi-bin/scmd.cgi?scmd=webservice&token=1T-D4C6D9D6P4J2F9H6H3J5"
+"conf" : "CONFERENCENAMEe.g.acl2022",
+"track" : "TRACKNAMEe.g.demos",
+"username" : "YOURSOFTCONFUSERNAME",
+"password" : "YOURSOFTCONFPASSWORD",
+"service_program_committee" : "https://www.softconf.com/acl2022/demos/cgi-bin/scmd.cgi?scmd=webservice&token=REVIEWERWEBSERVICETOKEN",
+"service_papers" : "https://www.softconf.com/acl2022/demos/cgi-bin/scmd.cgi?scmd=webservice&token=SUBMISSIONSWEBSERVICETOKEN"
 }
