@@ -260,9 +260,9 @@ def get_papers():
                             "institution": tex_escape(row[f"{i}: Affiliation"])
                         })
                 paper = {
-                    "abstract": tex_escape(row["Summary"]),
+                    "abstract": tex_escape(row["Abstract"]),
                     "attributes": {
-                        "paper_type": row["Submission Type"] if "Submission Type" in row else "",
+                        "paper_type": row["Submission Type"],
                         "presentation_type": "N/A",
                         "submitted_area": row["Track"] if "Track" in row else "",
                     },
