@@ -284,7 +284,8 @@ def get_papers():
 
                 papers.append(paper)
 
-    with open("papers.yml", "w", encoding = 'utf-8') as fo:
+    # write the YAML
+    with open("papers.yml", "w") as fo:
         yaml.dump(papers, fo, width=4096, allow_unicode=True)
 
 # main
