@@ -141,7 +141,7 @@ def main(username, password, venue, download_all, download_pdfs):
     small_log.close()
 
     papers.sort(key=lambda p: p["id"])
-    yaml.dump(papers, open("papers.yml", "w"))
+    yaml.dump(papers, open("papers.yml", "w"), allow_unicode=True)
 
 
 if __name__ == "__main__":
