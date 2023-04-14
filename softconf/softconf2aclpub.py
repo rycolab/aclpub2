@@ -165,7 +165,7 @@ def get_program_committee():
         }
         ]
     filename = wget.download(config["service_program_committee"])
-    with open(filename, encoding='utf-8', errors="ignore") as f:
+    with open(filename, encoding='utf-8') as f:
         reader = csv.DictReader(f)
         for row in reader:
             person = {
@@ -240,7 +240,7 @@ def get_files():
 def get_papers():
     papers = []
     filename = wget.download(config["service_papers"])
-    with open(filename, encoding='utf-8', errors='ignore') as f:
+    with open(filename, encoding='utf-8') as f:
         reader = csv.DictReader(f)
         for row in reader:
             authors = []
