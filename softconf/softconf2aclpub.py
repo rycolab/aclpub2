@@ -20,14 +20,14 @@ with open("config.json") as f:
 if config["username"] == "" or config["password"] == "":
     config["username"] = input("Insert your SOFTCONF username: ")
     config["password"] = getpass("Insert your SOFTCONF password: ")
-    
+
 SOFTCONF_URL = "https://www.softconf.com/"
 CONF_URL = f"{SOFTCONF_URL}{config['conf']}/{config['track']}/"
 
 
 def capitalize_name(name):
     """
-        :param name: a string containing a name 
+        :param name: a string containing a name
         :return: the string where the first letter of every token is capitalized
     """
     tokens = name.split(" ")
@@ -73,7 +73,7 @@ def tex_escape(text):
     }
     regex = re.compile('|'.join(re.escape(str(key)) for key in sorted(conv.keys(), key = lambda item: - len(item))))
     return regex.sub(lambda match: conv[match.group()], text)
-    
+
 # helper function for SOFTCONF scraping
 def follow_link_by_text(br, text):
     """
@@ -121,7 +121,7 @@ def get_conference_details():
             metadata[control.name] = control.value
 
     # read the conference metadata        
-    conference_details = dict()        
+    conference_details = dict()
     conference_details["book_title"] = f"Proceedings of the {metadata['CONF_NAME']} (XXX)"
     conference_details["event_name"] = metadata['CONF_NAME']
     conference_details["cover_subtitle"] = f"Proceedings of the Conference (XXX)"
@@ -142,7 +142,7 @@ def get_conference_details():
     html = response.read()
     soup = BeautifulSoup(html, features="html5lib")
     table = soup.find(id="t2")
-    for row in table.findAll('tr')[1:-1]: 
+    for row in table.findAll('tr')[1:-1]:
         col = row.findAll('td')
         conference_details["editors"].append({
             "first_name": capitalize_name(col[3].string.strip()),
@@ -165,7 +165,7 @@ def get_program_committee():
         }
         ]
     filename = wget.download(config["service_program_committee"])
-    with open(filename) as f:   
+    with open(filename, encoding='utf-8') as f:
         reader = csv.DictReader(f)
         for row in reader:
             person = {
@@ -224,23 +224,23 @@ def get_files():
         fo.write(archive)
     with zipfile.ZipFile("files.zip", 'r') as zip_ref:
         zip_ref.extractall(".")
-        
+
     os.makedirs("papers", exist_ok=True)
     for filename in glob("final/*/*.pdf"):
         paper_id = os.path.basename(filename).split("_")[0]
         os.rename(filename, os.path.join("papers", paper_id+".pdf"))
-        
+
     os.makedirs("attachments", exist_ok=True)
     for filename in glob("final/*/*"):
         os.rename(filename, os.path.join("attachments", os.path.basename(filename)))
-        
+
     shutil.rmtree("final")
     os.remove("files.zip")
-        
+
 def get_papers():
     papers = []
     filename = wget.download(config["service_papers"])
-    with open(filename, encoding='utf-8', errors='ignore') as f:   
+    with open(filename, encoding='utf-8') as f:
         reader = csv.DictReader(f)
         for row in reader:
             authors = []
@@ -281,9 +281,9 @@ def get_papers():
                     })
                 if len(attachments) > 0:
                     paper["attachments"] = attachments
-                    
+
                 papers.append(paper)
-            
+
     # write the YAML
     with open("papers.yml", "w") as fo:
         yaml.dump(papers, fo, width=4096, allow_unicode=True)

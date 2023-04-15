@@ -105,4 +105,4 @@ for reviewer in aux:
 program_committee.extend(aux)
 
 
-yaml.dump(program_committee, open('program_committee.yml', 'w'))
+yaml.dump(program_committee, open('program_committee.yml', 'w'), allow_unicode=True)
