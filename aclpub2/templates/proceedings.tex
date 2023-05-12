@@ -410,7 +410,6 @@ ISBN \VAR{conference.isbn}
 \setcounter{page}{1}
  \renewcommand{\headrulewidth}{0pt}
 \BLOCK{for paper in archival_papers}
-  \addcontentsline{toc}{section}{TEMPLATE_TITLE}
   \AddToShipoutPicture*{
     \setlength{\unitlength}{1mm}
     \footnotesize
@@ -426,7 +425,7 @@ ISBN \VAR{conference.isbn}
   	  						\VAR{conference_dates}, \VAR{conference.start_date.year} \textcopyright
   							\VAR{conference.start_date.year} Association for Computational Linguistics}}
   }
-  \includepdf[pagecommand={\thispagestyle{plain}},pages=-]{\VAR{root}/papers/\VAR{paper.file}}
+  \includepdf[pagecommand={\thispagestyle{plain}},pages=-,addtotoc={1,section,1,{\VAR{paper.title}},ref:paper_{\VAR{paper.id}}}]{\VAR{root}/papers/\VAR{paper.file}}
 \BLOCK{endfor}
 
 %%%%%%%%%%%%%%%%
