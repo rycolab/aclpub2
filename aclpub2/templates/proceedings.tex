@@ -51,6 +51,8 @@
 % Cover %
 %%%%%%%%%
 \begin{titlepage}
+  \phantomsection
+  \addcontentsline{toc}{section}{Title page}
   \begin{center}
     \vspace{1.5cm}
 
@@ -76,6 +78,8 @@
 %%%%%%%%%%%%
 \BLOCK{if sponsors}
 \setcounter{page}{2}
+\phantomsection
+\addcontentsline{toc}{section}{Sponsors}
 \vspace*{2cm}
 \noindent
 
@@ -113,6 +117,8 @@
 %%%%%%%%%%%%%
 % Copyright %
 %%%%%%%%%%%%%
+\phantomsection
+\addcontentsline{toc}{section}{Copyright}
 \vspace*{11cm}
 {\large
 
@@ -145,6 +151,8 @@ ISBN \VAR{conference.isbn}
 %%%%%%%%%%%%
 \BLOCK{if prefaces}
 \BLOCK{for preface in prefaces}
+  \phantomsection
+  \addcontentsline{toc}{section}{\VAR{preface.title}}
   \begin{center}
    { \Large \textbf{\VAR{preface.title}}}
   \end{center}
@@ -158,6 +166,8 @@ ISBN \VAR{conference.isbn}
 % Organizing Committee %
 %%%%%%%%%%%%%%%%%%%%%%%%
 \BLOCK{if organizing_committee}
+\phantomsection
+\addcontentsline{toc}{section}{Organizing Committee}
 \begin{center}
 {\Large \textbf{Organizing Committee}}
 \end{center}
@@ -177,6 +187,8 @@ ISBN \VAR{conference.isbn}
 % Program Committee %
 %%%%%%%%%%%%%%%%%%%%%
 \BLOCK{if program_committee}
+\phantomsection
+\addcontentsline{toc}{section}{Program Committee}
 \begin{center}
 \Large \textbf{Program Committee}
 \end{center}
@@ -220,6 +232,8 @@ ISBN \VAR{conference.isbn}
 %%%%%%%%%%%%%%%%%
 \BLOCK{if invited_talks}
 \BLOCK{for talk in invited_talks}
+  \phantomsection
+  \addcontentsline{toc}{section}{Keynote Talk: \VAR{talk.title}}
   \begin{center}
     {\LARGE \textbf{Keynote Talk: \VAR{talk.title}}\\}
     \vspace*{0.5cm}
@@ -267,6 +281,8 @@ ISBN \VAR{conference.isbn}
 %%%%%%%%%%%%%%%%%
 \BLOCK{if panels}
 \BLOCK{for panel in panels}
+  \phantomsection
+  \addcontentsline{toc}{section}{Panel: \VAR{panel.title}}
   \begin{center}
     {\LARGE \textbf{Panel: \VAR{panel.title}}}
     
@@ -338,6 +354,8 @@ ISBN \VAR{conference.isbn}
 %%%%%%%%%%%%%%%
 \BLOCK{if additional_pages}
 \BLOCK{for additional_page in additional_pages}
+  \phantomsection
+  \addcontentsline{toc}{section}{\VAR{additional_page.title}}
   \begin{center}
    { \LARGE \textbf{\VAR{additional_page.title}}}
   \end{center}
@@ -351,6 +369,8 @@ ISBN \VAR{conference.isbn}
 % Table of Contents %
 %%%%%%%%%%%%%%%%%%%%%
 \BLOCK{if archival_papers}
+\phantomsection
+\addcontentsline{toc}{section}{Table of Contents}
 \newpage  % Empty page before TOC
 \pagestyle{plain}
 \begin{center}
@@ -370,6 +390,8 @@ ISBN \VAR{conference.isbn}
 % Program %
 %%%%%%%%%%%
 \BLOCK{if program}
+\phantomsection
+\addcontentsline{toc}{section}{Program}
 \renewcommand{\baselinestretch}{0.87}
 \setlength{\parindent}{0in}
 \setlength{\parskip}{2ex}
