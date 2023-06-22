@@ -1,4 +1,5 @@
 from pathlib import Path
+from datetime import datetime
 
 import yaml
 
@@ -25,6 +26,15 @@ def load_configs(root: Path):
     if papers is not None:
         for paper in papers:
             paper["title"] = normalize_latex_string(paper["title"])
+            paper["abstract"] = normalize_latex_string(paper["abstract"])
+
+            # force strings into data-time objects
+            if isinstance(paper["start_time"], str):
+                paper["start_time"] = datetime.strptime(paper["start_time"], '%Y-%m-%d %H:%M:%S')
+            if isinstance(paper["end_time"], str):
+                paper["end_time"] = datetime.strptime(paper["end_time"], '%Y-%m-%d %H:%M:%S')
+            
+            
     sponsors = load_config("sponsors", root)
     prefaces = load_config("prefaces", root)
     organizing_committee = load_config("organizing_committee", root)
@@ -49,9 +59,24 @@ def load_configs(root: Path):
     if program is not None:
         for entry in program:
             entry["title"] = normalize_latex_string(entry["title"])
+            entry["abstract"] = normalize_latex_string(entry["abstract"])
+
+            # force strings into data-time objects
+            if isinstance(entry["start_time"], str):
+                entry["start_time"] = datetime.strptime(entry["start_time"], '%Y-%m-%d %H:%M:%S')
+            if isinstance(entry["end_time"], str):
+                entry["end_time"] = datetime.strptime(entry["end_time"], '%Y-%m-%d %H:%M:%S')
+            
+
             if "subsessions" in entry:
-                for sub_entry in entry["subsessions"]:
-                    sub_entry["title"] = normalize_latex_string(sub_entry["title"])
+                for subentry in entry["subsessions"]:
+                    subentry["title"] = normalize_latex_string(subentry["title"])
+
+                    if isinstance(subentry["start_time"], str):
+                        subentry["start_time"] = datetime.strptime(subentry["start_time"], '%Y-%m-%d %H:%M:%S')
+                    if isinstance(subentry["end_time"], str):
+                        subentry["end_time"] = datetime.strptime(subentry["end_time"], '%Y-%m-%d %H:%M:%S')
+
 
     # Consistency check of input material
     is_ok = True
@@ -84,9 +109,39 @@ def load_configs(root: Path):
 def normalize_program(program):
     for entry in program:
         entry["title"] = normalize_latex_string(entry["title"])
+        
+        
+        # force strings into data-time objects
+        if isinstance(entry["start_time"], str):
+            entry["start_time"] = datetime.strptime(entry["start_time"], '%Y-%m-%d %H:%M:%S')
+        if isinstance(entry["end_time"], str):
+            entry["end_time"] = datetime.strptime(entry["end_time"], '%Y-%m-%d %H:%M:%S')
+
+            
         if "subsessions" in entry:
             for subentry in entry["subsessions"]:
                 subentry["title"] = normalize_latex_string(subentry["title"])
+         
+                if isinstance(subentry["start_time"], str):
+                    subentry["start_time"] = datetime.strptime(subentry["start_time"], '%Y-%m-%d %H:%M:%S')
+                if isinstance(subentry["end_time"], str):
+                    subentry["end_time"] = datetime.strptime(subentry["end_time"], '%Y-%m-%d %H:%M:%S')
+        
+                if "papers" in subentry:
+                    for paper_slot in subentry["papers"]:
+                        if isinstance(paper_slot["start_time"], str):
+                            paper_slot["start_time"] = datetime.strptime(paper_slot["start_time"], '%Y-%m-%d %H:%M:%S')
+                        if isinstance(paper_slot["end_time"], str):
+                            paper_slot["end_time"] = datetime.strptime(paper_slot["end_time"], '%Y-%m-%d %H:%M:%S')
+             
+     
+        if "papers" in entry:
+            for paper_slot in entry["papers"]:
+
+                if isinstance(paper_slot["start_time"], str):
+                    paper_slot["start_time"] = datetime.strptime(paper_slot["start_time"], '%Y-%m-%d %H:%M:%S')
+                if isinstance(paper_slot["end_time"], str):
+                    paper_slot["end_time"] = datetime.strptime(paper_slot["end_time"], '%Y-%m-%d %H:%M:%S')
 
 
 def load_configs_handbook(root: Path):
@@ -97,7 +152,8 @@ def load_configs_handbook(root: Path):
     papers = load_config("papers", root)
     for paper in papers:
         paper["title"] = normalize_latex_string(paper["title"])
-        paper["abstract"] = normalize_latex_string(paper["abstract"])
+        paper["abstract"] = "" #normalize_latex_string(paper["abstract"])
+        
     sponsors = load_config("sponsors", root)
     prefaces = load_config("prefaces", root)
     organizing_committee = load_config("organizing_committee", root)

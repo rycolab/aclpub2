@@ -16,7 +16,7 @@ def load_file(*args: str):
 
 def render_name(user):
     name = user["first_name"] + " "
-    if "middle_name" in user:
+    if "middle_name" in user and isinstance(user["middle_name"], str):
         name += user["middle_name"] + " "
     name += user["last_name"] + "\index{" + user["last_name"] + "}"
     return name

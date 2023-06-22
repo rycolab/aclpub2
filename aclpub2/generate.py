@@ -5,6 +5,8 @@ from PyPDF2 import PdfFileReader
 from aclpub2.templates import load_template, homoglyph, TEMPLATE_DIR
 from aclpub2.config import load_configs, load_configs_handbook
 
+
+
 import multiprocessing
 import subprocess
 import roman
@@ -221,6 +223,9 @@ def generate_handbook(path: str, overwrite: bool):
     build_dir = Path("build")
     build_dir.mkdir(exist_ok=True)
 
+
+    # TODO: hack to deal with weird yaml nonsense
+
     # Throw if the build directory isn't empty, and the user did not specify an overwrite.
     if len([build_dir.iterdir()]) > 0 and not overwrite:
         raise Exception(
@@ -261,6 +266,8 @@ def generate_handbook(path: str, overwrite: bool):
 
     template = load_template("handbook")
     program = process_program_handbook(program)
+    
+    
     tutorial_program = process_program(tutorial_program, max_lines=350)
     rendered_template = template.render(
         root=str(root),
@@ -489,6 +496,7 @@ def process_program(program, max_lines=32, paper_median_lines=3, header_lines=2)
             table_entries = []
             table_entries.append(
                 {
+
                     "type": "header",
                     "title": session["title"],
                     "start_time": session["start_time"],
