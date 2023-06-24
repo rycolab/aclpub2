@@ -59,7 +59,10 @@ def load_configs(root: Path):
     if program is not None:
         for entry in program:
             entry["title"] = normalize_latex_string(entry["title"])
-            entry["abstract"] = normalize_latex_string(entry["abstract"])
+            if "abstract" in entry:
+                entry["abstract"] = normalize_latex_string(entry["abstract"])
+            else:
+                entry["abstract"] = ""
 
             # force strings into data-time objects
             if isinstance(entry["start_time"], str):
@@ -152,7 +155,10 @@ def load_configs_handbook(root: Path):
     papers = load_config("papers", root)
     for paper in papers:
         paper["title"] = normalize_latex_string(paper["title"])
-        paper["abstract"] = "" #normalize_latex_string(paper["abstract"])
+        if "abstract" in paper:
+            paper["abstract"] = paper["abstract"] #normalize_latex_string(paper["abstract"])
+        else:
+            paper["abstract"] = ""
         
     sponsors = load_config("sponsors", root)
     prefaces = load_config("prefaces", root)

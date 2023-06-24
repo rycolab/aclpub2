@@ -186,16 +186,14 @@
     \BLOCK{endfor}
   \BLOCK{elif block.type is equalto("split_name_block")}
     \BLOCK{for name_block in group_by_last_name(block.entries)}
-      \VAR{join_names(", ", name_block)}\\
+      \VAR{join_names(", ", name_block)}
       \newline
     \BLOCK{endfor}
   \BLOCK{elif block.type is equalto("name_block")}
-    \VAR{to_string_sorting_by_last_name(block.entries)}\\
+    \VAR{join_names(", ", block.entries)}
     \newline
   \BLOCK{else}
-    \BLOCK{for member in block.entries}
-      \VAR{committee_member(member)}\\
-    \BLOCK{endfor}
+    \VAR{join_names(", ", block.entries)}
   \BLOCK{endif}
 
 \BLOCK{endfor}
@@ -503,9 +501,8 @@ During the days of the workshops, \textbf{Registration} will be held from 08:00.
 %%%%%%%%%%%%%%
 % Back Cover %
 %%%%%%%%%%%%%%
-\thispagestyle{empty}
-\noindent
-\setheaders{}{}
+\VAR{load_file(root, "back_page_handbook", "back_page.tex")}
+
 
 
 \end{document}
