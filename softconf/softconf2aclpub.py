@@ -42,9 +42,9 @@ def capitalize_name(name):
                 if i != 1:
                     toks += [n[0].upper()+n[1:].lower()]
                 else:
-                    if n == n.lower():
+                    if n[0] == n[0].lower():
                         toks += [n]
-                    elif n[0] == n[0].upper():
+                    else:
                         toks += [n[0].upper()+n[1:].lower()]
         tokens_capitalized = "-".join(toks)
     else:
