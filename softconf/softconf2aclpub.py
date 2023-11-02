@@ -31,7 +31,22 @@ def capitalize_name(name):
         :return: the string where the first letter of every token is capitalized
     """
     tokens = name.split(" ")
-    tokens_capitalized = [token[0].upper()+token[1:].lower() for token in tokens]
+    if '-' in tokens[0]:
+        count = tokens[0].count('-')
+        if count == 1:
+            toks = [tok[0].upper()+tok[1:].lower() for tok in tokens[0].split('-')]
+        elif count > 1:
+            names = tokens[0].split('-')
+            toks = []
+            for i, name in enumerate(names):
+                if i != 1:
+                    toks += [name[0].upper()+name[1:].lower()]
+                else:
+                    if name == name.lower():
+                        toks += [name]
+        tokens_capitalized = "-".join(toks)
+    else:
+        tokens_capitalized = [token[0].upper()+token[1:].lower() for token in tokens]
     return " ".join(tokens_capitalized)
 
 def full_name(first_name, last_name, middle_name=None):
@@ -259,10 +274,11 @@ def get_papers():
                             "username": row[f"{i}: Username"],
                             "institution": tex_escape(row[f"{i}: Affiliation"])
                         })
+                sub_type = "Submission Type" if "Submission Type" in row else "Paper type"
                 paper = {
                     "abstract": tex_escape(row["Abstract"]),
                     "attributes": {
-                        "paper_type": row["Submission Type"],
+                        "paper_type": row[sub_type],
                         "presentation_type": "N/A",
                         "submitted_area": row["Track"] if "Track" in row else "",
                     },
