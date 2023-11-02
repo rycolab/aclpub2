@@ -38,12 +38,14 @@ def capitalize_name(name):
         elif count > 1:
             names = tokens[0].split('-')
             toks = []
-            for i, name in enumerate(names):
+            for i, n in enumerate(names):
                 if i != 1:
-                    toks += [name[0].upper()+name[1:].lower()]
+                    toks += [n[0].upper()+n[1:].lower()]
                 else:
-                    if name == name.lower():
-                        toks += [name]
+                    if n == n.lower():
+                        toks += [n]
+                    elif n[0] == n[0].upper():
+                        toks += [n[0].upper()+n[1:].lower()]
         tokens_capitalized = "-".join(toks)
     else:
         tokens_capitalized = [token[0].upper()+token[1:].lower() for token in tokens]
