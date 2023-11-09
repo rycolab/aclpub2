@@ -3,10 +3,11 @@
 
 #----------------------------------------------------------------------------
 # Created By Rodrigo Wilkens
-# Last update 02/April/2022
+# Last update 09/November/2023
 # version ='1.0'
 # ---------------------------------------------------------------------------
 
+import argparse
 import openreview
 import os
 import yaml
@@ -14,26 +15,13 @@ from tqdm import tqdm
 import sys 
 from util import *
 
-username = sys.argv[1]
-password = sys.argv[2]
-
-use_tracks = True
-
-try:
-    client_acl = openreview.Client(baseurl='https://api.openreview.net', username=username, password=password)
-except:
-    print("OpenReview connection refused")
-    exit()
-
-acl_name = 'aclweb.org/ACL/2022/Conference' if len(sys.argv)<=3 else sys.argv[3]
-acl_name = acl_name.strip('/')
 
 def sort_role(t):
     return t["role"]
 def sort_user(t):
     return t["last_name"]
 
-def extract_or_data(client_acl, regex="/.*/Senior_Area_Chairs", or2acl={}):
+def extract_or_data(client_acl, acl_name, regex="/.*/Senior_Area_Chairs", or2acl={}):
     lst = []
     for i, group in enumerate(openreview.tools.iterget_groups(client_acl, regex=acl_name+regex)):
         # print(i, group.id)
@@ -76,33 +64,63 @@ def get_committee(acl_name):
     return committees
 
 
-if use_tracks:
-    use_tracks = ".*/"
-else:
-    use_tracks = ""
+def main(username, password, venue, use_tracks):
 
-## for debug
-# committees = get_committee(acl_name)
-# print(committees)
+    try:
+        client_acl = openreview.Client(baseurl='https://api.openreview.net', username=username, password=password)
+    except:
+        print("OpenReview connection refused")
+        exit()
 
+    acl_name = venue.strip('/')
 
-program_committee = []
+    if use_tracks:
+        tracks = ".*/"
+    else:
+        tracks = ""
 
-# get PCs
-program_committee = extract_or_data(client_acl, regex="/Program_Chairs")
-
-# get SACs
-or2acl = {} # You can use this dictionary to replace OpenReview field names with others you want to use in the proceedings
-program_committee.extend(extract_or_data(client_acl, regex="/"+use_tracks+"Senior_Area_Chairs", or2acl=or2acl))
-
-# get ACs
-program_committee.extend(extract_or_data(client_acl, regex="/"+use_tracks+"Area_Chairs", or2acl=or2acl))
-
-# get reviewers
-aux = extract_or_data(client_acl, regex="/"+use_tracks+"Official_Review", or2acl=or2acl)
-for reviewer in aux:
-    reviewer["type"]="name_block"
-program_committee.extend(aux)
+    ## for debug
+    # committees = get_committee(acl_name)
+    # print(committees)
 
 
-yaml.dump(program_committee, open('program_committee.yml', 'w'), allow_unicode=True)
+    program_committee = []
+
+    # get PCs
+    program_committee = extract_or_data(client_acl, acl_name, regex="/Program_Chairs")
+
+    # get SACs
+    or2acl = {} # You can use this dictionary to replace OpenReview field names with others you want to use in the proceedings
+    program_committee.extend(extract_or_data(client_acl, acl_name, regex="/"+tracks+"Senior_Area_Chairs", or2acl=or2acl))
+
+    # get ACs
+    program_committee.extend(extract_or_data(client_acl, acl_name, regex="/"+tracks+"Area_Chairs", or2acl=or2acl))
+
+    # get reviewers
+    aux = extract_or_data(client_acl, acl_name, regex="/"+tracks+"Official_Review", or2acl=or2acl)
+    for reviewer in aux:
+        reviewer["type"]="name_block"
+    program_committee.extend(aux)
+
+
+    yaml.dump(program_committee, open('program_committee.yml', 'w'), allow_unicode=True)
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(
+        description="Fetch papers from an OpenReview venue."
+    )
+    parser.add_argument("username", type=str, help="OpenReview username.")
+    parser.add_argument("password", type=str, help="OpenReview password.")
+    parser.add_argument(
+        "venue",
+        type=str,
+        help="OpenReview venue ID, found in the URL https://openreview.net/group?id=<VENUE ID>",
+    )
+    parser.add_argument(
+        "--use_tracks",
+        action="store_true",
+        help="If set, downloads all papers in the OpenReview venue.",
+    )
+    
+    args = parser.parse_args()
+    main(args.username, args.password, args.venue, args.use_tracks)
