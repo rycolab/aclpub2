@@ -24,9 +24,9 @@
     Training
   attachments:
     - type: software
-      file: attachments/2.zip
+      file: 2.zip
     - type: presentation
-      file: attachments/2.pptx
+      file: 2.pptx
 - abstract:
     It is important to define meaningful and interpretable automatic evaluation
     metrics for open-domain dialog research. Standard language generation metrics
