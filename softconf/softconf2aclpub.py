@@ -294,7 +294,7 @@ def get_papers():
                 attachments = []
                 for filename in glob(os.path.join("attachments", f"{row['Submission ID']}_*")):
                     attachments.append({
-                        "file": filename,
+                        "file": os.path.basename(filename),
                         "type": "Supplementary Material"
                     })
                 if len(attachments) > 0:

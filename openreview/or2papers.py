@@ -109,8 +109,7 @@ def main(username, password, venue, download_all, download_pdfs):
                 attachments.append(
                     {
                         "type": attachment_types[att_type],
-                        "file": "attachments/"
-                        + str(paper["id"])
+                        "file": str(paper["id"])
                         + "."
                         + str(submission.content[att_type].split(".")[-1]),
                         "open_review_id": str(submission.content[att_type]),
