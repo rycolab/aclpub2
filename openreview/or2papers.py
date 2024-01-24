@@ -19,7 +19,7 @@ from util import *
 def main(username, password, venue, download_all, download_pdfs):
     try:
         client_acl = openreview.Client(
-            baseurl="https://devapi.openreview.net", username=username, password=password
+            baseurl="https://api.openreview.net", username=username, password=password
         )
     except:
         print("OpenReview connection refused")
