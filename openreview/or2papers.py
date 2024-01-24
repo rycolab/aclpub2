@@ -19,7 +19,7 @@ from util import *
 def main(username, password, venue, download_all, download_pdfs):
     try:
         client_acl = openreview.Client(
-            baseurl="https://api.openreview.net", username=username, password=password
+            baseurl="https://devapi.openreview.net", username=username, password=password
         )
     except:
         print("OpenReview connection refused")
@@ -46,10 +46,10 @@ def main(username, password, venue, download_all, download_pdfs):
         d.forum: d
         for d in list(
             openreview.tools.iterget_notes(
-                client_acl, invitation=venue + "/Paper.*/-/Decision"
+                client_acl, invitation=venue + "/Paper.*"
             )
         )
-        if "accept" in d.content["decision"].lower()
+        if "decision" in d.content and "accept" in d.content["decision"].lower()
     }
 
     papers = []
