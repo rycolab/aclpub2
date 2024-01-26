@@ -30,7 +30,7 @@ def main(username, password, venue, download_all, download_pdfs):
 
     try:
         venue_group = client_acl_v2.get_group(venue)
-        is_v2 = venue_group.domain is not None and venue_group.domain == venue_group.id
+        in_v2 = venue_group.domain is not None and venue_group.domain == venue_group.id
     except:
         print(f"{venue} not found")
         exit()
@@ -47,11 +47,15 @@ def main(username, password, venue, download_all, download_pdfs):
     if not os.path.exists(attachments_folder):
         os.mkdir(attachments_folder)
 
-    submissions = list(
-        openreview.tools.iterget_notes(
-            client_acl, invitation=venue + "/-/Blind_Submission", details="original"
+    if not in_v2:
+        submissions = list(
+            openreview.tools.iterget_notes(
+                client_acl, invitation=venue + "/-/Blind_Submission", details="original"
+            )
         )
-    )
+    else:
+        submissions = client_acl_v2.get_all_notes(invitation=venue + "/-/Submission")
+
     decision_by_forum = {
         d.forum: d
         for d in list(
