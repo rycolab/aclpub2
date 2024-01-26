@@ -50,21 +50,31 @@ def main(username, password, venue, download_all, download_pdfs):
     if not in_v2:
         submissions = list(
             openreview.tools.iterget_notes(
-                client_acl, invitation=venue + "/-/Blind_Submission", details="original"
+                client_acl, invitation=venue + "/-/Blind_Submission", details="original,replies"
             )
         )
     else:
-        submissions = client_acl_v2.get_all_notes(invitation=venue + "/-/Submission")
+        submissions = client_acl_v2.get_all_notes(invitation=venue + "/-/Submission", details="replies")
 
-    decision_by_forum = {
-        d.forum: d
-        for d in list(
-            openreview.tools.iterget_notes(
-                client_acl, invitation=venue + "/Paper.*/-/Decision"
-            )
-        )
-        if "accept" in d.content["decision"].lower()
-    }
+    if not in_v2:
+        decision_by_forum = {
+            r["forum"]: r
+            for s in submissions for r in s.details["replies"] if "Decision" in r["invitation"]
+            if "accept" in r["content"]["decision"].lower()
+        }
+    else:
+        ## Publication chairs do not have access to the forum replies - use venueid instead
+        if len(submissions[0].details["replies"]) <= 0:
+            decision_by_forum = {
+                s.forum: s
+                for s in submissions if s.content["venueid"]["value"] == venue
+            }
+        else:
+            decision_by_forum = {
+                r["forum"]: r
+                for s in submissions for r in s.details["replies"] if any(i.endswith("Decision") for i in r["invitations"])
+                if "accept" in r["content"]["decision"]["value"].lower()
+            }
 
     papers = []
     small_log = open("papers.log", "w")
