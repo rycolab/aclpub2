@@ -21,8 +21,18 @@ def main(username, password, venue, download_all, download_pdfs):
         client_acl = openreview.Client(
             baseurl="https://api.openreview.net", username=username, password=password
         )
+        client_acl_v2 = openreview.Client(
+            baseurl="https://api2.openreview.net", username=username, password=password
+        )
     except:
         print("OpenReview connection refused")
+        exit()
+
+    try:
+        venue_group = client_acl_v2.get_group(venue)
+        is_v2 = venue_group.domain is not None and venue_group.domain == venue_group.id
+    except:
+        print(f"{venue} not found")
         exit()
 
     if not download_all or not download_pdfs:
