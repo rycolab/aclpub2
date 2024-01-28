@@ -20,13 +20,20 @@ password = sys.argv[2]
 use_tracks = True
 
 try:
-    client_acl = openreview.Client(baseurl='https://api.openreview.net', username=username, password=password)
+    client_acl = openreview.api.OpenReviewClient(baseurl='https://api2.openreview.net', username=username, password=password)
 except:
     print("OpenReview connection refused")
     exit()
 
 acl_name = 'aclweb.org/ACL/2022/Conference' if len(sys.argv)<=3 else sys.argv[3]
 acl_name = acl_name.strip('/')
+
+try:
+    venue_group = client_acl.get_group(acl_name)
+    in_v2 = venue_group.domain is not None and venue_group.domain == venue_group.id
+except:
+    print(f"{acl_name} not found")
+    exit()
 
 def sort_role(t):
     return t["role"]
@@ -85,6 +92,12 @@ else:
 # committees = get_committee(acl_name)
 # print(committees)
 
+# Fetch all groups and filter out the paper/submission groups
+all_groups = client_acl.get_all_groups(prefix = f"{acl_name}./*")
+if not in_v2:
+    all_groups = [g for g in all_groups if 'Paper' not in g.id]
+else:
+    all_groups = [g for g in all_groups if 'Submission' not in g.id]
 
 program_committee = []
 
