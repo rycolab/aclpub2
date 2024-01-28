@@ -81,7 +81,10 @@ def main(username, password, venue, download_all, download_pdfs):
     for submission in tqdm(submissions):
         if submission.id not in decision_by_forum:
             continue
-        authorsids = submission.details["original"]["content"]["authorids"]
+        if not in_v2:
+            authorsids = get_content_from(submission.details["original"], "authorids")
+        else:
+            authorsids = get_content_from(submission, "authorids")
         authors = []
         for authorsid in authorsids:
             author, error = get_user(authorsid, client_acl)
@@ -94,7 +97,7 @@ def main(username, password, venue, download_all, download_pdfs):
                     + "; openreview ID: "
                     + submission.id
                     + ") "
-                    + submission.content["title"]
+                    + get_content_from(submission, "title")
                     + "\n"
                 )
             if author:
@@ -102,23 +105,23 @@ def main(username, password, venue, download_all, download_pdfs):
         assert len(authors) > 0
         paper = {
             "id": submission.number,  # len(papers)+1,
-            "title": submission.content["title"],
+            "title": get_content_from(submission, "title"),
             "authors": authors,
-            "abstract": submission.content["abstract"]
+            "abstract": get_content_from(submission, "abstract")
             if "abstract" in submission.content
             else "",
             "file": str(submission.number) + ".pdf",  # str(len(papers)+1) + ".pdf",
-            "pdf_file": submission.content["pdf"].split("/")[-1],
-            "decision": decision_by_forum[submission.id].content["decision"],
+            "pdf_file": get_content_from(submission, "pdf").split("/")[-1],
+            "decision": get_content_from(decision_by_forum[submission.id], "decision"),
             "openreview_id": submission.id,
         }
 
         # Fetch paper attributes and attachments.
         submitted_area = (
-            submission.content["track"] if "track" in submission.content else None
+            get_content_from(submission, "track")
         )
         if "paper_type" in submission.content:
-            paper_type = " ".join(submission.content["paper_type"].split()[:2]).lower()
+            paper_type = " ".join(get_content_from(submission, "paper_type").split()[:2]).lower()
         else:
             paper_type = "N/A"
         presentation_type = "N/A"
@@ -135,12 +138,12 @@ def main(username, password, venue, download_all, download_pdfs):
                         "type": attachment_types[att_type],
                         "file": str(paper["id"])
                         + "."
-                        + str(submission.content[att_type].split(".")[-1]),
-                        "open_review_id": str(submission.content[att_type]),
+                        + str(get_content_from(submission, att_type).split(".")[-1]),
+                        "open_review_id": str(get_content_from(submission, att_type)),
                     }
                 )
                 if download_all:
-                    file_tye = submission.content["software"].split(".")[-1]
+                    file_tye = get_content_from(submission, "software").split(".")[-1]
                     f = client_acl.get_attachment(submission.id, att_type)
                     with open(
                         os.path.join(

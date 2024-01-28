@@ -88,3 +88,19 @@ def get_user(or_id,client_acl, force_institution=False):
         if 'semanticScholar' in c:
             ret["semantic_scholar_id"] = c['semanticScholar']
         return ret, False
+
+def get_content_from (submission, content_field):
+    # Given a paper from OpenReview (either openreview.Note or openreview.api.Note) and a field,
+    # get its value or None if value does not exist 
+    try:
+        if isinstance(submission, dict):
+            content = submission['content']
+        else:
+            content = submission.content
+    except:
+        raise Exception(f"submission must either be a dict, openreview.Note or openreview.api.Note, got type={type(submission)}")
+    ret = content.get(content_field)
+    if isinstance(ret, dict):
+        return ret['value']
+    else:
+        return ret
