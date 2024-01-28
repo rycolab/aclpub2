@@ -153,7 +153,10 @@ def main(username, password, venue, download_all, download_pdfs):
                     ) as op:
                         op.write(f)
         if download_pdfs:
-            f = client_acl.get_pdf(id=paper["openreview_id"])
+            try:
+                f = client_acl.get_pdf(id=paper["openreview_id"])
+            except:
+                f = client_acl_v2.get_pdf(id=paper["openreview_id"])
             with open(
                 os.path.join(papers_folder, str(paper["id"]) + ".pdf"), "wb"
             ) as op:
