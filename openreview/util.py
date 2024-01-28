@@ -42,12 +42,18 @@ def get_user(or_id,client_acl, force_institution=False):
         for name in c["names"]:
             if namePrefered==None or ('preferred' in name and name['preferred']):
                 namePrefered = name
-        name = " ".join([namePrefered['first'] if type(namePrefered['first'])==str else '', 
-                         namePrefered['middle'] if namePrefered['middle']!=None else '', 
-                         namePrefered['last'] if namePrefered['last']!=None else '' ]).replace("  ", " ")
-        first_name = namePrefered['first'].strip() if type(namePrefered['first'])==str else ''
-        middle_name = namePrefered['middle'].strip() if namePrefered['middle']!=None else ''
-        last_name = namePrefered['last'].strip() if namePrefered['last']!=None else ''
+        if "first" in namePrefered:
+            name = " ".join([namePrefered['first'] if type(namePrefered['first'])==str else '', 
+                            namePrefered['middle'] if namePrefered['middle']!=None else '', 
+                            namePrefered['last'] if namePrefered['last']!=None else '' ]).replace("  ", " ")
+            first_name = namePrefered['first'].strip() if type(namePrefered['first'])==str else ''
+            middle_name = namePrefered['middle'].strip() if namePrefered['middle']!=None else ''
+            last_name = namePrefered['last'].strip() if namePrefered['last']!=None else ''
+        else: ## first, middle, and last may not be present - OR switched to requiring only fullnames but this may change later for inclusivity
+            name = namePrefered['fullname']
+            first_name = namePrefered['fullname'].split(" ")[0]
+            last_name = namePrefered['fullname'].split(" ")[-1]
+            middle_name = " ".join(namePrefered['fullname'].split(" ")[1:-1])
         username = namePrefered['username'].strip()
         if len(first_name)>2:
             first_name = " ".join([n[0].upper() + n[1:].lower() if (n==n.upper() or n==n.lower()) else n for n in first_name.split(" ")])
