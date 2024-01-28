@@ -40,9 +40,9 @@ def sort_role(t):
 def sort_user(t):
     return t["last_name"]
 
-def extract_or_data(client_acl, regex="/.*/Senior_Area_Chairs", or2acl={}):
+def extract_or_data(client_acl, all_groups, role="Senior_Area_Chairs", or2acl={}):
     lst = []
-    for i, group in enumerate(openreview.tools.iterget_groups(client_acl, regex=acl_name+regex)):
+    for i, group in enumerate([g for g in all_groups if g.id.endswith(f"/{role}")]):
         # print(i, group.id)
         or_track_name = group.id.split("/")[-1]
         if or_track_name in or2acl:
@@ -93,7 +93,7 @@ else:
 # print(committees)
 
 # Fetch all groups and filter out the paper/submission groups
-all_groups = client_acl.get_all_groups(prefix = f"{acl_name}./*")
+all_groups = client_acl.get_all_groups(prefix = f"{acl_name}/.*")
 if not in_v2:
     all_groups = [g for g in all_groups if 'Paper' not in g.id]
 else:
@@ -102,17 +102,17 @@ else:
 program_committee = []
 
 # get PCs
-program_committee = extract_or_data(client_acl, regex="/Program_Chairs")
+program_committee = extract_or_data(client_acl, all_groups, role="Program_Chairs")
 
 # get SACs
 or2acl = {} # You can use this dictionary to replace OpenReview field names with others you want to use in the proceedings
-program_committee.extend(extract_or_data(client_acl, regex="/"+use_tracks+"Senior_Area_Chairs", or2acl=or2acl))
+program_committee.extend(extract_or_data(client_acl, all_groups, role="Senior_Area_Chairs", or2acl=or2acl))
 
 # get ACs
-program_committee.extend(extract_or_data(client_acl, regex="/"+use_tracks+"Area_Chairs", or2acl=or2acl))
+program_committee.extend(extract_or_data(client_acl, all_groups, role="Area_Chairs", or2acl=or2acl))
 
 # get reviewers
-aux = extract_or_data(client_acl, regex="/"+use_tracks+"Official_Review", or2acl=or2acl)
+aux = extract_or_data(client_acl, all_groups, role="Reviewers", or2acl=or2acl)
 for reviewer in aux:
     reviewer["type"]="name_block"
 program_committee.extend(aux)
