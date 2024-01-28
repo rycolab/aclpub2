@@ -18,8 +18,8 @@ from util import *
 
 def main(username, password, venue, download_all, download_pdfs):
     try:
-        client_acl = openreview.Client(
-            baseurl="https://api.openreview.net", username=username, password=password
+        client_acl = openreview.api.OpenReviewClient(
+            baseurl="https://api2.openreview.net", username=username, password=password
         )
     except:
         print("OpenReview connection refused")
@@ -37,17 +37,11 @@ def main(username, password, venue, download_all, download_pdfs):
     if not os.path.exists(attachments_folder):
         os.mkdir(attachments_folder)
 
-    submissions = list(
-        openreview.tools.iterget_notes(
-            client_acl, invitation=venue + "/-/Blind_Submission", details="original"
-        )
-    )
+    submissions = list(client_acl.get_all_notes(invitation=venue))
     decision_by_forum = {
         d.forum: d
         for d in list(
-            openreview.tools.iterget_notes(
-                client_acl, invitation=venue + "/Paper.*"
-            )
+            openreview.tools.iterget_notes(client_acl, invitation=venue + "/Paper.*")
         )
         if "decision" in d.content and "accept" in d.content["decision"].lower()
     }
