@@ -112,7 +112,7 @@ def main(username, password, venue, download_all, download_pdfs):
             else "",
             "file": str(submission.number) + ".pdf",  # str(len(papers)+1) + ".pdf",
             "pdf_file": get_content_from(submission, "pdf").split("/")[-1],
-            "decision": get_content_from(decision_by_forum[submission.id], "decision"),
+            "decision": get_decision_from_venueid(submission),
             "openreview_id": submission.id,
         }
 

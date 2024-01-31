@@ -110,3 +110,7 @@ def get_content_from (submission, content_field):
         return ret['value']
     else:
         return ret
+
+def get_decision_from_venueid (submission):
+    # Return the decision from venue id
+    return submission.content.get('venue', {}).get('value').split(' ')[-1]
