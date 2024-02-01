@@ -18,9 +18,6 @@ from util import *
 
 def main(username, password, venue, download_all, download_pdfs):
     try:
-        client_acl = openreview.Client(
-            baseurl="https://api.openreview.net", username=username, password=password
-        )
         client_acl_v2 = openreview.Client(
             baseurl="https://api2.openreview.net", username=username, password=password
         )
@@ -30,7 +27,6 @@ def main(username, password, venue, download_all, download_pdfs):
 
     try:
         venue_group = client_acl_v2.get_group(venue)
-        in_v2 = venue_group.domain is not None and venue_group.domain == venue_group.id
     except:
         print(f"{venue} not found")
         exit()
@@ -47,47 +43,30 @@ def main(username, password, venue, download_all, download_pdfs):
     if not os.path.exists(attachments_folder):
         os.mkdir(attachments_folder)
 
-    if not in_v2:
-        submissions = list(
-            openreview.tools.iterget_notes(
-                client_acl, invitation=venue + "/-/Blind_Submission", details="original,replies"
-            )
-        )
-    else:
-        submissions = client_acl_v2.get_all_notes(invitation=venue + "/-/Submission", details="replies")
+    submissions = client_acl_v2.get_all_notes(invitation=venue + "/-/Submission", details="replies")
 
-    if not in_v2:
+    ## Publication chairs do not have access to the forum replies - use venueid instead
+    if len(submissions[0].details["replies"]) <= 0:
         decision_by_forum = {
-            r["forum"]: r
-            for s in submissions for r in s.details["replies"] if "Decision" in r["invitation"]
-            if "accept" in r["content"]["decision"].lower()
+            s.forum: s
+            for s in submissions if s.content["venueid"]["value"] == venue
         }
     else:
-        ## Publication chairs do not have access to the forum replies - use venueid instead
-        if len(submissions[0].details["replies"]) <= 0:
-            decision_by_forum = {
-                s.forum: s
-                for s in submissions if s.content["venueid"]["value"] == venue
-            }
-        else:
-            decision_by_forum = {
-                r["forum"]: r
-                for s in submissions for r in s.details["replies"] if any(i.endswith("Decision") for i in r["invitations"])
-                if "accept" in r["content"]["decision"]["value"].lower()
-            }
+        decision_by_forum = {
+            r["forum"]: r
+            for s in submissions for r in s.details["replies"] if any(i.endswith("Decision") for i in r["invitations"])
+            if "accept" in r["content"]["decision"]["value"].lower()
+        }
 
     papers = []
     small_log = open("papers.log", "w")
     for submission in tqdm(submissions):
         if submission.id not in decision_by_forum:
             continue
-        if not in_v2:
-            authorsids = get_content_from(submission.details["original"], "authorids")
-        else:
-            authorsids = get_content_from(submission, "authorids")
+        authorsids = get_content_from(submission, "authorids")
         authors = []
         for authorsid in authorsids:
-            author, error = get_user(authorsid, client_acl)
+            author, error = get_user(authorsid, client_acl_v2)
             if error:
                 small_log.write(
                     "Error at "
@@ -144,7 +123,7 @@ def main(username, password, venue, download_all, download_pdfs):
                 )
                 if download_all:
                     file_tye = get_content_from(submission, "software").split(".")[-1]
-                    f = client_acl.get_attachment(submission.id, att_type)
+                    f = client_acl_v2.get_attachment(submission.id, att_type)
                     with open(
                         os.path.join(
                             attachments_folder, str(paper["id"]) + "." + file_tye
@@ -153,10 +132,7 @@ def main(username, password, venue, download_all, download_pdfs):
                     ) as op:
                         op.write(f)
         if download_pdfs:
-            try:
-                f = client_acl.get_pdf(id=paper["openreview_id"])
-            except:
-                f = client_acl_v2.get_pdf(id=paper["openreview_id"])
+            f = client_acl_v2.get_pdf(id=paper["openreview_id"])
             with open(
                 os.path.join(papers_folder, str(paper["id"]) + ".pdf"), "wb"
             ) as op:
