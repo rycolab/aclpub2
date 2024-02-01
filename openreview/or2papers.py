@@ -21,14 +21,15 @@ def main(username, password, venue, download_all, download_pdfs):
         client_acl_v2 = openreview.Client(
             baseurl="https://api2.openreview.net", username=username, password=password
         )
-    except:
-        print("OpenReview connection refused")
+    except Exception as e:
+        print(f"OpenReview connection refused\n{e}")
         exit()
 
     try:
-        venue_group = client_acl_v2.get_group(venue)
-    except:
-        print(f"{venue} not found")
+        client_acl_v2.get_group(venue)
+    except Exception as e:
+        print(f"Unable to get group for: {venue}\nSee below for the OpenReview API error")
+        print(f"Exception: {e}")
         exit()
 
     if not download_all or not download_pdfs:
@@ -44,6 +45,8 @@ def main(username, password, venue, download_all, download_pdfs):
         os.mkdir(attachments_folder)
 
     submissions = client_acl_v2.get_all_notes(invitation=venue + "/-/Submission", details="replies")
+    if len(submissions) <= 0:
+        print("No submissions found. Please double check your venue ID and/or permissions to view the submissions")
 
     ## Publication chairs do not have access to the forum replies - use venueid instead
     if len(submissions[0].details["replies"]) <= 0:
@@ -59,6 +62,7 @@ def main(username, password, venue, download_all, download_pdfs):
         }
 
     papers = []
+    abstract_flag, paper_type_flag, track_flag = False, False, False
     small_log = open("papers.log", "w")
     for submission in tqdm(submissions):
         if submission.id not in decision_by_forum:
@@ -82,13 +86,20 @@ def main(username, password, venue, download_all, download_pdfs):
             if author:
                 authors.append(author)
         assert len(authors) > 0
+
+        if "abstract" in submission.content:
+            abstract = get_content_from(submission, "abstract")
+        else:
+            abstract = ""
+            if not abstract_flag:
+                abstract_flag = True
+                print("abstract field is not present. Contact info@openreview.net if you need this information migrated from ARR")
+
         paper = {
             "id": submission.number,  # len(papers)+1,
             "title": get_content_from(submission, "title"),
             "authors": authors,
-            "abstract": get_content_from(submission, "abstract")
-            if "abstract" in submission.content
-            else "",
+            "abstract": abstract,
             "file": str(submission.number) + ".pdf",  # str(len(papers)+1) + ".pdf",
             "pdf_file": get_content_from(submission, "pdf").split("/")[-1],
             "decision": get_decision_from_venueid(submission),
@@ -99,10 +110,17 @@ def main(username, password, venue, download_all, download_pdfs):
         submitted_area = (
             get_content_from(submission, "track")
         )
+        if "track" not in submission.content and not track_flag:
+            track_flag = True
+            print("track field is not present. Contact info@openreview.net if you need this information migrated from ARR")
+
         if "paper_type" in submission.content:
             paper_type = " ".join(get_content_from(submission, "paper_type").split()[:2]).lower()
         else:
             paper_type = "N/A"
+            if not paper_type_flag:
+                paper_type_flag = True
+                print("paper_type field (long or short) is not present. Contact info@openreview.net if you need this information migrated from ARR")
         presentation_type = "N/A"
         paper["attributes"] = {
             "submitted_area": submitted_area,
