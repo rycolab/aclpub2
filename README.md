@@ -233,7 +233,7 @@ Each of the listed papers must have a unique ID so that they may be referred to 
     # A list of additional files associated with the paper.
     # The type, along with one of file must be specified.
     - type: dataset | note | poster | presentation | software | attachment
-      file: Local file path, e.g. attachments/5.zip
+      file: Local file path, e.g. 5.zip
   title: Title of the paper.
   abstract: Abstract of the paper, usually a LaTeX fragment.
   archival: Whether or not the paper is archival. Default is True, set to false to
