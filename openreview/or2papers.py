@@ -93,7 +93,7 @@ def main(username, password, venue, download_all, download_pdfs):
             abstract = ""
             if not abstract_flag:
                 abstract_flag = True
-                print("abstract field is not present. Contact info@openreview.net if you need this information migrated from ARR")
+                print(f"Paper {submission.id} abstract field is not present. Contact info@openreview.net if you need this information migrated from ARR")
 
         paper = {
             "id": submission.number,  # len(papers)+1,
@@ -112,7 +112,7 @@ def main(username, password, venue, download_all, download_pdfs):
         )
         if "track" not in submission.content and not track_flag:
             track_flag = True
-            print("track field is not present. Contact info@openreview.net if you need this information migrated from ARR")
+            print(f"Paper {submission.id} track field is not present. Contact info@openreview.net if you need this information migrated from ARR")
 
         if "paper_type" in submission.content:
             paper_type = " ".join(get_content_from(submission, "paper_type").split()[:2]).lower()
@@ -140,7 +140,7 @@ def main(username, password, venue, download_all, download_pdfs):
                     }
                 )
                 if download_all:
-                    file_tye = get_content_from(submission, "software").split(".")[-1]
+                    file_tye = get_content_from(submission, att_type).split(".")[-1]
                     f = client_acl_v2.get_attachment(submission.id, att_type)
                     with open(
                         os.path.join(

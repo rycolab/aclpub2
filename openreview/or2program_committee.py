@@ -42,9 +42,14 @@ def sort_user(t):
 
 def extract_or_data(client_acl, all_groups, role="Senior_Area_Chairs", or2acl={}):
     lst = []
-    for i, group in enumerate([g for g in all_groups if g.id.endswith(f"/{role}")]):
+    ## Groups will either look like venue_id/role or venue_id/track/role
+    for i, group in enumerate([g for g in all_groups if any(role == entry for entry in g.id.split('/'))]):
         # print(i, group.id)
-        or_track_name = group.id.split("/")[-1]
+        track = group.id.replace(acl_name, '').replace(role, '').strip('/')
+        if len(track) > 0:
+            or_track_name = f"{track}_{role}"
+        else:
+            or_track_name = role
         if or_track_name in or2acl:
             or_track_name = or2acl[or_track_name]
         t = { "role": or_track_name.replace("_"," "), "entries":[] }

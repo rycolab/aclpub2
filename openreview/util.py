@@ -105,7 +105,7 @@ def get_content_from (submission, content_field):
             content = submission.content
     except:
         raise Exception(f"submission must either be a dict, openreview.Note or openreview.api.Note, got type={type(submission)}")
-    ret = content.get(content_field)
+    ret = content.get(content_field, '')
     if isinstance(ret, dict):
         return ret['value']
     else:
