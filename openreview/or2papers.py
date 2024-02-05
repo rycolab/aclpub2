@@ -128,12 +128,21 @@ def main(username, password, venue, download_all, download_pdfs):
             "presentation_type": presentation_type,
         }
         attachments = []
+
+        attachments_count = 0
+        suffix = ""
+
         for att_type in attachment_types:
             if att_type in submission.content and submission.content[att_type]:
+                if attachments_count == 0:
+                    suffix = ""
+                else:
+                    suffix = "_" + str(attachments_count)
+
                 attachments.append(
                     {
                         "type": attachment_types[att_type],
-                        "file": str(paper["id"])
+                        "file": str(paper["id"]) + suffix
                         + "."
                         + str(get_content_from(submission, att_type).split(".")[-1]),
                         "open_review_id": str(get_content_from(submission, att_type)),
@@ -144,11 +153,12 @@ def main(username, password, venue, download_all, download_pdfs):
                     f = client_acl_v2.get_attachment(submission.id, att_type)
                     with open(
                         os.path.join(
-                            attachments_folder, str(paper["id"]) + "." + file_tye
+                            attachments_folder, str(paper["id"]) + suffix + "." + file_tye
                         ),
                         "wb",
                     ) as op:
                         op.write(f)
+                attachments_count = attachments_count + 1
         if download_pdfs:
             f = client_acl_v2.get_pdf(id=paper["openreview_id"])
             with open(
