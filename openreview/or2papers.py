@@ -18,11 +18,18 @@ from util import *
 
 def main(username, password, venue, download_all, download_pdfs):
     try:
-        client_acl = openreview.Client(
-            baseurl="https://api.openreview.net", username=username, password=password
+        client_acl_v2 = openreview.Client(
+            baseurl="https://api2.openreview.net", username=username, password=password
         )
-    except:
-        print("OpenReview connection refused")
+    except Exception as e:
+        print(f"OpenReview connection refused\n{e}")
+        exit()
+
+    try:
+        client_acl_v2.get_group(venue)
+    except Exception as e:
+        print(f"Unable to get group for: {venue}\nSee below for the OpenReview API error")
+        print(f"Exception: {e}")
         exit()
 
     if not download_all or not download_pdfs:
@@ -37,30 +44,33 @@ def main(username, password, venue, download_all, download_pdfs):
     if not os.path.exists(attachments_folder):
         os.mkdir(attachments_folder)
 
-    submissions = list(
-        openreview.tools.iterget_notes(
-            client_acl, invitation=venue + "/-/Blind_Submission", details="original"
-        )
-    )
-    decision_by_forum = {
-        d.forum: d
-        for d in list(
-            openreview.tools.iterget_notes(
-                client_acl, invitation=venue + "/Paper.*/-/Decision"
-            )
-        )
-        if "accept" in d.content["decision"].lower()
-    }
+    submissions = client_acl_v2.get_all_notes(invitation=venue + "/-/Submission", details="replies")
+    if len(submissions) <= 0:
+        print("No submissions found. Please double check your venue ID and/or permissions to view the submissions")
+
+    ## Publication chairs do not have access to the forum replies - use venueid instead
+    if len(submissions[0].details["replies"]) <= 0:
+        decision_by_forum = {
+            s.forum: s
+            for s in submissions if s.content["venueid"]["value"] == venue
+        }
+    else:
+        decision_by_forum = {
+            r["forum"]: r
+            for s in submissions for r in s.details["replies"] if any(i.endswith("Decision") for i in r["invitations"])
+            if "accept" in r["content"]["decision"]["value"].lower()
+        }
 
     papers = []
+    abstract_flag, paper_type_flag, track_flag = False, False, False
     small_log = open("papers.log", "w")
     for submission in tqdm(submissions):
         if submission.id not in decision_by_forum:
             continue
-        authorsids = submission.details["original"]["content"]["authorids"]
+        authorsids = get_content_from(submission, "authorids")
         authors = []
         for authorsid in authorsids:
-            author, error = get_user(authorsid, client_acl)
+            author, error = get_user(authorsid, client_acl_v2)
             if error:
                 small_log.write(
                     "Error at "
@@ -70,33 +80,47 @@ def main(username, password, venue, download_all, download_pdfs):
                     + "; openreview ID: "
                     + submission.id
                     + ") "
-                    + submission.content["title"]
+                    + get_content_from(submission, "title")
                     + "\n"
                 )
             if author:
                 authors.append(author)
         assert len(authors) > 0
+
+        if "abstract" in submission.content:
+            abstract = get_content_from(submission, "abstract")
+        else:
+            abstract = ""
+            if not abstract_flag:
+                abstract_flag = True
+                print(f"Paper {submission.id} abstract field is not present. Contact info@openreview.net if you need this information migrated from ARR")
+
         paper = {
             "id": submission.number,  # len(papers)+1,
-            "title": submission.content["title"],
+            "title": get_content_from(submission, "title"),
             "authors": authors,
-            "abstract": submission.content["abstract"]
-            if "abstract" in submission.content
-            else "",
+            "abstract": abstract,
             "file": str(submission.number) + ".pdf",  # str(len(papers)+1) + ".pdf",
-            "pdf_file": submission.content["pdf"].split("/")[-1],
-            "decision": decision_by_forum[submission.id].content["decision"],
+            "pdf_file": get_content_from(submission, "pdf").split("/")[-1],
+            "decision": get_decision_from_venueid(submission),
             "openreview_id": submission.id,
         }
 
         # Fetch paper attributes and attachments.
         submitted_area = (
-            submission.content["track"] if "track" in submission.content else None
+            get_content_from(submission, "track")
         )
+        if "track" not in submission.content and not track_flag:
+            track_flag = True
+            print(f"Paper {submission.id} track field is not present. Contact info@openreview.net if you need this information migrated from ARR")
+
         if "paper_type" in submission.content:
-            paper_type = " ".join(submission.content["paper_type"].split()[:2]).lower()
+            paper_type = " ".join(get_content_from(submission, "paper_type").split()[:2]).lower()
         else:
             paper_type = "N/A"
+            if not paper_type_flag:
+                paper_type_flag = True
+                print("paper_type field (long or short) is not present. Contact info@openreview.net if you need this information migrated from ARR")
         presentation_type = "N/A"
         paper["attributes"] = {
             "submitted_area": submitted_area,
@@ -104,29 +128,39 @@ def main(username, password, venue, download_all, download_pdfs):
             "presentation_type": presentation_type,
         }
         attachments = []
+
+        attachments_count = 0
+        suffix = ""
+
         for att_type in attachment_types:
             if att_type in submission.content and submission.content[att_type]:
+                if attachments_count == 0:
+                    suffix = ""
+                else:
+                    suffix = "_" + str(attachments_count)
+
                 attachments.append(
                     {
                         "type": attachment_types[att_type],
-                        "file": str(paper["id"])
+                        "file": str(paper["id"]) + suffix
                         + "."
-                        + str(submission.content[att_type].split(".")[-1]),
-                        "open_review_id": str(submission.content[att_type]),
+                        + str(get_content_from(submission, att_type).split(".")[-1]),
+                        "open_review_id": str(get_content_from(submission, att_type)),
                     }
                 )
                 if download_all:
-                    file_tye = submission.content["software"].split(".")[-1]
-                    f = client_acl.get_attachment(submission.id, att_type)
+                    file_tye = get_content_from(submission, att_type).split(".")[-1]
+                    f = client_acl_v2.get_attachment(submission.id, att_type)
                     with open(
                         os.path.join(
-                            attachments_folder, str(paper["id"]) + "." + file_tye
+                            attachments_folder, str(paper["id"]) + suffix + "." + file_tye
                         ),
                         "wb",
                     ) as op:
                         op.write(f)
+                attachments_count = attachments_count + 1
         if download_pdfs:
-            f = client_acl.get_pdf(id=paper["openreview_id"])
+            f = client_acl_v2.get_pdf(id=paper["openreview_id"])
             with open(
                 os.path.join(papers_folder, str(paper["id"]) + ".pdf"), "wb"
             ) as op:

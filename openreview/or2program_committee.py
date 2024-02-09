@@ -20,7 +20,7 @@ password = sys.argv[2]
 use_tracks = True
 
 try:
-    client_acl = openreview.Client(baseurl='https://api.openreview.net', username=username, password=password)
+    client_acl = openreview.api.OpenReviewClient(baseurl='https://api2.openreview.net', username=username, password=password)
 except:
     print("OpenReview connection refused")
     exit()
@@ -28,16 +28,28 @@ except:
 acl_name = 'aclweb.org/ACL/2022/Conference' if len(sys.argv)<=3 else sys.argv[3]
 acl_name = acl_name.strip('/')
 
+try:
+    venue_group = client_acl.get_group(acl_name)
+    in_v2 = venue_group.domain is not None and venue_group.domain == venue_group.id
+except:
+    print(f"{acl_name} not found")
+    exit()
+
 def sort_role(t):
     return t["role"]
 def sort_user(t):
     return t["last_name"]
 
-def extract_or_data(client_acl, regex="/.*/Senior_Area_Chairs", or2acl={}):
+def extract_or_data(client_acl, all_groups, role="Senior_Area_Chairs", or2acl={}):
     lst = []
-    for i, group in enumerate(openreview.tools.iterget_groups(client_acl, regex=acl_name+regex)):
+    ## Groups will either look like venue_id/role or venue_id/track/role
+    for i, group in enumerate([g for g in all_groups if any(role == entry for entry in g.id.split('/'))]):
         # print(i, group.id)
-        or_track_name = group.id.split("/")[-1]
+        track = group.id.replace(acl_name, '').replace(role, '').strip('/')
+        if len(track) > 0:
+            or_track_name = f"{track}_{role}"
+        else:
+            or_track_name = role
         if or_track_name in or2acl:
             or_track_name = or2acl[or_track_name]
         t = { "role": or_track_name.replace("_"," "), "entries":[] }
@@ -85,21 +97,27 @@ else:
 # committees = get_committee(acl_name)
 # print(committees)
 
+# Fetch all groups and filter out the paper/submission groups
+all_groups = client_acl.get_all_groups(prefix = f"{acl_name}/.*")
+if not in_v2:
+    all_groups = [g for g in all_groups if 'Paper' not in g.id]
+else:
+    all_groups = [g for g in all_groups if 'Submission' not in g.id]
 
 program_committee = []
 
 # get PCs
-program_committee = extract_or_data(client_acl, regex="/Program_Chairs")
+program_committee = extract_or_data(client_acl, all_groups, role="Program_Chairs")
 
 # get SACs
 or2acl = {} # You can use this dictionary to replace OpenReview field names with others you want to use in the proceedings
-program_committee.extend(extract_or_data(client_acl, regex="/"+use_tracks+"Senior_Area_Chairs", or2acl=or2acl))
+program_committee.extend(extract_or_data(client_acl, all_groups, role="Senior_Area_Chairs", or2acl=or2acl))
 
 # get ACs
-program_committee.extend(extract_or_data(client_acl, regex="/"+use_tracks+"Area_Chairs", or2acl=or2acl))
+program_committee.extend(extract_or_data(client_acl, all_groups, role="Area_Chairs", or2acl=or2acl))
 
 # get reviewers
-aux = extract_or_data(client_acl, regex="/"+use_tracks+"Official_Review", or2acl=or2acl)
+aux = extract_or_data(client_acl, all_groups, role="Reviewers", or2acl=or2acl)
 for reviewer in aux:
     reviewer["type"]="name_block"
 program_committee.extend(aux)
