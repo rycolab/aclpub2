@@ -192,11 +192,16 @@ As with the prefaces, the contents of the `.tex` files should not include usual 
 and only what is usually found between the `\begin{document}` and `\end{document}` directives.
 
 ```yaml
-- speaker_name: Speaker name as it should appear, e.g. Jane Doe
-  institution: Speaker's institution name as it should appear, e.g. University of California Berkeley, USA
-  title: The title of the talk.
-  abstract_file: Path to abstract LaTeX file relative to the invited_talks/ directory.
-  bio_file: Path to bio LaTeX file relative to the invited_talks/ directory.
+- speaker_name: "Speaker name as it should appear, e.g., Jane Doe"
+  institution: "Speaker's institution name as it should appear, e.g., University of California Berkeley, USA"
+  title: "The title of the talk."
+  abstract_file: "Path to the abstract's LaTeX file relative to the invited_talks/ directory, e.g., invited_talks/jane_doe_abstract.tex"
+  bio_file: "Path to the bio's LaTeX file relative to the invited_talks/ directory e.g., invited_talks/jane_doe_bio.tex"
+  photo: "Path to the speaker's photo, relative to the invited_talks/ directory e.g., invited_talks/jane_doe_photo.jpg"
+  date: "Day of the invited talk, e.g., Mon, March 18, 2024"
+  time: "Time of the invited talk, e.g., 09:00 -- 10:00"
+  location: "Location of the invited talk, e.g., Room A"
+  custom_prefix: "Custom title for the page, e.g., Distinguished Lecture. This field allows customizing the default title of the page. If not provided, 'Keynote' is used."
 ```
 
 #### papers.yml
