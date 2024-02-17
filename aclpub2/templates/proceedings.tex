@@ -236,7 +236,13 @@ ISBN \VAR{conference.isbn}
   \phantomsection
   \addcontentsline{toc}{section}{Keynote Talk: \VAR{talk.title}}
   \begin{center}
-    {\LARGE \textbf{Keynote Talk: \VAR{talk.title}}\\}
+    \BLOCK{if talk.custom_prefix}
+      {\Large \textbf{\VAR{talk.custom_prefix}}\\}
+      {\LARGE \textbf{\VAR{talk.title}}\\}
+    \BLOCK{else}
+      {\Large \textbf{Keynote Talk}\\}
+      {\LARGE \textbf{\VAR{talk.title}}\\}
+    \BLOCK{endif}
     \vspace*{0.5cm}
     %\begin{minipage}[c][0.35\linewidth][c]{0.35\linewidth}
      % \end{minipage}\\
@@ -285,7 +291,8 @@ ISBN \VAR{conference.isbn}
   \phantomsection
   \addcontentsline{toc}{section}{Panel: \VAR{panel.title}}
   \begin{center}
-    {\LARGE \textbf{Panel: \VAR{panel.title}}}
+    {\Large \textbf{Panel}\\}
+    {\LARGE \textbf{\VAR{panel.title}}\\}
     
     \BLOCK{if panel.photo}
         \begin{center}
