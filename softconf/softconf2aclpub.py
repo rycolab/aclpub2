@@ -262,11 +262,12 @@ def get_papers():
         for row in reader:
             authors = []
             if row["Acceptance Status"].startswith("Accept"):
-                for i in range(1, 11):
-                    try:
-                        row[f"{i}: Last Name"]
-                    except:
-                        continue
+                author_col = re.compile(r'(\d+): Last Name')
+                authors_i = sorted([
+                    int(author_col.match(key).group(1))
+                    for key in row if author_col.match(key)
+                ])
+                for i in authors_i:
                     if row[f"{i}: Last Name"] != "":
                         authors.append({
                             "emails": row[f"{i}: Email"],
