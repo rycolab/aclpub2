@@ -281,6 +281,12 @@ For example:
 python or2papers.py myuser@acl.com 123456 aclweb.org/ACL/2022/Conference
 ```
 
+The above command will complain that `The output of this run cannot be used at ACLPUB2`. There are two additional parameters that will ensure that the PDFs will be downloaded, namely `--all` and `--pdfs`, so you should run
+
+```
+python or2papers.py myuser@acl.com 123456 aclweb.org/ACL/2022/Conference --all --pdfs
+```
+
 ### or2program_committee.py
 This script searches all Senior_Area_Chairs and Program_Chairs under your conference and saves their information in the `program_committee.yml` file.
 
