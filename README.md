@@ -326,7 +326,7 @@ Visit the [Java website](https://www.java.com/) for instructions on how to insta
 #### Ubuntu/Debian
 
 ```
-sudo apt-get install texlive-latex-base texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended texlive-fonts-extra texlive-bibtex-extra
+sudo apt-get install texlive-latex-base texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended texlive-fonts-extra texlive-bibtex-extra texlive-lang-all
 ```
 
 #### OSX
