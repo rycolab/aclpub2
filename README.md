@@ -8,7 +8,7 @@ The provided Python tool to generate the proceedings takes as input a set of fil
 
 ## Before starting
 
-###  Which reviewing platform is you conference/workshop using?
+###  Which reviewing platform is your conference/workshop using?
 - OpenReview. This guide is for you, we will explain you how to use the provided tool to generate the proceedings (and the handbook) automatically from OpenReview. 
 - EasyChair (or any other reviewing platform). This guide is for you, we will explain you how to generate the proceedings starting from manually edited files.
 - SoftConf. You can either follow the istructions provided by this guide to generate the proceedings starting from manually edited files (this is the suggested option for small-medium size events) or follow the [ACLPUB instructions](https://github.com/acl-org/acl-pub/blob/gh-pages/aclpub-start.md). In case you choose to use aclpub2 from information uploaded to softconf, we have recently added scripts to automate the export of info about the papers and program committee from that platform in a format compatible with aclpub2. The process is not fully automated but can be useful to simplify the process. Please take a look at the folder `softconf`.
