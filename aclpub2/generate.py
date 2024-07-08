@@ -23,7 +23,7 @@ def generate_proceedings(path: str, overwrite: bool, outdir: str, nopax: bool, f
     build_dir.mkdir(exist_ok=True)
 
     # Throw if the build directory isn't empty, and the user did not specify an overwrite.
-    if len([build_dir.iterdir()]) > 0 and not overwrite:
+    if len([_ for _ in build_dir.iterdir()]) > 0 and not overwrite:
         raise Exception(
             f"Build directory {build_dir} is not empty, and the overwrite flag is false."
         )
