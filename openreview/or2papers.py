@@ -14,11 +14,12 @@ import yaml
 from tqdm import tqdm
 import sys
 from util import *
+import openreview.api
 
 
 def main(username, password, venue, download_all, download_pdfs):
     try:
-        client_acl_v2 = openreview.Client(
+        client_acl_v2 = openreview.api.OpenReviewClient(
             baseurl="https://api2.openreview.net", username=username, password=password
         )
     except Exception as e:
