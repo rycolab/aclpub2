@@ -45,9 +45,11 @@ We strongly suggest taking a look at this [link](https://github.com/rycolab/aclp
 In addition, for the handbook, a file `program.yml` should be created [Jump to Handbook generation instructions](#Handbook-generation-instructions). 
 
 ## Expected output
-The generated proceedings should be sent to the publication chairs as a `.zip` or `.tgz` file containing a folder named with the conference/workshop acronym. 
-The build process creates a directory called `output`. This directory should contain all of the files that the publication chairs need, but it is always a good idea to confirm that this directory contains all of the files described below.
-If you are interested in an example of an output folder, just run the software on the test case, as discussed [here](#test-run).
+The generated proceedings should be sent to the publication chairs as a `.zip` or `.tgz` file containing a folder named with the conference/workshop acronym. Some publication chairs prefer uploading the files to a dedicated GitHub repository.
+
+The build process creates two directories called `build` and `output`. Note that the `build` directory is just temporary and is **not** intended to be shippied to the publication chairs. The `output` directory is the one to be shipped. This directory should contain all of the files that the publication chairs need, but it is always a good idea to confirm that this directory contains all of the files described below.
+
+If you are interested in an example of the `output` folder, just run the software on the test case, as discussed [here](#test-run).
 
 In a nutshell, such folder should contain:
 1. A PDF file named `proceedings.pdf` containing the whole conference/workshop proceedings (i.e., the introduction and all the watermarked PDFs of the camera ready papers).
