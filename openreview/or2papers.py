@@ -36,7 +36,7 @@ def main(username, password, venue, download_all, download_pdfs):
     if not download_all or not download_pdfs:
         print("The output of this run cannot be used at ACLPUB2")
 
-    attachment_types = {"software": "software", "Data": "note"}
+    attachment_types = {"software": "software", "data": "note", "copyright_PDF": "pdf"}
 
     papers_folder = "papers"
     attachments_folder = "attachments"
@@ -45,7 +45,7 @@ def main(username, password, venue, download_all, download_pdfs):
     if not os.path.exists(attachments_folder):
         os.mkdir(attachments_folder)
 
-    submissions = client_acl_v2.get_all_notes(invitation=venue + "/-/Submission", details="replies")
+    submissions = client_acl_v2.get_all_notes(content={ 'venueid': venue}, details='replies')
     if len(submissions) <= 0:
         print("No submissions found. Please double check your venue ID and/or permissions to view the submissions")
 
@@ -161,11 +161,14 @@ def main(username, password, venue, download_all, download_pdfs):
                         op.write(f)
                 attachments_count = attachments_count + 1
         if download_pdfs:
-            f = client_acl_v2.get_pdf(id=paper["openreview_id"])
-            with open(
-                os.path.join(papers_folder, str(paper["id"]) + ".pdf"), "wb"
-            ) as op:
-                op.write(f)
+            try:
+                f = client_acl_v2.get_pdf(id=paper["openreview_id"])
+                with open(
+                    os.path.join(papers_folder, str(paper["id"]) + ".pdf"), "wb"
+                ) as op:
+                    op.write(f)
+            except:
+                print(f"Unable to download PDF for {paper['openreview_id']}")
 
         if len(attachments) > 0:
             paper["attachments"] = attachments
