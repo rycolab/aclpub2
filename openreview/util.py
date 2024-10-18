@@ -43,12 +43,16 @@ def get_user(or_id,client_acl, force_institution=False):
             if namePrefered==None or ('preferred' in name and name['preferred']):
                 namePrefered = name
         if "first" in namePrefered:
-            name = " ".join([namePrefered['first'] if type(namePrefered['first'])==str else '', 
-                            namePrefered['middle'] if namePrefered['middle']!=None else '', 
-                            namePrefered['last'] if namePrefered['last']!=None else '' ]).replace("  ", " ")
-            first_name = namePrefered['first'].strip() if type(namePrefered['first'])==str else ''
-            middle_name = namePrefered['middle'].strip() if namePrefered['middle']!=None else ''
-            last_name = namePrefered['last'].strip() if namePrefered['last']!=None else ''
+            name = ' '.join(filter(None, [
+                    namePrefered.get('first', ''),
+                    namePrefered.get('middle', ''),
+                    namePrefered.get('last', '')
+                ])).replace("  ", " ")
+            first_name = namePrefered.get('first', '')
+            middle_name = namePrefered.get('middle', '')
+            if middle_name is None:
+                middle_name = ""
+            last_name = namePrefered.get('last', '')
         else: ## first, middle, and last may not be present - OR switched to requiring only fullnames but this may change later for inclusivity
             name = namePrefered['fullname']
             first_name = namePrefered['fullname'].split(" ")[0]
