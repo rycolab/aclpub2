@@ -36,7 +36,7 @@ def main(username, password, venue, download_all, download_pdfs):
     if not download_all or not download_pdfs:
         print("The output of this run cannot be used at ACLPUB2")
 
-    attachment_types = {"software": "software", "data": "note", "copyright_PDF": "pdf"}
+    attachment_types = {"software": "software", "data": "data", "copyright_PDF": "copyright"}
 
     papers_folder = "papers"
     attachments_folder = "attachments"
