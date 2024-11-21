@@ -388,7 +388,12 @@ ISBN \VAR{conference.isbn}
 \newcommand\page[1]{\rightskip=25pt \dotfill\rlap{\hbox to 25pt{\hfill#1}}\par}
 \begin{itemize}[leftmargin=*,label={}]
   \BLOCK{for paper in archival_papers}
-     \item \hyperlink{page.\VAR{paper.start_page}}{\emph{\VAR{paper.title}}}\\ \hspace*{2em} \VAR{join_names(", ", paper.authors, " and ")}\dotfill \hyperlink{page.\VAR{paper.start_page}}{\VAR{paper.start_page}}
+    \item \hyperlink{page.\VAR{paper.start_page}}{\emph{\VAR{paper.title}}}\\
+      \makebox[\linewidth][r]{%
+        \begin{minipage}{\dimexpr\textwidth-2em\relax}
+          \raggedright \VAR{join_names(", ", paper.authors, " and ")}\dotfill \hyperlink{page.\VAR{paper.start_page}}{\VAR{paper.start_page}}
+        \end{minipage}%
+      }
   \BLOCK{endfor}
 \end{itemize}
 \newpage
