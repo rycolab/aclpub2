@@ -1,6 +1,6 @@
 from collections import defaultdict
 from pathlib import Path
-from PyPDF2 import PdfFileReader
+from PyPDF2 import PdfReader
 
 from aclpub2.templates import load_template, homoglyph, TEMPLATE_DIR
 from aclpub2.config import load_configs, load_configs_handbook
@@ -193,7 +193,7 @@ def find_page_offset(proceedings_pdf):
     offset = None
     last_roman = None
     last_page = None
-    for i in range(proceedings_pdf.getNumPages()):
+    for i in range(proceedings_len(pdf.pages)):
         page_line = proceedings_pdf.getPage(i).extractText().split("\n")[-2]
         try:  # Make sure the roman numbered front-matter is correct.
             rn = roman.fromRoman(page_line)
@@ -334,10 +334,10 @@ def process_papers(papers, root: Path):
         if "file" not in paper:
             raise ValueError(f"missing 'file' in paper {paper['id']}")
         pdf_path = Path(root, "papers", paper["file"])
-        pdf = PdfFileReader(str(pdf_path))
-        paper["num_pages"] = pdf.getNumPages()
+        pdf = PdfReader(str(pdf_path))
+        paper["num_pages"] = len(pdf.pages)
         paper["start_page"] = page
-        paper["end_page"] = page + pdf.getNumPages() - 1
+        paper["end_page"] = page + len(pdf.pages) - 1
         if "authors" not in paper:
             raise ValueError(f"missing 'authors' in paper {paper['id']}")
         for author in paper["authors"]:
@@ -350,7 +350,7 @@ def process_papers(papers, root: Path):
                 raise ValueError(f"missing 'last_name' in author of paper {paper['id']}")
             index_name = f"{author['last_name']}, {given_names}"
             author_to_pages[index_name].append(page)
-        page += pdf.getNumPages()
+        page += len(pdf.pages)
         archival_papers.append(paper)
     alphabetized_author_index = defaultdict(list)
     for author, pages in sorted(author_to_pages.items()):

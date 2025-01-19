@@ -1,6 +1,6 @@
-Jinja2==3.0.2
-PyYAML==5.3.1
-PyPDF2==1.26.0
-roman==3.3
+Jinja2==3.1.5
+PyYAML==6.0.2
+PyPDF2==3.0.1
+roman==5.0
 openreview-py
 tqdm
