@@ -73,19 +73,19 @@ def get_user(or_id,client_acl, force_institution=False):
             middle_name = " ".join(name.split(" ")[1:-1])
 
             # move common surname prefixes from the middle name to the last name
-            if middle_name.lower() in ("al", "da", "de", "de la", "della", "el", "van", "van den", "van der", "von", "von der"):
+            if middle_name.lower() in ("al", "da", "de", "de la", "del", "della", "di", "el", "van", "van den", "van der", "von", "von der"):
                 last_name = middle_name + " " + last_name
                 middle_name = ""
-            elif middle_name.lower().endswith(" van den", " van der", " von der"):
+            elif middle_name.lower().endswith((" van den", " van der", " von der")):
                 last_name = middle_name[-7:] + " " + last_name
                 middle_name = middle_name[:-8]
-            elif middle_name.lower().endswith(" de la", " della"):
+            elif middle_name.lower().endswith((" de la", " della")):
                 last_name = middle_name[-5:] + " " + last_name
                 middle_name = middle_name[:-6]
-            elif middle_name.lower().endswith(" van", " von"):
+            elif middle_name.lower().endswith((" del", " van", " von")):
                 last_name = middle_name[-3:] + " " + last_name
                 middle_name = middle_name[:-4]
-            elif middle_name.lower().endswith(" al", " da", " de", " el"):
+            elif middle_name.lower().endswith((" al", " da", " de", " di", " el")):
                 last_name = middle_name[-2:] + " " + last_name
                 middle_name = middle_name[:-3]
 
