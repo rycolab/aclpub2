@@ -64,8 +64,8 @@ def get_user(or_id,client_acl, force_institution=False):
         if len(middle_name)>2:
             middle_name = " ".join([n[0].upper() + n[1:].lower() if (n==n.upper() or n==n.lower()) else n for n in middle_name.split(" ")])
         if len(last_name)>2:
-            last_name = " ".join([n[0].upper() + n[1:].lower() if (n==n.upper() or n==n.lower()) else n for n in last_name.split(" ")])
-            
+            if all(n.isupper() or n.islower() for n in last_name.split(" ")):   # name does not contain any words with both uppercase and lowercase characters; impose initial-only capitalization for each word
+                last_name = " ".join([n[0].upper() + n[1:].lower() for n in last_name.split(" ")])
 
         if 'preferredEmail' in emails[0].content:
             emails = emails[0].content['preferredEmail']
