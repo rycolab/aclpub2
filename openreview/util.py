@@ -55,9 +55,40 @@ def get_user(or_id,client_acl, force_institution=False):
             last_name = namePrefered.get('last', '')
         else: ## first, middle, and last may not be present - OR switched to requiring only fullnames but this may change later for inclusivity
             name = namePrefered['fullname']
-            first_name = namePrefered['fullname'].split(" ")[0]
-            last_name = namePrefered['fullname'].split(" ")[-1]
-            middle_name = " ".join(namePrefered['fullname'].split(" ")[1:-1])
+            try:
+                assert "@" not in name,name
+            except AssertionError:
+                print("\nERROR: name looks like email address:", name, "for OR user", or_id)
+
+            # if full name has no spaces, try to insert some based on capitalization/periods
+            if " " not in name:
+                name2 = ""
+                for c in name:
+                    if c.isupper() and name2 and (name2[-1].islower() or name2[-1]=="."):
+                        name2 += " "    # insert a space
+                    name2 += c
+                name = name2
+            first_name = name.split(" ")[0] if " " in name else ""
+            last_name = name.split(" ")[-1]
+            middle_name = " ".join(name.split(" ")[1:-1])
+
+            # move common surname prefixes from the middle name to the last name
+            if middle_name.lower() in ("al", "da", "de", "de la", "del", "della", "di", "el", "van", "van den", "van der", "von", "von der"):
+                last_name = middle_name + " " + last_name
+                middle_name = ""
+            elif middle_name.lower().endswith((" van den", " van der", " von der")):
+                last_name = middle_name[-7:] + " " + last_name
+                middle_name = middle_name[:-8]
+            elif middle_name.lower().endswith((" de la", " della")):
+                last_name = middle_name[-5:] + " " + last_name
+                middle_name = middle_name[:-6]
+            elif middle_name.lower().endswith((" del", " van", " von")):
+                last_name = middle_name[-3:] + " " + last_name
+                middle_name = middle_name[:-4]
+            elif middle_name.lower().endswith((" al", " da", " de", " di", " el")):
+                last_name = middle_name[-2:] + " " + last_name
+                middle_name = middle_name[:-3]
+
         username = namePrefered['username'].strip()
         if len(first_name)>2:
             first_name = " ".join([n[0].upper() + n[1:].lower() if (n==n.upper() or n==n.lower()) else n for n in first_name.split(" ")])
