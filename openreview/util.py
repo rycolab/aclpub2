@@ -82,6 +82,9 @@ def get_user(or_id,client_acl, force_institution=False):
             elif middle_name.lower().endswith((" de la", " della")):
                 last_name = middle_name[-5:] + " " + last_name
                 middle_name = middle_name[:-6]
+            elif middle_name.lower().endswith((" dela",)):
+                last_name = middle_name[-4:] + " " + last_name
+                middle_name = middle_name[:-5]
             elif middle_name.lower().endswith((" del", " van", " von")):
                 last_name = middle_name[-3:] + " " + last_name
                 middle_name = middle_name[:-4]
