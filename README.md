@@ -86,6 +86,15 @@ editors: list of the editors of the volume, in the form
 publisher: published of the conference, generally "Association for Computational Linguistics"
 volume_name: a tag used by the ACL Anthology to characterize the new volume in a group of proceedings. For a volume of the main conference, it should be a tag from the list long|short|srw|demo|findings. For other volumes, such as workshops, it should be set to 1
 watermark_book_title: [optional] If you do not want to use the text in the book_title as a watermark, you can specify here the alternative form. It is particularly usefull when the book_title is too long: in this case you can copy that text in this field and use the line break symbol \\ and, if the text is enclosed between " ", use \\\\
+proceedings_address: [optional] LaTeX table rows that replace the default address shown on the Copyright page of `proceedings.tex`, for ordering physical copies of proceedings. Each row should start with & (for the second column) and end with \\ (LaTeX line break). Use the | (pipe) character for multi-line literal strings in YAML. The lines should be indented consistently (the template will automatically remove the indentation). Example:
+  proceedings_address: |
+    & Association for Computational Linguistics (ACL)\\
+    & 317 Sidney Baker St. S \\
+    & Suite 400 - 134\\
+    & Kerrville, TX 78028\\
+    & USA\\
+    & Tel: +1-855-225-1962\\
+    &{\tt acl@aclweb.org}\\
 ```
 
 **Notice**: avoid using LaTeX escape codes but simply use the characters in UTF8, e.g., Rilić instead of Rili'\\{c})).
