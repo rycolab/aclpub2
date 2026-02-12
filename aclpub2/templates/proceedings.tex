@@ -114,7 +114,6 @@
 \newpage
 \BLOCK{endif}
 
-
 %%%%%%%%%%%%%
 % Copyright %
 %%%%%%%%%%%%%
@@ -128,8 +127,14 @@
 
 \vspace*{2cm}
 \noindent
-Order copies of this and other ACL proceedings from:
+Order copies of this and other \VAR{conference.publisher} proceedings from:
 
+\BLOCK{if conference.proceedings_address is defined}
+\vspace*{1cm}
+\begin{tabular}{p{1.5cm}l}
+\VAR{conference.proceedings_address | dedent}
+\end{tabular}
+\BLOCK{else}
 \vspace*{1cm}
 \begin{tabular}{p{1.5cm}l}
 & Association for Computational Linguistics (ACL)\\
@@ -140,6 +145,7 @@ Order copies of this and other ACL proceedings from:
 & Tel: +1-855-225-1962\\
 &{\tt acl@aclweb.org}\\
 \end{tabular}
+\BLOCK{endif}
 
 \vspace*{1cm}
 ISBN \VAR{conference.isbn}
@@ -453,7 +459,7 @@ ISBN \VAR{conference.isbn}
     \put(0,13){\parbox[t]{\paperwidth}{\centering
     							\emph{\VAR{title}}, pages \VAR{paper.start_page}--\VAR{paper.end_page} \\
   	  						\VAR{conference_dates}, \VAR{conference.start_date.year} \textcopyright
-  							\VAR{conference.start_date.year} Association for Computational Linguistics}}
+                            \VAR{conference.start_date.year} \VAR{conference.publisher}}}
   }
   \includepdf[pagecommand={\thispagestyle{plain}},pages=-,addtotoc={1,section,1,{\VAR{paper.title}},ref:paper_{\VAR{paper.id}}}]{\VAR{root}/papers/\VAR{paper.file}}
 \BLOCK{endfor}
