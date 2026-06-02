@@ -41,7 +41,7 @@ The following `.yml` files should be provided to the generation scripts. Files 1
 7. `panels.yml` (optional)
 8. `papers.yml`
 
-We strongly suggest taking a look at this [link](https://github.com/rycolab/aclpub2/tree/main/examples/sigdial), where you can find **examples** of most the above files initialized for a past conference.
+We strongly suggest taking a look at this [link](https://github.com/rycolab/aclpub2/tree/main/examples/sigdial), where you can find **examples** of most of the above files initialized for a past conference.
 
 In addition, for the handbook, a file `program.yml` should be created [Jump to Handbook generation instructions](#Handbook-generation-instructions). 
 
