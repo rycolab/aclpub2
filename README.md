@@ -197,9 +197,9 @@ and only what is usually found between the `\begin{document}` and `\end{document
 - speaker_name: "Speaker name as it should appear, e.g., Jane Doe"
   institution: "Speaker's institution name as it should appear, e.g., University of California Berkeley, USA"
   title: "The title of the talk."
-  abstract_file: "Path to the abstract's LaTeX file relative to the invited_talks/ directory, e.g., invited_talks/jane_doe_abstract.tex"
-  bio_file: "Path to the bio's LaTeX file relative to the invited_talks/ directory e.g., invited_talks/jane_doe_bio.tex"
-  photo: "Path to the speaker's photo, relative to the invited_talks/ directory e.g., invited_talks/jane_doe_photo.jpg"
+  abstract_file: "Path to the abstract's LaTeX file relative to the invited_talks/ directory, e.g., jane_doe_abstract.tex"
+  bio_file: "Path to the bio's LaTeX file relative to the invited_talks/ directory e.g., jane_doe_bio.tex"
+  photo: "Path to the speaker's photo, relative to the invited_talks/ directory e.g., jane_doe_photo.jpg"
   date: "Day of the invited talk, e.g., Mon, March 18, 2024"
   time: "Time of the invited talk, e.g., 09:00 -- 10:00"
   location: "Location of the invited talk, e.g., Room A"
@@ -213,19 +213,19 @@ and only what is usually found between the `\begin{document}` and `\end{document
 
 ```yaml
 - title: "The title of the panel discussion."
-  photo: "Path to a promotional panel image file relative to the panels/ directory, e.g., panels/panel_promo.jpg"
+  photo: "Path to a promotional panel image file relative to the panels/ directory, e.g., panel_promo.jpg"
   date: "Day of the panel, e.g., Wed, May 27, 2026"
   time: "Time of the panel, e.g., 14:00 -- 15:30"
   location: "Location of the panel, e.g., Main Hall"
-  abstract_file: "Path to the panel's abstract LaTeX file relative to the panels/ directory, e.g., panels/panel_abstract.tex"
+  abstract_file: "Path to the panel's abstract LaTeX file relative to the panels/ directory, e.g., panel_abstract.tex"
   moderators:
     - name: "Moderator name as it should appear, e.g., John Doe"
       institution: "Moderator's institution name, e.g., McGill University, Canada"
-      bio_file: "Path to the moderator's bio LaTeX file relative to the panels/ directory, e.g., panels/john_doe_bio.tex"
+      bio_file: "Path to the moderator's bio LaTeX file relative to the panels/ directory, e.g., john_doe_bio.tex"
   panelists:
     - name: "Panelist name as it should appear, e.g., Alice Smith"
       institution: "Panelist's institution name, e.g., MILA, Canada"
-      bio_file: "Path to the panelist's bio LaTeX file relative to the panels/ directory, e.g., panels/alice_smith_bio.tex"
+      bio_file: "Path to the panelist's bio LaTeX file relative to the panels/ directory, e.g., alice_smith_bio.tex"
 ```
 
 #### papers.yml
