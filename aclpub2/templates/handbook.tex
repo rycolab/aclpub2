@@ -72,7 +72,9 @@
 % for each part of the conference, add the .bib file produced with
 % meta2bibtex.py here:
 
-% Set indents to zero everywhere.
+% Set indents to zero (to be restored for certain sections)
+\newlength{\origparindent}
+\setlength{\origparindent}{\parindent}
 \setlength{\parindent}{0pt}
 
 %TO BE UNCOMMENTED
@@ -136,6 +138,7 @@
 %%%%%%%%%%%%
 % Prefaces %
 %%%%%%%%%%%%
+\setlength{\parindent}{\origparindent}
 \BLOCK{for preface in prefaces}
   \begin{flushleft}
   \section{\VAR{preface.title}}
@@ -144,6 +147,7 @@
   \VAR{load_file(root, "prefaces", preface.file)}
   \newpage
 \BLOCK{endfor}
+\setlength{\parindent}{0pt}
 
 %%%%%%%%%%%%%%%%%%%%%%%%
 % Organizing Committee %
