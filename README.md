@@ -30,7 +30,7 @@ The provided Python tool to generate the proceedings takes as input a set of fil
 The scripts to generate the proceedings accept as input a set of `.yml` files and directories. A YML file is a text document that contains data formatted using YAML (YAML Ain't Markup Language), a human-readable data format used for data serialization. You can open a YML file in any text editor (or source code editor).
 Examples and usage of YAML syntax can be found [here](https://www.w3schools.io/file/yaml-arrays/).
 
-The following `.yml` files should be provided to the generation scripts. Files 1, 2, 3, 4 and 6 should be manually edited with information concerning your conference/workshops, while files 5 and 7 can be automatically exported from OpenReview (or manually edited if you are not using OpenReview).
+The following `.yml` files should be provided to the generation scripts. Files 1, 2, 3, 4, 6 and 7 should be manually edited with information concerning your conference/workshops, while files 5 and 8 can be automatically exported from OpenReview (or manually edited if you are not using OpenReview).
 
 1. `conference_details.yml`
 2. `sponsors.yml` (optional)
@@ -38,9 +38,10 @@ The following `.yml` files should be provided to the generation scripts. Files 1
 4. `organizing_committee.yml`
 5. `program_committee.yml`
 6. `invited_talks.yml` (optional)
-7. `papers.yml`
+7. `panels.yml` (optional)
+8. `papers.yml`
 
-We strongly suggest taking a look at this [link](https://github.com/rycolab/aclpub2/tree/main/examples/sigdial), where you can find **examples** of all the above files initialized for a past conference.
+We strongly suggest taking a look at this [link](https://github.com/rycolab/aclpub2/tree/main/examples/sigdial), where you can find **examples** of most of the above files initialized for a past conference.
 
 In addition, for the handbook, a file `program.yml` should be created [Jump to Handbook generation instructions](#Handbook-generation-instructions). 
 
@@ -139,7 +140,6 @@ volume_name: 1
 watermark_book_title: Proceedings of the 2nd Workshop on Human Evaluation of NLP Systems (HumEval 2021)
 ```
 
-
 #### sponsors.yml
 This file should list the sponsors (if any). A directory containing the related logos should be created in the same directory of the `.yml` files (named sponsor_logos/).
 
@@ -189,7 +189,7 @@ This file should list the members of the program committee. You can edit this fi
 ```
 
 #### invited_talks.yml
-This optional file should list the invited talks and associated abstracts and bios. A directory containing the `.tex` files that provide the text of the abstract and the bios should be created in the same directory of the `.yml` files (named invited_talks/).
+This optional file should list the invited talks and associated abstracts and bios. A directory containing the `.tex` files that provide the text of the abstract and the bios should be created in the same directory of the `.yml` files (named `invited_talks/`).
 As with the prefaces, the contents of the `.tex` files should not include usual headers and footers found within LaTeX files,
 and only what is usually found between the `\begin{document}` and `\end{document}` directives.
 
@@ -197,13 +197,35 @@ and only what is usually found between the `\begin{document}` and `\end{document
 - speaker_name: "Speaker name as it should appear, e.g., Jane Doe"
   institution: "Speaker's institution name as it should appear, e.g., University of California Berkeley, USA"
   title: "The title of the talk."
-  abstract_file: "Path to the abstract's LaTeX file relative to the invited_talks/ directory, e.g., invited_talks/jane_doe_abstract.tex"
-  bio_file: "Path to the bio's LaTeX file relative to the invited_talks/ directory e.g., invited_talks/jane_doe_bio.tex"
-  photo: "Path to the speaker's photo, relative to the invited_talks/ directory e.g., invited_talks/jane_doe_photo.jpg"
+  abstract_file: "Path to the abstract's LaTeX file relative to the invited_talks/ directory, e.g., jane_doe_abstract.tex"
+  bio_file: "Path to the bio's LaTeX file relative to the invited_talks/ directory e.g., jane_doe_bio.tex"
+  photo: "Path to the speaker's photo, relative to the invited_talks/ directory e.g., jane_doe_photo.jpg"
   date: "Day of the invited talk, e.g., Mon, March 18, 2024"
   time: "Time of the invited talk, e.g., 09:00 -- 10:00"
   location: "Location of the invited talk, e.g., Room A"
   custom_prefix: "Custom title for the page, e.g., Distinguished Lecture. This field allows customizing the default title of the page. If not provided, 'Keynote' is used."
+```
+
+#### panels.yml
+This optional file should list the panels and associated abstracts and bios. A directory containing the `.tex` files that provide the text of the abstract and the bios should be created in the same directory of the `.yml` files (named `panels/`).
+As with the prefaces, the contents of the `.tex` files should not include usual headers and footers found within LaTeX files,
+and only what is usually found between the `\begin{document}` and `\end{document}` directives.
+
+```yaml
+- title: "The title of the panel discussion."
+  photo: "Path to a promotional panel image file relative to the panels/ directory, e.g., panel_promo.jpg"
+  date: "Day of the panel, e.g., Wed, May 27, 2026"
+  time: "Time of the panel, e.g., 14:00 -- 15:30"
+  location: "Location of the panel, e.g., Main Hall"
+  abstract_file: "Path to the panel's abstract LaTeX file relative to the panels/ directory, e.g., panel_abstract.tex"
+  moderators:
+    - name: "Moderator name as it should appear, e.g., John Doe"
+      institution: "Moderator's institution name, e.g., McGill University, Canada"
+      bio_file: "Path to the moderator's bio LaTeX file relative to the panels/ directory, e.g., john_doe_bio.tex"
+  panelists:
+    - name: "Panelist name as it should appear, e.g., Alice Smith"
+      institution: "Panelist's institution name, e.g., MILA, Canada"
+      bio_file: "Path to the panelist's bio LaTeX file relative to the panels/ directory, e.g., alice_smith_bio.tex"
 ```
 
 #### papers.yml
