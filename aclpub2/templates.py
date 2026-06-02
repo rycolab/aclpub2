@@ -6,7 +6,7 @@ import jinja2
 
 TEMPLATE_DIR = Path(Path(__file__).parent, "templates")
 
-HOMOGLYPHS = {"Ø": "o", "Ö": "o", "Ç": "c", "Ş": "s", "Š": "s", "Á": "a", "\c{S}": "s", "Ü": "u"}
+HOMOGLYPHS = {"Ø": "o", "Ö": "o", "Ç": "c", "Ş": "s", "Š": "s", "Á": "a", r"\c{S}": "s", "Ü": "u"}
 
 
 def load_file(*args: str):
@@ -18,7 +18,7 @@ def render_name(user):
     name = user["first_name"] + " "
     if "middle_name" in user:
         name += user["middle_name"] + " "
-    name += user["last_name"] + "\index{" + user["last_name"] + "}"
+    name += user["last_name"] + r"\index{" + user["last_name"] + "}"
     return name
 
 
@@ -34,7 +34,7 @@ def join_names(delimiter: str, items: List[Any], delimiter_last: str = None):
 
 def index_author(author: str):
     n = author.split(" ")
-    return "\index{" + n[-1] + ", " + " ".join(n[:-1]) + "}"
+    return r"\index{" + n[-1] + ", " + " ".join(n[:-1]) + "}"
 
 
 def index_speakers(author: str):
@@ -42,13 +42,13 @@ def index_speakers(author: str):
     s = ""
     for aut in n:
         sur = aut.split(" ")[-1]
-        s += "\index{" + sur + "}"
+        s += r"\index{" + sur + "}"
     return s
 
 
 def join_page_numbers(page_numbers):
     linked = map(
-        lambda x: "\hyperlink{page." + str(x) + "}{" + str(x) + "}", page_numbers
+        lambda x: r"\hyperlink{page." + str(x) + "}{" + str(x) + "}", page_numbers
     )
     return ", ".join(linked)
 
@@ -93,11 +93,11 @@ def session_times(session) -> str:
 
 
 LATEX_JINJA_ENV = jinja2.Environment(
-    block_start_string="\BLOCK{",
+    block_start_string=r"\BLOCK{",
     block_end_string="}",
-    variable_start_string="\VAR{",
+    variable_start_string=r"\VAR{",
     variable_end_string="}",
-    comment_start_string="\#{",
+    comment_start_string=r"\#{",
     comment_end_string="}",
     trim_blocks=True,
     autoescape=False,
