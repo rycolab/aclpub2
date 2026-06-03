@@ -93,13 +93,18 @@ def get_user(or_id,client_acl, force_institution=False):
                 middle_name = middle_name[:-3]
 
         username = namePrefered['username'].strip()
-        if len(first_name)>2:
-            first_name = " ".join([n[0].upper() + n[1:].lower() if (n==n.upper() or n==n.lower()) else n for n in first_name.split(" ")])
-        if len(middle_name)>2:
-            middle_name = " ".join([n[0].upper() + n[1:].lower() if (n==n.upper() or n==n.lower()) else n for n in middle_name.split(" ")])
+
+        # Normalize capitalization in the name if it appears to lack uppercase/lowercase distinctions where expected
+        # Note that str.title() treats any punctuation as a word boundary: 'A.S MD. AL-ONAIZAN C.P. DM'.title() == 'A.S Md. Al-Onaizan C.P. Dm'
+        if len(first_name)>2:  # if a space-delimited part is all-uppercase or all-lowercase, apply title-casing to it
+            first_name = " ".join([n.title() if (n==n.upper() or n==n.lower()) else n for n in first_name.split(" ")])
+        if len(middle_name)>2:  # if a space-delimited part is all-uppercase or all-lowercase, apply title-casing to it
+            middle_name = " ".join([n.title() if (n==n.upper() or n==n.lower()) else n for n in middle_name.split(" ")])
         if len(last_name)>2:
-            if all(n.isupper() or n.islower() for n in last_name.split(" ")):   # name does not contain any words with both uppercase and lowercase characters; impose initial-only capitalization for each word
-                last_name = " ".join([n[0].upper() + n[1:].lower() for n in last_name.split(" ")])
+            # If last name does not contain any words with both uppercase and lowercase characters, impose title-casing
+            # (but preserve e.g. "de Marneffe")
+            if all(n.isupper() or n.islower() for n in last_name.split(" ")):
+                last_name = last_name.title()
 
         if 'preferredEmail' in emails[0].content:
             emails = emails[0].content['preferredEmail']
