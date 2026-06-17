@@ -69,8 +69,12 @@ def get_user(or_id,client_acl, force_institution=False):
                     name2 += c
                 name = name2
             first_name = name.split(" ")[0] if " " in name else ""
-            last_name = name.split(" ")[-1]
-            middle_name = " ".join(name.split(" ")[1:-1])
+            if name.count(" ") > 1 and name.split(" ")[-1].lower() in ("ii", "iii", "iv", "jr", "jr."):
+                last_name = " ".join(name.split(" ")[-2:])
+                middle_name = " ".join(name.split(" ")[1:-2])
+            else:
+                last_name = name.split(" ")[-1]
+                middle_name = " ".join(name.split(" ")[1:-1])
 
             # move common surname prefixes from the middle name to the last name
             if middle_name.lower() in ("al", "da", "de", "de la", "del", "dela", "della", "dos", "di", "el", "van", "van den", "van der", "von", "von der"):
