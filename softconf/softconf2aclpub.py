@@ -46,7 +46,14 @@ def capitalize_name(name):
                         toks += [n]
                     else:
                         toks += [n[0].upper()+n[1:].lower()]
-        tokens_capitalized = "-".join(toks)
+        # Re-join the hyphenated first token into a single string, and keep it as
+        # one element of the token list together with the remaining tokens.  Note
+        # the list: assigning the joined string directly to ``tokens_capitalized``
+        # caused the final ``" ".join(...)`` to iterate over its characters,
+        # turning e.g. "Siang-Ting" into "S i a n g - T i n g".
+        tokens_capitalized = ["-".join(toks)] + [
+            token[0].upper()+token[1:].lower() for token in tokens[1:]
+        ]
     else:
         tokens_capitalized = [token[0].upper()+token[1:].lower() for token in tokens]
     return " ".join(tokens_capitalized)
