@@ -91,6 +91,56 @@ def tex_escape(text):
     regex = re.compile('|'.join(re.escape(str(key)) for key in sorted(conv.keys(), key = lambda item: - len(item))))
     return regex.sub(lambda match: conv[match.group()], text)
 
+# Directories searched (in order) for ACLPUB `.orc` ORCID side files. ACLPUB
+# writes one `.orc` file next to each paper's `.bib` (under `cdrom/bib/`); copies
+# may also land next to the downloaded final submissions (`attachments/`).
+ORC_SIDEFILE_DIRS = ["cdrom/bib", "bib", "attachments", "."]
+
+
+def find_orc_file(paper_id):
+    """
+        :param paper_id: the id of a paper (e.g. its Submission ID)
+        :return: the path to the matching `.orc` side file, or None if not found
+    """
+    for directory in ORC_SIDEFILE_DIRS:
+        candidates = [os.path.join(directory, f"{paper_id}.orc")]
+        candidates += sorted(glob(os.path.join(directory, f"{paper_id}_*.orc")))
+        for path in candidates:
+            if os.path.isfile(path):
+                return path
+    return None
+
+
+def read_orc_file(orcfilename):
+    """
+        :param orcfilename: path to an ACLPUB `.orc` side file (or None)
+        :return: a dict mapping 1-based author index to ORCID string
+
+    The `.orc` file has one entry per line, mapping each author (by 1-based
+    index, matching the author order of the paper) to their ORCID, e.g.::
+
+        Author{1}{Orcid}:0000-0002-9659-1532
+        Author{2}{Orcid}:
+        Author{3}{Orcid}:
+
+    Entries with an empty ORCID value are omitted. Returns an empty dict when
+    `orcfilename` is None or the file does not exist. This mirrors the ACLPUB
+    `.orc` side-loading done by the ACL Anthology's bin/ingest.py.
+    """
+    orcids = {}
+    if not orcfilename or not os.path.isfile(orcfilename):
+        return orcids
+    with open(orcfilename, encoding="utf-8") as instream:
+        for line in instream:
+            match = re.match(r"Author\{(\d+)\}\{Orcid\}\s*:\s*(\S*)", line.strip())
+            if match is None:
+                continue
+            orcid = match.group(2).strip()
+            if not orcid:
+                continue
+            orcids[int(match.group(1))] = orcid
+    return orcids
+
 # helper function for SOFTCONF scraping
 def follow_link_by_text(br, text):
     """
@@ -277,6 +327,15 @@ def get_papers():
                             "username": row[f"{i}: Username"],
                             "institution": tex_escape(row[f"{i}: Affiliation"])
                         })
+
+                # Pull ORCIDs from the ACLPUB `.orc` side file for this paper, if
+                # one is present, and attach them to authors by 1-based index
+                # (the same order as the author list). See read_orc_file().
+                orcids = read_orc_file(find_orc_file(row["Submission ID"]))
+                for index, author in enumerate(authors, start=1):
+                    if orcids.get(index):
+                        author["orcid"] = orcids[index]
+
                 sub_type = "Submission Type" if "Submission Type" in row else "Paper type"
                 paper = {
                     "abstract": tex_escape(row["Abstract"]),
