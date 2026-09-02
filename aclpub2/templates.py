@@ -92,6 +92,12 @@ def session_times(session) -> str:
     return f"{start} - {end}"
 
 
+def dedent_lines(text: str) -> str:
+    """Remove leading whitespace from each line while preserving the text."""
+    import textwrap
+    return textwrap.dedent(text)
+
+
 LATEX_JINJA_ENV = jinja2.Environment(
     block_start_string=r"\BLOCK{",
     block_end_string="}",
@@ -114,6 +120,7 @@ LATEX_JINJA_ENV.globals.update(
     index_author=index_author,
     index_speakers=index_speakers,
 )
+LATEX_JINJA_ENV.filters['dedent'] = dedent_lines
 
 
 def load_template(template: str) -> jinja2.Template:

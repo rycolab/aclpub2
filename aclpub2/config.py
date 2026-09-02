@@ -17,8 +17,10 @@ def load_configs(root: Path):
     Loads all conference configuration files defined in the root directory.
     """
     conference = load_config("conference_details", root, required=True)
+    # Fields that contain raw LaTeX code and should not be escaped
+    raw_latex_fields = {'proceedings_address'}
     for item in conference:
-        if isinstance(conference[item], str):
+        if isinstance(conference[item], str) and item not in raw_latex_fields:
             conference[item] = normalize_latex_string(conference[item])
 
     papers = load_config("papers", root)
