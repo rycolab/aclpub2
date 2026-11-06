@@ -109,6 +109,10 @@ def get_user(or_id,client_acl, force_institution=False):
             # (but preserve e.g. "de Marneffe")
             if all(n.isupper() or n.islower() for n in last_name.split(" ")):
                 last_name = last_name.title()
+            if last_name.endswith((" Ii", " Iii", " Iv")):
+                # repair Roman numeral
+                last_a, last_b = last_name.rsplit(" ", 1)
+                last_name = last_a + " " + last_b.upper()
 
         if 'preferredEmail' in emails[0].content:
             emails = emails[0].content['preferredEmail']
